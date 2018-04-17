@@ -13,7 +13,7 @@ public class Trap {
         this.active = active;
         this.effect = effect;
     }
-    
+
     public void apply(Entity entity){
         effect.apply(entity);
     }

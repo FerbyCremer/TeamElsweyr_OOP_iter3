@@ -7,5 +7,5 @@ public abstract class EntityEffect {
     public EntityEffect() {
     }
 
-    public void apply(Entity entity){}
+    public abstract void apply(Entity entity);
 }
