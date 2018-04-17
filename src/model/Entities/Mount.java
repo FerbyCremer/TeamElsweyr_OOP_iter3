@@ -11,7 +11,7 @@ public class Mount extends Entity {
     public Mount(){}
 
     public int getSpeed(){
-        return entityStats.getCurrentSpeed();
+        return stats.getCurrentSpeed();
     }
 
     public List<Terrain> getPassable(){
