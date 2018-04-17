@@ -22,7 +22,9 @@ public class EntityStats {
 		detectRange = 10;
 		maxSpeed = 5;
 		currentSpeed = 0;
-		//facingDirection = new Direction(N);
+
+		//facingDirection = Direction.N;
+
 	}
 	
 	public void modifyHealth(int delta) {
@@ -37,6 +39,12 @@ public class EntityStats {
 		}
 	}
 	
+
+	public int getHealth() {
+		return currentHealth;
+	}
+	
+
 	/*public void modifyHealth(int delta, Time time) {
 		
 	}*/
@@ -57,12 +65,24 @@ public class EntityStats {
 		}
 	}
 	
+
+	public int getDefense() {
+		return defense;
+	}
+	
+
 	public void levelUp() {
 		++level;
 		
 		experience = 0;
 	}
 	
+
+	public int getLevel() {
+		return level;
+	}
+	
+
 	public void modifyExperience(int delta) {
 		experience += delta;
 		
@@ -74,4 +94,29 @@ public class EntityStats {
 			levelUp();
 		}
 	}
+
+	public void modifySpeed(int delta) {
+		currentSpeed += delta;
+		
+		if(currentSpeed < 0) {
+			currentSpeed = 0;
+		}
+	}
+	
+	public int getMaxSpeed() {
+		return maxSpeed;
+	}
+
+	public int getCurrentSpeed() {
+		return currentSpeed;
+	}
+	
+	public void setDirection(Direction direction) {
+		facingDirection = direction;
+	}
+
+	public Direction getDirection() {
+		return facingDirection;
+	}
+
 }

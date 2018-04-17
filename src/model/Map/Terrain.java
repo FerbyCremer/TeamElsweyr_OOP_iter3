@@ -1,5 +1,6 @@
 package model.Map;
 
+
 import java.util.ArrayList;
 
 public class Terrain {
@@ -17,4 +18,5 @@ public class Terrain {
     public boolean equals(Terrain terrain){
        return false;
     }
+
 }

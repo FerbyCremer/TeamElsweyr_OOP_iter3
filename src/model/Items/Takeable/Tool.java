@@ -1,5 +1,6 @@
 package model.Items.Takeable;
 
+
 import controller.Handlers.ActionHandler;
 import model.Actions.Action;
 import model.Entities.Entity;
@@ -31,4 +32,5 @@ public class Tool extends Takeable implements Usable {
     }
 
     public void use(Player player){}
+
 }
