@@ -2,7 +2,7 @@ package model.Actions;
 
 
 import model.Actions.ActionType.ActionType;
-import model.Effect.EntityEffect;
+import model.Effect.EntityEffect.EntityEffect;
 import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
