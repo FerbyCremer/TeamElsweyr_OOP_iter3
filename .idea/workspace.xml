@@ -3,16 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="0361e9d0-7bba-4f16-88de-fff5bb66a51a" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSet.java" afterPath="$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSet.java" />
-      <change beforePath="$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSetFTDRTIE.java" afterPath="$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSetFTDRTIE.java" />
-      <change beforePath="$PROJECT_DIR$/src/model/Entities/Entity.java" afterPath="$PROJECT_DIR$/src/model/Entities/Entity.java" />
-      <change beforePath="$PROJECT_DIR$/src/model/Items/Item.java" afterPath="$PROJECT_DIR$/src/model/Items/Item.java" />
-      <change beforePath="$PROJECT_DIR$/src/model/Map/Terrain.java" afterPath="$PROJECT_DIR$/src/model/Map/Terrain.java" />
-      <change beforePath="$PROJECT_DIR$/src/model/Map/Zone/ContentMap.java" afterPath="$PROJECT_DIR$/src/model/Map/Zone/ContentMap.java" />
-      <change beforePath="$PROJECT_DIR$/src/model/Map/Zone/TileRelatedClasses/River.java" afterPath="$PROJECT_DIR$/src/model/Map/Zone/TileRelatedClasses/River.java" />
-      <change beforePath="$PROJECT_DIR$/src/model/Map/Zone/TileRelatedClasses/Tile.java" afterPath="$PROJECT_DIR$/src/model/Map/Zone/TileRelatedClasses/Tile.java" />
-      <change beforePath="$PROJECT_DIR$/src/model/Map/Zone/TileRelatedClasses/Trap.java" afterPath="$PROJECT_DIR$/src/model/Map/Zone/TileRelatedClasses/Trap.java" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/FogOfWarController.java" afterPath="$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/FogOfWarController.java" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToAreaEffect.java" afterPath="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToAreaEffect.java" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToItem.java" afterPath="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToItem.java" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToTrap.java" afterPath="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToTrap.java" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/MovementController.java" afterPath="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/MovementController.java" />
+      <change beforePath="$PROJECT_DIR$/src/controller/MapControllers/WorldController.java" afterPath="$PROJECT_DIR$/src/controller/MapControllers/WorldController.java" />
       <change beforePath="$PROJECT_DIR$/src/model/Map/Zone/Zone.java" afterPath="$PROJECT_DIR$/src/model/Map/Zone/Zone.java" />
+      <change beforePath="$PROJECT_DIR$/src/view/ZoneView.java" afterPath="$PROJECT_DIR$/src/view/ZoneView.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,59 +20,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="DecalSetContainer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSetContainer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="12" column="45" lean-forward="false" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DecalSetFTDRTIE.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSetFTDRTIE.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-              <folding>
-                <element signature="method#DecalSetFTDRTIE#0;class#DecalSetFTDRTIE#0" expanded="false" />
-                <element signature="e#728#736#0" expanded="true" />
-                <element signature="method#update#0;class#DecalSetFTDRTIE#0" expanded="false" />
-                <element signature="method#createZoneMap#0;class#DecalSetFTDRTIE#0" expanded="false" />
-                <element signature="method#addDecalName#0;class#DecalSetFTDRTIE#0" expanded="false" />
-                <element signature="method#addRiverName#0;class#DecalSetFTDRTIE#0" expanded="false" />
-                <element signature="method#addTrapName#0;class#DecalSetFTDRTIE#0" expanded="false" />
-                <element signature="method#addItemName#0;class#DecalSetFTDRTIE#0" expanded="false" />
-                <element signature="method#addEntityName#0;class#DecalSetFTDRTIE#0" expanded="false" />
-                <element signature="method#makeNewPoint#0;class#DecalSetFTDRTIE#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DecalSet.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="10" column="72" lean-forward="false" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FogOfWarController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/FogOfWarController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="28" column="39" lean-forward="false" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="750" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -109,12 +55,7 @@
         <option value="$PROJECT_DIR$/src/model/Items/Takeable/Consumable.java" />
         <option value="$PROJECT_DIR$/src/model/Items/Takeable/Ring.java" />
         <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementController.java" />
-        <option value="$PROJECT_DIR$/src/view/ZoneView.java" />
-        <option value="$PROJECT_DIR$/src/controller/MapControllers/WorldController.java" />
         <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/CollisionChecker.java" />
-        <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToItem.java" />
-        <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToAreaEffect.java" />
-        <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToTrap.java" />
         <option value="$PROJECT_DIR$/src/controller/Handlers/ItemHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/Handlers/AreaEffectHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/Handlers/TrapHandler.java" />
@@ -122,11 +63,9 @@
         <option value="$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSetContainer.java" />
         <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntitMover.java" />
         <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityMover.java" />
-        <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/MovementController.java" />
         <option value="$PROJECT_DIR$/src/controller/EntityControllers/AIController.java" />
         <option value="$PROJECT_DIR$/src/controller/Handlers/ActionHandler.java" />
         <option value="$PROJECT_DIR$/src/controller/Handlers/MountHandler.java" />
-        <option value="$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/FogOfWarController.java" />
         <option value="$PROJECT_DIR$/src/model/Items/OneShot/OneShot.java" />
         <option value="$PROJECT_DIR$/src/controller/EntityControllers/PlayerController.java" />
         <option value="$PROJECT_DIR$/src/model/Entities/EntityStats.java" />
@@ -140,13 +79,20 @@
         <option value="$PROJECT_DIR$/src/model/Map/Zone/ContentMap.java" />
         <option value="$PROJECT_DIR$/src/model/Map/Zone/TileRelatedClasses/Tile.java" />
         <option value="$PROJECT_DIR$/src/model/Map/Terrain.java" />
-        <option value="$PROJECT_DIR$/src/model/Map/Zone/Zone.java" />
         <option value="$PROJECT_DIR$/src/model/Map/Zone/TileRelatedClasses/River.java" />
         <option value="$PROJECT_DIR$/src/model/Map/Zone/TileRelatedClasses/Trap.java" />
         <option value="$PROJECT_DIR$/src/model/Items/Item.java" />
         <option value="$PROJECT_DIR$/src/model/Entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSet.java" />
         <option value="$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSetFTDRTIE.java" />
+        <option value="$PROJECT_DIR$/src/model/Map/Zone/Zone.java" />
+        <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToAreaEffect.java" />
+        <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToItem.java" />
+        <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToTrap.java" />
+        <option value="$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/MovementController.java" />
+        <option value="$PROJECT_DIR$/src/view/ZoneView.java" />
+        <option value="$PROJECT_DIR$/src/controller/MapControllers/WorldController.java" />
+        <option value="$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/FogOfWarController.java" />
       </list>
     </option>
   </component>
@@ -194,31 +140,16 @@
               <item name="TeamElsweyr_OOP_iter3" type="b2602c69:ProjectViewProjectNode" />
               <item name="TeamElsweyr_OOP_iter3" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TeamElsweyr_OOP_iter3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TeamElsweyr_OOP_iter3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="MapControllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TeamElsweyr_OOP_iter3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TeamElsweyr_OOP_iter3" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="MapControllers" type="462c0819:PsiDirectoryNode" />
-              <item name="FogOfWarRelatedClasses" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -350,16 +281,16 @@
       <workItem from="1523928852964" duration="572000" />
       <workItem from="1523978103280" duration="251000" />
       <workItem from="1523986125209" duration="2484000" />
-      <workItem from="1524141231919" duration="6921000" />
+      <workItem from="1524141231919" duration="7511000" />
+      <workItem from="1524156671310" duration="2026000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19382000" />
+    <option name="totallyTimeSpent" value="21998000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-16" y="-16" width="3232" height="1732" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -373,7 +304,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27299222" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27784973" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -428,45 +359,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/RunGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/RunGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Entities/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1280">
-          <caret line="38" column="22" lean-forward="false" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Entities/MountSate/MountedState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Entities/Skill.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Map/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -477,25 +373,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Actions/Action.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="2" column="21" lean-forward="false" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Effect/EntityEffect.java" />
     <entry file="file://$PROJECT_DIR$/src/model/Items/Takeable/Usable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/ZoneView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -520,13 +402,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/MovementController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/Handlers/ActionHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -548,20 +423,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/WorldController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1000">
-          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/ZoneController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="15" column="200" lean-forward="false" selection-start-line="15" selection-start-column="200" selection-end-line="15" selection-end-column="200" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/CollisionChecker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -573,27 +434,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="520">
           <caret line="13" column="68" lean-forward="false" selection-start-line="13" selection-start-column="68" selection-end-line="13" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToAreaEffect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="11" column="42" lean-forward="false" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToTrap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -693,7 +533,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -701,11 +540,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1010">
           <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#231#232#0" expanded="true" />
-            <element signature="e#261#262#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -713,10 +547,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#353#354#0" expanded="true" />
-            <element signature="e#380#381#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -724,13 +554,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1160">
           <caret line="45" column="33" lean-forward="false" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1129#1130#0" expanded="true" />
-            <element signature="e#1162#1163#0" expanded="true" />
-            <element signature="e#1199#1200#0" expanded="true" />
-            <element signature="e#1239#1240#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -738,10 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="13" column="25" lean-forward="false" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
-          <folding>
-            <element signature="e#453#454#0" expanded="true" />
-            <element signature="e#480#481#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -749,7 +568,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
           <caret line="29" column="20" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -757,10 +575,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#189#190#0" expanded="true" />
-            <element signature="e#216#217#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -768,33 +582,149 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-58">
           <caret line="17" column="28" lean-forward="false" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
-          <folding>
-            <element signature="e#1101#1102#0" expanded="true" />
-            <element signature="e#1128#1129#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSetContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="12" column="45" lean-forward="false" selection-start-line="12" selection-start-column="45" selection-end-line="12" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Map/Zone/Zone.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="970">
-          <caret line="78" column="19" lean-forward="false" selection-start-line="78" selection-start-column="19" selection-end-line="78" selection-end-column="19" />
+        <state relative-caret-position="695">
+          <caret line="57" column="42" lean-forward="false" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+          <folding>
+            <element signature="e#1518#1519#0" expanded="true" />
+            <element signature="e#1550#1551#0" expanded="true" />
+            <element signature="e#1624#1625#0" expanded="true" />
+            <element signature="e#1680#1681#0" expanded="true" />
+            <element signature="e#1716#1717#0" expanded="true" />
+            <element signature="e#1760#1761#0" expanded="true" />
+            <element signature="e#1790#1791#0" expanded="true" />
+            <element signature="e#1836#1837#0" expanded="true" />
+            <element signature="e#1867#1868#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToAreaEffect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="13" column="48" lean-forward="false" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="13" column="36" lean-forward="false" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/EntityToTrap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="13" column="36" lean-forward="false" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/MovementRelatedControllers/MovementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="16" column="38" lean-forward="false" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Map/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="8" column="29" lean-forward="false" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSetContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSetFTDRTIE.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-430">
+          <caret line="10" column="28" lean-forward="false" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+          <folding>
+            <element signature="method#DecalSetFTDRTIE#0;class#DecalSetFTDRTIE#0" expanded="false" />
+            <element signature="method#update#0;class#DecalSetFTDRTIE#0" expanded="false" />
+            <element signature="method#createZoneMap#0;class#DecalSetFTDRTIE#0" expanded="false" />
+            <element signature="method#addDecalName#0;class#DecalSetFTDRTIE#0" expanded="false" />
+            <element signature="method#addRiverName#0;class#DecalSetFTDRTIE#0" expanded="false" />
+            <element signature="method#addTrapName#0;class#DecalSetFTDRTIE#0" expanded="false" />
+            <element signature="method#addItemName#0;class#DecalSetFTDRTIE#0" expanded="false" />
+            <element signature="method#addEntityName#0;class#DecalSetFTDRTIE#0" expanded="false" />
+            <element signature="method#makeNewPoint#0;class#DecalSetFTDRTIE#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Actions/Linear.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Actions/Angular.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1200">
+          <caret line="45" column="5" lean-forward="true" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Actions/Radial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="10" column="13" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Actions/Action.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="7" column="22" lean-forward="false" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Actions/EntityAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/FogOfWarController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="28" column="39" lean-forward="false" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+        <state relative-caret-position="200">
+          <caret line="9" column="26" lean-forward="true" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/ZoneController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1040">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -807,21 +737,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/FogOfWarRelatedClasses/DecalSetFTDRTIE.java">
+    <entry file="file://$PROJECT_DIR$/src/view/ZoneView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        <state relative-caret-position="600">
+          <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
           <folding>
-            <element signature="method#DecalSetFTDRTIE#0;class#DecalSetFTDRTIE#0" expanded="false" />
-            <element signature="e#728#736#0" expanded="true" />
-            <element signature="method#update#0;class#DecalSetFTDRTIE#0" expanded="false" />
-            <element signature="method#createZoneMap#0;class#DecalSetFTDRTIE#0" expanded="false" />
-            <element signature="method#addDecalName#0;class#DecalSetFTDRTIE#0" expanded="false" />
-            <element signature="method#addRiverName#0;class#DecalSetFTDRTIE#0" expanded="false" />
-            <element signature="method#addTrapName#0;class#DecalSetFTDRTIE#0" expanded="false" />
-            <element signature="method#addItemName#0;class#DecalSetFTDRTIE#0" expanded="false" />
-            <element signature="method#addEntityName#0;class#DecalSetFTDRTIE#0" expanded="false" />
-            <element signature="method#makeNewPoint#0;class#DecalSetFTDRTIE#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#240#241#0" expanded="true" />
+            <element signature="e#280#281#0" expanded="true" />
+            <element signature="e#332#333#0" expanded="true" />
+            <element signature="e#372#373#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/MapControllers/WorldController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="e#2366#2367#0" expanded="true" />
+            <element signature="e#2415#2416#0" expanded="true" />
           </folding>
         </state>
       </provider>

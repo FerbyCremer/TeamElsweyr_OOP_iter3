@@ -9,7 +9,10 @@ public class EntityToItem implements CollisionChecker{
     private ContentMap<Entity> entityMap;
     private ContentMap<Item> itemMap;
 
-    public EntityToItem(Zone zone){}
+    public EntityToItem(Zone zone){
+        entityMap = zone.getEntityMap();
+        itemMap = zone.getItemMap();
+    }
 
 
     @Override

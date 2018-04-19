@@ -17,7 +17,9 @@ public class FogOfWarController {
         this.decalSet = decalSet;
     }
 
-    public void update(){}
+    public void update(){
+
+    }
 
     private ArrayList<Tile> calculateTilesInPlayersVisibleRadius(){
         return null;

@@ -51,6 +51,26 @@ public class Zone {
         return id;
     }
 
+    public ContentMap<Entity> getEntityMap() {
+        return entityMap;
+    }
+
+    public ContentMap<Item> getItemMap() {
+        return itemMap;
+    }
+
+    public ContentMap<AreaEffect> getAreaEffectMap() {
+        return areaEffectMap;
+    }
+
+    public ContentMap<Trap> getTrapMap() {
+        return trapMap;
+    }
+
+    public ContentMap<River> getRiverMap() {
+        return riverMap;
+    }
+
     //TODO: Fix LOD violations
     public String getDecalName(Tile tile){
         Decal temp = decalMap.getContentAtTile(tile);
