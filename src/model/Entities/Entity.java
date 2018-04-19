@@ -15,6 +15,7 @@ public abstract class Entity {
 		private Equipment equipment;
 		private ArrayList<Terrain> terrains;
 		private ArrayList<Updateable> observers;
+		private String name;
 		
 		public Entity() {
 			stats = new EntityStats();
@@ -43,6 +44,7 @@ public abstract class Entity {
 		public void updateHeath(int healthChange) {
 			stats.modifyHealth(healthChange);
 		}
+
 		
 		//updateSpeed tells the EntityStats class to modify the entiy's speed
 		public void updateCurrentSpeed(int speed) {
@@ -58,4 +60,9 @@ public abstract class Entity {
 		public void updateMaxSpeed(int maxSpeed) {
 			stats.modifyMaxSpeed(maxSpeed);
 		}
-	}
+
+    public String getName() {
+        return name;
+    }
+}
+

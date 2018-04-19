@@ -8,4 +8,7 @@ public abstract class Item {
 
     public abstract void touchedBy(Entity entity);
 
+    public String getName() {
+        return name;
+    }
 }

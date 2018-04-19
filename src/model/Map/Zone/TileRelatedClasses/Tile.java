@@ -1,25 +1,27 @@
 package model.Map.Zone.TileRelatedClasses;
 
 import model.Entities.Entity;
+import model.Map.Direction;
 import model.Map.Terrain;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.Vector;
 
 public class Tile {
     private Terrain terrain;
     private boolean obstacle;
-    private Vector<Tile> neighborhood;
+    private HashMap<Direction, Tile> neighborhood;
     private Point coordinate;
 
-    public Tile(Terrain terrain, boolean obstacle, Vector<Tile> neighborhood, Point coordinate) {
+    public Tile(Terrain terrain, boolean obstacle, HashMap<Direction, Tile> neighborhood, Point coordinate) {
         this.terrain = terrain;
         this.obstacle = obstacle;
         this.neighborhood = neighborhood;
         this.coordinate = coordinate;
     }
 
-    public void setNeighbors(Vector<Tile> tiles){
+    public void setNeighbors(HashMap<Direction,Tile> tiles){
         this.neighborhood = tiles;
     }
 
@@ -27,7 +29,20 @@ public class Tile {
        // if(terrain.canPass(entity.get))
         return false;
     }
-    public Vector<Tile> getNeighbors() {
+
+    public Tile getNeighbor(Direction direction) {
+        return neighborhood.get(direction); //What does this return if there is no tile for that direction?
+    }
+
+    public HashMap<Direction, Tile> getNeighbors() {
         return neighborhood;
+    }
+
+    public Point getCoordinate() {
+        return coordinate;
+    }
+
+    public String getTerrainName(){
+        return terrain.getName();
     }
 }

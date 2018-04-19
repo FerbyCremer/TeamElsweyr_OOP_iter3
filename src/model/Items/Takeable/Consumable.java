@@ -1,6 +1,6 @@
 package model.Items.Takeable;
 
-import model.Effect.EntityEffect;
+import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.Entity;
 import model.Entities.Player;
 import model.Inventory.Equipment;

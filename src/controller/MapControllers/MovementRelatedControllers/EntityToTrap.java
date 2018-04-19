@@ -9,7 +9,10 @@ public class EntityToTrap implements CollisionChecker {
     private ContentMap<Entity> entityMap;
     private ContentMap<Trap> trapMap;
 
-    public EntityToTrap(Zone zone){}
+    public EntityToTrap(Zone zone){
+        entityMap = zone.getEntityMap();
+        trapMap = zone.getTrapMap();
+    }
 
 
     @Override
