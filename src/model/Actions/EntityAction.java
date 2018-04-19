@@ -1,7 +1,8 @@
 package model.Actions;
 
 
-import model.Effect.EntityEffect;
+import model.Actions.ActionType.ActionType;
+import model.Effect.EntityEffect.EntityEffect;
 import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
@@ -10,6 +11,10 @@ import java.util.Set;
 
 
 public class EntityAction extends Action{
+    private int maxRange;
+    private int distanceTraveled;
+    private ActionType actionType;
+    private int accuracy;
     EntityEffect entityEffect;
 
     public EntityAction(int maxRange, int distanceTraveled, int accuracy, EntityEffect entityEffect) {

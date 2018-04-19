@@ -1,12 +1,21 @@
 package model.Actions;
 
-import model.Effect.TrapEffect;
+
+import model.Actions.ActionType.ActionType;
+import model.Effect.TrapEffects.TrapEffect;
+
+//import model.Effect.TrapEffect;
+
 import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
 import java.util.List;
 
 public class TrapAction extends Action{
+    private int maxRange;
+    private int distanceTraveled;
+    private ActionType actionType;
+    private int accuracy;
     TrapEffect trapEffect;
 
     public TrapAction(int maxRange, int distanceTraveled, int accuracy, TrapEffect trapEffect) {
