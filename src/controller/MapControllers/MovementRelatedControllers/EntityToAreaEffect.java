@@ -9,7 +9,10 @@ public class EntityToAreaEffect implements CollisionChecker {
     private ContentMap<Entity> entityMap;
     private ContentMap<AreaEffect> areaEffectMap;
 
-    public EntityToAreaEffect(Zone zone){}
+    public EntityToAreaEffect(Zone zone){
+        entityMap = zone.getEntityMap();
+        areaEffectMap = zone.getAreaEffectMap();
+    }
 
 
     @Override
