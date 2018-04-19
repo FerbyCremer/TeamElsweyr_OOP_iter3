@@ -5,6 +5,7 @@ import model.Effect.EntityEffect;
 import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class EntityAction extends Action{
     }
 
     @Override
-    public List<Tile> getAffectedTiles(Tile tile, Direction direction) {
+    public HashMap<Tile, Integer> getAffectedTiles(Tile tile, Direction direction) {
         return actionType.generateAffectedTiles(tile, direction, this);
     }
 }

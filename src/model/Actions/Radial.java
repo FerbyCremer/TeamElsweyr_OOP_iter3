@@ -3,24 +3,20 @@ package model.Actions;
 import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Radial implements ActionType{
 
     /** This generate the tiles that a certain action will affect **/
     //Suggestion: make Set a List
     @Override
-    public List<Tile> generateAffectedTiles(Tile tile, Direction direction, Action action) {
+    public HashMap<Tile, Integer> generateAffectedTiles(Tile tile, Direction direction, Action action) {
         int range = action.getMaxRange();
-        List<Tile> affectedTiles = new ArrayList<>();
-
+        HashMap<Tile, Integer> affectedTiles = new HashMap<>();
+        Utility utility = new Utility();
         for(int i = 0; i < range; i++){
-            affectedTiles.addAll(generateCircle(direction,tile,i));
+            utility.copyFromList(affectedTiles, generateCircle(direction,tile,i), i);
         }
-
         return affectedTiles;
     }
 
@@ -29,9 +25,8 @@ public class Radial implements ActionType{
         List<Tile> tileList = new ArrayList<>();
         Direction tempDirection = direction;
         Tile tempTile = tile;
-
         tempDirection=tempDirection.getClockwise(120);
-        for(int i =0; i < 6; i++){
+        for(int i = 0; i < 6; i++){
             for(int j = 0; j < radius; j++){
                 tileList.add(tempTile);
                 tempTile = tempTile.getNeighbor(tempDirection);
@@ -39,5 +34,17 @@ public class Radial implements ActionType{
             tempDirection = tempDirection.getClockwise(60);
         }
         return tileList;
+    }
+
+
+
+    private static class Utility<T>{
+        private void copyFromList(HashMap<T, Integer> copyTo, List<T> copyFrom, Integer integer ){
+
+            for (T element: copyFrom) {
+                copyTo.put(element, integer);
+            }
+
+        }
     }
 }

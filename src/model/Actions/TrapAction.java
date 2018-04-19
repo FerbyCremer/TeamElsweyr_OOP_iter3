@@ -4,6 +4,7 @@ import model.Effect.TrapEffect;
 import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class TrapAction extends Action{
@@ -22,7 +23,7 @@ public class TrapAction extends Action{
     }
 
     @Override
-    public List<Tile> getAffectedTiles(Tile tile, Direction direction) {
+    public HashMap<Tile, Integer> getAffectedTiles(Tile tile, Direction direction) {
         return actionType.generateAffectedTiles(tile, direction, this);
     }
 }
