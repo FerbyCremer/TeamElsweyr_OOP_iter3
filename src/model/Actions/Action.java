@@ -4,13 +4,19 @@ import model.Actions.ActionType.ActionType;
 import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
-import java.util.Set;
+import java.util.List;
 
 public abstract class Action {
-    private int maxRange;
-    private int distanceTraveled;
-    private ActionType actionType;
-    private int accuracy;
+
+    protected int maxRange;
+    protected int distanceTraveled;
+    protected ActionType actionType;
+    protected int accuracy;
+
     public abstract Action clone(int modifier);
-    public abstract Set<Tile> getAffectedTiles(Tile tile, Direction direction);
+    public abstract List<Tile> getAffectedTiles(Tile tile, Direction direction);
+
+    public int getMaxRange() {
+        return maxRange;
+    }
 }
