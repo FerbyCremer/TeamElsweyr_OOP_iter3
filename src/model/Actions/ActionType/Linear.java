@@ -1,5 +1,6 @@
-package model.Actions;
+package model.Actions.ActionType;
 
+import model.Actions.Action;
 import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
