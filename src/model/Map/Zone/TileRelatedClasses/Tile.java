@@ -37,4 +37,12 @@ public class Tile {
     public HashMap<Direction, Tile> getNeighbors() {
         return neighborhood;
     }
+
+    public Point getCoordinate() {
+        return coordinate;
+    }
+
+    public String getTerrainName(){
+        return terrain.getName();
+    }
 }

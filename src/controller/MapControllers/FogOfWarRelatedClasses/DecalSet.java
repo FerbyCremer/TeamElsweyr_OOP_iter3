@@ -7,5 +7,6 @@ import java.util.ArrayList;
 
 public interface DecalSet {
 
-    void update(ArrayList<Tile> tiles, Zone currentZone);
+    //Probably need to pass in Player Point
+    void update(ArrayList<Tile> tiles, Zone currentZone, Tile playerTile);
 }

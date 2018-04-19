@@ -15,6 +15,7 @@ public abstract class Entity {
 		private Equipment equipment;
 		private ArrayList<Terrain> terrains;
 		private ArrayList<Updateable> observers;
+		private String name;
 		
 		public Entity() {
 			stats = new EntityStats();
@@ -38,4 +39,8 @@ public abstract class Entity {
 		public void updateHeath(int healthChange) {
 			stats.modifyHealth(healthChange);
 		}
-	}
+
+    public String getName() {
+        return name;
+    }
+}
