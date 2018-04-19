@@ -11,6 +11,7 @@ import view.ZoneView;
 
 import java.awt.*;
 
+//TODO change player's MountHandler when map changes
 public class WorldController {
     private World world;
     private Player player;
