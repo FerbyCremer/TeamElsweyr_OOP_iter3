@@ -1,11 +1,15 @@
 package model.Actions;
 
+
 import model.Actions.ActionType.ActionType;
 import model.Effect.TrapEffects.TrapEffect;
+
+//import model.Effect.TrapEffect;
+
 import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
-import java.util.Set;
+import java.util.List;
 
 public class TrapAction extends Action{
     private int maxRange;
@@ -27,7 +31,7 @@ public class TrapAction extends Action{
     }
 
     @Override
-    public Set<Tile> getAffectedTiles(Tile tile, Direction direction) {
+    public List<Tile> getAffectedTiles(Tile tile, Direction direction) {
         return actionType.generateAffectedTiles(tile, direction, this);
     }
 }
