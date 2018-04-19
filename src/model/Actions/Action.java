@@ -5,8 +5,6 @@ import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
 
 public abstract class Action {
 
