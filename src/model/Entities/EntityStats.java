@@ -135,6 +135,10 @@ public class EntityStats {
 		return currentSpeed;
 	}
 	
+	public void setMaxSpeed(int maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
+	
 	// Direction
 	public void setFacingDirection(Direction direction) {
 		facingDirection = direction;

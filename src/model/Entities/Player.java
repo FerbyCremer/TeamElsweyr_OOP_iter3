@@ -3,6 +3,7 @@ package model.Entities;
 import controller.EntityControllers.PlayerController;
 import controller.Handlers.MountHandler;
 import model.Entities.MountSate.MountedState;
+import model.Entities.MountSate.Unmounted;
 import model.Entities.NPC.NPC;
 import model.Items.Takeable.Tool;
 
@@ -18,7 +19,7 @@ public class Player extends Entity{
 
     private Player(List<Skill> skills){
     	this.skills = skills;
-    	//mountedState = new Unmounted(getSpeed());
+    	mountedState = new Unmounted(getMaxSpeed());
     	
     }
 
