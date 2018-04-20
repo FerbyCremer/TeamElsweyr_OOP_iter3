@@ -1,14 +1,17 @@
 package controller.KeyControllers;
 
 import controller.KeyControllers.KeyCommands.KeyCommand;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
+
 
 import java.util.HashMap;
 
-public class KeyContoller {
+public class KeyController implements EventHandler<KeyEvent> {
     private String name;
     private HashMap<String, KeyCommand> keyListeners;
 
-    public KeyContoller(String name, HashMap<String, KeyCommand> keys){
+    public KeyController(String name, HashMap<String, KeyCommand> keys){
         this.name = name;
         keyListeners = keys;
     }
@@ -31,4 +34,9 @@ public class KeyContoller {
         keyListeners.remove(code);
     }
 
+    @Override
+    public void handle(KeyEvent event) {
+        String temp = event.getCode().toString().toLowerCase();
+        keyListeners.get(temp).perform();
+    }
 }
