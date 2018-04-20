@@ -65,6 +65,7 @@ public abstract class Entity implements EntityVisitable, EntityVisitor  {
         return name;
     }
 
+
 	@Override
 	public void accept(EntityVisitor entityVisitor) {
 		entityVisitor.visit(this);
@@ -74,6 +75,13 @@ public abstract class Entity implements EntityVisitable, EntityVisitor  {
 	public void visit(Entity entity) {
 
 	}
-}
+
+
+
+
+    public Direction getDirection(){
+			return stats.getDirection();
+		}
+
 }
 

@@ -31,6 +31,8 @@ public class Tool extends Takeable implements Usable {
 
     }
 
-    public void use(Player player){}
+    public void use(Player player){
+        actionHandler.createAction(player, action);
+    }
 
 }
