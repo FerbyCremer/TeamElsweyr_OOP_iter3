@@ -16,6 +16,7 @@ import view.ZoneView;
 
 import java.awt.*;
 
+//TODO change player's MountHandler when map changes
 public class WorldController {
     private World world;
     private Player player;
@@ -36,6 +37,7 @@ public class WorldController {
     }
 
     public void changeZoneTo(String zoneID){
+        updatePlayerPos(zoneID);
         updateZoneController(world.changeZone(zoneID));
         updateZoneView(decalSetContainer.getDecalSet(zoneID));
     }
@@ -44,6 +46,11 @@ public class WorldController {
     private void updateActionHandler(Zone zone){
     }
     private void updateAIController(Zone zone){}
+
+    private void updatePlayerPos(String zoneID){
+        world.removeEntityFromZone(player, zoneID);
+        world.addEntityToZone(player, zoneID);
+    }
     private void updateZoneController(Zone zone){
         zoneController.setEntityToAreaEffect(new EntityToAreaEffect(zone));
         zoneController.setEntityToItem(new EntityToItem(zone));

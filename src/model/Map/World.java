@@ -1,5 +1,7 @@
 package model.Map;
 
+import model.Entities.Entity;
+import model.Entities.Player;
 import model.Map.Zone.Zone;
 
 import java.util.ArrayList;
@@ -14,11 +16,29 @@ public class World {
     }
 
     public Zone changeZone(String zoneID){
+        currentZone = getZone(zoneID);
+
+        return currentZone;
+    }
+
+    private Zone getZone(String zoneID){
         for(Zone z: zones){
-            if(zoneID == z.getID())
+            if(zoneID == z.getID()) {
                 return z;
+            }
         }
 
         return null;
+    }
+
+
+    public void removeEntityFromZone(Entity entity, String zoneID){
+        Zone zone = getZone(zoneID);
+        zone.removeEntityFromMap(entity);
+    }
+
+    public void addEntityToZone(Player player, String zoneID) {
+        Zone zone = getZone(zoneID);
+        zone.addEntityToMap(player);
     }
 }

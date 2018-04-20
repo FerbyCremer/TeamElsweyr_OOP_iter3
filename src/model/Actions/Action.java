@@ -15,6 +15,7 @@ public abstract class Action {
     protected ActionType actionType;
     protected int accuracy;
 
+
     public abstract Action clone(int modifier);
     public abstract HashMap<Tile, Integer> getAffectedTiles(Tile tile, Direction direction);
 
