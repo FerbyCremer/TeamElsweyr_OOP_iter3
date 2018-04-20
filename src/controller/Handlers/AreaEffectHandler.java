@@ -4,11 +4,11 @@ import model.Entities.Entity;
 import model.Map.Zone.TileRelatedClasses.AreaEffect;
 
 public class AreaEffectHandler {
-    private Entity entity;
 
-    public AreaEffectHandler(Entity entity, AreaEffect areaEffect) {
-        this.entity = entity;
+
+    public AreaEffectHandler() { }
+
+    public void handleCollision(Entity entity, AreaEffect areaEffect){
+        areaEffect.apply(entity);
     }
-
-    private void handleCollision(AreaEffect areaEffect){}
 }
