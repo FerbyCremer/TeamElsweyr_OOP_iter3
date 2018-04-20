@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import java.util.HashMap;
 
 public class KeyController implements EventHandler<KeyEvent> {
+
     private String name;
     private HashMap<String, KeyCommand> keyListeners;
 
