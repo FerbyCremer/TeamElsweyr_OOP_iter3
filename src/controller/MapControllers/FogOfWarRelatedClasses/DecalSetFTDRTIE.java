@@ -48,6 +48,7 @@ public class DecalSetFTDRTIE implements DecalSet {
         for(Tile t: tiles){
             Point p = makeNewPoint(t.getCoordinate());
             ArrayList<String> names = zoneMap.get(p);
+            names.clear();
             addTerrainName(t, names);
             addDecalName(t, currentZone, names);
             addRiverName(t, currentZone, names);

@@ -48,7 +48,7 @@ public class WorldController {
     private void updateAIController(Zone zone){}
 
     private void updatePlayerPos(String zoneID){
-        world.removeEntityFromZone(player, zoneID);
+        world.removeEntityFromZone(player);
         world.addEntityToZone(player, zoneID);
     }
     private void updateZoneController(Zone zone){
