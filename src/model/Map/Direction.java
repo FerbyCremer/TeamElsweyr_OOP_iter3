@@ -28,6 +28,22 @@ public enum Direction {
         return null;
     }
 
+    public static Direction getDirectionClosest(int angle){
+        if(angle > 360){
+            angle %= 360;
+        }
+        for (int i = 0; i < directions.size(); i++) {
+            if( directions.get(i).getAngle() == 0 ){
+                if (angle < 30 || angle > 330){
+                    return directions.get(i);
+                }
+            }
+            if( Math.abs(directions.get(i).getAngle() - angle )  < 30){
+                return directions.get(i);
+            }
+        }
+    }
+
     private Direction(final int angle) {
         this.angle = angle;
         addToDirections(this);
