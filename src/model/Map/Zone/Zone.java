@@ -106,4 +106,13 @@ public class Zone {
             return temp.getName();
         return null;
     }
+
+    public void removeEntityFromMap(Entity entity){
+        entityMap.removeContent(entity);
+    }
+
+    public void addEntityToMap(Entity entity){
+        //This might need to change depending on how we implement spawnpoint
+        entityMap.setContent(tiles[spawnPoint.x][spawnPoint.y], entity);
+    }
 }

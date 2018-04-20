@@ -3,12 +3,13 @@ package model.Entities;
 import controller.EntityControllers.PlayerController;
 import controller.Handlers.MountHandler;
 import model.Entities.MountSate.MountedState;
+import model.Entities.NPC.NPC;
 import model.Items.Takeable.Tool;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Player {
+public class Player extends Entity{
     private List<Skill> skills;
     private MountedState mountedState;
     private MountHandler mountHandler;
@@ -91,5 +92,13 @@ public class Player {
     public void setMountHandler(MountHandler mountHandler) {
     	this.mountHandler = mountHandler;
     }
-    
+
+
+	public void visit(NPC npc){
+    	npc.doInteraction(this);
+	}
+
+	public void visit(Mount mount){
+
+	}
 }

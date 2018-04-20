@@ -9,7 +9,7 @@ import model.Map.Terrain;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Entity {
+public abstract class Entity implements EntityVisitable, EntityVisitor  {
 		protected EntityStats stats;
 		private Inventory inventory;
 		private Equipment equipment;
@@ -41,7 +41,7 @@ public abstract class Entity {
 		}
 		
 		//updateHealth is a wrapper method that tells EntityStats to modify the entity's health
-		public void updateHeath(int healthChange) {
+		public void updateHealth(int healthChange) {
 			stats.modifyHealth(healthChange);
 		}
 
@@ -64,5 +64,16 @@ public abstract class Entity {
     public String getName() {
         return name;
     }
+
+	@Override
+	public void accept(EntityVisitor entityVisitor) {
+		entityVisitor.visit(this);
+	}
+
+	@Override
+	public void visit(Entity entity) {
+
+	}
+}
 }
 

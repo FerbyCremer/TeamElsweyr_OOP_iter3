@@ -24,9 +24,14 @@ public class Trap {
         visible = b;
     }
 
+    public void setActive(){
+        active = true;
+    }
+
     public String getName() {
         if(visible)
             return name;
         return null;
     }
+
 }
