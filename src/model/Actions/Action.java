@@ -1,6 +1,8 @@
 package model.Actions;
 
+import controller.Handlers.ActionHandler;
 import model.Actions.ActionType.ActionType;
+import model.Entities.Player;
 import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
@@ -19,4 +21,6 @@ public abstract class Action {
     public int getMaxRange() {
         return maxRange;
     }
+
+    public abstract void createInstanceFor(ActionHandler actionHandler, Player player);
 }

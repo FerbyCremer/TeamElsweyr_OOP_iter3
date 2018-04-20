@@ -43,4 +43,9 @@ public abstract class Entity {
     public String getName() {
         return name;
     }
+
+    public Direction getDirection(){
+			return stats.getDirection();
+		}
+
 }
