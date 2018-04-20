@@ -19,4 +19,8 @@ public class Armor extends Takeable {
     public void touchedBy(Entity entity) {
 
     }
+    
+    public int getDefense() {
+    	return defense;
+    }
 }

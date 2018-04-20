@@ -12,14 +12,12 @@ import java.util.List;
 public abstract class Entity {
 		protected EntityStats stats;
 		private Inventory inventory;
-		private Equipment equipment;
 		private ArrayList<Terrain> terrains;
 		private ArrayList<Updateable> observers;
 		
 		public Entity() {
 			stats = new EntityStats();
-			inventory = new Inventory();
-			equipment = new Equipment();
+			inventory = new Inventory(stats);
 			terrains = new ArrayList<Terrain>();
 		}
 		

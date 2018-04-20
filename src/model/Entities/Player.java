@@ -69,14 +69,19 @@ public class Player {
     	return 0;
     }
 
-    //TODO finish after doing Equipment
-    public void attack(){}
+    //TODO Fill this out once inventory has been figured out
+    public void attack(){
+    	
+    }
 
     public void useSkill(int skill){}
 
     public void consumeItem(){}
 
-    public Tool getToolAtIndex(int toolIndex){}
+    //TODO do this after figuring out inventory
+    /*public Tool getToolAtIndex(int toolIndex){
+    	
+    }*/
 
     public void swapState(MountedState mountedState){
     	this.mountedState = mountedState;

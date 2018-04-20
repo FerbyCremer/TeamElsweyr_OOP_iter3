@@ -108,8 +108,7 @@ public class EntityStats {
 		experience += delta;
 	}
 
-	//Speed
-	
+	//Speeds
 	public void modifyCurrentSpeed(int delta) {
 		if(currentSpeed + delta < 0) {
 			currentSpeed = 0;
