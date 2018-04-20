@@ -30,9 +30,13 @@ public class River {
         int sumX = vectorX + riverVectorX;
         int sumY = vectorY + riverVectory;
 
+        double sumSpeed = Math.pow(sumX, 2) + Math.pow(sumY,2);
+        int newEntitySpeed = (int) Math.sqrt(sumSpeed);
+
         int degrees = (int) Math.toDegrees(Math.atan(sumY/((double)sumX)));
 
-        entity.setFacingDirection(Direction.getDirectionClosest(degrees));
+        entity.setDerivedDirection(Direction.getDirectionClosest(degrees));
+        entity.updateCurrentSpeed(newEntitySpeed);
     }
 
     public String getName() {

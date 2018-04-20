@@ -63,6 +63,11 @@ public abstract class Entity implements EntityVisitable, EntityVisitor  {
 	public int getMaxSpeed() {
 		return stats.getMaxSpeed();
 	}
+
+	//setDerivedDirection in entityStats
+	public void setDerivedDirection(Direction direction){
+		stats.setDerivedDirection(direction);
+	}
 		
 	//updateMaxSpeed tells the EntityStats class to modify the entiy's max speed
 	public void updateMaxSpeed(int maxSpeed) {
