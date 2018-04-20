@@ -4,11 +4,11 @@ import controller.KeyControllers.KeyCommands.KeyCommand;
 
 import java.util.HashMap;
 
-public class KeyContoller {
+public class KeyController {
     private String name;
     private HashMap<String, KeyCommand> keyListeners;
 
-    public KeyContoller(String name, HashMap<String, KeyCommand> keys){
+    public KeyController(String name, HashMap<String, KeyCommand> keys){
         this.name = name;
         keyListeners = keys;
     }

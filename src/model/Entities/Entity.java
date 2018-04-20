@@ -81,7 +81,7 @@ public abstract class Entity implements EntityVisitable, EntityVisitor  {
 	}
 
     public Direction getDirection(){
-			return stats.getDirection();
+			return stats.getFacingDirection();
 		}
 
 }
