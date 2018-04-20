@@ -9,6 +9,7 @@ import model.Items.Takeable.Tool;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO add playerController, set mountHanfler
 public class Player extends Entity{
     private List<Skill> skills;
     private MountedState mountedState;
@@ -70,14 +71,17 @@ public class Player extends Entity{
     	return 0;
     }
 
-    //TODO Fill this out once inventory has been figured out
-    public void attack(){
-    	
+    //Tells the inventory to use the tool at the indexz
+    public void attack(int index){
+    	inventory.useTool(index, this);
     }
 
     public void useSkill(int skill){}
 
-    public void consumeItem(){}
+    //Tells the inventory to use the currently equipped consumable
+    public void consumeItem(){
+    	inventory.useConsumable(this);
+    }
 
     //TODO do this after figuring out inventory
     /*public Tool getToolAtIndex(int toolIndex){
@@ -92,7 +96,9 @@ public class Player extends Entity{
         return skills;
     }
 
-    private void addSkillToolToInventory(Tool tool){}
+    private void addSkillToolToInventory(Tool tool){
+    	inventory.equipInvisibleTool(tool);
+    }
     
     public void setMountHandler(MountHandler mountHandler) {
     	this.mountHandler = mountHandler;
