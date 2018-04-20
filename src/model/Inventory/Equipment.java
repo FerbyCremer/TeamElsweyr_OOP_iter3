@@ -3,6 +3,7 @@ package model.Inventory;
 import java.util.ArrayList;
 
 import model.Entities.EntityStats;
+import model.Entities.Player;
 import model.Items.Takeable.*;
 
 
@@ -10,8 +11,9 @@ public class Equipment {
 	private StatsChanger statChanger;
 	private Armor armorSlot;
 	private Ring ringSlot;
-	private Consumable potionSlot;
+	private Consumable consumableSlot;
 	private ArrayList<Tool> toolList;
+	private ArrayList<Tool> invisibleTools;
 	
 	public Equipment(EntityStats stats) {
 		toolList = new ArrayList<Tool>();
@@ -36,12 +38,12 @@ public class Equipment {
 		ringSlot = null;
 	}
 	
-	public void equipPotion(Consumable potion) {
-		potionSlot = potion;
+	public void equipConsumable(Consumable potion) {
+		consumableSlot = potion;
 	}
 	
-	public void unequipPotion() {
-		potionSlot = null;
+	public void unequipConsumable() {
+		consumableSlot = null;
 	}
 	
 	public void equipTool(Tool tool) {
@@ -52,12 +54,17 @@ public class Equipment {
 		toolList.remove(index);
 	}
 	
-	public void useTool(int index) {
-		//toolList.get(index).use(player);
+	//Tells the tool to create an action
+	public void useTool(int index, Player player) {
+		toolList.get(index).use(player);
 	}
 	
-	public void useConsumable() {
-		//potion.use();
+	//Tells the consumable to apply its effect to the player
+	public void useConsumable(Player player) {
+		consumableSlot.use(player);
 	}
 
+	public void addInvisibleTool(Tool tool) {
+		invisibleTools.add(tool);
+	}
 }

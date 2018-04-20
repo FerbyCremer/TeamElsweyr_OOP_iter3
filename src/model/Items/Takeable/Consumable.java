@@ -14,7 +14,7 @@ public class Consumable extends Takeable implements Usable{
 
     @Override
     public void equip(Equipment equipment) {
-        equipment.equipPotion(this);
+    	equipment.equipConsumable(this);
     }
 
     @Override
@@ -24,6 +24,6 @@ public class Consumable extends Takeable implements Usable{
 
     @Override
     public void use(Player player) {
-        effect.apply(player);
+    	effect.apply(player);
     }
 }

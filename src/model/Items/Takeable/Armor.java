@@ -12,7 +12,7 @@ public class Armor extends Takeable {
 
     @Override
     public void equip(Equipment equipment) {
-        equipment.equipArmor(this);
+    	equipment.equipArmor(this);
     }
 
     @Override

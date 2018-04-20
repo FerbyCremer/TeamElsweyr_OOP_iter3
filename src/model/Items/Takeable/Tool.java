@@ -24,7 +24,6 @@ public class Tool extends Takeable implements Usable {
     @Override
     public void equip(Equipment equipment) {
         equipment.equipTool(this);
-
     }
 
     @Override
