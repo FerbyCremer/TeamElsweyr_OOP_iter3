@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.AvatarController" prefHeight="720.0" prefWidth="1080.0">
+    <top>
+        <Label value="Choose Your Character"  id="menuTitle" />
+    </top>
+    <center>
+        <HBox>
+            <Button  id="leftBtn" value="<<" onAction="#leftCycle" />
+            <ImageView fx:id="avatar" />
+            <Button  id="rightBtn" value=">>" onAction="#rightCycle" />
+        </HBox>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER">
+            <RadioButton id="skillBtn" fx:id="scout" value="Scout"/>
+            <RadioButton id="skillBtn" fx:id="warrior" value="Warrior"/>
+            <RadioButton id="skillBtn" fx:id="healer" value="Healer"/>
+        </HBox>
+    </bottom>
+</BorderPane>
