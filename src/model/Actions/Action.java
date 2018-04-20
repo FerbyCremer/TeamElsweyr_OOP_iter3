@@ -16,7 +16,7 @@ public abstract class Action {
     protected int accuracy;
 
 
-    public abstract Action clone(int modifier);
+    public abstract Action clone(double modifier);
     public abstract HashMap<Tile, Integer> getAffectedTiles(Tile tile, Direction direction);
 
     public int getMaxRange() {
