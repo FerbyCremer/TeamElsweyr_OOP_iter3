@@ -17,6 +17,7 @@ public class Ring extends Takeable{
 
     @Override
     public void touchedBy(Entity entity) {
+        entity.addToInventory(this);
 
     }
 

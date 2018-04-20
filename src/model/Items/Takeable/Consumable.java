@@ -19,7 +19,7 @@ public class Consumable extends Takeable implements Usable{
 
     @Override
     public void touchedBy(Entity entity) {
-
+        entity.addToInventory(this);
     }
 
     @Override

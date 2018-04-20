@@ -25,8 +25,9 @@ public class EntityAction extends Action{
     }
 
     @Override
-    public Action clone(int modifier) {
-        Action action = new EntityAction(this.maxRange, this.accuracy, this.entityEffect);
+    public Action clone(double modifier) {
+        int modifiedAccuracy =  (int) (this.accuracy * modifier);
+        Action action = new EntityAction(this.maxRange, modifiedAccuracy, this.entityEffect);
         return action;
     }
 

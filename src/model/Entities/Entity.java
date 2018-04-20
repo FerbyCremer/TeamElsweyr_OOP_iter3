@@ -3,6 +3,7 @@ package model.Entities;
 import model.*;
 import model.Inventory.Equipment;
 import model.Inventory.Inventory;
+import model.Items.Takeable.Takeable;
 import model.Map.Direction;
 import model.Map.Terrain;
 
@@ -31,6 +32,10 @@ public abstract class Entity implements EntityVisitable, EntityVisitor  {
 		else {
 			stats.setFacingDirection(direction);
 		}
+	}
+
+	public void addToInventory(Takeable item){
+		inventory.addItem(item);
 	}
 		
 	// Changes the entity's inventory, mainly for load game

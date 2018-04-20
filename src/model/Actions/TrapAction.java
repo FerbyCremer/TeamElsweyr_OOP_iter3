@@ -28,8 +28,9 @@ public class TrapAction extends Action{
     }
 
     @Override
-    public Action clone(int modifier) {
-        Action action = new TrapAction(this.maxRange,this.accuracy, this.trapEffect);
+    public Action clone(double modifier) {
+        int modifiedAccuracy =  (int) (this.accuracy * modifier);
+        Action action = new TrapAction(this.maxRange, modifiedAccuracy, this.trapEffect);
         return action;
     }
 

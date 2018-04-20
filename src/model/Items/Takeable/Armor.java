@@ -17,7 +17,7 @@ public class Armor extends Takeable {
 
     @Override
     public void touchedBy(Entity entity) {
-
+        entity.addToInventory(this);
     }
     
     public int getDefense() {
