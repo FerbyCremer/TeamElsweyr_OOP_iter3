@@ -21,4 +21,9 @@ public class MountHandler {
 	public void setMountPerformer(Zone zone) {
 		mountPerformer = new MountPerformer(zone);
 	}
+
+	//TODO delete this testing purposes only
+	public void setMountPerformer(MountPerformer performer) {
+		mountPerformer = performer;		
+	}
 }

@@ -18,6 +18,11 @@ public class MountPerformer {
 		entityMap = zone.getEntityMap();
 	}
 	
+	//TODO delete this, this purposes only
+	public MountPerformer(ContentMap<Entity> entityMap2) {
+		entityMap = entityMap2;
+	}
+
 	public void performMounting(Player player, Mount mount) {
 		MountedState mounted = new Mounted(mount);
 		

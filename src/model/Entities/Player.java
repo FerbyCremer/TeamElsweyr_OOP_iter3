@@ -19,9 +19,9 @@ public class Player extends Entity{
     private PlayerController playerController;
 
     private Player(List<Skill> skills){
+    	super();
     	this.skills = skills;
     	mountedState = new Unmounted();
-    	
     }
 
     public static Player playerMakeSmasher(){
