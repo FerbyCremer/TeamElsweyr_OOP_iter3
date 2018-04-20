@@ -9,8 +9,8 @@ public class Unmounted implements MountedState {
 	private int originalSpeed;
 	private List<Terrain> originalPassable;
 	
-	public Unmounted(int speed) {
-		originalSpeed = speed;
+	public Unmounted() {
+		originalSpeed = 5;
 		originalPassable.add(new Terrain("grass"));
 	}
 	

@@ -2,6 +2,7 @@ package model.Entities;
 
 import controller.EntityControllers.PlayerController;
 import controller.Handlers.MountHandler;
+import model.Entities.MountSate.Mounted;
 import model.Entities.MountSate.MountedState;
 import model.Entities.MountSate.Unmounted;
 import model.Entities.NPC.NPC;
@@ -19,7 +20,7 @@ public class Player extends Entity{
 
     private Player(List<Skill> skills){
     	this.skills = skills;
-    	mountedState = new Unmounted(getMaxSpeed());
+    	mountedState = new Unmounted();
     	
     }
 
@@ -103,6 +104,10 @@ public class Player extends Entity{
     
     public void setMountHandler(MountHandler mountHandler) {
     	this.mountHandler = mountHandler;
+    }
+    
+    public Mount getMount() {
+    	return ((Mounted)mountedState).getMount();
     }
 
 

@@ -20,6 +20,13 @@ public class ContentMap<T> {
     public void setContent(Tile tile, T content){
         map.put(tile, content);
     }
+    
+    public void setNewLocation(Tile tile, T content) {
+    	Tile contentTile = getTileOf(content);
+    	
+    	removeContent(contentTile);
+    	setContent(tile, content);
+    }
 
     public void removeContent(Tile tile){
         map.remove(tile);
