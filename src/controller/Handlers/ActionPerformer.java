@@ -22,8 +22,8 @@ public class ActionPerformer {
         trapContentMap = zone.getTrapMap();
     }
 
-    public void performAction(Player player, EntityAction entityAction){
-        HashMap<Tile, Integer> tiles = entityAction.getAffectedTiles(player.getDirection());
+    public void performAction(Entity entity, EntityAction entityAction){
+        HashMap<Tile, Integer> tiles = entityAction.getAffectedTiles(entityContentMap.getTileOf(entity), entity.getDirection());
         for(Tile tile : tiles.keySet()){
             //This prob doesn't work.
             Entity entityHit = entityContentMap.getContentAtTile(tile);
@@ -33,8 +33,8 @@ public class ActionPerformer {
         }
     }
 
-    public void performAction(Player player, TrapAction trapAction){
-        HashMap<Tile, Integer> tiles = trapAction.getAffectedTiles(player.getDirection());
+    public void performAction(Entity entity, TrapAction trapAction){
+        HashMap<Tile, Integer> tiles = trapAction.getAffectedTiles(entityContentMap.getTileOf(entity), entity.getDirection());
         for(Tile tile : tiles.keySet()){
             //This prob doesn't work.
             Trap trapHit = trapContentMap.getContentAtTile(tile);

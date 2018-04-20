@@ -29,6 +29,7 @@ public class AIController {
     public void updateMaps(Zone zone){
         entityMap = zone.getEntityMap();
         itemMap = zone.getItemMap();
+        // updateMaps(zone); //if merge conflict keep both from here and master: Recursive call on itself???
     }
 
     //From what??
@@ -81,14 +82,15 @@ public class AIController {
 
     //TODO: Should this take in an Item? ya
     //From what
-    public ArrayList<Direction> findPathToItem(Item item){
-        Tile targetTile = itemMap.getTileOf(item);
-        return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), entityMap.getTileOf(player), player.getDirection());
+    public ArrayList<Direction> findPathToItem(Entity entity){
+        //Should find a random item on map (NULL check)
+        Tile targetTile = itemMap.getRandomTileWithContent();
+        return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), targetTile, entityMap.getTileOf(entity), player.getDirection());
     }
 
     //these methods don't give me enough information, from what?
-    public ArrayList<Direction> findPathToPlayer(Player player){
-        return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), entityMap.getTileOf(player), player.getDirection());
+    public ArrayList<Direction> findPathToPlayer(Entity entity){
+        return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), entityMap.getTileOf(player), entityMap.getTileOf(entity),  player.getDirection());
     }
 
 }

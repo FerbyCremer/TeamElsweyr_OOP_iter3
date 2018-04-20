@@ -44,12 +44,15 @@ public class WorldController {
     public void runGame(){}
 
     private void updateActionHandler(Zone zone){
+        actionHandler = new ActionHandler(zone); //ActionHandler should just have updateActionHandler(Zone)
     }
-    private void updateAIController(Zone zone){}
 
     private void updatePlayerPos(String zoneID){
         world.removeEntityFromZone(player);
         world.addEntityToZone(player, zoneID);
+    }
+    private void updateAIController(Zone zone){
+        aiController.updateMaps(zone);
     }
     private void updateZoneController(Zone zone){
         zoneController.setEntityToAreaEffect(new EntityToAreaEffect(zone));

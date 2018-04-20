@@ -12,11 +12,20 @@ public class Terrain {
     }
 
     public boolean canPass(ArrayList<Terrain> terrains){
+        for (int i = 0; i < terrains.size(); i++) {
+            if(this.equals(terrains.get(i))){
+                return true;
+            }
+        }
         return false;
     }
 
     public boolean equals(Terrain terrain){
-       return false;
+
+        if(this.name == terrain.name){
+            return true;
+        }
+        return false;
     }
 
     public String getName() {

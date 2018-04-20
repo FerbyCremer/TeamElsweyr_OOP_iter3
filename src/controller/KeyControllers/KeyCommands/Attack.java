@@ -10,6 +10,6 @@ public class Attack implements KeyCommand {
 
     @Override
     public void perform() {
-        player.attack();
+        player.attack(0);
     }
 }

@@ -1,10 +1,7 @@
 package controller.MapControllers;
 
 import controller.MapControllers.FogOfWarRelatedClasses.FogOfWarController;
-import controller.MapControllers.MovementRelatedControllers.EntityToAreaEffect;
-import controller.MapControllers.MovementRelatedControllers.EntityToItem;
-import controller.MapControllers.MovementRelatedControllers.EntityToTrap;
-import controller.MapControllers.MovementRelatedControllers.MovementController;
+import controller.MapControllers.MovementRelatedControllers.*;
 
 import java.util.Timer;
 import java.util.TimerTask;
