@@ -12,11 +12,12 @@ public class Ring extends Takeable{
 
     @Override
     public void equip(Equipment equipment) {
-
+        equipment.equipRing(this);
     }
 
     @Override
     public void touchedBy(Entity entity) {
+        entity.addToInventory(this);
 
     }
 
