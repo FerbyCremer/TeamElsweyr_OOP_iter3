@@ -2,13 +2,13 @@ package model.Entities.NPC;
 
 import controller.EntityControllers.AIController;
 import model.Entities.Player;
-import model.Updateable;
+import view.UpdateEntityRelatedView;
 
 import java.util.ArrayList;
 
 public class TalkativeState implements NPCState {
     //Dialogue
-    private ArrayList<Updateable> observers;
+    private ArrayList<UpdateEntityRelatedView> observers;
 
     public TalkativeState(){}
 
@@ -21,6 +21,7 @@ public class TalkativeState implements NPCState {
     //Might want to have dialogue observer
     @Override
     public void performInteraction(NPC npc, Player player) {
-
+        for(UpdateEntityRelatedView v: observers)
+            v.update(npc);
     }
 }
