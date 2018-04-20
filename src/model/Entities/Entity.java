@@ -9,11 +9,12 @@ import model.Map.Terrain;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Entity {
+public abstract class Entity implements EntityVisitable, EntityVisitor  {
 		protected EntityStats stats;
 		private Inventory inventory;
 		private ArrayList<Terrain> terrains;
 		private ArrayList<Updateable> observers;
+		private String name;
 		
 		public Entity() {
 			stats = new EntityStats();
@@ -38,9 +39,10 @@ public abstract class Entity {
 		}
 		
 		//updateHealth is a wrapper method that tells EntityStats to modify the entity's health
-		public void updateHeath(int healthChange) {
+		public void updateHealth(int healthChange) {
 			stats.modifyHealth(healthChange);
 		}
+
 		
 		//updateSpeed tells the EntityStats class to modify the entiy's speed
 		public void updateCurrentSpeed(int speed) {
@@ -56,4 +58,28 @@ public abstract class Entity {
 		public void updateMaxSpeed(int maxSpeed) {
 			stats.modifyMaxSpeed(maxSpeed);
 		}
+
+    public String getName() {
+        return name;
+    }
+
+
+	@Override
+	public void accept(EntityVisitor entityVisitor) {
+		entityVisitor.visit(this);
 	}
+
+	@Override
+	public void visit(Entity entity) {
+
+	}
+
+
+
+
+    public Direction getDirection(){
+			return stats.getDirection();
+		}
+
+}
+

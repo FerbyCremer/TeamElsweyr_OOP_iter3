@@ -12,7 +12,10 @@ public class MovementController {
     private ContentMap<River> riverMap;
     private HashMap<Entity, EntityMover> entityMovers;
 
-    public MovementController(Zone zone){}
+    public MovementController(Zone zone){
+        entityMap = zone.getEntityMap();
+        riverMap = zone.getRiverMap();
+    }
 
     public void updateEntitys(){}
 

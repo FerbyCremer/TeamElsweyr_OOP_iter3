@@ -2,9 +2,9 @@ package model.Effect;
 
 import model.Entities.Entity;
 
-public abstract class EntityEffect {
+public abstract class TrapEffect {
 
-    public EntityEffect() {
+    public TrapEffect() {
     }
 
     public abstract void apply(Entity entity);

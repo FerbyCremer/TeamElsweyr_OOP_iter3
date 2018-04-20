@@ -1,11 +1,10 @@
 package model.Map.Zone;
 
-import model.Items.Item;
+
 import model.Map.Zone.TileRelatedClasses.Tile;
 
 import java.util.HashMap;
 import java.util.Set;
-import java.util.Timer;
 
 public class ContentMap<T> {
     private HashMap<Tile, T> map;
@@ -26,6 +25,10 @@ public class ContentMap<T> {
         map.remove(tile);
     }
 
+    public void removeContent(T content){
+        removeContent(getTileOf(content));
+    }
+
     public boolean hasTile(Tile tile){
         return map.containsKey(tile);
     }
@@ -40,4 +43,6 @@ public class ContentMap<T> {
         return null;
 
     }
+
+
 }
