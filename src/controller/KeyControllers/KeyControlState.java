@@ -5,21 +5,19 @@ import java.util.HashMap;
 public class KeyControlState {
 
     private HashMap<String, KeyController> controllers;
-    private KeyController activeContoller;
+    private KeyController activeController;
     //private KeyBindingController keyBindingController;
 
 
     private void swapController(KeyController keyController){
-        activeContoller = keyController;
+        activeController = keyController;
     }
 
     public void changeKeycode(String prevKey, String newKey){
-        activeContoller.changeKeyCode(prevKey, newKey);
+        activeController.changeKeyCode(prevKey, newKey);
     }
 
-	private HashMap<String, KeyController> controllers;
-	private KeyController activeController;
-	//private KeyBindingController keyBindings;
+
 	
 	public KeyControlState() {
 		activeController = controllers.get("player");
