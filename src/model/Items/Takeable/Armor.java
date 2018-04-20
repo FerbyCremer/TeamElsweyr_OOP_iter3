@@ -12,11 +12,15 @@ public class Armor extends Takeable {
 
     @Override
     public void equip(Equipment equipment) {
-
+    	equipment.equipArmor(this);
     }
 
     @Override
     public void touchedBy(Entity entity) {
-
+        entity.addToInventory(this);
+    }
+    
+    public int getDefense() {
+    	return defense;
     }
 }

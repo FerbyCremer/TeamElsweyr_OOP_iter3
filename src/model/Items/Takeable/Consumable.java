@@ -14,16 +14,16 @@ public class Consumable extends Takeable implements Usable{
 
     @Override
     public void equip(Equipment equipment) {
-
+    	equipment.equipConsumable(this);
     }
 
     @Override
     public void touchedBy(Entity entity) {
-
+        entity.addToInventory(this);
     }
 
     @Override
     public void use(Player player) {
-
+    	effect.apply(player);
     }
 }

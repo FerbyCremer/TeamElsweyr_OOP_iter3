@@ -25,6 +25,10 @@ public class ContentMap<T> {
         map.remove(tile);
     }
 
+    public void removeContent(T content){
+        removeContent(getTileOf(content));
+    }
+
     public boolean hasTile(Tile tile){
         return map.containsKey(tile);
     }

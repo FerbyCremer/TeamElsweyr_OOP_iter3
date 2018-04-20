@@ -14,6 +14,7 @@ public class EntityStats {
 	private Direction facingDirection;
 	private Direction derivedDirection;
 	
+	// Constructors
 	public EntityStats() {
 		maxHealth = 100;
 		currentHealth = 100;
@@ -24,83 +25,106 @@ public class EntityStats {
 		currentSpeed = 0;
 
 		//facingDirection = Direction.N;
-
 	}
 	
+	public EntityStats(int maxHealth, int currentHealth, int level, int experience, int defense, int detectRange, int currentSpeed, Direction facingDirection) {
+		this.maxHealth = maxHealth;
+		this.currentHealth = currentHealth;
+		this.level = level;
+		this.experience = experience;
+		this.defense = defense;
+		this.detectRange = detectRange;
+		this.currentSpeed = currentSpeed;
+		this.facingDirection = facingDirection;
+	}
+	
+	//Health
 	public void modifyHealth(int delta) {
-		currentHealth += delta;
-		
-		if(currentHealth < 0) {
+		if(currentHealth + delta < 0) {
 			currentHealth = 0;
 		}
 		
-		if(currentHealth > maxHealth) {
+		if(currentHealth + delta > maxHealth) {
 			currentHealth = maxHealth;
 		}
+		
+		currentHealth += delta;
 	}
 	
-
 	public int getHealth() {
 		return currentHealth;
 	}
-	
 
 	/*public void modifyHealth(int delta, Time time) {
 		
 	}*/
 	
 	public void modifyMaxHealth(int delta) {
-		maxHealth += delta;
-		
-		if(maxHealth < 0) {
+		if(maxHealth + delta < 0) {
 			maxHealth = 0;
+			return;
 		}
-	}
-	
-	public void modifyDefense(int delta) {
-		defense += delta;
 		
-		if(defense < 0) {
-			defense = 0;
-		}
+		maxHealth += delta;
 	}
 	
-
+	// Defense
+	public void modifyDefense(int delta) {
+		if(defense + delta < 0) {
+			defense = 0;
+			return;
+		}
+		
+		defense += delta;
+	}
+	
 	public int getDefense() {
 		return defense;
 	}
 	
-
+	// Level
 	public void levelUp() {
 		++level;
-		
-		experience = 0;
 	}
 	
-
 	public int getLevel() {
 		return level;
 	}
 	
-
+	// Experience
 	public void modifyExperience(int delta) {
-		experience += delta;
-		
-		if(experience < 0) {
+		if(experience + delta < 0) {
 			experience = 0;
+			return;
 		}
 		
-		if(experience == 100) {
+		if(experience + delta >= 100) {
+			experience = 100 - delta;
+			
 			levelUp();
+			return;
 		}
+		
+		experience += delta;
 	}
 
-	public void modifySpeed(int delta) {
-		currentSpeed += delta;
-		
-		if(currentSpeed < 0) {
+	//Speeds
+	public void modifyCurrentSpeed(int delta) {
+		if(currentSpeed + delta < 0) {
 			currentSpeed = 0;
+			return;
 		}
+		
+		currentSpeed += delta;
+	}
+	
+	public void modifyMaxSpeed(int delta) {
+		if(maxSpeed + delta < 0) {
+			maxSpeed = 0;
+			return;
+		}
+		
+		maxSpeed += delta;
 	}
 	
 	public int getMaxSpeed() {
@@ -111,12 +135,20 @@ public class EntityStats {
 		return currentSpeed;
 	}
 	
-	public void setDirection(Direction direction) {
+	public void setMaxSpeed(int maxSpeed) {
+		this.maxSpeed = maxSpeed;
+	}
+	
+	// Direction
+	public void setFacingDirection(Direction direction) {
 		facingDirection = direction;
 	}
 
-	public Direction getDirection() {
+	public Direction getFacingDirection() {
 		return facingDirection;
 	}
-
+	
+	public void setDerivedDirection(Direction derived) {
+		derivedDirection = derived;
+	}
 }

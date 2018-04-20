@@ -23,14 +23,17 @@ public class Tool extends Takeable implements Usable {
 
     @Override
     public void equip(Equipment equipment) {
-
+        equipment.equipTool(this);
     }
 
     @Override
     public void touchedBy(Entity entity) {
+        entity.addToInventory(this);
 
     }
 
-    public void use(Player player){}
+    public void use(Player player){
+        actionHandler.createAction(player, action.clone(skill.getModifier()));
+    }
 
 }

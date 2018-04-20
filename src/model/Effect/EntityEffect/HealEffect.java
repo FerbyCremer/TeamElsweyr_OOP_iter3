@@ -11,6 +11,6 @@ public class HealEffect implements EntityEffect {
 
     @Override
     public void apply(Entity entity) {
-        entity.updateHeath(amount);
+        entity.updateHealth(amount);
     }
 }
