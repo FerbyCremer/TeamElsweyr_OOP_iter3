@@ -26,14 +26,14 @@ public class KeyBindingController implements Initializable {
     @FXML TableView inventory;
     @FXML TableView camera;
 
-/*    private TableColumn playerCommand;
-    private TableColumn playerKey;
+    @FXML private TableColumn playerCommand;
+    @FXML private TableColumn playerKey;
 
-    private TableColumn inventoryCommand;
-    private TableColumn inventoryKey;
+    @FXML private TableColumn inventoryCommand;
+    @FXML private TableColumn inventoryKey;
 
-    private TableColumn cameraCommand;
-    private TableColumn cameraKey;*/
+    @FXML private TableColumn cameraCommand;
+    @FXML private TableColumn cameraKey;
 
    // private KeyController player = new KeyController("player", )
 
@@ -46,13 +46,39 @@ public class KeyBindingController implements Initializable {
 
                 playerKey.setCellValueFactory( new PropertyValueFactory<KeyCommand, KeyCode>("keyCode"));
 
-                currKey.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+                playerKey.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
                     @Override
                     public void handle(TableColumn.CellEditEvent event) {
                         KeyCommand command = (KeyCommand) event.getRowValue();
                         command.setKeyCode((KeyCode) event.getNewValue());
                     }
                 });
+
+        inventoryCommand.setCellValueFactory(
+                new PropertyValueFactory<KeyCommand, String>("name"));
+
+        inventoryKey.setCellValueFactory( new PropertyValueFactory<KeyCommand, KeyCode>("keyCode"));
+
+        inventoryKey.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent event) {
+                KeyCommand command = (KeyCommand) event.getRowValue();
+                command.setKeyCode((KeyCode) event.getNewValue());
+            }
+        });
+
+        cameraCommand.setCellValueFactory(
+                new PropertyValueFactory<KeyCommand, String>("name"));
+
+        cameraKey.setCellValueFactory( new PropertyValueFactory<KeyCommand, KeyCode>("keyCode"));
+
+        cameraKey.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent event) {
+                KeyCommand command = (KeyCommand) event.getRowValue();
+                command.setKeyCode((KeyCode) event.getNewValue());
+            }
+        });
     }
 
     public KeyCode getKeyCodeFor(String name){
