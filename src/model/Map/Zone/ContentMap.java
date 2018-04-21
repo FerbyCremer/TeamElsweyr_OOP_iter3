@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ContentMap<T> {
-    private HashMap<Tile, T> map;
+    private ConcurrentHashMap<Tile, T> map;
 
-    public ContentMap(HashMap<Tile, T> map) {
-        this.map = map;
+    public ContentMap() {
+        this.map = new ConcurrentHashMap<>();
     }
 
     public T getContentAtTile(Tile tile) {
