@@ -48,7 +48,9 @@ public class WorldController {
         updateAIController(newZone);
         updateZoneView(decalSetContainer.getDecalSet(zoneID));
     }
-    public void runGame(){}
+    public void runGame(){
+        zoneController.startGameLoop();
+    }
 
     private void updateActionHandler(Zone zone){
         actionHandler.setActionPerformer(zone);
