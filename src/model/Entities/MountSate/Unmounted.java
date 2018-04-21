@@ -1,5 +1,6 @@
 package model.Entities.MountSate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Entities.EntityStats;
@@ -9,8 +10,9 @@ public class Unmounted implements MountedState {
 	private int originalSpeed;
 	private List<Terrain> originalPassable;
 	
-	public Unmounted(int speed) {
-		originalSpeed = speed;
+	public Unmounted() {
+		originalSpeed = 5;
+		originalPassable = new ArrayList<Terrain>();
 		originalPassable.add(new Terrain("grass"));
 	}
 	

@@ -8,10 +8,12 @@ public class Mount extends Entity {
 
     private List<Terrain> terrains;
 
-    public Mount(){}
+    public Mount(int speed){
+    	stats.setMaxSpeed(speed);
+    }
 
     public int getSpeed(){
-        return stats.getCurrentSpeed();
+        return stats.getMaxSpeed();
     }
 
     public List<Terrain> getPassable(){

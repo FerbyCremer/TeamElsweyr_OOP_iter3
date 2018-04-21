@@ -1,5 +1,6 @@
 package model.Entities.MountSate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Entities.EntityStats;
@@ -14,6 +15,7 @@ public class Mounted implements MountedState {
 	public Mounted(Mount mount) {
 		this.mount = mount;
 		speed = mount.getSpeed();
+		mountPassable = new ArrayList<Terrain>();
 		mountPassable = mount.getPassable();
 	}
 	
