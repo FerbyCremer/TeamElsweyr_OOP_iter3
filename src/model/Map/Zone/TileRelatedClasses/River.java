@@ -8,10 +8,10 @@ public class River {
     private Direction direction;
     private String name;
 
-    public River(int flowRate, Direction direction, String name) {
+    public River(int flowRate, Direction direction) {
         this.flowRate = flowRate;
         this.direction = direction;
-        this.name = name;
+        this.name = "River";
     }
 
     public Direction apply(Entity entity){

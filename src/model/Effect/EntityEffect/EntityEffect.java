@@ -4,5 +4,5 @@ import model.Entities.Entity;
 
 public interface EntityEffect {
 
-    public abstract void apply(Entity entity);
+    public void apply(Entity entity);
 }
