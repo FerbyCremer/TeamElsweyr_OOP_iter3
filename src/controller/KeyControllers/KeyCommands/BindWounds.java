@@ -2,15 +2,15 @@ package controller.KeyControllers.KeyCommands;
 
 import model.Entities.Player;
 
-public class Attack extends KeyCommand {
+public class BindWounds extends KeyCommand {
     private Player player;
-    public Attack(Player player){
-        super("attack");
+    public BindWounds(Player player){
+        super("bindWounds");
         this.player = player;
     }
 
     @Override
     public void perform() {
-        player.attack(0);
+        player.useTool(0);
     }
 }

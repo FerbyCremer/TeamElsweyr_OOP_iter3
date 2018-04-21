@@ -8,19 +8,19 @@
 <TabPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.KeyBindingController" prefHeight="720.0" prefWidth="1080.0">
     <tabs>
         <Tab closable="false" value="Player">
-            <TableView fx:id="player">
+            <TableView >
                 <TableColumn fx:id="playerCommand" value="Command" />
                 <TableColumn fx:id="playerKey" value="Current" />
             </TableView>
         </Tab>
         <Tab closable="false" value="Inventory">
-            <TableView fx:id="inventory">
+            <TableView >
                 <TableColumn fx:id="inventoryCommand" value="Command" />
                 <TableColumn fx:id="inventoryKey" value="Current" />
             </TableView>
         </Tab>
         <Tab closable="false" value="Camera">
-            <TableView fx:id="camera">
+            <TableView >
                 <TableColumn fx:id="cameraCommand" value="Command" />
                 <TableColumn fx:id="cameraKey" value="Current" />
             </TableView>
