@@ -21,11 +21,12 @@ public class FogOfWarController {
     }
 
     public void update(){
-        calculateTilesInPlayersVisibleRadius();
+        ArrayList<Tile> tiles = calculateTilesInPlayersVisibleRadius();
+        updateDecalSet(tiles, currentZone, currentZone.getTileForEntity(player));
     }
 
     private ArrayList<Tile> calculateTilesInPlayersVisibleRadius(){
-        Tile centerTile = currentZone.getTileForEntity(player);
+       // Tile centerTile = currentZone.getTileForEntity(player);
         ArrayList<Tile> tiles = new ArrayList<Tile>();
         //TODO: This violates SRP fix when ActionTypes are reusable for not action related events or there is a further abstraction
         for(int i = 0; i < visibleRadius; i++){
@@ -42,9 +43,16 @@ public class FogOfWarController {
         return tiles;
     }
 
-    private void updateDecalSet(){}
+    private void updateDecalSet(ArrayList<Tile> tiles, Zone currentZone, Tile playerTile){
+        String temp = getPlayerDirection();
+        decalSet.update(tiles, currentZone, playerTile, temp);
+    }
 
     public void updateZone(Zone currentZone){
         this.currentZone = currentZone;
+    }
+
+    private String getPlayerDirection(){
+        return player.getDirection().name();
     }
 }
