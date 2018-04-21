@@ -22,7 +22,7 @@ public class Radial implements ActionType{
     }
 
     //might be buggy
-    List<Tile> generateCircle(Direction direction, Tile tile, int radius ){
+    private List<Tile> generateCircle(Direction direction, Tile tile, int radius ){
         List<Tile> tileList = new ArrayList<>();
         Direction tempDirection = direction;
         Tile tempTile = tile;
