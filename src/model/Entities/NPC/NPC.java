@@ -1,12 +1,16 @@
 package model.Entities.NPC;
 
+import controller.EntityControllers.AIController;
+import controller.Handlers.BringOutYourDeadHandler;
 import model.Entities.AI;
+import model.Entities.EntityStats;
 import model.Entities.Player;
 
 public class NPC extends AI {
     private NPCState npcState;
 
-    public NPC(NPCState npcState){
+    public NPC(EntityStats stats, BringOutYourDeadHandler deadHandler, AIController aiController, NPCState npcState){
+    	super(stats, deadHandler, aiController);
         this.npcState = npcState;
     }
     @Override
