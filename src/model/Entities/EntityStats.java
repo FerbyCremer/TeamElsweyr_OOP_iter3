@@ -1,5 +1,6 @@
 package model.Entities;
 
+import com.sun.tools.hat.internal.parser.HprofReader;
 import model.Map.Direction;
 
 public class EntityStats {
@@ -40,6 +41,12 @@ public class EntityStats {
 	
 	//Health
 	public void modifyHealth(int delta) {
+
+		//if delta negative (dmg) calculateReduction
+		if(delta < 0){
+			delta = calculateDamage(delta);
+		}
+
 		if(currentHealth + delta < 0) {
 			currentHealth = 0;
 		}
@@ -125,6 +132,11 @@ public class EntityStats {
 		}
 		
 		maxSpeed += delta;
+	}
+
+	private int calculateDamage(int dmg){
+		double HPModifier = defense/100.0;
+		return (int) (HPModifier * dmg);
 	}
 	
 	public int getMaxSpeed() {

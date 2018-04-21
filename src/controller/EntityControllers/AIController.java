@@ -57,7 +57,7 @@ public class AIController {
             visited.add(current);
             currentPath.add(direction);
             //shortest of 6 paths, if they exists
-            ArrayList<ArrayList<Direction>> possiblePaths = new ArrayList<ArrayList<Direction>>();
+            ArrayList<ArrayList<Direction>> possiblePaths = new ArrayList<>();
             for(int i = 0; i < 6; i++) {
                  possiblePaths.add(recursiveBFS(currentPath, visited, target, current.getNeighbor(direction.getClockwise(i*60)), direction.getClockwise(i*60)));
             }

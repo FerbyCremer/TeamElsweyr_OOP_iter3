@@ -63,4 +63,9 @@ public class Inventory {
 	public void equipInvisibleTool(Tool tool) {
 		equipment.addInvisibleTool(tool);
 	}
+
+	//method only for testing
+	public Takeable getItem(int index){
+		return items.get(index);
+	}
 }

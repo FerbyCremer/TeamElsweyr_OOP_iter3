@@ -5,6 +5,7 @@ import controller.Handlers.MountHandler;
 import model.Entities.MountSate.MountedState;
 import model.Entities.MountSate.Unmounted;
 import model.Entities.NPC.NPC;
+import model.Inventory.Inventory;
 import model.Items.Takeable.Tool;
 
 import java.util.ArrayList;
@@ -79,10 +80,10 @@ public class Player extends Entity{
 
     public void useSkill(int skill){}
 
-    //Tells the inventory to use the currently equipped consumable
-    public void consumeItem(){
-    	inventory.useConsumable(this);
-    }
+		//Tells the inventory to use the currently equipped consumable
+		public void consumeItem(){
+			inventory.useConsumable(this);
+		}
 
     //TODO do this after figuring out inventory
     /*public Tool getToolAtIndex(int toolIndex){
@@ -105,12 +106,16 @@ public class Player extends Entity{
     	this.mountHandler = mountHandler;
     }
 
-
-	public void visit(NPC npc){
+		public void visit(NPC npc){
     	npc.doInteraction(this);
 	}
 
-	public void visit(Mount mount){
+		//This method is only for testing
+		public Inventory getInventory(){
+				return inventory;
+		}
+
+		public void visit(Mount mount){
 
 	}
 }
