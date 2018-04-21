@@ -1,0 +1,31 @@
+.BorderPane{
+    -fx-padding: 32;
+}
+
+.label{
+    -fx-font-size: 32pt;
+    -fx-font-family: "Adobe Garamond Pro";
+    -fx-font-weight: Bold;
+    -fx-alignment: Center;
+    -fx-text-fill: #485f14;
+}
+
+.button{
+    -fx-font-size: 15pt;
+    -fx-font-weight: Normal;
+    -fx-font-style: Italic;
+    -fx-text-fill: #530332;
+    -fx-background-color: #f0deb3;
+}
+
+.button-selected{
+    -fx-background-color: #daba82;
+}
+
+.toggle-button{
+    -fx-font-size: 15pt;
+    -fx-font-style: Normal;
+    -fx-background-color: #f0deb3;
+    -fx-text-fill: #26310a;
+}
+

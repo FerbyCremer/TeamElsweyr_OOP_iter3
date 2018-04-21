@@ -2,43 +2,51 @@ package controller.KeyControllers;
 
 import controller.KeyControllers.KeyCommands.KeyCommand;
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 
 import java.util.HashMap;
+import java.util.List;
 
 public class KeyController implements EventHandler<KeyEvent> {
 
     private String name;
-    private HashMap<String, KeyCommand> keyListeners;
+    public List<KeyCommand> keyListeners;
 
-    public KeyController(String name, HashMap<String, KeyCommand> keys){
+    public KeyController(String name, List<KeyCommand> keys){
         this.name = name;
         keyListeners = keys;
     }
 
-    public void register(HashMap<String, KeyCommand> keys){
+    public void register(List<KeyCommand> keys){
         keyListeners = keys;
     }
 
-    public void changeKeyCode(String prevCode, String newCode){
-        KeyCommand temp = keyListeners.get(prevCode);
-        keyListeners.remove(prevCode);
-        keyListeners.put(newCode, temp);
+    public void changeKeyCode(KeyCommand prevCode, KeyCode newCode){
+        int temp = keyListeners.indexOf(prevCode);
+        KeyCommand keyCommand = keyListeners.get(temp);
+        keyCommand.setKeyCode(newCode);
     }
 
-    public void addKeyLister(String code, KeyCommand key){
-        keyListeners.put(code, key);
+    public void setKeyListeners(List<KeyCommand> keyListeners) {
+        this.keyListeners = keyListeners;
+        //TODO: communicate with keyBindingController to load key codes for each keyListener
     }
 
-    public void removeKeyListener(String code){
-        keyListeners.remove(code);
+    public void addKeyListener(KeyCommand key){
+        keyListeners.add(key);
+        //TODO: communicate with keyBindingController to load key codes for specific keyListener
+    }
+
+    public void removeKeyListener(String name){
+        keyListeners.remove(name);
     }
 
     @Override
     public void handle(KeyEvent event) {
-        String temp = event.getCode().toString().toLowerCase();
-        if(keyListeners.containsKey(event))
-            keyListeners.get(temp).perform();
+        for (KeyCommand keyListener : keyListeners) {
+            keyListener.handle(event);
+        }
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<fx:root type="javafx.scene.layout.Pane" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.StatsController">
+    <VBox>
+        <ProgressBar fx:id="health" id="healthBar" />
+        <HBox>
+            <Label value="Lvl: " /><ProgressBar fx:id="experience" id="expBar" value="#exp" /><Text text="#level"/>
+        </HBox>
+        <Label value="Direction: " labelFor="dir"/><Text value="dir" text="#facingDir" />
+    </VBox>
+</fx:root>
