@@ -107,6 +107,10 @@ public class Player extends Entity{
     	this.mountHandler = mountHandler;
     }
     
+    public void Unmount() {
+    	mountHandler.unmount(this);
+    }
+    
     public Mount getMount() {
     	return ((Mounted)mountedState).getMount();
     }
@@ -117,6 +121,10 @@ public class Player extends Entity{
 	}
 
 	public void visit(Mount mount){
-
+		mountHandler.mount(this, mount);
 	}
+
+//	public void visit(Pet pet){
+//
+//	}
 }
