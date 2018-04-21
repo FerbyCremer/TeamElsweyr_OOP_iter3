@@ -18,6 +18,16 @@ public class ActionObserver implements ActionInterface {
         this.name = name;
     }
 
+    @Override
+    public ArrayList<Point> getActionLocation() {
+        return points;
+    }
+
+    @Override
+    public String getActionName() {
+        return name;
+    }
+
     public void clear(){
         points.clear();
         name = null;

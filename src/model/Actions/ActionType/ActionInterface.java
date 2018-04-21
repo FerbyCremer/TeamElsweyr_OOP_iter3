@@ -5,4 +5,6 @@ import java.util.ArrayList;
 
 public interface ActionInterface {
     void update(ArrayList<Point> points, String name);
+    ArrayList<Point> getActionLocation();
+    String getActionName();
 }
