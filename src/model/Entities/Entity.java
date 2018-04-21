@@ -73,6 +73,11 @@ public abstract class Entity implements EntityVisitable, EntityVisitor  {
 	public void updateMaxSpeed(int maxSpeed) {
 		stats.modifyMaxSpeed(maxSpeed);
 	}
+	
+	//getStats returns the entity stats
+	public EntityStats getStats() {
+		return stats;
+	}
 
     public String getName() {
         return name;

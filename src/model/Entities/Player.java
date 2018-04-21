@@ -2,6 +2,7 @@ package model.Entities;
 
 import controller.EntityControllers.PlayerController;
 import controller.Handlers.MountHandler;
+import model.Entities.MountSate.Mounted;
 import model.Entities.MountSate.MountedState;
 import model.Entities.MountSate.Unmounted;
 import model.Entities.NPC.NPC;
@@ -10,7 +11,7 @@ import model.Items.Takeable.Tool;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO add playerController, set mountHanfler
+//TODO add playerController
 public class Player extends Entity{
     private List<Skill> skills;
     private MountedState mountedState;
@@ -18,9 +19,9 @@ public class Player extends Entity{
     private PlayerController playerController;
 
     private Player(List<Skill> skills){
+    	super();
     	this.skills = skills;
-    	mountedState = new Unmounted(getMaxSpeed());
-    	
+    	mountedState = new Unmounted();
     }
 
     public static Player playerMakeSmasher(){
@@ -103,6 +104,10 @@ public class Player extends Entity{
     
     public void setMountHandler(MountHandler mountHandler) {
     	this.mountHandler = mountHandler;
+    }
+    
+    public Mount getMount() {
+    	return ((Mounted)mountedState).getMount();
     }
 
 
