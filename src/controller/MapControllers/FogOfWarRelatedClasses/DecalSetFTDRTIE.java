@@ -10,6 +10,8 @@ import java.util.HashMap;
 public class DecalSetFTDRTIE implements DecalSet {
     private Point playerPos;
     private HashMap<Point, ArrayList<String>> zoneMap;
+    private int xDim;
+    private int yDim;
 
     /*
     FTDRTIE
@@ -22,6 +24,8 @@ public class DecalSetFTDRTIE implements DecalSet {
     ENTITY
      */
     public DecalSetFTDRTIE(int xDim, int yDim) {
+        this.xDim = xDim;
+        this.yDim = yDim;
         zoneMap = new HashMap<Point, ArrayList<String>>();
         for(int i = 0; i < xDim; i++){
             for(int j = 0; j < yDim; j++){
@@ -99,5 +103,17 @@ public class DecalSetFTDRTIE implements DecalSet {
     private Point makeNewPoint(Point point){
         Point p = new Point(point.x, point.y);
         return p;
+    }
+
+    public int getXDim(){
+        return xDim;
+    }
+    
+    public int getYDim(){
+        return yDim;
+    }
+
+    public ArrayList<String> getTileContents(Point point){
+        return zoneMap.get(point);
     }
 }
