@@ -11,7 +11,7 @@ import model.Items.Takeable.Tool;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO add playerController, set mountHanfler
+//TODO add playerController
 public class Player extends Entity{
     private List<Skill> skills;
     private MountedState mountedState;
