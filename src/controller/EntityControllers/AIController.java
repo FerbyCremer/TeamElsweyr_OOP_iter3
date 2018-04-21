@@ -31,19 +31,18 @@ public class AIController {
         itemMap = zone.getItemMap();
     }
 
-    //From what??
-    public ArrayList<Direction> findPathToEntity(Entity entity){
+    public ArrayList<Direction> findPathToEntity(Entity entity, Entity to){
         ArrayList<Direction> map = new ArrayList<>();
-        Tile targetTile = entityMap.getTileOf(player);
         Tile from  = entityMap.getTileOf(entity);
-
+        Tile targetTile = entityMap.getTileOf(to);
         return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), targetTile, from, entity.getDirection());
-
-
     }
 
     private ArrayList<Direction> recursiveBFS(ArrayList<Direction> currentPath, Set<Tile> visited, Tile target, Tile current, Direction direction){
         //need to add if current null
+        if(current == null){
+            return null;
+        }
         if(current == target){
             currentPath.add(direction);
             return currentPath;
@@ -79,16 +78,13 @@ public class AIController {
         return shortestList;
     }
 
-    //TODO: Should this take in an Item? ya
-    //From what
-    public ArrayList<Direction> findPathToItem(Item item){
-        Tile targetTile = itemMap.getTileOf(item);
-        return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), entityMap.getTileOf(player), player.getDirection());
+    public ArrayList<Direction> findPathToItem(Entity entity){
+        //Should find a random item on map (NULL check)
+        Tile targetTile = itemMap.getRandomTileWithContent();
+        return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), targetTile, entityMap.getTileOf(entity), player.getDirection());
     }
 
-    //these methods don't give me enough information, from what?
-    public ArrayList<Direction> findPathToPlayer(Player player){
-        return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), entityMap.getTileOf(player), player.getDirection());
+    public ArrayList<Direction> findPathToPlayer(Entity entity){
+        return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), entityMap.getTileOf(player), entityMap.getTileOf(entity),  player.getDirection());
     }
-
 }

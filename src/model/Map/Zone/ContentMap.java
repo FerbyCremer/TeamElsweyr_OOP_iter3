@@ -3,7 +3,9 @@ package model.Map.Zone;
 
 import model.Map.Zone.TileRelatedClasses.Tile;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public class ContentMap<T> {
@@ -20,6 +22,13 @@ public class ContentMap<T> {
     public void setContent(Tile tile, T content){
         map.put(tile, content);
     }
+    
+    public void setNewLocation(Tile tile, T content) {
+    	Tile contentTile = getTileOf(content);
+    	
+    	removeContent(contentTile);
+    	setContent(tile, content);
+    }
 
     public void removeContent(Tile tile){
         map.remove(tile);
@@ -33,6 +42,14 @@ public class ContentMap<T> {
         return map.containsKey(tile);
     }
 
+    public Tile getRandomTileWithContent() {
+        List<Tile> allTilesWithContent = new ArrayList<>(map.keySet());
+        if (allTilesWithContent.size() > 0){
+            return allTilesWithContent.get(0);
+        }
+        return null;
+    }
+
     //TODO: Temporary method implementation, fix
     public Tile getTileOf(T item) {
         Set<Tile> keys = map.keySet();
@@ -42,6 +59,10 @@ public class ContentMap<T> {
         }
         return null;
 
+    }
+
+    public Set<Tile> getTilesContentIsOn(){
+        return map.keySet();
     }
 
 

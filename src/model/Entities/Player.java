@@ -1,7 +1,9 @@
 package model.Entities;
 
 import controller.EntityControllers.PlayerController;
+import controller.Handlers.BringOutYourDeadHandler;
 import controller.Handlers.MountHandler;
+import model.Entities.MountSate.Mounted;
 import model.Entities.MountSate.MountedState;
 import model.Entities.MountSate.Unmounted;
 import model.Entities.NPC.NPC;
@@ -10,32 +12,32 @@ import model.Items.Takeable.Tool;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO add playerController, set mountHanfler
+//TODO add playerController
 public class Player extends Entity{
     private List<Skill> skills;
     private MountedState mountedState;
     private MountHandler mountHandler;
     private PlayerController playerController;
 
-    private Player(List<Skill> skills){
+    private Player(List<Skill> skills, EntityStats stats, BringOutYourDeadHandler deadHandler){
+    	super(stats, deadHandler);
     	this.skills = skills;
-    	mountedState = new Unmounted(getMaxSpeed());
-    	
+    	mountedState = new Unmounted();
     }
 
-    public static Player playerMakeSmasher(){
+    public static Player playerMakeSmasher(EntityStats stats, BringOutYourDeadHandler deadHandler){
     	List<Skill> temp_skills = new ArrayList<Skill>();
     	
     	temp_skills.add(new Skill("one-handed weapon"));
     	temp_skills.add(new Skill("two-handed weapon"));
     	temp_skills.add(new Skill("brawling"));
     	
-    	Player player = new Player(temp_skills);
+    	Player player = new Player(temp_skills, stats, deadHandler);
     	
     	return player;
     }
 
-    public static Player playerMakeSneak(){
+    public static Player playerMakeSneak(EntityStats stats, BringOutYourDeadHandler deadHandler){
     	List<Skill> temp_skills = new ArrayList<Skill>();
     	
     	temp_skills.add(new Skill("pick-pocket"));
@@ -44,12 +46,12 @@ public class Player extends Entity{
     	temp_skills.add(new Skill("creep"));
     	temp_skills.add(new Skill("rangedWeapon"));
     	
-    	Player player = new Player(temp_skills);
+    	Player player = new Player(temp_skills, stats, deadHandler);
     	
     	return player;
     }
     
-    public static Player playerMakeSummoner(){
+    public static Player playerMakeSummoner(EntityStats stats, BringOutYourDeadHandler deadHandler){
     	List<Skill> temp_skills = new ArrayList<Skill>();
     	
     	temp_skills.add(new Skill("enchantment"));
@@ -57,7 +59,7 @@ public class Player extends Entity{
     	temp_skills.add(new Skill("bane"));
     	temp_skills.add(new Skill("staff"));
     	
-    	Player player = new Player(temp_skills);
+    	Player player = new Player(temp_skills, stats, deadHandler);
     	
     	return player;
     }
@@ -104,6 +106,14 @@ public class Player extends Entity{
     public void setMountHandler(MountHandler mountHandler) {
     	this.mountHandler = mountHandler;
     }
+    
+    public void Unmount() {
+    	mountHandler.unmount(this);
+    }
+    
+    public Mount getMount() {
+    	return ((Mounted)mountedState).getMount();
+    }
 
 
 	public void visit(NPC npc){
@@ -111,6 +121,10 @@ public class Player extends Entity{
 	}
 
 	public void visit(Mount mount){
-
+		mountHandler.mount(this, mount);
 	}
+
+//	public void visit(Pet pet){
+//
+//	}
 }

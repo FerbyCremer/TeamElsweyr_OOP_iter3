@@ -38,6 +38,7 @@ public class KeyController implements EventHandler<KeyEvent> {
     @Override
     public void handle(KeyEvent event) {
         String temp = event.getCode().toString().toLowerCase();
-        keyListeners.get(temp).perform();
+        if(keyListeners.containsKey(event))
+            keyListeners.get(temp).perform();
     }
 }

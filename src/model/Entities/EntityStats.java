@@ -12,7 +12,6 @@ public class EntityStats {
 	private int maxSpeed;
 	private int currentSpeed;
 	private Direction facingDirection;
-	private Direction derivedDirection;
 	
 	// Constructors
 	public EntityStats() {
@@ -42,10 +41,12 @@ public class EntityStats {
 	public void modifyHealth(int delta) {
 		if(currentHealth + delta < 0) {
 			currentHealth = 0;
+			return;
 		}
 		
 		if(currentHealth + delta > maxHealth) {
 			currentHealth = maxHealth;
+			return;
 		}
 		
 		currentHealth += delta;
@@ -117,8 +118,12 @@ public class EntityStats {
 		
 		currentSpeed += delta;
 	}
-	
-	public void modifyMaxSpeed(int delta) {
+
+    public void setCurrentSpeed(int currentSpeed) {
+        this.currentSpeed = currentSpeed;
+    }
+
+    public void modifyMaxSpeed(int delta) {
 		if(maxSpeed + delta < 0) {
 			maxSpeed = 0;
 			return;
@@ -147,8 +152,8 @@ public class EntityStats {
 	public Direction getFacingDirection() {
 		return facingDirection;
 	}
-	
-	public void setDerivedDirection(Direction derived) {
-		derivedDirection = derived;
-	}
+
+	public boolean isAlive(){
+	    return currentHealth > 0;
+    }
 }

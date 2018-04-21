@@ -32,9 +32,8 @@ public class World {
     }
 
 
-    public void removeEntityFromZone(Entity entity, String zoneID){
-        Zone zone = getZone(zoneID);
-        zone.removeEntityFromMap(entity);
+    public void removeEntityFromZone(Entity entity){
+        currentZone.removeEntityFromMap(entity);
     }
 
     public void addEntityToZone(Player player, String zoneID) {

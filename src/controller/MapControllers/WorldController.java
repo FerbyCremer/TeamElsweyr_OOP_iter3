@@ -2,6 +2,7 @@ package controller.MapControllers;
 
 import controller.EntityControllers.AIController;
 import controller.Handlers.ActionHandler;
+import controller.Handlers.BringOutYourDeadHandler;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSet;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSetContainer;
 import controller.MapControllers.FogOfWarRelatedClasses.FogOfWarController;
@@ -24,33 +25,49 @@ public class WorldController {
     private ZoneView zoneView;
     private ZoneController zoneController;
     private ActionHandler actionHandler;
+    private BringOutYourDeadHandler deadHandler;
     private AIController aiController;
 
-    public WorldController(World world, Player player, DecalSetContainer decalSetContainer, ZoneView zoneView, ZoneController zoneController, ActionHandler actionHandler, AIController aiController) {
+    public WorldController(World world, Player player, DecalSetContainer decalSetContainer, ZoneView zoneView, ZoneController zoneController, ActionHandler actionHandler, BringOutYourDeadHandler deadHandler, AIController aiController) {
         this.world = world;
         this.player = player;
         this.decalSetContainer = decalSetContainer;
         this.zoneView = zoneView;
         this.zoneController = zoneController;
         this.actionHandler = actionHandler;
+        this.deadHandler = deadHandler;
         this.aiController = aiController;
     }
 
     public void changeZoneTo(String zoneID){
         updatePlayerPos(zoneID);
-        updateZoneController(world.changeZone(zoneID));
+        Zone newZone = world.changeZone(zoneID);
+        updateZoneController(newZone);
+        updateActionHandler(newZone);
+        updateDeadHandler(newZone);
+        updateAIController(newZone);
         updateZoneView(decalSetContainer.getDecalSet(zoneID));
     }
-    public void runGame(){}
+    public void runGame(){
+        zoneController.startGameLoop();
+    }
 
     private void updateActionHandler(Zone zone){
+        actionHandler.setActionPerformer(zone);
     }
-    private void updateAIController(Zone zone){}
+
+    private void updateDeadHandler(Zone zone){
+        deadHandler.setEntityRemover(zone);
+    }
 
     private void updatePlayerPos(String zoneID){
-        world.removeEntityFromZone(player, zoneID);
+        world.removeEntityFromZone(player);
         world.addEntityToZone(player, zoneID);
     }
+    private void updateAIController(Zone zone){
+        aiController.updateMaps(zone);
+    }
+
     private void updateZoneController(Zone zone){
         zoneController.setEntityToAreaEffect(new EntityToAreaEffect(zone));
         zoneController.setEntityToItem(new EntityToItem(zone));

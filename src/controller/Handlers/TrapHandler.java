@@ -4,11 +4,9 @@ import model.Entities.Entity;
 import model.Map.Zone.TileRelatedClasses.Trap;
 
 public class TrapHandler {
-    Entity entity;
+    public TrapHandler(){ }
 
-    public TrapHandler(Entity entity, Trap trap){
-        this.entity = entity;
+    public void handleCollision(Entity entity, Trap trap){
+        trap.apply(entity);
     }
-
-    private void handleCollision(Trap trap){}
 }

@@ -21,13 +21,12 @@ public class Tile {
         this.coordinate = coordinate;
     }
 
-    public void setNeighbors(HashMap<Direction,Tile> tiles){
+	public void setNeighbors(HashMap<Direction,Tile> tiles){
         this.neighborhood = tiles;
     }
 
     public boolean canMove(Entity entity){
-       // if(terrain.canPass(entity.get))
-        return false;
+        return terrain.canPass(entity.getTerrains()) && !obstacle;
     }
 
     public Tile getNeighbor(Direction direction) {

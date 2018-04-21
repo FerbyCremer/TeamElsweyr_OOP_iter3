@@ -18,6 +18,8 @@ public class Trap {
 
     public void apply(Entity entity){
         effect.apply(entity);
+        visible = true;
+        active = false;
     }
 
     public void setVisiblity(boolean b){
