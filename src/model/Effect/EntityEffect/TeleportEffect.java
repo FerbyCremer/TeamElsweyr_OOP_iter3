@@ -8,6 +8,7 @@ import java.time.ZoneId;
 public class TeleportEffect implements EntityEffect {
     private WorldController worldController;
     private String zoneId;
+    private String name;
 
     public TeleportEffect(WorldController worldController, String zoneId) {
         this.worldController = worldController;
@@ -17,5 +18,10 @@ public class TeleportEffect implements EntityEffect {
     @Override
     public void apply(Entity entity) {
         worldController.changeZoneTo(zoneId);
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

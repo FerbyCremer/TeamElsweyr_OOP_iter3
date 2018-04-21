@@ -50,4 +50,8 @@ public class EntityAction extends Action{
             //miss
         }
     }
+
+    public String getEffectName() {
+        return entityEffect.getName();
+    }
 }

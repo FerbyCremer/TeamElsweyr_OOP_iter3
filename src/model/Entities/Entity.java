@@ -10,11 +10,11 @@ import model.Map.Terrain;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Entity implements EntityVisitable, EntityVisitor  {
+public abstract class Entity implements EntityVisitable, EntityVisitor {
 	protected EntityStats stats;
 	protected Inventory inventory;
 	private ArrayList<Terrain> terrains;
-	private ArrayList<Updateable> observers;
+	protected ArrayList<Updateable> observers;
 	private String name;
 		
 	public Entity() {
@@ -32,26 +32,31 @@ public abstract class Entity implements EntityVisitable, EntityVisitor  {
 		else {
 			stats.setFacingDirection(direction);
 		}
+		execute();
 	}
 
 	public void addToInventory(Takeable item){
 		inventory.addItem(item);
+		execute();
 	}
 		
 	// Changes the entity's inventory, mainly for load game
 	public void setInventory(Inventory inventory) {
 		this.inventory = inventory;
+		execute();
 	}
 		
 	//updateHealth is a wrapper method that tells EntityStats to modify the entity's health
 	public void updateHealth(int healthChange) {
 		stats.modifyHealth(healthChange);
+		execute();
 	}
 
 		
 	//updateSpeed tells the EntityStats class to modify the entiy's speed
 	public void updateCurrentSpeed(int speed) {
 		stats.modifyCurrentSpeed(speed);
+		execute();
 	}
 		
 	//getCurrentSpeed returns the entity's speed
@@ -67,6 +72,7 @@ public abstract class Entity implements EntityVisitable, EntityVisitor  {
 	//updateMaxSpeed tells the EntityStats class to modify the entiy's max speed
 	public void updateMaxSpeed(int maxSpeed) {
 		stats.modifyMaxSpeed(maxSpeed);
+		execute();
 	}
 
     public String getName() {
@@ -86,10 +92,33 @@ public abstract class Entity implements EntityVisitable, EntityVisitor  {
 	
 	public void setFacingDirection(Direction direction){
 			stats.setFacingDirection(direction);
+			execute();
 	}
 
     public Direction getDirection(){
 			return stats.getFacingDirection();
 		}
+
+	public void add(Updateable updateable){
+		observers.add(updateable);
+	}
+
+	protected void execute(){
+		for(Updateable updateable: observers){
+			updateable.update();
+		}
+	}
+
+	public int getHealth(){
+		return stats.getHealth();
+	}
+
+	public int getLevel(){
+		return stats.getLevel();
+	}
+
+	public int getExp(){
+		return stats.getExperience();
+	}
 }
 

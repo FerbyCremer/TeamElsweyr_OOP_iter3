@@ -91,6 +91,7 @@ public class Player extends Entity{
 
     public void swapState(MountedState mountedState){
     	this.mountedState = mountedState;
+    	execute();
     }
 
     public List<Skill> getSkills(){
@@ -103,6 +104,7 @@ public class Player extends Entity{
     
     public void setMountHandler(MountHandler mountHandler) {
     	this.mountHandler = mountHandler;
+    	execute();
     }
 
 

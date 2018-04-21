@@ -151,4 +151,8 @@ public class EntityStats {
 	public void setDerivedDirection(Direction derived) {
 		derivedDirection = derived;
 	}
+
+	public int getExperience(){
+		return experience;
+	}
 }
