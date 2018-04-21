@@ -39,7 +39,7 @@ public class WorldController {
         this.aiController = aiController;
     }
 
-    public void changeZoneTo(String zoneID){
+	public void changeZoneTo(String zoneID){
         updatePlayerPos(zoneID);
         Zone newZone = world.changeZone(zoneID);
         updateZoneController(newZone);

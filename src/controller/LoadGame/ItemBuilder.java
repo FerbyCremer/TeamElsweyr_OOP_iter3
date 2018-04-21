@@ -29,6 +29,9 @@ public class ItemBuilder {
 	public Item buildItem(List<String> attributes) {
 		boolean equipped;
 		index = 0;
+		Item item = null;
+		
+		int lastElement = attributes.size() - 1;
 		
 		switch(attributes.get(index++)) {
 		case "takeable":
@@ -36,8 +39,6 @@ public class ItemBuilder {
 				equipped = true;
 			}
 			else equipped = false;
-			
-			Takeable item = null;
 			
 			switch(attributes.get(index++)) {
 				case "armor":
@@ -52,17 +53,15 @@ public class ItemBuilder {
 					item = buildConsumable(attributes);
 					break;
 				
-				case "Tool":
+				case "tool":
 					item = buildTool(attributes);
 					break;
 			}
 			
-			item.setEquip(equipped);
+			((Takeable) item).setEquip(equipped);
+			break;
 			
-			return item;
-			
-		case "oneShot":
-			OneShot oItem;
+		case "oneshot":
 			List<String> effectAttributes = new ArrayList<String>();
 			
 			
@@ -71,15 +70,17 @@ public class ItemBuilder {
 			
 			EntityEffect effect = eBuilder.buildEntityEffect(effectAttributes);
 			
-			oItem = new OneShot(effect);
+			item = new OneShot(effect);
 			
-			return oItem;
+			break;
 			
 		case "interactive":
 			break;
 		}
 		
-		return null;
+		item.setName(attributes.get(lastElement));
+		
+		return item;
 	}
 	
 	private Takeable buildArmor(List<String> attributes) {
@@ -125,6 +126,7 @@ public class ItemBuilder {
 		ActionBuilder aBuilder = new ActionBuilder(eBuilder);
 		
 		Action action = aBuilder.buildAction(actionAttributes);
+		System.out.println(action);
 		
 		item = new Tool(skill, handler, action, cooldown);
 		
