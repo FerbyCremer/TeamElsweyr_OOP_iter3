@@ -2,7 +2,8 @@ package model.Entities;
 
 import controller.Handlers.BringOutYourDeadHandler;
 import controller.Handlers.MountHandler;
-import controller.KeyControllers.KeyCommands.KeyCommand;
+import controller.KeyControllers.KeyCommands.*;
+import controller.KeyControllers.KeyCommands.MoveKeyListeners.*;
 import controller.KeyControllers.KeyController;
 import model.Entities.MountSate.Mounted;
 import model.Entities.MountSate.MountedState;
@@ -20,27 +21,50 @@ public class Player extends Entity{
     private MountHandler mountHandler;
     private KeyController playerController;
 
-    private Player(List<Skill> skills, EntityStats stats, BringOutYourDeadHandler deadHandler){
+    private Player(List<Skill> skills, EntityStats stats, KeyController playerController, List<KeyCommand> keys, BringOutYourDeadHandler deadHandler){
     	super(stats, deadHandler);
     	this.skills = skills;
     	mountedState = new Unmounted();
 
-		this.playerController = new KeyController("player", );
+    	this.playerController = playerController;
+
+    	//Add all movement/default commands
+		keys.add(new MoveNorthWest(this));
+    	keys.add(new MoveNorth(this));
+		keys.add(new MoveNorthEast(this));
+		keys.add(new MoveSouthWest(this));
+		keys.add(new MoveSouth(this));
+		keys.add(new MoveSouthEast(this));
+		keys.add(new BindWounds(this));
+		keys.add(new Bargain(this));
+		keys.add(new Observe(this));
+		keys.add(new Attack(this));
+		keys.add(new UnMount(this));
+
+
+    	//Register all keycommands to the playercontroller
+    	for (KeyCommand command : keys){
+			this.playerController.addKeyListener(command);
+		}
+
+
     }
 
-    public static Player playerMakeSmasher(EntityStats stats, List<Integer> lvl, BringOutYourDeadHandler deadHandler){
+    public static Player playerMakeSmasher(EntityStats stats, List<Integer> lvl, KeyController playerController, BringOutYourDeadHandler deadHandler){
     	List<Skill> temp_skills = new ArrayList<Skill>();
     	
     	temp_skills.add(new Skill("one-handed weapon"));
     	temp_skills.add(new Skill("two-handed weapon"));
     	temp_skills.add(new Skill("brawling"));
 
-    	Player player = new Player(temp_skills, stats, deadHandler);
+
+    	List<KeyCommand> keys = new ArrayList<>();
+    	Player player = new Player(temp_skills, stats, playerController, keys, deadHandler);
 
     	return player;
     }
 
-    public static Player playerMakeSneak(EntityStats stats, List<Integer> lvl, BringOutYourDeadHandler deadHandler){
+    public static Player playerMakeSneak(EntityStats stats, List<Integer> lvl, KeyController playerController, BringOutYourDeadHandler deadHandler){
     	List<Skill> temp_skills = new ArrayList<Skill>();
     	
     	temp_skills.add(new Skill("pick-pocket", lvl.get(0)));
@@ -48,23 +72,26 @@ public class Player extends Entity{
     	temp_skills.add(new Skill("remove trap", lvl.get(2)));
     	temp_skills.add(new Skill("creep", lvl.get(3)));
     	temp_skills.add(new Skill("rangedWeapon", lvl.get(4)));
-    	
-    	Player player = new Player(temp_skills, stats, deadHandler);
+
 		List<KeyCommand> keys = new ArrayList<>();
-		//keys.add()
+		//Add sneak specific commands
+
+		Player player = new Player(temp_skills, stats, playerController, keys, deadHandler);
     	
     	return player;
     }
     
-    public static Player playerMakeSummoner(EntityStats stats, List<Integer> lvl, BringOutYourDeadHandler deadHandler){
+    public static Player playerMakeSummoner(EntityStats stats, List<Integer> lvl, KeyController playerController, BringOutYourDeadHandler deadHandler){
     	List<Skill> temp_skills = new ArrayList<Skill>();
     	
     	temp_skills.add(new Skill("enchantment"));
     	temp_skills.add(new Skill("boon"));
     	temp_skills.add(new Skill("bane"));
     	temp_skills.add(new Skill("staff"));
-    	
-    	Player player = new Player(temp_skills, stats, deadHandler);
+
+		List<KeyCommand> keys = new ArrayList<>();
+		// Add summoner specific commands
+		Player player = new Player(temp_skills, stats, playerController, keys, deadHandler);
     	
     	return player;
     }

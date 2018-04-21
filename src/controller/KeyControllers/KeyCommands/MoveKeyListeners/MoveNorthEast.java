@@ -4,10 +4,11 @@ import controller.KeyControllers.KeyCommands.KeyCommand;
 import model.Entities.Player;
 import model.Map.Direction;
 
-public class MoveNorthEast implements KeyCommand {
+public class MoveNorthEast extends KeyCommand {
     private Player player;
     private Direction direction = Direction.NE;
     public MoveNorthEast(Player player){
+        super("MoveNorthEast");
         this.player = player;
     }
     @Override
