@@ -6,8 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root  xmlns:fx="http://javafx.com/fxml" type="javafx.scene.control.ListView" fx:controller="controller.ViewControllers.InventoryController" >
-    <cellFactory >
+<?import javafx.scene.text.Text?>
+<fx:root xmlns:fx="http://javafx.com/fxml" type="javafx.scene.control.ListView" fx:controller="controller.ViewControllers.InventoryController" >
 
-    </cellFactory>
 </fx:root>

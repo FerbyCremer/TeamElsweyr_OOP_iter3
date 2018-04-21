@@ -1,0 +1,26 @@
+#menuTitle{
+    -fx-font-size: 42;
+    -fx-font-family: Phosphate;
+    -fx-alignment: Center;
+    -fx-font-weight: Bold;
+    -fx-color: #26310a;
+}
+
+#Btn{
+    -fx-font-size: 12;
+    -fx-font-weight: Normal;
+    -fx-font-style: Italic;
+    -fx-text-fill: #530332;
+    -fx-background-color: #f0deb3;
+}
+
+#skillBtn{
+    -fx-font-size: 27;
+    -fx-font-style: Normal;
+    -fx-background-color: #f0deb3;
+    -fx-text-fill: #26310a;
+}
+
+.BorderPane{
+    -fx-padding: 32pt;
+}

@@ -22,12 +22,12 @@ public class MenuController implements Initializable {
     private Scene scene;
 
     public void initialize(URL u, ResourceBundle b){
-        base.setBackground(new Background(new BackgroundImage(new Image("assets/MainMenu.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+        base.setBackground(new Background(new BackgroundImage(new Image("assets/backdrops/mainMenu.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
     }
 
     @FXML private void startNewGame() throws IOException{
         Parent window;
-        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getClassLoader().getResource("view/AvatarCreator.fxml"));
+        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getResource("/view/AvatarCreator.fxml"));
         window = (BorderPane) fmxlLoader.load();
 
         this.scene = new Scene(window);
@@ -37,7 +37,7 @@ public class MenuController implements Initializable {
 
     @FXML private void loadGame() throws IOException {
         Parent window;
-        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getClassLoader().getResource("view/GameViewport.fxml"));
+        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
         window = (BorderPane) fmxlLoader.load();
 
         this.scene = new Scene(window);

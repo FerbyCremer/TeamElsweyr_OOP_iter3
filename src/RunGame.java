@@ -15,7 +15,7 @@ public class RunGame extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/MainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/MainMenu.fxml"));
         stage.initStyle(StageStyle.DECORATED);
         stage.setTitle("Team Elsweyr OOP Iteration 3: The Mewrchants of Vemice");
 

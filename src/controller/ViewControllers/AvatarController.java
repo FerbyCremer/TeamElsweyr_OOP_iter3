@@ -3,11 +3,13 @@ package controller.ViewControllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,12 +26,14 @@ public class AvatarController implements Initializable {
             new Image("assets/avatars/lgAvatar/8.png"), new Image("assets/avatars/lgAvatar/9.png"), new Image("assets/avatars/lgAvatar/10.png"), new Image("assets/avatars/lgAvatar/11.png"),
             new Image("assets/avatars/lgAvatar/12.png"), new Image("assets/avatars/lgAvatar/13.png"), new Image("assets/avatars/lgAvatar/14.png"), new Image("assets/avatars/lgAvatar/15.png")};
 
-    private final Node sneak = new ImageView("assets/avatars/skillCards/scout.png");
-    private final Node smasher = new ImageView("assets/avatars/skillCards/warrior.png");
-    private final Node summoner = new ImageView("assets/avatars/skillCards/healer.png");
+    private final Node sneak = new ImageView("assets/avatars/skillCards/scoutCard.png");
+    private final Node smasher = new ImageView("assets/avatars/skillCards/smasherCard.png");
+    private final Node summoner = new ImageView("assets/avatars/skillCards/summonerCard.png");
 
-    private int i = 0;
+    protected int i = 0;
     ToggleGroup skills = new ToggleGroup();
+
+    private Scene scene;
 
     public void initialize(URL url, ResourceBundle bundle){
         avatar.setImage(avatars[i]);
@@ -63,6 +67,7 @@ public class AvatarController implements Initializable {
             i--;
         else
             i = avatars.length - 1;
+        avatar.setImage(avatars[i]);
     }
 
     @FXML private void rightCycle(){
@@ -70,6 +75,7 @@ public class AvatarController implements Initializable {
             i++;
         else
             i = 0;
+        avatar.setImage(avatars[i]);
     }
 
     @FXML private void startGame(){
