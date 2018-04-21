@@ -153,7 +153,14 @@ public class EntityStats {
 		return facingDirection;
 	}
 
+
 	public boolean isAlive(){
 	    return currentHealth > 0;
     }
+
+
+	public int getExperience(){
+		return experience;
+	}
+
 }

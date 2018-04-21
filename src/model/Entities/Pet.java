@@ -1,13 +1,17 @@
 package model.Entities;
 
+import controller.EntityControllers.AIController;
 import controller.Handlers.BringOutYourDeadHandler;
 
-public class Pet extends Entity {
+public class Pet extends AI {
 
-    private Player owner;
-
-    public Pet(Player player, EntityStats stats, BringOutYourDeadHandler deadHandler){
-    	super(stats, deadHandler);
-        owner = player;
+    public Pet(EntityStats stats, BringOutYourDeadHandler deadHandler, AIController aiController){
+    	super(stats, deadHandler, aiController);
     }
+
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
 }

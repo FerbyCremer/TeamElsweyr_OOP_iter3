@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.MenuController" prefHeight="720.0" prefWidth="1080.0" fx:id="base"  stylesheets="css/menus.css">
+    <top>
+        <Label value="The Mewrchants of Vemice - PAUSE"/>
+    </top>
+    <center>
+        <VBox >
+            <Button fx:id="saveGame" value="Save Game" onAction="#saveGame"/>
+            <Button fx:id="loadGame" value="Load Game" onAction="#loadGame"/>
+            <Button fx:id="config" value="COnfigure Controls" onAction="#keyConfig"/>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox spacing="800">
+            <Button value="Resume" onAction="#resume"/>
+            <Button value="Exit" onAction="#exit"/>
+        </HBox>
+    </bottom>
+</BorderPane>
