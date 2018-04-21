@@ -12,6 +12,6 @@ public class MoveNorthWest implements KeyCommand {
     }
     @Override
     public void perform() {
-        player.setFacingDirection(direction);
+        player.move(direction);
     }
 }
