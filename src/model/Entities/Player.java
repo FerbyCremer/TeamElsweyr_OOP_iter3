@@ -122,4 +122,8 @@ public class Player extends Entity{
 	public void visit(Mount mount){
 		mountHandler.mount(this, mount);
 	}
+
+//	public void visit(Pet pet){
+//
+//	}
 }
