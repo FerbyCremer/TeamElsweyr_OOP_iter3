@@ -25,6 +25,11 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
         this.terrains = new ArrayList<>();
         this.deadHandler = deadHandler;
     }
+    
+    //Load Constructor
+    public Entity(EntityStats entityStats, Inventory inventory, ArrayList<Terrain> terrains, String name, BringOutYourDeadHandler deadHandler) {
+    	
+    }
 
     //Changes the entity's speed based on whether or not they are facing the right direction
     public void move(Direction direction) {

@@ -11,22 +11,19 @@ import model.Items.Takeable.Tool;
 public class Inventory {
 	private int wealth;
 	private ArrayList<Takeable> items;
-	private int size;
+	private final int size = 30;
 	private Equipment equipment;
 	
-	public Inventory(int size, EntityStats stats) {
-		this.size = size;
+	public Inventory(EntityStats stats) {
 		wealth = 0;
 		equipment = new Equipment(stats);
 		items = new ArrayList<Takeable>();
 	}
 	
-	public Inventory(EntityStats stats) {
-		size = 30;
-		wealth = 0;
-		equipment = new Equipment(stats);
-		items = new ArrayList<Takeable>();
+	public Inventory(EntityStats stats, int wealth, ArrayList<Takeable> items) {
+		
 	}
+
 	
 	public void equipItem(int index) {
 		items.get(index).equip(equipment);

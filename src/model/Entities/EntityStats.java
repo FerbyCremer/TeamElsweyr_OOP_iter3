@@ -27,7 +27,7 @@ public class EntityStats {
 		//facingDirection = Direction.N;
 	}
 	
-	public EntityStats(int maxHealth, int currentHealth, int level, int experience, int defense, int detectRange, int currentSpeed, Direction facingDirection) {
+	public EntityStats(int maxHealth, int currentHealth, int level, int experience, int defense, int detectRange, int currentSpeed) {
 		this.maxHealth = maxHealth;
 		this.currentHealth = currentHealth;
 		this.level = level;
@@ -35,7 +35,7 @@ public class EntityStats {
 		this.defense = defense;
 		this.detectRange = detectRange;
 		this.currentSpeed = currentSpeed;
-		this.facingDirection = facingDirection;
+		this.facingDirection = Direction.N;
 	}
 	
 	//Health
