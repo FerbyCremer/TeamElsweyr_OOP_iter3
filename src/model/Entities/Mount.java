@@ -7,12 +7,8 @@ import java.util.List;
 import controller.Handlers.BringOutYourDeadHandler;
 
 public class Mount extends Entity {
-
-    private List<Terrain> terrains;
-
-    public Mount(int speed, EntityStats stats, BringOutYourDeadHandler deadHandler){
+    public Mount(EntityStats stats, BringOutYourDeadHandler deadHandler){
     	super(stats, deadHandler);
-    	stats.setMaxSpeed(speed);
     }
 
     public int getSpeed(){
@@ -20,6 +16,6 @@ public class Mount extends Entity {
     }
 
     public List<Terrain> getPassable(){
-        return terrains;
+        return super.getTerrains();
     }
 }

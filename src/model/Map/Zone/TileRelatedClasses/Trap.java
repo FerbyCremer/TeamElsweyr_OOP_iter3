@@ -9,11 +9,11 @@ public class Trap {
     private EntityEffect effect;
     private String name;
 
-    public Trap(boolean visible, boolean active, EntityEffect effect, String name) {
+    public Trap(boolean visible, boolean active, EntityEffect effect) {
         this.visible = visible;
         this.active = active;
         this.effect = effect;
-        this.name = name;
+        this.name = "Trap";
     }
 
     public void apply(Entity entity){

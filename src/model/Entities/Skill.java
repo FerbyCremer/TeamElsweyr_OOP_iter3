@@ -9,6 +9,12 @@ public class Skill {
 		level = 1;
 	}
 	
+	//loading constructor
+	public Skill(String name, int level) {
+		this.name = name;
+		this.level = level;
+	}
+	
 	public void increaseLevel() {
 		++level;
 	}

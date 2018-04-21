@@ -25,7 +25,7 @@ public class Player extends Entity{
     	mountedState = new Unmounted();
     }
 
-    public static Player playerMakeSmasher(EntityStats stats, BringOutYourDeadHandler deadHandler){
+    public static Player playerMakeSmasher(EntityStats stats, List<Integer> lvl, BringOutYourDeadHandler deadHandler){
     	List<Skill> temp_skills = new ArrayList<Skill>();
     	
     	temp_skills.add(new Skill("one-handed weapon"));
@@ -37,21 +37,21 @@ public class Player extends Entity{
     	return player;
     }
 
-    public static Player playerMakeSneak(EntityStats stats, BringOutYourDeadHandler deadHandler){
+    public static Player playerMakeSneak(EntityStats stats, List<Integer> lvl, BringOutYourDeadHandler deadHandler){
     	List<Skill> temp_skills = new ArrayList<Skill>();
     	
-    	temp_skills.add(new Skill("pick-pocket"));
-    	temp_skills.add(new Skill("detect trap"));
-    	temp_skills.add(new Skill("remove trap"));
-    	temp_skills.add(new Skill("creep"));
-    	temp_skills.add(new Skill("rangedWeapon"));
+    	temp_skills.add(new Skill("pick-pocket", lvl.get(0)));
+    	temp_skills.add(new Skill("detect trap", lvl.get(1)));
+    	temp_skills.add(new Skill("remove trap", lvl.get(2)));
+    	temp_skills.add(new Skill("creep", lvl.get(3)));
+    	temp_skills.add(new Skill("rangedWeapon", lvl.get(4)));
     	
     	Player player = new Player(temp_skills, stats, deadHandler);
     	
     	return player;
     }
     
-    public static Player playerMakeSummoner(EntityStats stats, BringOutYourDeadHandler deadHandler){
+    public static Player playerMakeSummoner(EntityStats stats, List<Integer> lvl, BringOutYourDeadHandler deadHandler){
     	List<Skill> temp_skills = new ArrayList<Skill>();
     	
     	temp_skills.add(new Skill("enchantment"));

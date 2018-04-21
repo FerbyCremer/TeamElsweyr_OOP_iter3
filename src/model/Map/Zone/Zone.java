@@ -21,6 +21,7 @@ public class Zone {
     private ContentMap<River> riverMap;
     private Point spawnPoint;
 
+    //TODO take mapsl out of constructors and make them getters and setters
     public Zone(String id, Tile[][] tiles, ContentMap<Decal> decalMap, ContentMap<Entity> entityMap, ContentMap<Item> itemMap, ContentMap<AreaEffect> areaEffectMap, ContentMap<Trap> trapMap, ContentMap<River> riverMap, Point spawnPoint) {
         this.id = id;
         this.tiles = tiles;
