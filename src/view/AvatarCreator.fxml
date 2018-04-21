@@ -7,24 +7,37 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.image.ImageView?>
-<?scenebuilder-stylesheet menus.css?>
 
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.AvatarController" prefHeight="720.0" prefWidth="1080.0" >
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ViewControllers.AvatarController"
+            prefHeight="720.0" prefWidth="1080.0" fx:id="base" stylesheets="@css/menus.css" >
     <top>
-        <Label text="Choose Your Character" id="menuTitle" />
-    </top>
-    <center>
-        <HBox alignment="CENTER" spacing="10">
-            <Button  id="Btn" text="left" onAction="#leftCycle" />
-            <ImageView fx:id="avatar" />
-            <Button  id="Btn" text="right" onAction="#rightCycle" />
+        <HBox alignment="CENTER" spacing="12">
+            <Label text="Choose Your Character"/>
         </HBox>
-    </center>
+    </top>
+    <left>
+        <HBox alignment="CENTER" spacing="10">
+            <Button text="left" onAction="#leftCycle" />
+            <ImageView fx:id="avatar" />
+            <Button text="right" onAction="#rightCycle" />
+        </HBox>
+    </left>
+    <right>
+        <VBox alignment="CENTER">
+            <ImageView fx:id="skillsCard" />
+            <HBox alignment="CENTER" spacing="32">
+                <ToggleButton fx:id="scout" text="Scout"/>
+                <ToggleButton fx:id="warrior" text="Defender"/>
+                <ToggleButton fx:id="healer" text="Wise One"/>
+            </HBox>
+        </VBox>
+    </right>
     <bottom>
-        <HBox alignment="CENTER" spacing="32">
-            <RadioButton id="skillBtn" fx:id="scout" text="Scout"/>
-            <RadioButton id="skillBtn" fx:id="warrior" text="Warrior"/>
-            <RadioButton id="skillBtn" fx:id="healer" text="Healer"/>
+        <HBox alignment="CENTER" spacing="12">
+            <Button text="Start" onAction="#startGame"/>
         </HBox>
     </bottom>
 </BorderPane>
