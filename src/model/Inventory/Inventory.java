@@ -7,12 +7,14 @@ import model.Entities.Player;
 import model.Items.Item;
 import model.Items.Takeable.Takeable;
 import model.Items.Takeable.Tool;
+import model.Updateable;
 
 public class Inventory {
 	private int wealth;
 	private ArrayList<Takeable> items;
 	private int size;
 	private Equipment equipment;
+	private ArrayList<Updateable> observers;
 	
 	public Inventory(int size, EntityStats stats) {
 		this.size = size;
@@ -30,6 +32,7 @@ public class Inventory {
 	
 	public void equipItem(int index) {
 		items.get(index).equip(equipment);
+		exectue();
 	}
 	
 	public void addItem(Takeable item) {
@@ -39,6 +42,7 @@ public class Inventory {
 		}
 		
 		items.add(item);
+		exectue();
 	}
 	
 	public void modifyWealth(int amount) {
@@ -48,6 +52,7 @@ public class Inventory {
 		}
 		
 		wealth += amount;
+		exectue();
 	}
 	
 	//tells the equipment to use the currently equipped consumable
@@ -62,5 +67,19 @@ public class Inventory {
 	
 	public void equipInvisibleTool(Tool tool) {
 		equipment.addInvisibleTool(tool);
+	}
+
+	public void add(Updateable updateable){
+		observers.add(updateable);
+	}
+
+	private void exectue(){
+		for(Updateable updateable : observers){
+			updateable.update();
+		}
+	}
+
+	public int getWealth(){
+		return wealth;
 	}
 }

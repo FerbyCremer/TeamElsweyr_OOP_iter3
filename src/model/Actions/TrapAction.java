@@ -44,6 +44,11 @@ public class TrapAction extends Action{
         actionHandler.createAction(player, this);
     }
 
+    @Override
+    public String getEffectName() {
+        return trapEffect.getName();
+    }
+
     public void apply(Trap trap, int distance){
         if(distance * accuracy > 1){
             trapEffect.apply(trap);

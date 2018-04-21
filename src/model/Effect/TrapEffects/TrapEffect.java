@@ -5,4 +5,5 @@ import model.Map.Zone.TileRelatedClasses.Trap;
 public interface TrapEffect {
 
     void apply(Trap trap);
+    public String getName();
 }
