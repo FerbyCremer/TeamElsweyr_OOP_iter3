@@ -120,6 +120,6 @@ public class Player extends Entity{
 	}
 
 	public void visit(Mount mount){
-
+		mountHandler.mount(this, mount);
 	}
 }
