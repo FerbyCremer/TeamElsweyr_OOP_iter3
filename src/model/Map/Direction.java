@@ -52,6 +52,7 @@ public enum Direction {
                 return directions.get(i);
             }
         }
+        return null;
     }
 
     private Direction(final int angle) {

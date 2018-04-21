@@ -42,6 +42,8 @@ public class Zone {
         return itemMap.getTileOf(item);
     }
 
+    public Tile getTileForEntity(Entity entity){return entityMap.getTileOf(entity);}
+
 
     public HashMap<Direction, Tile> computeNeighbors(Tile tile){
         return tile.getNeighbors();
