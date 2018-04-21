@@ -14,7 +14,7 @@ public class River {
         this.name = name;
     }
 
-    public void apply(Entity entity){
+    public Direction apply(Entity entity){
         int entitySpeed = entity.getCurrentSpeed();
         Direction entityDirection = entity.getDirection();
 
@@ -35,8 +35,9 @@ public class River {
 
         int degrees = (int) Math.toDegrees(Math.atan(sumY/((double)sumX)));
 
-        entity.setDerivedDirection(Direction.getDirectionClosest(degrees));
+
         entity.setCurrentSpeed(newEntitySpeed);
+        return Direction.getDirectionClosest(degrees);
     }
 
     public String getName() {

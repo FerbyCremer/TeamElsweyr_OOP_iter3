@@ -12,7 +12,6 @@ public class EntityStats {
 	private int maxSpeed;
 	private int currentSpeed;
 	private Direction facingDirection;
-	private Direction derivedDirection;
 	
 	// Constructors
 	public EntityStats() {
@@ -152,14 +151,6 @@ public class EntityStats {
 
 	public Direction getFacingDirection() {
 		return facingDirection;
-	}
-
-    public Direction getDerivedDirection() {
-        return derivedDirection;
-    }
-
-    public void setDerivedDirection(Direction derived) {
-		derivedDirection = derived;
 	}
 
 	public boolean isAlive(){

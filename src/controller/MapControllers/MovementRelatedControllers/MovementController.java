@@ -1,6 +1,7 @@
 package controller.MapControllers.MovementRelatedControllers;
 
 import model.Entities.Entity;
+import model.Map.Direction;
 import model.Map.Zone.ContentMap;
 import model.Map.Zone.TileRelatedClasses.River;
 import model.Map.Zone.TileRelatedClasses.Tile;
@@ -34,14 +35,17 @@ public class MovementController {
 
             Entity currentEntity = entityMap.getContentAtTile(entityTile);
 
+
+            Direction currentDirection = currentEntity.getDirection();
+
             if (riverMap.hasTile(entityTile)){
-                riverMap.getContentAtTile(entityTile).apply(currentEntity);
+                currentDirection = riverMap.getContentAtTile(entityTile).apply(currentEntity);
             }
 
             EntityMover entityMover = entityMovers.get(currentEntity);
             //Blame whoever didn't put obstacles on the map corners if null ptr exception
-            Tile tileInDerivedDirection = entityTile.getNeighbor(currentEntity.getDirection());
-            entityMover.changeLocation(tileInDerivedDirection);
+            Tile tileInDirection = entityTile.getNeighbor(currentDirection);
+            entityMover.changeLocation(tileInDirection);
 
             currentEntity.setCurrentSpeed(0);
         }
