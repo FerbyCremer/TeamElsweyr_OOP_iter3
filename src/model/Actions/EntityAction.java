@@ -13,21 +13,19 @@ import java.util.HashMap;
 
 
 public class EntityAction extends Action{
-    private int maxRange;
-    private ActionType actionType;
-    private int accuracy;
     EntityEffect entityEffect;
 
-    public EntityAction(int maxRange, int accuracy, EntityEffect entityEffect) {
+    public EntityAction(int maxRange, int accuracy, ActionType type, EntityEffect entityEffect) {
         this.maxRange = maxRange;
         this.accuracy = accuracy;
         this.entityEffect = entityEffect;
+        this.actionType = type;
     }
 
     @Override
     public Action clone(double modifier) {
         int modifiedAccuracy =  (int) (this.accuracy * modifier);
-        Action action = new EntityAction(this.maxRange, modifiedAccuracy, this.entityEffect);
+        Action action = new EntityAction(this.maxRange, modifiedAccuracy, this.actionType, this.entityEffect);
         return action;
     }
 

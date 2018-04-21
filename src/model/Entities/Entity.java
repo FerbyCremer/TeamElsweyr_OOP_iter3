@@ -26,6 +26,11 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
         this.terrains = new ArrayList<>();
         this.deadHandler = deadHandler;
     }
+    
+    //Load Constructor
+    public Entity(EntityStats entityStats, Inventory inventory, ArrayList<Terrain> terrains, String name, BringOutYourDeadHandler deadHandler) {
+    	
+    }
 
 
 

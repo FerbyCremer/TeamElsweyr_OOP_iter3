@@ -16,21 +16,19 @@ import model.Map.Zone.TileRelatedClasses.Trap;
 import java.util.HashMap;
 
 public class TrapAction extends Action{
-    private int maxRange;
-    private ActionType actionType;
-    private int accuracy;
     TrapEffect trapEffect;
 
-    public TrapAction(int maxRange, int accuracy, TrapEffect trapEffect) {
+    public TrapAction(int maxRange, int accuracy, ActionType type, TrapEffect trapEffect) {
         this.maxRange = maxRange;
         this.accuracy = accuracy;
         this.trapEffect = trapEffect;
+        this.actionType = type;
     }
 
     @Override
     public Action clone(double modifier) {
         int modifiedAccuracy =  (int) (this.accuracy * modifier);
-        Action action = new TrapAction(this.maxRange, modifiedAccuracy, this.trapEffect);
+        Action action = new TrapAction(this.maxRange, modifiedAccuracy, this.actionType, this.trapEffect);
         return action;
     }
 

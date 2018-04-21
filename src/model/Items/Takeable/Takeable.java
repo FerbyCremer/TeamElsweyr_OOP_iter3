@@ -21,4 +21,7 @@ public abstract class Takeable extends Item {
     public void delete() {
     }
 
+    public void setEquip(boolean equipped) {
+    	this.equipped = equipped;
+    }
 }

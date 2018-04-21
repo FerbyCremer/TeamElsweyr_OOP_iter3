@@ -15,6 +15,7 @@ public class Equipment {
 	private ArrayList<Tool> toolList;
 	private ArrayList<Tool> invisibleTools;
 	
+	//TODO loading equip methods
 	public Equipment(EntityStats stats) {
 		toolList = new ArrayList<Tool>();
 		statChanger = new StatsChanger(stats);

@@ -14,6 +14,7 @@ public class Tile {
     private HashMap<Direction, Tile> neighborhood;
     private Point coordinate;
 
+    //TODO neighborhood is set in zone
     public Tile(Terrain terrain, boolean obstacle, HashMap<Direction, Tile> neighborhood, Point coordinate) {
         this.terrain = terrain;
         this.obstacle = obstacle;
