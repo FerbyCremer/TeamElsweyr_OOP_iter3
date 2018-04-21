@@ -26,8 +26,7 @@ public class Tile {
     }
 
     public boolean canMove(Entity entity){
-       // if(terrain.canPass(entity.get))
-        return false;
+        return terrain.canPass(entity.getTerrains()) && !obstacle;
     }
 
     public Tile getNeighbor(Direction direction) {
