@@ -3,6 +3,7 @@ package model.Effect.EntityEffect;
 import model.Entities.Entity;
 
 public class ObserveEffect implements EntityEffect {
+    private String name;
     private int amount;
 
     public ObserveEffect(int amount) {
@@ -12,5 +13,10 @@ public class ObserveEffect implements EntityEffect {
     @Override
     public void apply(Entity entity) {
 
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 }

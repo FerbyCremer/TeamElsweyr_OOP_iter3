@@ -24,4 +24,6 @@ public abstract class Action {
     }
 
     public abstract void createInstanceFor(ActionHandler actionHandler, Player player);
+
+    public abstract String getEffectName();
 }

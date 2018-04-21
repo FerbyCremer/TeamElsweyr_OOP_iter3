@@ -6,6 +6,7 @@ import model.Map.Zone.Zone;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public class DecalSetFTDRTIE implements DecalSet {
     private Point playerPos;
@@ -13,6 +14,8 @@ public class DecalSetFTDRTIE implements DecalSet {
     private HashMap<Point, ArrayList<String>> zoneMap;
     private int xDim;
     private int yDim;
+    private String ghostName;
+
 
     /*
     FTDRTIE
@@ -54,7 +57,17 @@ public class DecalSetFTDRTIE implements DecalSet {
         playerPos = makeNewPoint(playerTile.getCoordinate());
     }
 
+    private void addGhostImageToSceneTiles(){
+        Set<Point> points = zoneMap.keySet();
+        for(Point point: points){
+            if(!zoneMap.get(point).contains(ghostName)){
+                zoneMap.get(point).add(ghostName);
+            }
+        }
+    }
+
     private void createZoneMap(ArrayList<Tile> tiles, Zone currentZone){
+        addGhostImageToSceneTiles();
 
         for(Tile t: tiles){
             Point p = makeNewPoint(t.getCoordinate());

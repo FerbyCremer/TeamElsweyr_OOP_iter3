@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Entity implements EntityVisitable, EntityVisitor {
+
     protected EntityStats stats;
     protected Inventory inventory;
     private ArrayList<Terrain> terrains;
@@ -31,23 +32,7 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
     	
     }
 
-    //Changes the entity's speed based on whether or not they are facing the right direction
-    public void move(Direction direction) {
-        if (direction == stats.getFacingDirection()) {
-            stats.modifyCurrentSpeed(stats.getMaxSpeed());
-        } else {
-            stats.setFacingDirection(direction);
-        }
-    }
 
-    public void addToInventory(Takeable item) {
-        inventory.addItem(item);
-    }
-
-    // Changes the entity's inventory, mainly for load game
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
-    }
 
     //updateHealth is a wrapper method that tells EntityStats to modify the entity's health
     public void updateHealth(int healthChange) {
@@ -55,38 +40,65 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
         if (!stats.isAlive()) {
             deadHandler.notifyEntityDead(this);
         }
+        execute();
     }
 
-
-    //updateSpeed tells the EntityStats class to modify the entiy's speed
-    public void updateCurrentSpeed(int speed) {
-        stats.modifyCurrentSpeed(speed);
-    }
-
-    public void setCurrentSpeed(int speed) {
-        stats.setCurrentSpeed(speed);
-    }
-
-    //getCurrentSpeed returns the entity's speed
-    public int getCurrentSpeed() {
-        return stats.getCurrentSpeed();
-    }
-
-    //getMaxSpeed returns the entity's maxSpeed
-    public int getMaxSpeed() {
-        return stats.getMaxSpeed();
-    }
-
-
-    //updateMaxSpeed tells the EntityStats class to modify the entiy's max speed
-    public void updateMaxSpeed(int maxSpeed) {
-        stats.modifyMaxSpeed(maxSpeed);
-    }
 
     //getStats returns the entity stats
     public EntityStats getStats() {
         return stats;
     }
+
+
+
+		
+	//Changes the entity's speed based on whether or not they are facing the right direction
+	public void move(Direction direction) {
+		if(direction == stats.getFacingDirection()) {
+			stats.modifyCurrentSpeed(stats.getMaxSpeed());
+		}
+			
+		else {
+			stats.setFacingDirection(direction);
+		}
+		execute();
+	}
+
+	public void addToInventory(Takeable item){
+		inventory.addItem(item);
+		execute();
+	}
+		
+	// Changes the entity's inventory, mainly for load game
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
+		execute();
+	}
+		
+
+		
+	//updateSpeed tells the EntityStats class to modify the entiy's speed
+	public void updateCurrentSpeed(int speed) {
+		stats.modifyCurrentSpeed(speed);
+		execute();
+	}
+		
+	//getCurrentSpeed returns the entity's speed
+	public int getCurrentSpeed() {
+		return stats.getCurrentSpeed();
+	}
+	
+	//getMaxSpeed returns the entity's maxSpeed
+	public int getMaxSpeed() {
+		return stats.getMaxSpeed();
+	}
+		
+	//updateMaxSpeed tells the EntityStats class to modify the entiy's max speed
+	public void updateMaxSpeed(int maxSpeed) {
+		stats.modifyMaxSpeed(maxSpeed);
+		execute();
+	}
+
 
     public String getName() {
         return name;
@@ -103,10 +115,6 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
 
     }
 
-    public void setFacingDirection(Direction direction) {
-        stats.setFacingDirection(direction);
-    }
-
     public Direction getDirection() {
         return stats.getFacingDirection();
     }
@@ -115,5 +123,34 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
     public ArrayList<Terrain> getTerrains() {
         return terrains;
     }
+
+
+    public void setFacingDirection(Direction direction){
+			stats.setFacingDirection(direction);
+			execute();
+	}
+
+	public void add(Updateable updateable){
+		observers.add(updateable);
+	}
+
+	protected void execute(){
+		for(Updateable updateable: observers){
+			updateable.update();
+		}
+	}
+
+	public int getHealth(){
+		return stats.getHealth();
+	}
+
+	public int getLevel(){
+		return stats.getLevel();
+	}
+
+	public int getExp(){
+		return stats.getExperience();
+	}
+
 }
 
