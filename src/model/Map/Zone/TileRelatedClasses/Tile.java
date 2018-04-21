@@ -21,11 +21,6 @@ public class Tile {
         this.coordinate = coordinate;
     }
 
-    //TODO delete this testing purpose only
-    public Tile() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public void setNeighbors(HashMap<Direction,Tile> tiles){
         this.neighborhood = tiles;
     }
