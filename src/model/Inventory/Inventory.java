@@ -1,6 +1,7 @@
 package model.Inventory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Entities.EntityStats;
 import model.Entities.Player;
@@ -10,17 +11,17 @@ import model.Items.Takeable.Tool;
 
 public class Inventory {
 	private int wealth;
-	private ArrayList<Takeable> items;
+	private List<Takeable> items;
 	private final int size = 30;
 	private Equipment equipment;
 	
 	public Inventory(EntityStats stats) {
 		wealth = 0;
 		equipment = new Equipment(stats);
-		items = new ArrayList<Takeable>();
+		items = new ArrayList<>();
 	}
 	
-	public Inventory(EntityStats stats, int wealth, ArrayList<Takeable> items) {
+	public Inventory(EntityStats stats, int wealth, List<Takeable> items) {
 		
 	}
 
