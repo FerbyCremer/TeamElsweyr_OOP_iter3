@@ -152,19 +152,15 @@ public class EntityStats {
 	public Direction getFacingDirection() {
 		return facingDirection;
 	}
-<<<<<<< HEAD
+
 
 	public boolean isAlive(){
 	    return currentHealth > 0;
     }
-=======
-	
-	public void setDerivedDirection(Direction derived) {
-		derivedDirection = derived;
-	}
+
 
 	public int getExperience(){
 		return experience;
 	}
->>>>>>> Observers
+
 }
