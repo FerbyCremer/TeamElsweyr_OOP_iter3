@@ -1,5 +1,6 @@
 package model.Entities;
 
+import controller.Handlers.BringOutYourDeadHandler;
 import model.*;
 import model.Inventory.Equipment;
 import model.Inventory.Inventory;
@@ -16,11 +17,13 @@ public abstract class Entity implements EntityVisitable, EntityVisitor  {
 	private ArrayList<Terrain> terrains;
 	private ArrayList<Updateable> observers;
 	private String name;
+	private BringOutYourDeadHandler deadHandler;
 		
-	public Entity() {
-		stats = new EntityStats();
-		inventory = new Inventory(stats);
-		terrains = new ArrayList<Terrain>();
+	public Entity(EntityStats entityStats, BringOutYourDeadHandler deadHandler) {
+		this.stats = entityStats;
+		this.inventory = new Inventory(stats);
+		this.terrains = new ArrayList<>();
+		this.deadHandler = deadHandler;
 	}
 		
 	//Changes the entity's speed based on whether or not they are facing the right direction
@@ -46,6 +49,9 @@ public abstract class Entity implements EntityVisitable, EntityVisitor  {
 	//updateHealth is a wrapper method that tells EntityStats to modify the entity's health
 	public void updateHealth(int healthChange) {
 		stats.modifyHealth(healthChange);
+        if (!stats.isAlive()){
+            deadHandler.notifyEntityDead(this);
+        }
 	}
 
 		

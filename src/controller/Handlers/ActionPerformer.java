@@ -13,8 +13,8 @@ import model.Map.Zone.Zone;
 import java.util.HashMap;
 
 public class ActionPerformer {
-    ContentMap<Entity> entityContentMap;
-    ContentMap<Trap> trapContentMap;
+    private ContentMap<Entity> entityContentMap;
+    private ContentMap<Trap> trapContentMap;
 
 
     public ActionPerformer(Zone zone){

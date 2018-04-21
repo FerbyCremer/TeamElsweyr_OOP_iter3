@@ -3,6 +3,7 @@ package controller.MapControllers.MovementRelatedControllers;
 import model.Entities.Entity;
 import model.Map.Zone.ContentMap;
 import model.Map.Zone.TileRelatedClasses.River;
+import model.Map.Zone.TileRelatedClasses.Tile;
 import model.Map.Zone.Zone;
 
 import java.util.HashMap;
@@ -17,7 +18,13 @@ public class MovementController {
         riverMap = zone.getRiverMap();
     }
 
-    public void updateEntitys(){}
+    public void updateEntitys(){
+        for (Tile entityTile : entityMap.getTilesContentIsOn()) {
+            Entity currentEntity = entityMap.getContentAtTile(entityTile);
+
+        }
+
+    }
 
 
 }
