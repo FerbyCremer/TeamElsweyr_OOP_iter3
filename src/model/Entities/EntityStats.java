@@ -119,8 +119,12 @@ public class EntityStats {
 		
 		currentSpeed += delta;
 	}
-	
-	public void modifyMaxSpeed(int delta) {
+
+    public void setCurrentSpeed(int currentSpeed) {
+        this.currentSpeed = currentSpeed;
+    }
+
+    public void modifyMaxSpeed(int delta) {
 		if(maxSpeed + delta < 0) {
 			maxSpeed = 0;
 			return;
@@ -149,8 +153,12 @@ public class EntityStats {
 	public Direction getFacingDirection() {
 		return facingDirection;
 	}
-	
-	public void setDerivedDirection(Direction derived) {
+
+    public Direction getDerivedDirection() {
+        return derivedDirection;
+    }
+
+    public void setDerivedDirection(Direction derived) {
 		derivedDirection = derived;
 	}
 

@@ -36,7 +36,7 @@ public class River {
         int degrees = (int) Math.toDegrees(Math.atan(sumY/((double)sumX)));
 
         entity.setDerivedDirection(Direction.getDirectionClosest(degrees));
-        entity.updateCurrentSpeed(newEntitySpeed);
+        entity.setCurrentSpeed(newEntitySpeed);
     }
 
     public String getName() {
