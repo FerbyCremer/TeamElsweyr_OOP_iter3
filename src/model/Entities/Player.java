@@ -1,8 +1,9 @@
 package model.Entities;
 
-import controller.EntityControllers.PlayerController;
 import controller.Handlers.BringOutYourDeadHandler;
 import controller.Handlers.MountHandler;
+import controller.KeyControllers.KeyCommands.KeyCommand;
+import controller.KeyControllers.KeyController;
 import model.Entities.MountSate.Mounted;
 import model.Entities.MountSate.MountedState;
 import model.Entities.MountSate.Unmounted;
@@ -17,12 +18,14 @@ public class Player extends Entity{
     private List<Skill> skills;
     private MountedState mountedState;
     private MountHandler mountHandler;
-    private PlayerController playerController;
+    private KeyController playerController;
 
     private Player(List<Skill> skills, EntityStats stats, BringOutYourDeadHandler deadHandler){
     	super(stats, deadHandler);
     	this.skills = skills;
     	mountedState = new Unmounted();
+
+		this.playerController = new KeyController("player", );
     }
 
     public static Player playerMakeSmasher(EntityStats stats, BringOutYourDeadHandler deadHandler){
@@ -31,9 +34,9 @@ public class Player extends Entity{
     	temp_skills.add(new Skill("one-handed weapon"));
     	temp_skills.add(new Skill("two-handed weapon"));
     	temp_skills.add(new Skill("brawling"));
-    	
+
     	Player player = new Player(temp_skills, stats, deadHandler);
-    	
+
     	return player;
     }
 
@@ -47,6 +50,8 @@ public class Player extends Entity{
     	temp_skills.add(new Skill("rangedWeapon"));
     	
     	Player player = new Player(temp_skills, stats, deadHandler);
+		List<KeyCommand> keys = new ArrayList<>();
+		//keys.add()
     	
     	return player;
     }

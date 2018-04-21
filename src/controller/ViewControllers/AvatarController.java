@@ -1,6 +1,8 @@
 package controller.ViewControllers;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -9,13 +11,17 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.URL;
+import java.security.Key;
 import java.util.ResourceBundle;
 
 public class AvatarController implements Initializable {
@@ -41,6 +47,10 @@ public class AvatarController implements Initializable {
 
     private Scene scene;
     private static String skillSelect = "";
+
+    private KeyCode up = KeyCode.W;
+
+    private KeyCode down = KeyCode.D;
 
     public void initialize(URL url, ResourceBundle bundle){
 
@@ -68,6 +78,12 @@ public class AvatarController implements Initializable {
 
         skillsCard.setImage(sneak);
         scout.setSelected(true);
+
+        this.scene.setOnKeyPressed(event ->  {
+                if (event.getCode() == KeyCode.W){
+
+                }
+        });
     }
 
     @FXML private void leftCycle(){
