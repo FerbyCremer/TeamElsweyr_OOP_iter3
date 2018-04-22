@@ -45,4 +45,8 @@ public class Tile {
     public String getTerrainName(){
         return terrain.getName();
     }
+
+    public boolean isObstacle() {
+        return obstacle;
+    }
 }

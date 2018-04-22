@@ -163,4 +163,15 @@ public class EntityStats {
 		return experience;
 	}
 
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public int getCurrentHealth() {
+		return currentHealth;
+	}
+
+	public int getDetectRange() {
+		return detectRange;
+	}
 }

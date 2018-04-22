@@ -1,5 +1,6 @@
 package model.Effect.TrapEffects;
 
+import controller.LoadGame.SaveVisitor;
 import model.Map.Zone.TileRelatedClasses.Trap;
 
 public class RemoveEffect implements TrapEffect {
@@ -11,4 +12,15 @@ public class RemoveEffect implements TrapEffect {
         trap.setActive();
         //trap.setVisiblity(false);
     }
+
+    @Override
+    public String getName() {
+        return "removeEffect";
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveTrapEffect(this);
+    }
+
 }

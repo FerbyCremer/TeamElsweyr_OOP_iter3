@@ -1,6 +1,10 @@
 package model.Entities;
 
-public class Skill {
+import controller.LoadGame.SaveVisitor;
+import controller.LoadGame.Saveable;
+
+public class Skill
+{
 	private String name;
 	private int level;
 	
@@ -14,7 +18,11 @@ public class Skill {
 		this.name = name;
 		this.level = level;
 	}
-	
+
+	public int getLevel() {
+		return level;
+	}
+
 	public void increaseLevel() {
 		++level;
 	}
@@ -37,4 +45,5 @@ public class Skill {
 	public String getName() {
 		return name;
 	}
+
 }

@@ -1,10 +1,11 @@
 package model.Effect.EntityEffect;
 
+import controller.LoadGame.SaveVisitor;
 import model.Entities.Entity;
 
 public class BargainEffect implements EntityEffect {
     private int amount;
-    private String name;
+    private String name = "bargainEffect";
 
     public BargainEffect(int amount) {
         this.amount = amount;
@@ -18,5 +19,10 @@ public class BargainEffect implements EntityEffect {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveEntityEffect(this);
     }
 }

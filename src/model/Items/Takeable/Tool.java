@@ -2,6 +2,7 @@ package model.Items.Takeable;
 
 
 import controller.Handlers.ActionHandler;
+import controller.LoadGame.SaveVisitor;
 import model.Actions.Action;
 import model.Entities.Entity;
 import model.Entities.Player;
@@ -21,6 +22,20 @@ public class Tool extends Takeable implements Usable {
         this.cooldown = cooldown;
     }
 
+    public Action getAction() {
+        return action;
+    }
+
+    public int getCooldown() {
+
+        return cooldown;
+    }
+
+    public Skill getSkill() {
+
+        return skill;
+    }
+
     @Override
     public void equip(Equipment equipment) {
         equipment.equipTool(this);
@@ -36,4 +51,8 @@ public class Tool extends Takeable implements Usable {
         actionHandler.createAction(player, action.clone(skill.getModifier()));
     }
 
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveTool(this);
+    }
 }

@@ -2,6 +2,7 @@ package model.Actions;
 
 
 import controller.Handlers.ActionHandler;
+import controller.LoadGame.SaveVisitor;
 import model.Actions.ActionType.ActionType;
 import model.Effect.TrapEffects.TrapEffect;
 
@@ -57,4 +58,8 @@ public class TrapAction extends Action{
     }
 
 
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return "trapAction\n";
+    }
 }

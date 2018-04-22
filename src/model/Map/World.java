@@ -1,12 +1,15 @@
 package model.Map;
 
+import controller.LoadGame.SaveVisitor;
+import controller.LoadGame.Saveable;
 import model.Entities.Entity;
 import model.Entities.Player;
 import model.Map.Zone.Zone;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class World {
+public class World implements Saveable{
     private ArrayList<Zone> zones;
     private Zone currentZone;
 
@@ -20,6 +23,8 @@ public class World {
 
         return currentZone;
     }
+
+    public List<Zone> getZones(){return zones;}
 
     private Zone getZone(String zoneID){
         for(Zone z: zones){
@@ -39,5 +44,10 @@ public class World {
     public void addEntityToZone(Player player, String zoneID) {
         Zone zone = getZone(zoneID);
         zone.addEntityToMap(player);
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveWorld(this);
     }
 }

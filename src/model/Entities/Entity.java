@@ -1,6 +1,8 @@
 package model.Entities;
 
 import controller.Handlers.BringOutYourDeadHandler;
+import controller.LoadGame.SaveVisitor;
+import controller.LoadGame.Saveable;
 import model.*;
 import model.Inventory.Equipment;
 import model.Inventory.Inventory;
@@ -11,7 +13,7 @@ import model.Map.Terrain;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Entity implements EntityVisitable, EntityVisitor {
+public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable {
 
     protected EntityStats stats;
     protected Inventory inventory;
@@ -152,5 +154,14 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
 		return stats.getExperience();
 	}
 
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+
+	@Override
+	public String accept(SaveVisitor saveVisitor){
+    	return saveVisitor.saveEntity(this);
+	}
 }
 

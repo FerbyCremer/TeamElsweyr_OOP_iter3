@@ -1,5 +1,6 @@
 package model.Items.OneShot;
 
+import controller.LoadGame.SaveVisitor;
 import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.Entity;
 import model.Items.Item;
@@ -17,8 +18,18 @@ public class OneShot extends Item {
         delete();
     }
 
+    public EntityEffect getEffect() {
+        return effect;
+    }
+
     private void delete() {
+        delete();
+
     }
 
 
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveOneShot(this);
+    }
 }

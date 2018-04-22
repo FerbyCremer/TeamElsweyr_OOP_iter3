@@ -1,6 +1,7 @@
 package model.Entities.NPC;
 
 import controller.EntityControllers.AIController;
+import controller.LoadGame.SaveVisitor;
 import model.Entities.Player;
 import model.Map.Direction;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class AggroState implements NPCState {
 
     private void findPlayer(AIController aiController, NPC npc){
         //TODO: Change find PathToPlayer take in an entity and find the distance direction between the player and npc
-        ArrayList<Direction> directions = aiController.findPathToEntity(npc);
+        ArrayList<Direction> directions = aiController.findPathToPlayer(npc);
         npc.move(directions.get(0));
     }
 
@@ -32,4 +33,8 @@ public class AggroState implements NPCState {
 
     }
 
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return "aggroState\n";
+    }
 }

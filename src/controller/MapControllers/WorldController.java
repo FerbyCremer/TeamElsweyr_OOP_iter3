@@ -68,6 +68,10 @@ public class WorldController {
         aiController.updateMaps(zone);
     }
 
+    public World getWorld() {
+        return world;
+    }
+
     private void updateZoneController(Zone zone){
         zoneController.setEntityToAreaEffect(new EntityToAreaEffect(zone));
         zoneController.setEntityToItem(new EntityToItem(zone));

@@ -2,6 +2,7 @@ package model.Actions;
 
 
 import controller.Handlers.ActionHandler;
+import controller.LoadGame.SaveVisitor;
 import model.Actions.ActionType.ActionType;
 import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.Entity;
@@ -51,5 +52,11 @@ public class EntityAction extends Action{
 
     public String getEffectName() {
         return entityEffect.getName();
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return "entityAction\n";
+
     }
 }

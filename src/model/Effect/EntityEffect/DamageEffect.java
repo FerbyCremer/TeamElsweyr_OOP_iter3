@@ -1,5 +1,6 @@
 package model.Effect.EntityEffect;
 
+import controller.LoadGame.SaveVisitor;
 import model.Entities.Entity;
 
 public class DamageEffect implements EntityEffect{
@@ -18,5 +19,10 @@ public class DamageEffect implements EntityEffect{
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveEntityEffect(this);
     }
 }

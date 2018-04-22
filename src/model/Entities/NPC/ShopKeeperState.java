@@ -1,6 +1,7 @@
 package model.Entities.NPC;
 
 import controller.EntityControllers.AIController;
+import controller.LoadGame.SaveVisitor;
 import model.Entities.Player;
 import view.UpdateEntityRelatedView;
 
@@ -25,4 +26,8 @@ public class ShopKeeperState implements NPCState {
     }
 
 
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return "shopKeeperState\n";
+    }
 }

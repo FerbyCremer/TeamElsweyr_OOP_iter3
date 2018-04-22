@@ -4,6 +4,9 @@ import controller.Handlers.BringOutYourDeadHandler;
 import controller.Handlers.MountHandler;
 import controller.KeyControllers.KeyCommands.KeyCommand;
 import controller.KeyControllers.KeyController;
+import controller.LoadGame.GameSaveVisitor;
+import controller.LoadGame.SaveVisitor;
+import controller.LoadGame.Saveable;
 import model.Entities.MountSate.Mounted;
 import model.Entities.MountSate.MountedState;
 import model.Entities.MountSate.Unmounted;
@@ -14,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //TODO add playerController
-public class Player extends Entity{
+public class Player extends Entity implements Saveable {
     private List<Skill> skills;
     private MountedState mountedState;
     private MountHandler mountHandler;
@@ -122,6 +125,10 @@ public class Player extends Entity{
     	return ((Mounted)mountedState).getMount();
     }
 
+		@Override
+    public String accept(SaveVisitor saveVisitor){
+    	return saveVisitor.savePlayer(this);
+		}
 
 	public void visit(NPC npc){
     	npc.doInteraction(this);

@@ -1,6 +1,7 @@
 package model.Entities.NPC;
 
 import controller.EntityControllers.AIController;
+import controller.LoadGame.SaveVisitor;
 import model.Entities.Player;
 
 public class CalmState implements NPCState {
@@ -19,4 +20,9 @@ public class CalmState implements NPCState {
     }
 
     private void waitToBeAttacked(){}
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return "calmState\n";
+    }
 }

@@ -1,5 +1,6 @@
 package model.Items.Takeable;
 
+import controller.LoadGame.SaveVisitor;
 import model.Entities.Entity;
 import model.Inventory.Equipment;
 
@@ -22,5 +23,10 @@ public class Armor extends Takeable {
     
     public int getDefense() {
     	return defense;
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveArmor(this);
     }
 }
