@@ -22,27 +22,35 @@ public class Equipment {
 	}
 	
 	public void equipArmor(Armor armor) {
+		unequipArmor();
 		armorSlot = armor;
 		statChanger.notifyDefense(armor.getDefense());
 	}
 	
 	public void unequipArmor() {
+		if(armorSlot != null){
+			statChanger.notifyDefense(-1 * armorSlot.getDefense());
+		}
 		armorSlot = null;
 	}
 	
 	public void equipRing(Ring ring) {
+		unequipRing();
 		ringSlot = ring;
 		statChanger.notifyHealth(ring.getHealth());
 	}
 	
 	public void unequipRing() {
+		if(ringSlot != null){
+			statChanger.notifyHealth(-1 * ringSlot.getHealth());
+		}
 		ringSlot = null;
 	}
 	
 	public void equipConsumable(Consumable potion) {
 		consumableSlot = potion;
 	}
-	
+
 	public void unequipConsumable() {
 		consumableSlot = null;
 	}
