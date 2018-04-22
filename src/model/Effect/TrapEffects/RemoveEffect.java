@@ -4,6 +4,7 @@ import model.Map.Zone.TileRelatedClasses.Trap;
 
 public class RemoveEffect implements TrapEffect {
 
+    private String name;
     public RemoveEffect(){}
 
     @Override
