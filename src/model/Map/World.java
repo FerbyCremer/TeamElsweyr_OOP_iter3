@@ -17,18 +17,21 @@ public class World {
     }
 
     public Zone changeZone(String zoneID){
+
         currentZone = getZone(zoneID);
 
+        System.out.println(zoneID);
+        System.out.println("Zone to change to " + currentZone.getID());
         return currentZone;
     }
 
     private Zone getZone(String zoneID){
         for(Zone z: zones){
-            if(zoneID == z.getID()) {
+            System.out.println("Zone: " + z.getID());
+            if(zoneID.equals(z.getID())) {
                 return z;
             }
         }
-
         return null;
     }
 

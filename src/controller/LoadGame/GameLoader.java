@@ -180,12 +180,10 @@ public class GameLoader {
 
 
                 String entityType = worldData.get(lineIndex++);
-
                 //Get info for entity builder
                 List<String> entityTypeData = new ArrayList<>();
                 do {
                     entityTypeData.add(worldData.get(lineIndex));
-
                 } while (!worldData.get(lineIndex++).equals("endOfEntityType"));
 
                 Entity entity = null;
@@ -206,8 +204,9 @@ public class GameLoader {
                         entity = entityBuilder.buildMount(inventory, passable, entityStats);
                         break;
                 }
-
-                entityMap.setNewLocation(tiles[x][y], entity);
+                System.out.println(tiles[x][y].getTerrainName());
+                System.out.println(entity.getName());
+                entityMap.setContent(tiles[x][y], entity);
             }
             //ENDENTITYMAP
 
@@ -226,7 +225,7 @@ public class GameLoader {
 
                 Item item = itemBuilder.buildItem(itemData);
 
-                itemMap.setNewLocation(tiles[x][y], item);
+                itemMap.setContent(tiles[x][y], item);
             }
             //ENDITEMMAP
 
@@ -245,7 +244,7 @@ public class GameLoader {
 
                 EntityEffect effect = effectBuilder.buildEntityEffect(effectData);
                 AreaEffect areaEffect = new AreaEffect(effect);
-                areaEffectMap.setNewLocation(tiles[x][y], areaEffect);
+                areaEffectMap.setContent(tiles[x][y], areaEffect);
             }
             //ENDAREAEFFECTMAP
 
@@ -280,7 +279,7 @@ public class GameLoader {
                         flowDirection = Direction.N;
                 }
                 River river = new River(flowRate, flowDirection);
-                riverMap.setNewLocation(tiles[x][y], river);
+                riverMap.setContent(tiles[x][y], river);
             }
             //ENDRIVERMAP
 
@@ -301,7 +300,7 @@ public class GameLoader {
 
                 EntityEffect effect = effectBuilder.buildEntityEffect(effectData);
                 Trap trap = new Trap(visible, active, effect);
-                trapMap.setNewLocation(tiles[x][y], trap);
+                trapMap.setContent(tiles[x][y], trap);
 
             }
             //ENDTRAP
@@ -313,7 +312,7 @@ public class GameLoader {
 
                 String decalData = worldData.get(lineIndex++);
                 Decal decal = new Decal(decalData);
-                decalMap.setNewLocation(tiles[x][y], decal);
+                decalMap.setContent(tiles[x][y], decal);
 
             }
             //ENDDECALMAP

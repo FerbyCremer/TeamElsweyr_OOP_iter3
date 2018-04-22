@@ -22,7 +22,7 @@ public class Terrain {
 
     public boolean equals(Terrain terrain){
 
-        if(this.name == terrain.name){
+        if(this.name.equals(terrain.name)){
             return true;
         }
         return false;

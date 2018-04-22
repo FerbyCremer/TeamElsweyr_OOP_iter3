@@ -44,7 +44,10 @@ public class WorldController {
     }
 
     public void updateWorldController(String zoneID){
+
         Zone newZone = world.changeZone(zoneID);
+
+
         updateZoneController(newZone);
         updateActionHandler(newZone);
         updateDeadHandler(newZone);
