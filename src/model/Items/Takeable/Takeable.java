@@ -13,11 +13,6 @@ public abstract class Takeable extends Item {
 
     public abstract void equip(Equipment equipment);
 
-    //TODO: Make this a deep copy
-    public Takeable clone() {
-        return this;
-    }
-
     public void delete() {
     }
 

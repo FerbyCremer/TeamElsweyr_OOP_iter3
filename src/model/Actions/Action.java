@@ -21,6 +21,20 @@ public abstract class Action implements Saveable{
     public abstract Action clone(double modifier);
     public abstract HashMap<Tile, Integer> getAffectedTiles(Tile tile, Direction direction);
 
+    public boolean targetHit(int distance){
+        double distanceModifier = 1;
+        if (distance != 1){
+            distanceModifier = 1/Math.log(distance);
+        }
+
+        double random = Math.random()*100;
+
+        if(accuracy*distanceModifier > random) {
+            return true;
+        }
+        return false;
+    }
+
     public int getMaxRange() {
         return maxRange;
     }

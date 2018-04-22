@@ -55,11 +55,8 @@ public class TrapAction extends Action{
     }
 
     public void apply(Trap trap, int distance){
-        if(distance * accuracy > 1){
+        if (targetHit(distance)){
             trapEffect.apply(trap);
-        }
-        else {
-            //miss
         }
     }
 

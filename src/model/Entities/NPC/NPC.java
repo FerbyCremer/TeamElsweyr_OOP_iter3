@@ -33,6 +33,16 @@ public class NPC extends AI implements Saveable{
 
     }
 
+    @Override
+    public void updateHealth(int healthChange) {
+        super.updateHealth(healthChange);
+        if (healthChange < 0){
+            npcState = new AggroState();
+            return;
+        }
+        npcState = new CalmState();
+    }
+
     public NPCState getNpcState() {
         return npcState;
     }
