@@ -21,6 +21,7 @@ public class World implements Saveable{
     public Zone changeZone(String zoneID){
 
         currentZone = getZone(zoneID);
+
         return currentZone;
     }
 

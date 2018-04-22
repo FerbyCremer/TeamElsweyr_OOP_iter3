@@ -166,7 +166,6 @@ public class GameLoader {
                     do {
                         itemData.add(worldData.get(lineIndex));
                     } while (!worldData.get(lineIndex++).equals("endOfTakeable"));
-
                     items.add((Takeable) itemBuilder.buildItem(itemData));
                 }
                 Inventory inventory = new Inventory(entityStats, wealth, items);
@@ -179,7 +178,7 @@ public class GameLoader {
                     passable.add(terrain);
 
                 } while (!worldData.get(lineIndex++).equals("endOfPassable"));
-
+                passable.remove(passable.size()-1);
 
                 String entityType = worldData.get(lineIndex++);
                 //Get info for entity builder
@@ -255,29 +254,7 @@ public class GameLoader {
                 int flowRate = Integer.parseInt(worldData.get(lineIndex++));
                 int angle = Integer.parseInt(worldData.get(lineIndex++));
 
-                Direction flowDirection;
-                switch (angle){
-                    case 0:
-                        flowDirection = Direction.N;
-                        break;
-                    case 60:
-                        flowDirection = Direction.NE;
-                        break;
-                    case 120:
-                        flowDirection = Direction.SE;
-                        break;
-                    case 180:
-                        flowDirection = Direction.S;
-                        break;
-                    case 240:
-                        flowDirection = Direction.SW;
-                        break;
-                    case 300:
-                        flowDirection = Direction.NW;
-                        break;
-                    default:
-                        flowDirection = Direction.N;
-                }
+                Direction flowDirection = Direction.N.getClockwise(angle);
                 River river = new River(flowRate, flowDirection);
                 riverMap.setContent(tiles[x][y], river);
             }
@@ -360,11 +337,11 @@ public class GameLoader {
     	
     	int collumnCount = tiles[0].length;
     	int rowCount = tiles.length;
-    	
+
     	for (int row = 0; row < rowCount; row++) {
     		for (int collumn = 0; collumn < collumnCount; collumn++) {
     			HashMap<Direction, Tile> neighbors = new HashMap<Direction, Tile>();
-    			
+
     			if(collumn%2 == 0) {
     				evenColNeighbors(row, collumn, rowCount, collumnCount, neighbors, tiles);
     			}
@@ -374,7 +351,7 @@ public class GameLoader {
             }
         }
     }
-    
+
     private void evenColNeighbors(int row, int col, int rowCount, int colCount, HashMap<Direction, Tile> neighbors, Tile tiles[][]) {
     	//NW
 	     if (col - 1 >= 0) {
@@ -399,7 +376,7 @@ public class GameLoader {
          else {
         	 neighbors.put(Direction.NE, null);
          }
-         
+
          //SW
          if (row + 1 < rowCount && col - 1 >= 0) {
              neighbors.put(Direction.SW, tiles[row+1][col-1]);
@@ -426,7 +403,7 @@ public class GameLoader {
 
          tiles[row][col].setNeighbors(neighbors);
     }
-    
+
     private void oddColNeighbors(int row, int col, int rowCount, int colCount, HashMap<Direction, Tile> neighbors, Tile tiles[][]) {
     	//NW
     	if (col - 1 >= 0 && row-1 >= 0) {
@@ -451,7 +428,7 @@ public class GameLoader {
     	else {
     		neighbors.put(Direction.NE, null);
     	}
-      
+
     	//SW
     	if (col - 1 >= 0) {
     		neighbors.put(Direction.SW, tiles[row][col-1]);
