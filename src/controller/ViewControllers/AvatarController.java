@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleButton;
@@ -100,13 +101,18 @@ public class AvatarController implements Initializable {
 
     @FXML private void startGame() throws IOException {
         //TODO: initialize new game
-        Parent window;
-        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
-        window = (BorderPane) fmxlLoader.load();
-        this.scene = new Scene(window);
-        //zone.setScene(this.scene);
-//zone.showScene();
 
+        Parent root = new Group();
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/GameViewport.fxml"),
+                    ResourceBundle.getBundle("view.GameViewport"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.scene = new Scene(root);
+        //TODO need two versions???
+        this.showScene();
     }
 
     @FXML protected void setAvatar(String skill){

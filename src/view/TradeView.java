@@ -17,6 +17,7 @@ public class TradeView implements UpdateEntityRelatedView {
     private List<Button> playerButtons;
     private List<Button> npcButtons;
     public TradeView(){}
+
     @Override
     public void update(Entity... entities) {
         playerInventory = entities[0].getInventory();
