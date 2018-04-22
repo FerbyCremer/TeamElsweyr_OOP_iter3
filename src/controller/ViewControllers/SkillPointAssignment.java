@@ -91,11 +91,9 @@ public class SkillPointAssignment {
                 sum += integer;
                 integers.add(integer);
             }
-
             if(sum > skillPointsRemaining){
 
             }
-
             else {
                 //player.setSkillPoints(skillPointsRemaining - sum);
 //                for(int i = 0; i < skills.size(); i++){
