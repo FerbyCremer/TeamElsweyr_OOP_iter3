@@ -91,4 +91,20 @@ public class Inventory {
 	public int getWealth(){
 		return wealth;
 	}
+
+	public List<String> getItemNames(){
+		//return items;
+		List<String> itemNames = new ArrayList<String>();
+		for(Takeable item :items)
+			itemNames.add(item.getName());
+		return itemNames;
+	}
+
+	public void removeItem(Item item){
+		items.remove(item);
+	}
+
+	public List<Takeable> getItems() {
+		return items;
+	}
 }

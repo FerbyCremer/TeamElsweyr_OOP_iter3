@@ -61,7 +61,7 @@ public class Equipment {
 		}
 		consumableSlot = potion;
 	}
-	
+
 	public void unequipConsumable() {
 		consumableSlot.setEquip(false);
 		consumableSlot = null;
