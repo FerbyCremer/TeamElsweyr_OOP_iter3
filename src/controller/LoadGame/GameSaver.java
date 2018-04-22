@@ -18,9 +18,10 @@ public class GameSaver {
         String savefile = "";
 
         savefile += worldController.getWorld().accept(saver);
-        
+
+        System.out.println(savefile);
         try {
-            FileWriter fw = new FileWriter("saveFile.txt");
+            FileWriter fw = new FileWriter("src/assets/saves/jadsSave.txt");
             fw.write(savefile);
         } catch (IOException e) {
             e.printStackTrace();

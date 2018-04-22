@@ -21,9 +21,6 @@ public class World implements Saveable{
     public Zone changeZone(String zoneID){
 
         currentZone = getZone(zoneID);
-
-        System.out.println(zoneID);
-        System.out.println("Zone to change to " + currentZone.getID());
         return currentZone;
     }
 
@@ -31,7 +28,6 @@ public class World implements Saveable{
 
     private Zone getZone(String zoneID){
         for(Zone z: zones){
-            System.out.println("Zone: " + z.getID());
             if(zoneID.equals(z.getID())) {
                 return z;
             }
