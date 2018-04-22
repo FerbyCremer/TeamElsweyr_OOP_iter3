@@ -5,6 +5,7 @@ import java.util.List;
 
 import controller.EntityControllers.AIController;
 import controller.Handlers.BringOutYourDeadHandler;
+import controller.Handlers.MountHandler;
 import controller.KeyControllers.KeyController;
 import model.Entities.EntityStats;
 import model.Entities.Mount;
@@ -20,19 +21,19 @@ import model.Inventory.Inventory;
 import model.Map.Terrain;
 
 public class EntityBuilder {
-	private BringOutYourDeadHandler handler;
+	private BringOutYourDeadHandler deadHandler;
 	private int index;
 	
-	public EntityBuilder(BringOutYourDeadHandler handler) {
-		this.handler = handler;
+	public EntityBuilder(BringOutYourDeadHandler deadHandler) {
+		this.deadHandler = deadHandler;
 	}
 	
-	public Player buildPlayer(List<String> attributes, KeyController controller, Inventory inventory, List<Terrain> terrains, EntityStats stats) {
+	public Player buildPlayer(List<String> attributes, KeyController controller, Inventory inventory, List<Terrain> terrains, MountHandler mountHandler, EntityStats stats) {
 		index = 0;
 		List<Integer> skillLvl = new ArrayList<Integer>();
 		Player player = null;
-		
-		for(int i = index+1; i < attributes.size(); i++) {
+
+		for(int i = index+1; i < attributes.size()-2; i++) {
 			skillLvl.add(Integer.parseInt(attributes.get(i)));
 		}
 
@@ -40,13 +41,13 @@ public class EntityBuilder {
 
 		switch(name) {
 			case "summoner":
-				player = Player.playerMakeSummoner(stats, skillLvl, controller, inventory, terrains, name, handler);
+				player = Player.playerMakeSummoner(stats, skillLvl, controller, inventory, terrains, name, mountHandler, deadHandler);
 				break;
 			case "smasher":
-				player = Player.playerMakeSmasher(stats, skillLvl, controller, inventory, terrains, name, handler);
+				player = Player.playerMakeSmasher(stats, skillLvl, controller, inventory, terrains, name, mountHandler, deadHandler);
 				break;
 			case "sneak":
-				player = Player.playerMakeSneak(stats, skillLvl, controller, inventory, terrains, name, handler);
+				player = Player.playerMakeSneak(stats, skillLvl, controller, inventory, terrains, name, mountHandler, deadHandler);
 				break;
 		}
 		
@@ -74,15 +75,15 @@ public class EntityBuilder {
 				break;
 		}
 		
-		return new NPC(stats, handler, aiController, inventory, terrains, "npc", state);
+		return new NPC(stats, deadHandler, aiController, inventory, terrains, "npc", state);
 	}
 	
 	public Pet buildPet(AIController aiController, Inventory inventory, List<Terrain> terrains, EntityStats stats) {
-		return new Pet(stats, handler, aiController, inventory, terrains, "pet");
+		return new Pet(stats, deadHandler, aiController, inventory, terrains, "pet");
 	}
 	
 	public Mount buildMount(Inventory inventory, List<Terrain> terrains, EntityStats stats) {
-		return new Mount(stats, handler, inventory, terrains, "mount");
+		return new Mount(stats, deadHandler, inventory, terrains, "mount");
 	}
 
 }

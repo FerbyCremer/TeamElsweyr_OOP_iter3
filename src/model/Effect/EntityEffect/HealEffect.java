@@ -8,6 +8,7 @@ public class HealEffect implements EntityEffect {
 
     public HealEffect(int amount) {
         this.amount = amount;
+        this.name = "heal";
     }
 
     @Override

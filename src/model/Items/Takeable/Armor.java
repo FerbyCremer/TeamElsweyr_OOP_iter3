@@ -5,9 +5,10 @@ import model.Inventory.Equipment;
 
 public class Armor extends Takeable {
     private int defense;
-
+    private int price;
     public Armor(int defense) {
         this.defense = defense;
+        price = 300;
     }
 
     @Override
@@ -23,4 +24,5 @@ public class Armor extends Takeable {
     public int getDefense() {
     	return defense;
     }
+
 }

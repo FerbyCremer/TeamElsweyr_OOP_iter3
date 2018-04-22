@@ -19,12 +19,27 @@ public class Inventory {
 	
 	public Inventory(EntityStats stats) {
 		wealth = 0;
-		equipment = new Equipment(stats);
+		equipment = new Equipment(stats, new ArrayList<>());
 		items = new ArrayList<>();
 	}
 	
 	public Inventory(EntityStats stats, int wealth, List<Takeable> items) {
-		
+        this.items = items;
+        List<Takeable> equipped = new ArrayList<>();
+        for(Takeable item : items){
+            if (item.isEquipped()){
+                equipped.add(item);
+            }
+        }
+
+        this.equipment = new Equipment(stats, equipped);
+		this.wealth = wealth;
+
+		//TODO parse items and equip equipped
+
+
+		//TODO observers
+        observers = new ArrayList<>();
 	}
 
 	
@@ -58,13 +73,9 @@ public class Inventory {
 		equipment.useConsumable(player);
 	}
 	
-	//Tells the equipment to use the tool at the specified index
-	public void useTool(int index, Player player) {
-		equipment.useTool(index, player);
-	}
-	
-	public void equipInvisibleTool(Tool tool) {
-		equipment.addInvisibleTool(tool);
+	//Tells the equipment to use the tool equipped
+	public void useTool(Player player) {
+		equipment.useTool(player);
 	}
 
 	public void add(Updateable updateable){
@@ -79,5 +90,21 @@ public class Inventory {
 
 	public int getWealth(){
 		return wealth;
+	}
+
+	public List<String> getItemNames(){
+		//return items;
+		List<String> itemNames = new ArrayList<String>();
+		for(Takeable item :items)
+			itemNames.add(item.getName());
+		return itemNames;
+	}
+
+	public void removeItem(Item item){
+		items.remove(item);
+	}
+
+	public List<Takeable> getItems() {
+		return items;
 	}
 }

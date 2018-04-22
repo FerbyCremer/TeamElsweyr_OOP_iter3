@@ -14,7 +14,7 @@ public class StatsChanger {
 	}
 	
 	public void notifyHealth(int amount) {
-		stats.modifyHealth(amount);
+		stats.modifyMaxHealth(amount);
 	}
 
 }
