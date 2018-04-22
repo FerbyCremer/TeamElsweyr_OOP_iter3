@@ -3,6 +3,7 @@ package controller.MapControllers;
 import controller.EntityControllers.AIController;
 import controller.Handlers.ActionHandler;
 import controller.Handlers.BringOutYourDeadHandler;
+import controller.Handlers.MountHandler;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSet;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSetContainer;
 import controller.MapControllers.FogOfWarRelatedClasses.FogOfWarController;
@@ -25,12 +26,14 @@ public class WorldController {
     private ZoneView zoneView;
     private ZoneController zoneController;
     private ActionHandler actionHandler;
+    private MountHandler mountHandler;
     private BringOutYourDeadHandler deadHandler;
     private AIController aiController;
 
-    public WorldController(ZoneController zoneController, ActionHandler actionHandler, BringOutYourDeadHandler deadHandler, AIController aiController) {
+    public WorldController(ZoneController zoneController, ActionHandler actionHandler, MountHandler mountHandler, BringOutYourDeadHandler deadHandler, AIController aiController) {
         this.zoneController = zoneController;
         this.actionHandler = actionHandler;
+        this.mountHandler = mountHandler;
         this.deadHandler = deadHandler;
         this.aiController = aiController;
         this.zoneView = new ZoneView();
@@ -47,9 +50,9 @@ public class WorldController {
 
         Zone newZone = world.changeZone(zoneID);
 
-
         updateZoneController(newZone);
         updateActionHandler(newZone);
+        updateMountHandler(newZone);
         updateDeadHandler(newZone);
         updateAIController(newZone);
         //updateZoneView(decalSetContainer.getDecalSet(zoneID));
@@ -62,6 +65,8 @@ public class WorldController {
     private void updateActionHandler(Zone zone){
         actionHandler.setActionPerformer(zone);
     }
+
+    private void updateMountHandler(Zone zone ) { mountHandler.setMountPerformer(zone); }
 
     private void updateDeadHandler(Zone zone){
         deadHandler.setEntityRemover(zone);

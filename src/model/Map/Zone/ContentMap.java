@@ -25,9 +25,7 @@ public class ContentMap<T> {
     }
     
     public void setNewLocation(Tile tile, T content) {
-    	Tile contentTile = getTileOf(content);
-    	
-    	removeContent(contentTile);
+        removeContent(content);
     	setContent(tile, content);
     }
 
