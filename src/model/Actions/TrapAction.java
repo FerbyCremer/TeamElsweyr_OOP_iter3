@@ -39,9 +39,15 @@ public class TrapAction extends Action{
     }
 
     @Override
+    public String saveEffect(SaveVisitor saveVisitor) {
+        return "";
+    }
+
+    @Override
     public void createInstanceFor(ActionHandler actionHandler, Player player) {
         actionHandler.createAction(player, this);
     }
+
 
     @Override
     public String getEffectName() {

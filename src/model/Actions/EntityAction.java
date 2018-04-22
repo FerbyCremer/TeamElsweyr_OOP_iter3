@@ -36,6 +36,11 @@ public class EntityAction extends Action{
     }
 
     @Override
+    public String saveEffect(SaveVisitor saveVisitor) {
+        return entityEffect.accept(saveVisitor);
+    }
+
+    @Override
     public void createInstanceFor(ActionHandler actionHandler, Player player) {
         actionHandler.createAction(player, this);
 

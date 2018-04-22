@@ -1,6 +1,7 @@
 package model.Actions;
 
 import controller.Handlers.ActionHandler;
+import controller.LoadGame.SaveVisitor;
 import controller.LoadGame.Saveable;
 import model.Actions.ActionType.ActionType;
 import model.Entities.Player;
@@ -27,6 +28,8 @@ public abstract class Action implements Saveable{
     public ActionType getActionType() {
         return actionType;
     }
+
+    public abstract String saveEffect(SaveVisitor saveVisitor);
 
     public abstract void createInstanceFor(ActionHandler actionHandler, Player player);
 

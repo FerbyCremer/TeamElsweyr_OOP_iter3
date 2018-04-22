@@ -38,6 +38,18 @@ public class Trap implements Saveable{
         return null;
     }
 
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public EntityEffect getEffect() {
+        return effect;
+    }
+
     @Override
     public String accept(SaveVisitor saveVisitor) {
         return saveVisitor.saveTrap(this);

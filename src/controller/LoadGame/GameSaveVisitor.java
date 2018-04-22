@@ -231,7 +231,7 @@ public class GameSaveVisitor implements SaveVisitor{
         save += tool.getAction().getAccuracy() + "\n";
         save += tool.getAction().getActionType().accept(this) + "\n";// linear, radial
         save += tool.getAction().getEffectName() + "\n"; //imageofeffect
-        save += tool.getAction().getEffect().getAmount(); //find out if entity effect = amount //if not = nothing
+        save += tool.getAction().saveEffect(this); //find out if entity effect = amount //if not = nothing
         return save;
     }
 
@@ -262,25 +262,28 @@ public class GameSaveVisitor implements SaveVisitor{
     @Override
     public String saveOneShot(OneShot oneShot) {
         String save = "";
-
-        return null;
+        save += oneShot.getEffect().accept(this);//anything else?
+        return save;
     }
 
     @Override
     public String saveTrap(Trap trap) {
-        return null;
+        String save = "";
+        save += trap.getName();
+        save += trap.isActive();
+        save += trap.isVisible();
+        save += trap.getEffect().accept(this);
+        return save;
     }
 
     @Override
     public String saveEntityEffect(EntityEffect entityEffect) {
-        entityEffect.getName();
-        //amoutn
-        return null;
+        return "";
     }
 
     @Override
     public String saveTrapEffect(TrapEffect trapEffect) {
-        return null;
+        return "";
     }
 
     private String saveCoordinate(Point point){
