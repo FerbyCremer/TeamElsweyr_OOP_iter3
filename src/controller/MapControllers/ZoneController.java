@@ -2,6 +2,7 @@ package controller.MapControllers;
 
 import controller.MapControllers.FogOfWarRelatedClasses.FogOfWarController;
 import controller.MapControllers.MovementRelatedControllers.*;
+import view.ZoneView;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -12,16 +13,19 @@ public class ZoneController {
     private EntityToAreaEffect areaEffectCollision;
     private EntityToTrap trapCollision;
     private FogOfWarController fogOfWarController;
+    private ZoneView zoneView;
 
-    public ZoneController(MovementController movementController, EntityToItem itemCollison, EntityToAreaEffect areaEffectCollision, EntityToTrap trapCollision, FogOfWarController fogOfWarController) {
+    public ZoneController(MovementController movementController, ZoneView zoneView, EntityToItem itemCollison, EntityToAreaEffect areaEffectCollision, EntityToTrap trapCollision, FogOfWarController fogOfWarController) {
 //        this.movementController = movementController;
 //        this.itemCollison = itemCollison;
 //        this.areaEffectCollision = areaEffectCollision;
 //        this.trapCollision = trapCollision;
 //        this.fogOfWarController = fogOfWarController;
+          this.zoneView = zoneView;
     }
 
-    public ZoneController(){
+    public ZoneController(ZoneView zoneview){
+        this.zoneView = zoneview;
 
     }
 
@@ -34,6 +38,8 @@ public class ZoneController {
             areaEffectCollision.checkCollision();
             trapCollision.checkCollision();
             fogOfWarController.update();
+            zoneView.renderGrid();
+
         }
     }
 

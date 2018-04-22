@@ -11,6 +11,7 @@ import controller.MapControllers.MovementRelatedControllers.EntityToAreaEffect;
 import controller.MapControllers.MovementRelatedControllers.EntityToItem;
 import controller.MapControllers.MovementRelatedControllers.EntityToTrap;
 import controller.MapControllers.MovementRelatedControllers.MovementController;
+import javafx.stage.Stage;
 import model.Entities.Player;
 import model.Map.World;
 import model.Map.Zone.Zone;
@@ -23,7 +24,7 @@ public class WorldController {
     private World world;
     private Player player;
     private DecalSetContainer decalSetContainer;
-    private ZoneView zoneView;
+   // private ZoneView zoneView;
     private ZoneController zoneController;
     private ActionHandler actionHandler;
     private MountHandler mountHandler;
@@ -36,7 +37,7 @@ public class WorldController {
         this.mountHandler = mountHandler;
         this.deadHandler = deadHandler;
         this.aiController = aiController;
-        this.zoneView = new ZoneView();
+
     }
 
 //    public WorldController(){}

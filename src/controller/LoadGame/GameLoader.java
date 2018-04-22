@@ -8,7 +8,6 @@ import controller.KeyControllers.KeyCommands.KeyCommand;
 import controller.KeyControllers.KeyControlState;
 import controller.KeyControllers.KeyController;
 import controller.KeyControllers.ToInventory;
-import controller.MapControllers.FogOfWarRelatedClasses.DecalSetContainer;
 import controller.MapControllers.WorldController;
 import controller.MapControllers.ZoneController;
 import model.Effect.EntityEffect.EntityEffect;
@@ -25,11 +24,11 @@ import model.Map.Zone.ContentMap;
 import model.Map.Zone.TileRelatedClasses.*;
 import model.Map.Zone.Zone;
 import view.ZoneView;
+import javafx.scene.canvas.Canvas;
 
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,9 +37,12 @@ import java.util.Scanner;
 public class GameLoader {
 
 
+    private Canvas canvas;
+
     private KeyControlState keyControlState = new KeyControlState();
 
     private WorldController worldController;
+    private ZoneView zoneView;
     private ActionHandler actionHandler;
     private MountHandler mountHandler;
     private BringOutYourDeadHandler deadHandler;
@@ -57,15 +59,17 @@ public class GameLoader {
 
 
 
-    public GameLoader(){
+    public GameLoader(Canvas canvas){
 
+        this.canvas = canvas;
         //Initialize Controllers
         actionHandler = new ActionHandler();
         mountHandler = new MountHandler();
         deadHandler = new BringOutYourDeadHandler();
         playerController = new KeyController("player", new ArrayList<>());
         aiController = new AIController();
-        worldController = new WorldController(new ZoneController(), actionHandler, mountHandler, deadHandler, aiController);
+        zoneView = new ZoneView(canvas);
+        worldController = new WorldController(new ZoneController(zoneView), actionHandler, mountHandler, deadHandler, aiController);
         //Initialize builders
         effectBuilder = new EffectBuilder(worldController);
         itemBuilder = new ItemBuilder(actionHandler, effectBuilder);

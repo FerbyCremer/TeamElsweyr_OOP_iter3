@@ -35,7 +35,6 @@ public class River {
 
         int degrees = (int) Math.toDegrees(Math.atan(sumY/((double)sumX)));
 
-
         entity.setCurrentSpeed(newEntitySpeed);
         return Direction.getDirectionClosest(degrees);
     }

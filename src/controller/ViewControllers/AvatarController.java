@@ -1,11 +1,14 @@
 package controller.ViewControllers;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -15,6 +18,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import view.ZoneView;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -51,6 +55,7 @@ public class AvatarController implements Initializable {
     private KeyCode up = KeyCode.W;
 
     private KeyCode down = KeyCode.D;
+    //ZoneView zone = new ZoneView();
 
     public void initialize(URL url, ResourceBundle bundle){
 
@@ -95,30 +100,38 @@ public class AvatarController implements Initializable {
 
     @FXML private void startGame() throws IOException {
         //TODO: initialize new game
-        this.showScene();
+        Parent window;
+        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
+        window = (BorderPane) fmxlLoader.load();
+        this.scene = new Scene(window);
+        //zone.setScene(this.scene);
+//zone.showScene();
+
     }
 
     @FXML protected void setAvatar(String skill){
         //TODO: parse in avatar object into game loader
         //ToDo: select factory based on string?
     }
-
-    private void showScene() throws IOException {
-        Platform.runLater(() -> {
-            Stage stage = (Stage) base.getScene().getWindow();
-            stage.setResizable(true);
-            stage.setWidth(1080);
-            stage.setHeight(720);
-
-            stage.setOnCloseRequest((WindowEvent e) -> {
-                Platform.exit();
-                System.exit(0);
-            });
-            stage.setScene(this.scene);
-            stage.setMinWidth(800);
-            stage.setMinHeight(300);
-            //ResizeHelper.addResizeListener(stage);
-            stage.centerOnScreen();
-        });
-    }
+//
+//    private void showScene() throws IOException {
+//        Platform.runLater(() -> {
+//            Stage stage = (Stage) base.getScene().getWindow();
+//            stage.setResizable(true);
+//            stage.setWidth(1080);
+//            stage.setHeight(720);
+//
+//            stage.setOnCloseRequest((WindowEvent e) -> {
+//                Platform.exit();
+//                System.exit(0);
+//            });
+//            stage.setScene(this.scene);
+//            stage.setMinWidth(800);
+//            stage.setMinHeight(300);
+//            //ResizeHelper.addResizeListener(stage);
+//            stage.centerOnScreen();
+//
+//            stage.show();
+//        });
+//    }
 }

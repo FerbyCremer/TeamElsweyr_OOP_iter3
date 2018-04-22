@@ -26,8 +26,9 @@ public class FogOfWarController {
     }
 
     private ArrayList<Tile> calculateTilesInPlayersVisibleRadius(){
-       // Tile centerTile = currentZone.getTileForEntity(player);
+        Tile centerTile = currentZone.getTileForEntity(player);
         ArrayList<Tile> tiles = new ArrayList<Tile>();
+        tiles.add(centerTile);
         //TODO: This violates SRP fix when ActionTypes are reusable for not action related events or there is a further abstraction
         for(int i = 0; i < visibleRadius; i++){
             int tileNum = tiles.size();
