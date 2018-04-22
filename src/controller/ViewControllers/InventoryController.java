@@ -62,14 +62,36 @@ public class InventoryController {
     @FXML
     private RadioButton isSelectedView;
 
-    private Takeable model;
+    private Inventory bag;
 
-    public Takeable getModel()
+    private InventoryCell model;
+
+    public InventoryCell getModel()
     {
         return model;
     }
 
-    public void setModel(Takeable model)
+    @FXML
+    protected void equip(Takeable item) {
+        int itemIndex = bag.getItems().indexOf(item);
+        bag.equipItem(itemIndex);
+    }
+
+    @FXML
+    protected void sell(int item, Inventory shop) {
+        bag.removeItem(item);
+        bag.modifyWealth(5);
+        this.buy(bag.getItems().get(item), shop);
+    }
+
+    @FXML
+    protected void buy(Takeable item, Inventory shop) {
+        bag.addItem(item);
+        bag.modifyWealth(item.getPrice() * -1);
+        this.sell(bag.getItems().indexOf(item), shop);
+    }
+
+    public void setModel(InventoryCell model)
     {
         if(this.model != null)
             removeModelListeners();

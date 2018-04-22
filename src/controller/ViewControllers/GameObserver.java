@@ -17,6 +17,7 @@ import javafx.scene.control.ListView;
 
 import controller.ViewControllers.test.ChoiceCell;
 import controller.ViewControllers.test.ChoiceModel;
+import model.Items.Takeable.Takeable;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,56 +26,25 @@ import java.util.ResourceBundle;
 public class GameObserver implements Initializable {
 
     @FXML BorderPane base;
-    //@FXML ListView<Takeable> inventoryList;
-    @FXML ListView<ChoiceModel> inventoryList;
+    @FXML ListView<Takeable> inventoryList;
+    //TODO: find way to get player and/or other entities
     private Entity player;
-//    private Inventory bag = player.getInventory();
+    private Inventory bag = player.getInventory();
     private Scene scene;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*inventoryList.setCellFactory(new Callback<ListView<Takeable>, ListCell<Takeable>>()
+        inventoryList.setCellFactory(new Callback<ListView<Takeable>, ListCell<Takeable>>()
         {
             public ListCell<Takeable> call(ListView<Takeable> p)
             {
-                return new InventoryCell();
+                return new InventoryCell(bag);
             }
         });
         inventoryList.setItems(FXCollections.observableArrayList(bag.getItems()));
-        */
-        inventoryList.setCellFactory(new Callback<ListView<ChoiceModel>, ListCell<ChoiceModel>>()
-        {
-            public ListCell<ChoiceModel> call(ListView<ChoiceModel> p)
-            {
-                return new ChoiceCell();
-            }
-        });
-        inventoryList.setItems(FXCollections.observableArrayList
-                (
-                        new ChoiceModel("Tiger", true),
-                        new ChoiceModel("Shark", false),
-                        new ChoiceModel("Bear", false),
-                        new ChoiceModel("Wolf", true)
-                ));
-
     }
 
-    @FXML
-    protected void equip(int item) {
-       // bag.equipItem(item);
-    }
 
-    @FXML
-    protected void sell(int item, Inventory shop) {
-       // bag.removeItem(item);
-      ///  bag.modifyWealth(5);
-    }
-
-    @FXML
-    protected void buy(int item, Inventory shop) {
-        //this.inventory.addItem(item);
-       // bag.modifyWealth(-5);
-    }
 
     private void showScene() throws IOException {
         Platform.runLater(() -> {

@@ -18,37 +18,42 @@ public class InventoryCell extends ListCell<Takeable>
     private final RadioButton radioButton = new RadioButton();
     private Takeable selectedItem;
 
+    protected Inventory bag;
+
     public ToggleGroup group = new ToggleGroup();
-    InventoryCell() {
+    InventoryCell(Inventory bag) {
+        this.bag = bag;
         radioButton.setToggleGroup(group);
+
         radioButton.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
             if (isNowSelected) {
                 //selectedItem = getItem();
-                selectedItem.setEquip(true);
+               updateItem(selectedItem, true);
             }
             if(wasSelected) {
-                selectedItem.setEquip(false);
+                updateItem(selectedItem, false);
             }
         });
+
     }
 
-    @Override
-    public void updateItem(Takeable obj, boolean empty) {
+  //  @Override
+  /*  public void updateItem(Takeable obj, boolean empty) {
         super.updateItem(obj, empty);
         if (empty) {
             setText(null);
             setGraphic(null);
         } else {
-            radioButton.setText(obj.getName());//TODO: TDA?
+            radioButton.setText(obj.getName());
 
             radioButton.setSelected(Objects.equals(obj, selectedItem.getName()));
 
             setGraphic(radioButton);
         }
     }
-}
+}*/
 
-    /*@Override
+    @Override
     protected void updateItem(Takeable model, boolean bln)
     {
         super.updateItem(model, bln);
@@ -56,6 +61,7 @@ public class InventoryCell extends ListCell<Takeable>
         if(model != null)
         {
             radioButton.setText(model.getName());
+
             URL location = InventoryCell.class.getResource("InventoryView.fxml");
 
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -66,7 +72,7 @@ public class InventoryCell extends ListCell<Takeable>
             {
                 Node root = (Node)fxmlLoader.load(location.openStream());
                 InventoryController controller = (InventoryController) fxmlLoader.getController();
-                //controller.equip(model);
+                controller.equip(model);
                 setGraphic(root);
             }
             catch(IOException ioe)
@@ -75,4 +81,4 @@ public class InventoryCell extends ListCell<Takeable>
             }
         }
     }
-}*/
+}
