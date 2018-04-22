@@ -380,7 +380,7 @@ public class GameLoader {
     }
     
     private void evenColNeighbors(int row, int col, int rowCount, int colCount, HashMap<Direction, Tile> neighbors, Tile tiles[][]) {
-    	//Add NW
+    	//NW
 	     if (col - 1 >= 0) {
 	    	 neighbors.put(Direction.NW, tiles[row][col-1]);
          }
@@ -388,7 +388,7 @@ public class GameLoader {
         	 neighbors.put(Direction.NW, null);
          }
 
-         //Add N
+         //N
          if (row - 1 >= 0) {
              neighbors.put(Direction.N, tiles[row-1][col]);
          }
@@ -396,7 +396,7 @@ public class GameLoader {
         	 neighbors.put(Direction.N, null);
          }
 
-         //Add NE
+         //NE
          if (col + 1 < colCount) {
              neighbors.put(Direction.NE, tiles[row][col+1]);
          }
@@ -404,7 +404,7 @@ public class GameLoader {
         	 neighbors.put(Direction.NE, null);
          }
          
-         //Add SW
+         //SW
          if (row + 1 < rowCount && col - 1 >= 0) {
              neighbors.put(Direction.SW, tiles[row+1][col-1]);
          }
@@ -412,7 +412,7 @@ public class GameLoader {
         	 neighbors.put(Direction.SW, null);
          }
 
-         //Add S
+         //S
          if (row + 1 < rowCount) {
          	neighbors.put(Direction.S, tiles[row+1][col]);
          }
@@ -420,7 +420,7 @@ public class GameLoader {
          	neighbors.put(Direction.S, null);
          }
 
-         //Add SE
+         //SE
          if (row + 1 < rowCount && col + 1 < colCount) {
              neighbors.put(Direction.SE, tiles[row+1][col+1]);
          }
@@ -432,7 +432,7 @@ public class GameLoader {
     }
     
     private void oddColNeighbors(int row, int col, int rowCount, int colCount, HashMap<Direction, Tile> neighbors, Tile tiles[][]) {
-    	//Add NW
+    	//NW
     	if (col - 1 >= 0 && row-1 >= 0) {
     		neighbors.put(Direction.NW, tiles[row-1][col-1]);
     	}
@@ -440,7 +440,7 @@ public class GameLoader {
     		neighbors.put(Direction.NW, null);
     	}
 
-    	//Add N
+    	//N
     	if (row - 1 >= 0) {
     		neighbors.put(Direction.N, tiles[row-1][col]);
     	}
@@ -448,7 +448,7 @@ public class GameLoader {
     		neighbors.put(Direction.N, null);
     	}
 
-    	//Add NE
+    	//NE
     	if (col + 1 < colCount && row - 1 >= 0) {
     		neighbors.put(Direction.NE, tiles[row-1][col+1]);
     	}
@@ -456,7 +456,7 @@ public class GameLoader {
     		neighbors.put(Direction.NE, null);
     	}
       
-    	//Add SW
+    	//SW
     	if (col - 1 >= 0) {
     		neighbors.put(Direction.SW, tiles[row][col-1]);
     	}
@@ -464,7 +464,7 @@ public class GameLoader {
     		neighbors.put(Direction.SW, null);
     	}
 
-    	//Add S
+    	//S
     	if (row + 1 < rowCount) {
     		neighbors.put(Direction.S, tiles[row+1][col]);
     	}
@@ -472,7 +472,7 @@ public class GameLoader {
     		neighbors.put(Direction.S, null);
     	}
 
-    	//Add SE
+    	//SE
     	if (col + 1 < colCount) {
     		neighbors.put(Direction.SE, tiles[row][col+1]);
     	}
