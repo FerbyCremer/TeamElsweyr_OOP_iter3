@@ -39,8 +39,12 @@ public class WorldController {
         this.aiController = aiController;
     }
 
-    public void changeZoneTo(String zoneID){
+	public void changeZoneTo(String zoneID){
         updatePlayerPos(zoneID);
+        updateeWorldController(zoneID);
+    }
+
+    public void updateeWorldController(String zoneID){
         Zone newZone = world.changeZone(zoneID);
         updateZoneController(newZone);
         updateActionHandler(newZone);
@@ -48,6 +52,7 @@ public class WorldController {
         updateAIController(newZone);
         updateZoneView(decalSetContainer.getDecalSet(zoneID));
     }
+
     public void runGame(){
         zoneController.startGameLoop();
     }

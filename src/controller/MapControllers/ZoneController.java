@@ -14,12 +14,15 @@ public class ZoneController {
     private FogOfWarController fogOfWarController;
 
     public ZoneController(MovementController movementController, EntityToItem itemCollison, EntityToAreaEffect areaEffectCollision, EntityToTrap trapCollision, FogOfWarController fogOfWarController) {
-        this.movementController = movementController;
-        this.itemCollison = itemCollison;
-        this.areaEffectCollision = areaEffectCollision;
-        this.trapCollision = trapCollision;
-        this.fogOfWarController = fogOfWarController;
-        startGameLoop();
+//        this.movementController = movementController;
+//        this.itemCollison = itemCollison;
+//        this.areaEffectCollision = areaEffectCollision;
+//        this.trapCollision = trapCollision;
+//        this.fogOfWarController = fogOfWarController;
+    }
+
+    public ZoneController(){
+
     }
 
     private class GameLoop extends TimerTask {

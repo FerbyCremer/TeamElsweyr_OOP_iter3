@@ -15,10 +15,10 @@ public class Tile {
     private Point coordinate;
 
     //TODO neighborhood is set in zone
-    public Tile(Terrain terrain, boolean obstacle, HashMap<Direction, Tile> neighborhood, Point coordinate) {
+    public Tile(Terrain terrain, boolean obstacle, Point coordinate) {
         this.terrain = terrain;
         this.obstacle = obstacle;
-        this.neighborhood = neighborhood;
+        //this.neighborhood = neighborhood;
         this.coordinate = coordinate;
     }
 
