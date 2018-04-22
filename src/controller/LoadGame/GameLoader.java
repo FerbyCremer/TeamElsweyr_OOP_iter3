@@ -257,29 +257,7 @@ public class GameLoader {
                 int flowRate = Integer.parseInt(worldData.get(lineIndex++));
                 int angle = Integer.parseInt(worldData.get(lineIndex++));
 
-                Direction flowDirection;
-                switch (angle){
-                    case 0:
-                        flowDirection = Direction.N;
-                        break;
-                    case 60:
-                        flowDirection = Direction.NE;
-                        break;
-                    case 120:
-                        flowDirection = Direction.SE;
-                        break;
-                    case 180:
-                        flowDirection = Direction.S;
-                        break;
-                    case 240:
-                        flowDirection = Direction.SW;
-                        break;
-                    case 300:
-                        flowDirection = Direction.NW;
-                        break;
-                    default:
-                        flowDirection = Direction.N;
-                }
+                Direction flowDirection = Direction.N.getClockwise(angle);
                 River river = new River(flowRate, flowDirection);
                 riverMap.setContent(tiles[x][y], river);
             }

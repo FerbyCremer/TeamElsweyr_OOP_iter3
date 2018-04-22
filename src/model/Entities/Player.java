@@ -25,7 +25,7 @@ public class Player extends Entity {
     private MountHandler mountHandler;
     private KeyController playerController;
 
-    private Player(List<Skill> skills, EntityStats stats, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, List<KeyCommand> keys, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
+    private Player(List<Skill> skills, List<Integer> lvl, EntityStats stats, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, List<KeyCommand> keys, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         super(stats, inventory, terrains, name, deadHandler);
         this.skills = skills;
         mountedState = new Unmounted();
@@ -33,10 +33,11 @@ public class Player extends Entity {
         this.playerController = playerController;
         this.mountHandler = mountHandler;
 
+        int index = lvl.size()-1;
 
-        skills.add(0,new Skill("bindwounds"));
-        skills.add(0,new Skill(""));
-        skills.add(0,new Skill("brawling"));
+        skills.add(0,new Skill("observation", lvl.remove(index--)));
+        skills.add(0,new Skill("bargain", lvl.remove(index--)));
+        skills.add(0,new Skill("bindwounds", lvl.remove(index--)));
 
         //Add all movement/default commands
         keys.add(new MoveNorthWest(this));
@@ -63,13 +64,15 @@ public class Player extends Entity {
     public static Player playerMakeSmasher(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
-        temp_skills.add(new Skill("one-handed weapon"));
-        temp_skills.add(new Skill("two-handed weapon"));
-        temp_skills.add(new Skill("brawling"));
+        int index = lvl.size()-1;
+
+        temp_skills.add(0, new Skill("one-handed weapon", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("two-handed weapon", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("brawling", lvl.remove(index--)));
 
 
         List<KeyCommand> keys = new ArrayList<>();
-        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
+        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
 
         return player;
     }
@@ -77,16 +80,18 @@ public class Player extends Entity {
     public static Player playerMakeSneak(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
-        temp_skills.add(new Skill("pick-pocket", lvl.get(0)));
-        temp_skills.add(new Skill("detect trap", lvl.get(1)));
-        temp_skills.add(new Skill("remove trap", lvl.get(2)));
-        temp_skills.add(new Skill("creep", lvl.get(3)));
-        temp_skills.add(new Skill("rangedWeapon", lvl.get(4)));
+        int index = lvl.size()-1;
+
+        temp_skills.add(0, new Skill("pick-pocket", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("detect trap", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("remove trap", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("creep", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("rangedWeapon", lvl.remove(index--)));
 
         List<KeyCommand> keys = new ArrayList<>();
         //Add sneak specific commands
 
-        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
+        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
 
         return player;
     }
@@ -94,14 +99,16 @@ public class Player extends Entity {
     public static Player playerMakeSummoner(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
-        temp_skills.add(new Skill("enchantment"));
-        temp_skills.add(new Skill("boon"));
-        temp_skills.add(new Skill("bane"));
-        temp_skills.add(new Skill("staff"));
+        int index = lvl.size()-1;
+
+        temp_skills.add(0, new Skill("enchantment", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("boon", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("bane",lvl.remove(index--)));
+        temp_skills.add(0, new Skill("staff", lvl.remove(index--)));
 
         List<KeyCommand> keys = new ArrayList<>();
         // Add summoner specific commands
-        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
+        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
 
         return player;
     }
