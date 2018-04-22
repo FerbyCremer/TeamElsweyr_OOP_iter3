@@ -1,10 +1,17 @@
 package controller.LoadGame;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
+import controller.EntityControllers.AIController;
+import controller.Handlers.ActionHandler;
+import controller.Handlers.BringOutYourDeadHandler;
+import controller.KeyControllers.KeyCommands.KeyCommand;
+import controller.KeyControllers.KeyControlState;
+import controller.KeyControllers.KeyController;
+import controller.KeyControllers.ToInventory;
 import controller.MapControllers.WorldController;
 import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.Entity;
 import model.Entities.EntityStats;
+import model.Entities.Player;
 import model.Inventory.Inventory;
 import model.Items.Item;
 import model.Items.Takeable.Takeable;
@@ -18,12 +25,60 @@ import model.Map.Zone.Zone;
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class GameLoader {
 
+
+    private KeyControlState keyControlState = new KeyControlState();
+
+    private WorldController worldController;
+    private ActionHandler actionHandler;
+    private BringOutYourDeadHandler deadHandler;
+    private KeyController playerController;
+    private KeyController cameraController;
+    private KeyController inventoryController;
+
+
+    private AIController aiController;
+
+    private EffectBuilder effectBuilder;
+    private ItemBuilder itemBuilder;
+    private EntityBuilder entityBuilder;
+
+
+
+
+    public GameLoader(){
+        worldController = new WorldController();
+        actionHandler = new ActionHandler();
+        effectBuilder = new EffectBuilder(worldController);
+        itemBuilder = new ItemBuilder(actionHandler, effectBuilder);
+        deadHandler = new BringOutYourDeadHandler();
+        entityBuilder = new EntityBuilder(deadHandler);
+        playerController = new KeyController("player", new ArrayList<>());
+        aiController = new AIController();
+    }
+
+
+    public KeyControlState initializeKeyControlState(){
+        playerController.addKeyListener(new ToInventory("ToInventory", keyControlState));
+
+        //TODO keycontrolstate intialization
+        //Make key commands
+        List<KeyCommand> cameraCommands = new ArrayList<>();
+        cameraController = new KeyController("camera", cameraCommands);
+
+        //Make key commands
+        List<KeyCommand> inventoryCommands = new ArrayList<>();
+        inventoryController = new KeyController("inventory", inventoryCommands);
+
+
+        return keyControlState;
+    }
 
     private Loader loader = new Loader();
 
@@ -131,17 +186,19 @@ public class GameLoader {
                 Entity entity = null;
                 switch (entityType) {
                     case "player":
-                        //entity = entityBuilder.buildPlayer(entityTypeData);
+                        entity = entityBuilder.buildPlayer(entityTypeData, playerController, inventory, passable, entityStats);
                         //setPlayer((Player) entity);
+                        aiController.setPlayer((Player) entity);
                         break;
                     case "npc":
-                        //entity = entityBuilder.buildNPC(entityTypeData);
+                        entity = entityBuilder.buildNPC(entityTypeData, aiController, inventory, passable, entityStats);
+                        //TODO add to aicontroller list of AI
                         break;
                     case "pet":
-                        //entity = entityBuilder.buildNPC(entityTypeData);
+                        entity = entityBuilder.buildPet(aiController, inventory, passable, entityStats);
                         break;
                     case "mount":
-                        //entity = entityBuilder.buildNPC(entityTypeData);
+                        entity = entityBuilder.buildMount(inventory, passable, entityStats);
                         break;
                 }
 
@@ -281,19 +338,19 @@ public class GameLoader {
         }
 
         World theWorld = new World(allZones, currentZone);
-
+        worldController.setWorld(theWorld);
+        worldController.updateWorldController(currentZoneID);
         //TODO DO SOMETHING
-
-
-
 
     }
 
     public WorldController load(){
         String filepath = "/src/saves/savefile.txt";
+        parseFile(filepath);
 
-        //return new WorldController();
-        return null;
+        //TODO do this here or in menu to get KeyControlState reference
+        initializeKeyControlState();
+        return worldController;
     }
 
 

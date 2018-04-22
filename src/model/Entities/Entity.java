@@ -20,15 +20,15 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
     private String name;
     private BringOutYourDeadHandler deadHandler;
 
-    public Entity(EntityStats entityStats, BringOutYourDeadHandler deadHandler) {
-        this.stats = entityStats;
-        this.inventory = new Inventory(stats);
-        this.terrains = new ArrayList<>();
-        this.deadHandler = deadHandler;
-    }
+//    public Entity(EntityStats entityStats, BringOutYourDeadHandler deadHandler) {
+//        this.stats = entityStats;
+//        this.inventory = new Inventory(stats);
+//        this.terrains = new ArrayList<>();
+//        this.deadHandler = deadHandler;
+//    }
     
     //Load Constructor
-    public Entity(EntityStats entityStats, Inventory inventory, ArrayList<Terrain> terrains, String name, BringOutYourDeadHandler deadHandler) {
+    public Entity(EntityStats entityStats, Inventory inventory, List<Terrain> terrains, String name, BringOutYourDeadHandler deadHandler) {
     	
     }
 

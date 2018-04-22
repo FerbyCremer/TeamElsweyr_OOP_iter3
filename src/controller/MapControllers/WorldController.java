@@ -39,18 +39,20 @@ public class WorldController {
         this.aiController = aiController;
     }
 
+    public WorldController(){}
+
 	public void changeZoneTo(String zoneID){
         updatePlayerPos(zoneID);
-        updateeWorldController(zoneID);
+        updateWorldController(zoneID);
     }
 
-    public void updateeWorldController(String zoneID){
+    public void updateWorldController(String zoneID){
         Zone newZone = world.changeZone(zoneID);
         updateZoneController(newZone);
         updateActionHandler(newZone);
         updateDeadHandler(newZone);
         updateAIController(newZone);
-        updateZoneView(decalSetContainer.getDecalSet(zoneID));
+        //updateZoneView(decalSetContainer.getDecalSet(zoneID));
     }
 
     public void runGame(){
@@ -80,8 +82,12 @@ public class WorldController {
         zoneController.setMovementController(new MovementController(zone));
         zoneController.setFogOfWarController(new FogOfWarController(player, zone, decalSetContainer.getDecalSet(zone.getID())));
     }
-    private void updateZoneView(DecalSet decalSet){
-        zoneView.updateZoneView(decalSet);
+
+    public void setWorld(World world) {
+        this.world = world;
     }
 
+    /*private void updateZoneView(DecalSet decalSet){
+        zoneView.updateZoneView(decalSet);
+    }*/
 }

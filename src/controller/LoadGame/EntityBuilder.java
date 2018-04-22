@@ -16,18 +16,18 @@ import model.Entities.NPC.NPC;
 import model.Entities.NPC.NPCState;
 import model.Entities.NPC.ShopKeeperState;
 import model.Entities.NPC.TalkativeState;
+import model.Inventory.Inventory;
+import model.Map.Terrain;
 
 public class EntityBuilder {
 	private BringOutYourDeadHandler handler;
-	private EntityStats stats;
 	private int index;
 	
-	public EntityBuilder(BringOutYourDeadHandler handler, EntityStats stats) {
+	public EntityBuilder(BringOutYourDeadHandler handler) {
 		this.handler = handler;
-		this.stats = stats;
 	}
 	
-	public Player buildPlayer(List<String> attributes, KeyController controller) {
+	public Player buildPlayer(List<String> attributes, KeyController controller, Inventory inventory, List<Terrain> terrains, EntityStats stats) {
 		index = 0;
 		List<Integer> skillLvl = new ArrayList<Integer>();
 		Player player = null;
@@ -35,23 +35,25 @@ public class EntityBuilder {
 		for(int i = index+1; i < attributes.size(); i++) {
 			skillLvl.add(Integer.parseInt(attributes.get(i)));
 		}
-		
-		switch(attributes.get(index++)) {
+
+		String name = attributes.get(index++);
+
+		switch(name) {
 			case "summoner":
-				player = Player.playerMakeSummoner(stats, skillLvl, controller, handler);
+				player = Player.playerMakeSummoner(stats, skillLvl, controller, inventory, terrains, name, handler);
 				break;
 			case "smasher":
-				player = Player.playerMakeSmasher(stats, skillLvl, controller, handler);
+				player = Player.playerMakeSmasher(stats, skillLvl, controller, inventory, terrains, name, handler);
 				break;
 			case "sneak":
-				player = Player.playerMakeSneak(stats, skillLvl, controller, handler);
+				player = Player.playerMakeSneak(stats, skillLvl, controller, inventory, terrains, name, handler);
 				break;
 		}
 		
 		return player;
 	}
 	
-	public NPC buildNPC(List<String> attributes, AIController aiController) {
+	public NPC buildNPC(List<String> attributes, AIController aiController, Inventory inventory, List<Terrain> terrains, EntityStats stats) {
 		NPCState state = null;
 		
 		switch(attributes.get(0)) {
@@ -72,15 +74,15 @@ public class EntityBuilder {
 				break;
 		}
 		
-		return new NPC(stats, handler, aiController, state);
+		return new NPC(stats, handler, aiController, inventory, terrains, "npc", state);
 	}
 	
-	public Pet buildPet(AIController aiController) {
-		return new Pet(stats, handler, aiController);
+	public Pet buildPet(AIController aiController, Inventory inventory, List<Terrain> terrains, EntityStats stats) {
+		return new Pet(stats, handler, aiController, inventory, terrains, "pet");
 	}
 	
-	public Mount buildMount() {
-		return new Mount(stats, handler);
+	public Mount buildMount(Inventory inventory, List<Terrain> terrains, EntityStats stats) {
+		return new Mount(stats, handler, inventory, terrains, "mount");
 	}
 
 }
