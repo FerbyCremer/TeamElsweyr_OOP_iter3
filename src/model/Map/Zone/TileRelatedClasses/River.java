@@ -38,7 +38,7 @@ public class River implements Saveable {
         int degrees = (int) Math.toDegrees(Math.atan(sumY/((double)sumX)));
 
 
-        entity.updateCurrentSpeed(newEntitySpeed);
+        entity.setCurrentSpeed(newEntitySpeed);
         return Direction.getDirectionClosest(degrees);
     }
 
