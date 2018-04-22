@@ -135,7 +135,7 @@ public class GameLoader {
                 int y = Integer.parseInt(worldData.get(lineIndex++));
                 tiles[x][y] = new Tile(terrain, obstacle, new Point(x,y));
             }
-            setNeighborhood(tiles);
+//            setNeighborhood(tiles);
             //END TILES
 
             //ENTITYMAP
@@ -343,7 +343,7 @@ public class GameLoader {
     }
 
     public WorldController load(){
-        String filepath = "/src/saves/savefile.txt";
+        String filepath = "src/assets/saves/savefile.txt";
         parseFile(filepath);
 
         //TODO do this here or in menu to get KeyControlState reference
