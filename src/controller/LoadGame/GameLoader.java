@@ -3,6 +3,7 @@ package controller.LoadGame;
 import controller.EntityControllers.AIController;
 import controller.Handlers.ActionHandler;
 import controller.Handlers.BringOutYourDeadHandler;
+import controller.Handlers.MountHandler;
 import controller.KeyControllers.KeyCommands.KeyCommand;
 import controller.KeyControllers.KeyControlState;
 import controller.KeyControllers.KeyController;
@@ -41,6 +42,7 @@ public class GameLoader {
 
     private WorldController worldController;
     private ActionHandler actionHandler;
+    private MountHandler mountHandler;
     private BringOutYourDeadHandler deadHandler;
     private KeyController playerController;
     private KeyController cameraController;
@@ -59,10 +61,11 @@ public class GameLoader {
 
         //Initialize Controllers
         actionHandler = new ActionHandler();
+        mountHandler = new MountHandler();
         deadHandler = new BringOutYourDeadHandler();
         playerController = new KeyController("player", new ArrayList<>());
         aiController = new AIController();
-        worldController = new WorldController(new ZoneController(), actionHandler, deadHandler, aiController);
+        worldController = new WorldController(new ZoneController(), actionHandler, mountHandler, deadHandler, aiController);
         //Initialize builders
         effectBuilder = new EffectBuilder(worldController);
         itemBuilder = new ItemBuilder(actionHandler, effectBuilder);
@@ -81,7 +84,6 @@ public class GameLoader {
         //Make key commands
         List<KeyCommand> inventoryCommands = new ArrayList<>();
         inventoryController = new KeyController("inventory", inventoryCommands);
-
 
         return keyControlState;
     }
@@ -189,7 +191,7 @@ public class GameLoader {
                 Entity entity = null;
                 switch (entityType) {
                     case "player":
-                        entity = entityBuilder.buildPlayer(entityTypeData, playerController, inventory, passable, entityStats);
+                        entity = entityBuilder.buildPlayer(entityTypeData, playerController, inventory, passable, mountHandler, entityStats);
                         //TODO store global reference to player somewhere?
                         worldController.setPlayer((Player) entity);
                         break;

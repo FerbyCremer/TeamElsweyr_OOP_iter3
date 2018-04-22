@@ -13,6 +13,7 @@ import java.util.HashMap;
 public class ActionHandler {
     private ActionPerformer actionPerformer;
 
+    public ActionHandler(){ }
 /*    public ActionHandler(Zone zone) {
         actionPerformer = new ActionPerformer(zone);
     }*/

@@ -8,6 +8,7 @@ public class Ring extends Takeable{
 
     public Ring(int health) {
         this.health = health;
+        price = 70;
     }
 
     @Override
