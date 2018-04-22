@@ -152,5 +152,8 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
 		return stats.getExperience();
 	}
 
+    public Inventory getInventory() {
+        return inventory;
+    }
 }
 
