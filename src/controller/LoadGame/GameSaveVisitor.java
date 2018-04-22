@@ -72,8 +72,8 @@ public class GameSaveVisitor implements SaveVisitor{
             save += saveCoordinate(t.getCoordinate());
             AreaEffect a = zone.getAreaEffectMap().getContentAtTile(t);
             save += a.accept(this);
+            save += "endOfEffect\n";
         }
-
         save+="endOfAreaEffectMap\n";
 
         //RiverMap
@@ -94,6 +94,7 @@ public class GameSaveVisitor implements SaveVisitor{
             save += saveCoordinate(t.getCoordinate());
             Trap tr = zone.getTrapMap().getContentAtTile(t);
             save += tr.accept(this);
+            save += "endOfEffect\n";
         }
 
         save+="endOfTrapMap\n";
