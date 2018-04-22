@@ -29,6 +29,9 @@ public class DamageEffect implements EntityEffect{
 
     @Override
     public String accept(SaveVisitor saveVisitor) {
-        return getName()+"\n" + getAmount()+"\n";
+        System.out.println("get amount - " + getAmount());
+        String saver = getName()+"\n" + getAmount()+"\n";
+        System.out.println("GET AMOUNT AND NAME = " + saver);
+        return (getName()+"\n" + getAmount()+"\n");
     }
 }

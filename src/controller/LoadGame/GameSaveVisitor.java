@@ -29,7 +29,7 @@ public class GameSaveVisitor implements SaveVisitor{
         for (Zone z: zones) {
             saveFile+= z.accept(this);
         }
-        saveFile+="endZone\n";
+        saveFile+="endOfZone\n";
         saveFile+=world.getCurrentZoneID() + "\n";
         saveFile += "endOfWorld";
         return saveFile;
@@ -64,6 +64,19 @@ public class GameSaveVisitor implements SaveVisitor{
         }
 
         save+="endOfEntityMap\n";
+
+        //ItemMap
+        tileSet = zone.getItemMap().getTilesContentIsOn();
+        for (Tile t: tileSet) {
+            save+="itemMap\n";
+            save += saveCoordinate(t.getCoordinate());
+            Item i = zone.getItemMap().getContentAtTile(t);
+            save += i.accept(this);
+            save += "endOfItem\n";
+        }
+
+        save+="endOfItemMap\n";
+
 
         //AreaEffectMap
         tileSet = zone.getAreaEffectMap().getTilesContentIsOn();
@@ -177,7 +190,7 @@ public class GameSaveVisitor implements SaveVisitor{
         for (int i = 0; i < skills.size(); i++) {
             save += skills.get(i).getLevel() + "\n";
         }
-        save += "endOfSkill\n";
+        save += "endSkill\n";
         save += "endOfEntityType\n";
         return save;
     }
@@ -199,9 +212,6 @@ public class GameSaveVisitor implements SaveVisitor{
         System.out.println("Inventory length = " + takeables.size()) ;
         for (int i = 0; i < takeables.size(); i++) {
             save += "item\n";
-            save += takeables.get(i).getName()+"\n";
-            save += "takeable\n";
-            save += takeables.get(i).isEquipped()+"\n";
             save += takeables.get(i).accept(this); //need help with this
             save += "endOfTakeable\n";
         }
@@ -212,8 +222,8 @@ public class GameSaveVisitor implements SaveVisitor{
     @Override
     public String saveRiver(River river) {
         String save = "";
-        save+= river.getDirection().getAngle() + "\n";
         save += river.getFlowRate() + "\n";
+        save+= river.getDirection().getAngle() + "\n";
         return save;
     }
 
@@ -240,6 +250,9 @@ public class GameSaveVisitor implements SaveVisitor{
     @Override
     public String saveTool(Tool tool) {
         String save = "";
+        save += tool.getName()+"\n";
+        save += "takeable\n";
+        save += tool.isEquipped()+"\n";
         save += "tool\n";
         save += tool.getSkill().getName() + "\n";
         save += tool.getCooldown() + "\n";
@@ -254,6 +267,9 @@ public class GameSaveVisitor implements SaveVisitor{
     @Override
     public String saveArmor(Armor armor) {
         String save = "";
+        save += armor.getName()+"\n";
+        save += "takeable\n";
+        save += armor.isEquipped()+"\n";
         save += armor.getDefense() + "\n";
         save += "armor" +"\n";
         return save;
@@ -263,7 +279,11 @@ public class GameSaveVisitor implements SaveVisitor{
     @Override
     public String saveRing(Ring ring) {
         String save = "";
-        save += "ring"+ "\n";
+        save += ring.getName()+"\n";
+        save += "takeable\n";
+        save += ring.isEquipped()+"\n";
+        save += ring.getHealth() + "\n";
+        save += "ring" + "\n";
         return save;
     }
 
@@ -271,13 +291,18 @@ public class GameSaveVisitor implements SaveVisitor{
     public String saveConsumable(Consumable consumable) {
         String save = "";
         save += "consumable\n";
+        save += consumable.getName()+"\n";
+        save += "takeable\n";
+        save += consumable.isEquipped()+"\n";
+        save += "entityEffect\n";
         save += consumable.getEffect().getName() + "\n";
         return save;
     }
 
     @Override
     public String saveOneShot(OneShot oneShot) {
-        String save = "";
+        String save = "oneshot\n";
+        save += "entityEffect\n";
         save += oneShot.getEffect().accept(this);//anything else?
         return save;
     }

@@ -57,7 +57,8 @@ public class EntityAction extends Action{
     }
 
     public String getEffectName() {
-        return "entityEffect\n" + entityEffect.getName();
+        System.out.println( " entiy efffect get mname = " + entityEffect.getName());
+        return ("entityEffect\n" + entityEffect.getName() + "\n" +entityEffect.getAmount());
     }
 
     @Override
