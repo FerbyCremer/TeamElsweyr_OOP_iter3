@@ -26,7 +26,7 @@ public class WorldController {
     private ZoneController zoneController;
     private ActionHandler actionHandler;
     private BringOutYourDeadHandler deadHandler;
-    private AIController aiController;
+    //private AIController aiController;
 
     public WorldController(World world, Player player, DecalSetContainer decalSetContainer, ZoneView zoneView, ZoneController zoneController, ActionHandler actionHandler, BringOutYourDeadHandler deadHandler, AIController aiController) {
         this.world = world;
@@ -36,7 +36,7 @@ public class WorldController {
         this.zoneController = zoneController;
         this.actionHandler = actionHandler;
         this.deadHandler = deadHandler;
-        this.aiController = aiController;
+       // this.aiController = aiController;
     }
 
     public WorldController(){}
@@ -51,7 +51,7 @@ public class WorldController {
         updateZoneController(newZone);
         updateActionHandler(newZone);
         updateDeadHandler(newZone);
-        updateAIController(newZone);
+        //updateAIController(newZone);
         //updateZoneView(decalSetContainer.getDecalSet(zoneID));
     }
 
@@ -71,9 +71,9 @@ public class WorldController {
         world.removeEntityFromZone(player);
         world.addEntityToZone(player, zoneID);
     }
-    private void updateAIController(Zone zone){
-        aiController.updateMaps(zone);
-    }
+//    private void updateAIController(Zone zone){
+//        aiController.updateMaps(zone);
+//    }
 
     private void updateZoneController(Zone zone){
         zoneController.setEntityToAreaEffect(new EntityToAreaEffect(zone));
@@ -81,6 +81,7 @@ public class WorldController {
         zoneController.setEntityToTrap(new EntityToTrap(zone));
         zoneController.setMovementController(new MovementController(zone));
         zoneController.setFogOfWarController(new FogOfWarController(player, zone, decalSetContainer.getDecalSet(zone.getID())));
+        zoneController.updateAIController(zone);
     }
 
     public void setWorld(World world) {

@@ -1,5 +1,6 @@
 package controller.EntityControllers;
 
+import model.Entities.AI;
 import model.Entities.Entity;
 import model.Entities.Player;
 import model.Items.Item;
@@ -18,6 +19,8 @@ public class AIController {
     Player player;
     private ContentMap<Entity> entityMap;
     private ContentMap<Item> itemMap;
+    private ArrayList<AI> allAIs;
+    private ArrayList<AI> currentAIs;
 
 
     public AIController(){    }
@@ -35,6 +38,27 @@ public class AIController {
     public void updateMaps(Zone zone){
         entityMap = zone.getEntityMap();
         itemMap = zone.getItemMap();
+        updateCurrentAI();
+    }
+
+    public void moveEntities(){
+        for(AI ai : currentAIs){
+            ai.move();
+        }
+    }
+
+    private void updateCurrentAI(){
+        currentAIs.clear();
+        Set<Tile> tiles = entityMap.getTilesContentIsOn();
+
+        for(Tile tile : tiles){
+            for(int i = 0; i < allAIs.size(); i++){
+                if(allAIs.get(i) == entityMap.getContentAtTile(tile)){
+                    currentAIs.add(allAIs.get(i));
+                }
+            }
+        }
+
     }
 
     public ArrayList<Direction> findPathToEntity(Entity entity, Entity to){
@@ -90,7 +114,21 @@ public class AIController {
         return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), targetTile, entityMap.getTileOf(entity), player.getDirection());
     }
 
-    public ArrayList<Direction> findPathToPlayer(Entity entity){
+    private ArrayList<Direction> findPathToPlayer(Entity entity){
         return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), entityMap.getTileOf(player), entityMap.getTileOf(entity),  player.getDirection());
+    }
+
+    public void movePet(AI ai){
+        ArrayList<Direction> temp = findPathToPlayer(ai);
+        if(temp.size() > 5)
+            ai.move(findPathToPlayer(ai).get(0));
+        else if(temp.size() < 5 && !temp.isEmpty())
+            ai.move(findPathToItem(ai).get(0));
+    }
+
+    public void moveToPlayer(AI ai){
+        ArrayList<Direction> temp = findPathToPlayer(ai);
+        if(!temp.isEmpty())
+            ai.move(findPathToPlayer(ai).get(0));
     }
 }
