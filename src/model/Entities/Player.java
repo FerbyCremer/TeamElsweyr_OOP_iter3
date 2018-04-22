@@ -4,7 +4,9 @@ import controller.Handlers.BringOutYourDeadHandler;
 import controller.Handlers.MountHandler;
 import controller.KeyControllers.KeyCommands.*;
 import controller.KeyControllers.KeyCommands.MoveKeyListeners.*;
+import controller.KeyControllers.KeyControlState;
 import controller.KeyControllers.KeyController;
+import controller.KeyControllers.ToInventory;
 import model.Entities.MountSate.Mounted;
 import model.Entities.MountSate.MountedState;
 import model.Entities.MountSate.Unmounted;
@@ -40,7 +42,8 @@ public class Player extends Entity{
 		keys.add(new Observe(this));
 		keys.add(new Attack(this));
 		keys.add(new UnMount(this));
-
+		keys.add(new ToCamera("ToCamera", new KeyControlState()));
+		keys.add(new ToInventory("ToInventory", new KeyControlState()));
 
     	//Register all keycommands to the playercontroller
     	for (KeyCommand command : keys){
