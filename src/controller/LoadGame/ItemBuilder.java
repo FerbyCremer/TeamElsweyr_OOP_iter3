@@ -31,34 +31,31 @@ public class ItemBuilder {
 		index = 0;
 		Item item = null;
 		
-		int lastElement = attributes.size() - 1;
+		String name = attributes.get(index++);
 		
 		switch(attributes.get(index++)) {
-		case "takeable":
-			if(attributes.get(index++).equalsIgnoreCase("true")) {
-				equipped = true;
-			}
-			else equipped = false;
-			
-			switch(attributes.get(index++)) {
-				case "armor":
-					item = buildArmor(attributes);
-					break;
+			case "takeable":
+				equipped = Boolean.parseBoolean(attributes.get(index++));
+
+				switch(attributes.get(index++)) {
+				    case "armor":
+					    item = buildArmor(attributes);
+					    break;
 				
-				case "ring":
-					item = buildRing(attributes);
-					break;
+				    case "ring":
+					    item = buildRing(attributes);
+					    break;
 			
-				case "consumable":
-					item = buildConsumable(attributes);
-					break;
+				    case "consumable":
+					    item = buildConsumable(attributes);
+					    break;
 				
-				case "tool":
-					item = buildTool(attributes);
-					break;
-			}
-			
-			((Takeable) item).setEquip(equipped);
+				    case "tool":
+					    item = buildTool(attributes);
+					    break;
+			    }
+                ((Takeable) item).setEquip(equipped);
+
 			break;
 			
 		case "oneshot":
@@ -78,7 +75,7 @@ public class ItemBuilder {
 			break;
 		}
 		
-		item.setName(attributes.get(lastElement));
+		item.setName(name);
 		
 		return item;
 	}
