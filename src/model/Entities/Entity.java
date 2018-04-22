@@ -15,8 +15,8 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
 
     protected EntityStats stats;
     protected Inventory inventory;
-    private ArrayList<Terrain> terrains;
-    private ArrayList<Updateable> observers;
+    private List<Terrain> terrains;
+    private List<Updateable> observers;
     private String name;
     private BringOutYourDeadHandler deadHandler;
 
@@ -29,7 +29,14 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
     
     //Load Constructor
     public Entity(EntityStats entityStats, Inventory inventory, List<Terrain> terrains, String name, BringOutYourDeadHandler deadHandler) {
-    	
+        this.stats = entityStats;
+        this.inventory = inventory;
+        this.terrains = terrains;
+    	this.name = name;
+    	this.deadHandler = deadHandler;
+
+    	//TODO observers
+        observers = new ArrayList<>();
     }
 
 
@@ -122,7 +129,7 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
     }
 
 
-    public ArrayList<Terrain> getTerrains() {
+    public List<Terrain> getTerrains() {
         return terrains;
     }
 

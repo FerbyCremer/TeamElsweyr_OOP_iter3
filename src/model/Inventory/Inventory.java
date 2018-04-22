@@ -24,7 +24,15 @@ public class Inventory {
 	}
 	
 	public Inventory(EntityStats stats, int wealth, List<Takeable> items) {
-		
+		this.equipment = new Equipment(stats);
+		this.wealth = wealth;
+
+		//TODO parse items and equip equipped
+		this.items = items;
+
+
+		//TODO observers
+        observers = new ArrayList<>();
 	}
 
 	

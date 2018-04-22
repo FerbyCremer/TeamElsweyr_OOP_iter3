@@ -135,7 +135,7 @@ public class GameLoader {
                 int y = Integer.parseInt(worldData.get(lineIndex++));
                 tiles[x][y] = new Tile(terrain, obstacle, new Point(x,y));
             }
-//            setNeighborhood(tiles);
+            setNeighborhood(tiles);
             //END TILES
 
             //ENTITYMAP
@@ -204,8 +204,6 @@ public class GameLoader {
                         entity = entityBuilder.buildMount(inventory, passable, entityStats);
                         break;
                 }
-                System.out.println(tiles[x][y].getTerrainName());
-                System.out.println(entity.getName());
                 entityMap.setContent(tiles[x][y], entity);
             }
             //ENDENTITYMAP
