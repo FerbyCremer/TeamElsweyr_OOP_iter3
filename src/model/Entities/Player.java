@@ -27,12 +27,13 @@ public class Player extends Entity implements Saveable {
     private MountHandler mountHandler;
     private KeyController playerController;
 
-    private Player(List<Skill> skills, EntityStats stats, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, List<KeyCommand> keys, BringOutYourDeadHandler deadHandler) {
+    private Player(List<Skill> skills, EntityStats stats, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, List<KeyCommand> keys, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         super(stats, inventory, terrains, name, deadHandler);
         this.skills = skills;
         mountedState = new Unmounted();
 
         this.playerController = playerController;
+        this.mountHandler = mountHandler;
 
         //Add all movement/default commands
         keys.add(new MoveNorthWest(this));
@@ -56,7 +57,7 @@ public class Player extends Entity implements Saveable {
 
     }
 
-    public static Player playerMakeSmasher(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, BringOutYourDeadHandler deadHandler) {
+    public static Player playerMakeSmasher(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
         temp_skills.add(new Skill("one-handed weapon"));
@@ -65,12 +66,12 @@ public class Player extends Entity implements Saveable {
 
 
         List<KeyCommand> keys = new ArrayList<>();
-        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, deadHandler);
+        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
 
         return player;
     }
 
-    public static Player playerMakeSneak(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, BringOutYourDeadHandler deadHandler) {
+    public static Player playerMakeSneak(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
         temp_skills.add(new Skill("pick-pocket", lvl.get(0)));
@@ -82,12 +83,12 @@ public class Player extends Entity implements Saveable {
         List<KeyCommand> keys = new ArrayList<>();
         //Add sneak specific commands
 
-        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, deadHandler);
+        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
 
         return player;
     }
 
-    public static Player playerMakeSummoner(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, BringOutYourDeadHandler deadHandler) {
+    public static Player playerMakeSummoner(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
         temp_skills.add(new Skill("enchantment"));
@@ -97,7 +98,7 @@ public class Player extends Entity implements Saveable {
 
         List<KeyCommand> keys = new ArrayList<>();
         // Add summoner specific commands
-        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, deadHandler);
+        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
 
         return player;
     }
@@ -113,8 +114,8 @@ public class Player extends Entity implements Saveable {
     }
 
     //Tells the inventory to use the tool at the indexz
-    public void attack(int index) {
-        inventory.useTool(index, this);
+    public void attack() {
+        inventory.useTool(this);
     }
 
     public void useSkill(int skill) {
@@ -137,10 +138,6 @@ public class Player extends Entity implements Saveable {
 
     public List<Skill> getSkills() {
         return skills;
-    }
-
-    private void addSkillToolToInventory(Tool tool) {
-        inventory.equipInvisibleTool(tool);
     }
 
     public void setMountHandler(MountHandler mountHandler) {

@@ -128,6 +128,14 @@ public class Zone implements Saveable{
         entityMap.setContent(tiles[spawnPoint.x][spawnPoint.y], entity);
     }
 
+    public int getXDim(){
+        return tiles.length;
+    }
+
+    public int getYDim(){
+        return tiles[0].length;
+    }
+
     @Override
     public String accept(SaveVisitor saveVisitor) {
         return saveVisitor.saveZone(this);
