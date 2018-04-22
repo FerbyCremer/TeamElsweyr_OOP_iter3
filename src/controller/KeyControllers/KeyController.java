@@ -19,6 +19,10 @@ public class KeyController implements EventHandler<KeyEvent> {
         keyListeners = keys;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void register(List<KeyCommand> keys){
         keyListeners = keys;
     }

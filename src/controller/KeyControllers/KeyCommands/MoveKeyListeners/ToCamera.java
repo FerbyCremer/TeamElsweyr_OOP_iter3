@@ -3,13 +3,12 @@ package controller.KeyControllers.KeyCommands.MoveKeyListeners;
 import controller.KeyControllers.KeyCommands.KeyCommand;
 import controller.KeyControllers.KeyControlState;
 
-public class ToCamera implements KeyCommand {
-    private String name;
+public class ToCamera extends KeyCommand {
     private KeyControlState keyControlState;
 
-    public ToCamera(String name, KeyControlState keyControlState){
-        this.name = name;
-        this.keyControlState = keyControlState;
+    public ToCamera(String name){
+        super(name);
+        //this.keyControlState = keyControlState;
     }
 
     @Override

@@ -39,15 +39,22 @@ public class WorldController {
         this.aiController = aiController;
     }
 
-    public void changeZoneTo(String zoneID){
+    public WorldController(){}
+
+	public void changeZoneTo(String zoneID){
         updatePlayerPos(zoneID);
+        updateWorldController(zoneID);
+    }
+
+    public void updateWorldController(String zoneID){
         Zone newZone = world.changeZone(zoneID);
         updateZoneController(newZone);
         updateActionHandler(newZone);
         updateDeadHandler(newZone);
         updateAIController(newZone);
-        updateZoneView(decalSetContainer.getDecalSet(zoneID));
+        //updateZoneView(decalSetContainer.getDecalSet(zoneID));
     }
+
     public void runGame(){
         zoneController.startGameLoop();
     }
@@ -75,8 +82,12 @@ public class WorldController {
         zoneController.setMovementController(new MovementController(zone));
         zoneController.setFogOfWarController(new FogOfWarController(player, zone, decalSetContainer.getDecalSet(zone.getID())));
     }
-    private void updateZoneView(DecalSet decalSet){
-        zoneView.updateZoneView(decalSet);
+
+    public void setWorld(World world) {
+        this.world = world;
     }
 
+    /*private void updateZoneView(DecalSet decalSet){
+        zoneView.updateZoneView(decalSet);
+    }*/
 }
