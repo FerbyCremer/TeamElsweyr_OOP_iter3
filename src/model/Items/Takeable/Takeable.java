@@ -28,10 +28,6 @@ public abstract class Takeable extends Item {
     public void setEquip(boolean equipped) {
     	this.equipped = equipped;
     }
-    
-    public boolean isEquipped() {
-    	return equipped;
-    }
 
     public int getPrice(){
         return price;

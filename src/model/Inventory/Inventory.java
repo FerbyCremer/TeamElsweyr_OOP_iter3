@@ -87,10 +87,6 @@ public class Inventory implements Saveable{
 		}
 	}
 
-	public ArrayList<Takeable> getItems() {
-		return items;
-	}
-
 	public int getWealth(){
 		return wealth;
 
