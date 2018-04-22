@@ -27,7 +27,6 @@ public class EffectBuilder {
 		EntityEffect effect = null;
 		int amount;
 
-		System.out.println(attributes.get(index));
 		switch(attributes.get(index++)) {
 			case "damageEffect":
 				amount = Integer.parseInt(attributes.get(index++));

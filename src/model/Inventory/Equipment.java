@@ -1,6 +1,7 @@
 package model.Inventory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Entities.EntityStats;
 import model.Entities.Player;
@@ -12,68 +13,84 @@ public class Equipment {
 	private Armor armorSlot;
 	private Ring ringSlot;
 	private Consumable consumableSlot;
-	private ArrayList<Tool> toolList;
-	private ArrayList<Tool> invisibleTools;
+	private Tool toolSlot;
+	private List<Tool> toolList;
 	
 	//TODO loading equip methods
-	public Equipment(EntityStats stats) {
-		toolList = new ArrayList<Tool>();
+	public Equipment(EntityStats stats, List<Takeable> equipped) {
+		statChanger = new StatsChanger(new EntityStats());
+		for(Takeable item : equipped){
+			item.equip(this);
+		}
 		statChanger = new StatsChanger(stats);
 	}
 	
 	public void equipArmor(Armor armor) {
-		unequipArmor();
+		if (armorSlot != null){
+			unequipArmor();
+		}
 		armorSlot = armor;
+		armor.setEquip(true);
 		statChanger.notifyDefense(armor.getDefense());
 	}
 	
 	public void unequipArmor() {
-		if(armorSlot != null){
-			statChanger.notifyDefense(-1 * armorSlot.getDefense());
-		}
+		armorSlot.setEquip(false);
+		statChanger.notifyDefense(-armorSlot.getDefense());
 		armorSlot = null;
 	}
 	
 	public void equipRing(Ring ring) {
-		unequipRing();
+		if (ringSlot != null){
+			unequipRing();
+		}
 		ringSlot = ring;
+		ringSlot.setEquip(true);
 		statChanger.notifyHealth(ring.getHealth());
 	}
 	
 	public void unequipRing() {
-		if(ringSlot != null){
-			statChanger.notifyHealth(-1 * ringSlot.getHealth());
-		}
+		ringSlot.setEquip(false);
+		statChanger.notifyHealth(-ringSlot.getHealth());
 		ringSlot = null;
 	}
 	
 	public void equipConsumable(Consumable potion) {
+		if(consumableSlot != null){
+			unequipConsumable();
+		}
 		consumableSlot = potion;
 	}
 
 	public void unequipConsumable() {
+		consumableSlot.setEquip(false);
 		consumableSlot = null;
 	}
 	
 	public void equipTool(Tool tool) {
-		toolList.add(tool);
+		if (toolSlot != null){
+			unequipTool();
+		}
+		tool.setEquip(true);
+		toolSlot = tool;
 	}
 	
-	public void unequipTool(int index) {
-		toolList.remove(index);
+	public void unequipTool() {
+		toolSlot.setEquip(false);
+		toolSlot = null;
 	}
 	
 	//Tells the tool to create an action
-	public void useTool(int index, Player player) {
-		toolList.get(index).use(player);
+	public void useTool(Player player) {
+		if (toolSlot!=null){
+			toolSlot.use(player);
+		}
 	}
 	
 	//Tells the consumable to apply its effect to the player
 	public void useConsumable(Player player) {
-		consumableSlot.use(player);
-	}
-
-	public void addInvisibleTool(Tool tool) {
-		invisibleTools.add(tool);
+		if (consumableSlot != null){
+			consumableSlot.use(player);
+		}
 	}
 }

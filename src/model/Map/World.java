@@ -20,14 +20,11 @@ public class World {
 
         currentZone = getZone(zoneID);
 
-        System.out.println(zoneID);
-        System.out.println("Zone to change to " + currentZone.getID());
         return currentZone;
     }
 
     private Zone getZone(String zoneID){
         for(Zone z: zones){
-            System.out.println("Zone: " + z.getID());
             if(zoneID.equals(z.getID())) {
                 return z;
             }
@@ -43,5 +40,23 @@ public class World {
     public void addEntityToZone(Player player, String zoneID) {
         Zone zone = getZone(zoneID);
         zone.addEntityToMap(player);
+    }
+
+    public ArrayList<String> getZoneIds(){
+        ArrayList<String> zoneIds = new ArrayList<String>();
+        for(Zone zone : zones){
+            zoneIds.add(zone.getID());
+        }
+        return zoneIds;
+    }
+
+    public int getZoneXDim(String zoneID){
+        Zone zone = getZone(zoneID);
+        return zone.getXDim();
+    }
+
+    public int getZoneYDim(String zoneID){
+        Zone zone = getZone(zoneID);
+        return zone.getYDim();
     }
 }

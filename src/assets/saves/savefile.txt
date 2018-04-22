@@ -144,6 +144,7 @@ entityStats
 2
 inventory
 20000
+item
 detect
 takeable
 false

@@ -11,6 +11,6 @@ public class Attack extends KeyCommand {
 
     @Override
     public void perform() {
-        player.attack(0);
+        player.attack();
     }
 }

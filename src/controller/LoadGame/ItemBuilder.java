@@ -123,7 +123,6 @@ public class ItemBuilder {
 		ActionBuilder aBuilder = new ActionBuilder(eBuilder);
 		
 		Action action = aBuilder.buildAction(actionAttributes);
-		System.out.println(action);
 		
 		item = new Tool(skill, handler, action, cooldown);
 		

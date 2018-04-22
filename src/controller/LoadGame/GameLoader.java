@@ -3,6 +3,7 @@ package controller.LoadGame;
 import controller.EntityControllers.AIController;
 import controller.Handlers.ActionHandler;
 import controller.Handlers.BringOutYourDeadHandler;
+import controller.Handlers.MountHandler;
 import controller.KeyControllers.KeyCommands.KeyCommand;
 import controller.KeyControllers.KeyControlState;
 import controller.KeyControllers.KeyController;
@@ -41,6 +42,7 @@ public class GameLoader {
 
     private WorldController worldController;
     private ActionHandler actionHandler;
+    private MountHandler mountHandler;
     private BringOutYourDeadHandler deadHandler;
     private KeyController playerController;
     private KeyController cameraController;
@@ -59,10 +61,11 @@ public class GameLoader {
 
         //Initialize Controllers
         actionHandler = new ActionHandler();
+        mountHandler = new MountHandler();
         deadHandler = new BringOutYourDeadHandler();
         playerController = new KeyController("player", new ArrayList<>());
         aiController = new AIController();
-        worldController = new WorldController(new ZoneController(), actionHandler, deadHandler, aiController);
+        worldController = new WorldController(new ZoneController(), actionHandler, mountHandler, deadHandler, aiController);
         //Initialize builders
         effectBuilder = new EffectBuilder(worldController);
         itemBuilder = new ItemBuilder(actionHandler, effectBuilder);
@@ -81,7 +84,6 @@ public class GameLoader {
         //Make key commands
         List<KeyCommand> inventoryCommands = new ArrayList<>();
         inventoryController = new KeyController("inventory", inventoryCommands);
-
 
         return keyControlState;
     }
@@ -157,16 +159,18 @@ public class GameLoader {
                 //READ Inventory
                 lineIndex++;
                 int wealth = Integer.parseInt(worldData.get(lineIndex++));
+
                 List<Takeable> items = new ArrayList<>();
                 //read in items
-                while (worldData.get(lineIndex++).equals("takeable")){
+
+                while (worldData.get(lineIndex++).equals("item")){
                     List<String> itemData = new ArrayList<>();
                     do {
                         itemData.add(worldData.get(lineIndex));
                     } while (!worldData.get(lineIndex++).equals("endOfTakeable"));
-
                     items.add((Takeable) itemBuilder.buildItem(itemData));
                 }
+
                 Inventory inventory = new Inventory(entityStats, wealth, items);
 
                 //READ Passable
@@ -177,7 +181,7 @@ public class GameLoader {
                     passable.add(terrain);
 
                 } while (!worldData.get(lineIndex++).equals("endOfPassable"));
-
+                passable.remove(passable.size()-1);
 
                 String entityType = worldData.get(lineIndex++);
                 //Get info for entity builder
@@ -189,7 +193,7 @@ public class GameLoader {
                 Entity entity = null;
                 switch (entityType) {
                     case "player":
-                        entity = entityBuilder.buildPlayer(entityTypeData, playerController, inventory, passable, entityStats);
+                        entity = entityBuilder.buildPlayer(entityTypeData, playerController, inventory, passable, mountHandler, entityStats);
                         //TODO store global reference to player somewhere?
                         worldController.setPlayer((Player) entity);
                         break;
@@ -355,14 +359,14 @@ public class GameLoader {
     }
 
     public void setNeighborhood(Tile[][] tiles) {
-    	
+
     	int collumnCount = tiles[0].length;
     	int rowCount = tiles.length;
-    	
+
     	for (int row = 0; row < rowCount; row++) {
     		for (int collumn = 0; collumn < collumnCount; collumn++) {
     			HashMap<Direction, Tile> neighbors = new HashMap<Direction, Tile>();
-    			
+
     			if(collumn%2 == 0) {
     				evenColNeighbors(row, collumn, rowCount, collumnCount, neighbors, tiles);
     			}
@@ -372,7 +376,7 @@ public class GameLoader {
             }
         }
     }
-    
+
     private void evenColNeighbors(int row, int col, int rowCount, int colCount, HashMap<Direction, Tile> neighbors, Tile tiles[][]) {
     	//NW
 	     if (col - 1 >= 0) {
@@ -397,7 +401,7 @@ public class GameLoader {
          else {
         	 neighbors.put(Direction.NE, null);
          }
-         
+
          //SW
          if (row + 1 < rowCount && col - 1 >= 0) {
              neighbors.put(Direction.SW, tiles[row+1][col-1]);
@@ -424,7 +428,7 @@ public class GameLoader {
 
          tiles[row][col].setNeighbors(neighbors);
     }
-    
+
     private void oddColNeighbors(int row, int col, int rowCount, int colCount, HashMap<Direction, Tile> neighbors, Tile tiles[][]) {
     	//NW
     	if (col - 1 >= 0 && row-1 >= 0) {
@@ -449,7 +453,7 @@ public class GameLoader {
     	else {
     		neighbors.put(Direction.NE, null);
     	}
-      
+
     	//SW
     	if (col - 1 >= 0) {
     		neighbors.put(Direction.SW, tiles[row][col-1]);
