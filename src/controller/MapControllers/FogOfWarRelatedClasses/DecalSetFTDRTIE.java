@@ -75,7 +75,7 @@ public class DecalSetFTDRTIE implements DecalSet {
             names.clear();
             addTerrainName(t, names);
             addDecalName(t, currentZone, names);
-            addRiverName(t, currentZone, names);
+//            addRiverName(t, currentZone, names);
             addTrapName(t, currentZone, names);
             addItemName(t, currentZone, names);
             addEntityName(t, currentZone, names);
@@ -93,13 +93,13 @@ public class DecalSetFTDRTIE implements DecalSet {
             names.add(decal);
     }
 
-    private void addRiverName(Tile t, Zone currentZone, ArrayList<String> names) {
-        String river = currentZone.getRiverName(t);
-        if(river != null)
-            names.add(river);
-
-    }
-
+//    private void addRiverName(Tile t, Zone currentZone, ArrayList<String> names) {
+//        String river = currentZone.getRiverName(t);
+//        if(river != null)
+//            names.add(river);
+//
+//    }
+//
     //Trap will be responsible for having it's get name correspond to its active and visible
     private void addTrapName(Tile t, Zone currentZone, ArrayList<String> names) {
         String trap = currentZone.getTrapName(t);
