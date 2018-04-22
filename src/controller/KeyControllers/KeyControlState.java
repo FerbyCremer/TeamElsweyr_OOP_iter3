@@ -6,29 +6,23 @@ public class KeyControlState {
 
     private HashMap<String, KeyController> controllers;
     private KeyController activeController;
+
     //private KeyBindingController keyBindingController;
-
-
-    private void swapController(KeyController keyController){
-        activeController = keyController;
-    }
-
-    public void changeKeycode(String prevKey, String newKey){
-        activeController.changeKeyCode(prevKey, newKey);
-    }
-
-
-	
 	public KeyControlState() {
-		activeController = controllers.get("player");
+		//this.activeController = controllers.get("player");
+	}
+
+	public void addKeyController (KeyController controller){
+		controllers.put(controller.getName(), controller);
 	}
 
 	private void SwapControllerTo(KeyController controller) {
+		//TODO: call this function right after all initializing to set activeController to the playerController
 		activeController = controller;
 	}
 	
 	public void swapToCamera() {
-		SwapControllerTo(controllers.get("camera"));
+    	SwapControllerTo(controllers.get("camera"));
 	}
 	
 	public void swapToInventory() {

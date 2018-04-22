@@ -6,9 +6,9 @@ import controller.KeyControllers.KeyControlState;
 public class ToCamera extends KeyCommand {
     private KeyControlState keyControlState;
 
-    public ToCamera(String name, KeyControlState keyControlState){
+    public ToCamera(String name){
         super(name);
-        this.keyControlState = keyControlState;
+        //this.keyControlState = keyControlState;
     }
 
     @Override

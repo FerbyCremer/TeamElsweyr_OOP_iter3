@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -47,8 +48,8 @@ public class MenuController implements Initializable {
 
     @FXML private void keyConfig() throws IOException {
         Parent window;
-        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getClassLoader().getResource("view/KeyConfiguring.fxml"));
-        window = (BorderPane) fmxlLoader.load();
+        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getResource("/view/KeyConfiguring.fxml"));
+        window = (TabPane) fmxlLoader.load();
 
         this.scene = new Scene(window);
         //TODO is there something missing???
@@ -57,7 +58,7 @@ public class MenuController implements Initializable {
 
     @FXML private void resume() throws IOException{
         Parent window;
-        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getClassLoader().getResource("view/GameViewport.fxml"));
+        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
         window = (BorderPane) fmxlLoader.load();
 
         this.scene = new Scene(window);

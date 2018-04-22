@@ -11,6 +11,6 @@ public class BindWounds extends KeyCommand {
 
     @Override
     public void perform() {
-        player.useTool(0);
+        player.attack(0);
     }
 }
