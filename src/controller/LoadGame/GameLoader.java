@@ -130,6 +130,7 @@ public class GameLoader {
                 int y = Integer.parseInt(worldData.get(lineIndex++));
                 tiles[x][y] = new Tile(terrain, obstacle, new Point(x,y));
             }
+            setNeighborhood(tiles);
             //END TILES
 
             //ENTITYMAP
