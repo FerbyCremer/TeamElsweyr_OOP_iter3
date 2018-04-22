@@ -51,7 +51,7 @@ public class TrapAction extends Action{
 
     @Override
     public String getEffectName() {
-        return trapEffect.getName();
+        return "trapEffect\n" + trapEffect.getName();
     }
 
     public void apply(Trap trap, int distance){
@@ -66,6 +66,6 @@ public class TrapAction extends Action{
 
     @Override
     public String accept(SaveVisitor saveVisitor) {
-        return "trapAction\n";
+        return "trapAction";
     }
 }

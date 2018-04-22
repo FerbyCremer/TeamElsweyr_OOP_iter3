@@ -57,12 +57,12 @@ public class EntityAction extends Action{
     }
 
     public String getEffectName() {
-        return entityEffect.getName();
+        return "entityEffect\n" + entityEffect.getName();
     }
 
     @Override
     public String accept(SaveVisitor saveVisitor) {
-        return "entityAction\n";
+        return "entityAction";
 
     }
 }

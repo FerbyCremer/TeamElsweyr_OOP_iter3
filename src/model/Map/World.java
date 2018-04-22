@@ -67,4 +67,8 @@ public class World implements Saveable{
         Zone zone = getZone(zoneID);
         return zone.getYDim();
     }
+
+    public String getCurrentZoneID() {
+        return currentZone.getID();
+    }
 }

@@ -8,6 +8,10 @@ import model.Entities.Entity;
 public class AreaEffect implements Saveable{
     private EntityEffect effect;
 
+    public EntityEffect getEffect() {
+        return effect;
+    }
+
     public AreaEffect(EntityEffect effect) {
         this.effect = effect;
     }

@@ -42,6 +42,14 @@ public class River implements Saveable {
         return Direction.getDirectionClosest(degrees);
     }
 
+    public int getFlowRate() {
+        return flowRate;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
     public String getName() {
         return name;
     }

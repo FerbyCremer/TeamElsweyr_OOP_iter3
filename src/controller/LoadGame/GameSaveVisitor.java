@@ -30,6 +30,8 @@ public class GameSaveVisitor implements SaveVisitor{
             saveFile+= z.accept(this);
         }
         saveFile+="endZone\n";
+        saveFile+=world.getCurrentZoneID() + "\n";
+        saveFile += "endOfWorld";
         return saveFile;
     }
 
@@ -38,6 +40,7 @@ public class GameSaveVisitor implements SaveVisitor{
         String save = "zone\n";
         Tile[][] tiles = zone.getTiles();
         save += zone.getID() + "\n";
+        save += saveCoordinate(zone.getSpawnPoint());
         save += tiles.length + "\n"; //TODO might need to check this
         save += tiles[0].length + "\n";
 
@@ -60,7 +63,7 @@ public class GameSaveVisitor implements SaveVisitor{
             save += e.accept(this);
         }
 
-        save+="endEntityMap\n";
+        save+="endOfEntityMap\n";
 
         //AreaEffectMap
         tileSet = zone.getAreaEffectMap().getTilesContentIsOn();
@@ -71,7 +74,7 @@ public class GameSaveVisitor implements SaveVisitor{
             save += a.accept(this);
         }
 
-        save+="endAreaEffectMap\n";
+        save+="endOfAreaEffectMap\n";
 
         //RiverMap
         tileSet = zone.getRiverMap().getTilesContentIsOn();
@@ -82,7 +85,7 @@ public class GameSaveVisitor implements SaveVisitor{
             save += r.accept(this);
         }
 
-        save+="endRiverMap\n";
+        save+="endOfRiverMap\n";
 
         //TrapMap
         tileSet = zone.getTrapMap().getTilesContentIsOn();
@@ -93,7 +96,7 @@ public class GameSaveVisitor implements SaveVisitor{
             save += tr.accept(this);
         }
 
-        save+="endTrapMap\n";
+        save+="endOfTrapMap\n";
 
         //DecalMap
         tileSet = zone.getDecalMap().getTilesContentIsOn();
@@ -104,7 +107,7 @@ public class GameSaveVisitor implements SaveVisitor{
             save += d.accept(this);
         }
 
-        save+="endDecalMap\n";
+        save+="endOfDecalMap\n";
 
         return save;
     }
@@ -159,6 +162,7 @@ public class GameSaveVisitor implements SaveVisitor{
         save += saveEntity(npc);
         save += "npc";
         save += npc.getNpcState().accept(this);
+        save += "endOfEntityType\n";
         return save;
     }
 
@@ -172,7 +176,8 @@ public class GameSaveVisitor implements SaveVisitor{
         for (int i = 0; i < skills.size(); i++) {
             save += skills.get(i).getLevel() + "\n";
         }
-
+        save += "endOfSkill\n";
+        save += "endOfEntityType\n";
         return save;
     }
 
@@ -181,16 +186,19 @@ public class GameSaveVisitor implements SaveVisitor{
         String save = "";
         save += saveEntity(pet);
         save += "pet\n";
+        save += "endOfEntityType\n";
         return save;
     }
 
     @Override
     public String saveInventory(Inventory inventory) {
-        String save = "";
+        String save = "inventory\n";
         save+= inventory.getWealth() + "\n";
         List<Takeable> takeables = inventory.getItems();
+        System.out.println("Inventory length = " + takeables.size()) ;
         for (int i = 0; i < takeables.size(); i++) {
-            save += takeables.get(i).getName();
+            save += "item\n";
+            save += takeables.get(i).getName()+"\n";
             save += "takeable\n";
             save += takeables.get(i).isEquipped()+"\n";
             save += takeables.get(i).accept(this); //need help with this
@@ -202,22 +210,30 @@ public class GameSaveVisitor implements SaveVisitor{
 
     @Override
     public String saveRiver(River river) {
-        return null;
+        String save = "";
+        save+= river.getDirection().getAngle() + "\n";
+        save += river.getFlowRate() + "\n";
+        return save;
     }
 
     @Override
     public String saveTerrain(Terrain terrain) {
+        String save = "";
         return null;
     }
 
     @Override
     public String saveDecal(Decal decal) {
-        return null;
+        String save = "";
+        save += decal.getDecal() + "\n";
+        return save;
     }
 
     @Override
     public String saveAreaEffect(AreaEffect areaEffect) {
-        return null;
+        String save = "";
+        save += areaEffect.getEffect().accept(this);
+        return save;
     }
 
     @Override
@@ -230,8 +246,7 @@ public class GameSaveVisitor implements SaveVisitor{
         save += tool.getAction().getMaxRange() + "\n";
         save += tool.getAction().getAccuracy() + "\n";
         save += tool.getAction().getActionType().accept(this) + "\n";// linear, radial
-        save += tool.getAction().getEffectName() + "\n"; //imageofeffect
-        save += tool.getAction().saveEffect(this); //find out if entity effect = amount //if not = nothing
+        save += tool.getAction().getEffectName() + "\n"; //find out if entity effect = amount //if not = nothing
         return save;
     }
 
@@ -269,9 +284,8 @@ public class GameSaveVisitor implements SaveVisitor{
     @Override
     public String saveTrap(Trap trap) {
         String save = "";
-        save += trap.getName();
-        save += trap.isActive();
-        save += trap.isVisible();
+        save += trap.isVisible() + "\n";
+        save += trap.isActive() + "\n";
         save += trap.getEffect().accept(this);
         return save;
     }

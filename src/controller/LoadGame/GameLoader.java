@@ -161,7 +161,7 @@ public class GameLoader {
                 int wealth = Integer.parseInt(worldData.get(lineIndex++));
                 List<Takeable> items = new ArrayList<>();
                 //read in items
-                while (worldData.get(lineIndex++).equals("takeable")){
+                while (worldData.get(lineIndex++).equals("item")){
                     List<String> itemData = new ArrayList<>();
                     do {
                         itemData.add(worldData.get(lineIndex));

@@ -40,6 +40,10 @@ public class Zone implements Saveable{
         return tiles;
     }
 
+    public Point getSpawnPoint() {
+        return spawnPoint;
+    }
+
     public Item getItemFromTile(Tile tile){
         return itemMap.getContentAtTile(tile);
     }
