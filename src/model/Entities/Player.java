@@ -37,7 +37,7 @@ public class Player extends Entity {
 
         skills.add(0,new Skill("observation", lvl.remove(index--)));
         skills.add(0,new Skill("bargain", lvl.remove(index--)));
-        skills.add(0,new Skill("bindwounds", lvl.remove(index--)));
+        skills.add(0,new Skill("bindWounds", lvl.remove(index--)));
 
         //Add all movement/default commands
         keys.add(new MoveNorthWest(this));
@@ -66,8 +66,8 @@ public class Player extends Entity {
 
         int index = lvl.size()-1;
 
-        temp_skills.add(0, new Skill("one-handed weapon", lvl.remove(index--)));
-        temp_skills.add(0, new Skill("two-handed weapon", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("oneHanded", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("twoHanded", lvl.remove(index--)));
         temp_skills.add(0, new Skill("brawling", lvl.remove(index--)));
 
 
@@ -82,9 +82,9 @@ public class Player extends Entity {
 
         int index = lvl.size()-1;
 
-        temp_skills.add(0, new Skill("pick-pocket", lvl.remove(index--)));
-        temp_skills.add(0, new Skill("detect trap", lvl.remove(index--)));
-        temp_skills.add(0, new Skill("remove trap", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("pickPocket", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("detectTrap", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("removeTrap", lvl.remove(index--)));
         temp_skills.add(0, new Skill("creep", lvl.remove(index--)));
         temp_skills.add(0, new Skill("rangedWeapon", lvl.remove(index--)));
 
