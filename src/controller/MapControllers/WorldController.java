@@ -28,14 +28,12 @@ public class WorldController {
     private ActionHandler actionHandler;
     private MountHandler mountHandler;
     private BringOutYourDeadHandler deadHandler;
-    private AIController aiController;
 
-    public WorldController(ZoneController zoneController, ActionHandler actionHandler, MountHandler mountHandler, BringOutYourDeadHandler deadHandler, AIController aiController) {
+    public WorldController(ZoneController zoneController, ActionHandler actionHandler, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         this.zoneController = zoneController;
         this.actionHandler = actionHandler;
         this.mountHandler = mountHandler;
         this.deadHandler = deadHandler;
-        this.aiController = aiController;
         this.zoneView = new ZoneView();
     }
 
@@ -49,12 +47,10 @@ public class WorldController {
     public void updateWorldController(String zoneID){
 
         Zone newZone = world.changeZone(zoneID);
-
         updateZoneController(newZone);
         updateActionHandler(newZone);
         updateMountHandler(newZone);
         updateDeadHandler(newZone);
-        updateAIController(newZone);
         //updateZoneView(decalSetContainer.getDecalSet(zoneID));
     }
 
@@ -76,9 +72,6 @@ public class WorldController {
         world.removeEntityFromZone(player);
         world.addEntityToZone(player, zoneID);
     }
-    private void updateAIController(Zone zone){
-        aiController.updateMaps(zone);
-    }
 
     public World getWorld() {
         return world;
@@ -90,16 +83,14 @@ public class WorldController {
         zoneController.setEntityToTrap(new EntityToTrap(zone));
         zoneController.setMovementController(new MovementController(zone));
         zoneController.setFogOfWarController(new FogOfWarController(player, zone, decalSetContainer.getDecalSet(zone.getID())));
+        zoneController.updateAIController(zone);
     }
 
     public void setWorld(World world) {
         this.world = world;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-        aiController.setPlayer(player);
-    }
+    public void setPlayer(Player player) { this.player = player; }
 
     public void setDecalSetContainer(){
         decalSetContainer = new DecalSetContainer(world);

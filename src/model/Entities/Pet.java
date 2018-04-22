@@ -22,7 +22,6 @@ public class Pet extends AI {
 
 	@Override
 	public void move() {
-		// TODO Auto-generated method stub
-
+		aiController.movePet(this);
 	}
 }

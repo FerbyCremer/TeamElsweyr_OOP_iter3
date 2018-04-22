@@ -12,6 +12,7 @@ import controller.MapControllers.FogOfWarRelatedClasses.DecalSetContainer;
 import controller.MapControllers.WorldController;
 import controller.MapControllers.ZoneController;
 import model.Effect.EntityEffect.EntityEffect;
+import model.Entities.AI;
 import model.Entities.Entity;
 import model.Entities.EntityStats;
 import model.Entities.Player;
@@ -62,10 +63,10 @@ public class GameLoader {
         //Initialize Controllers
         actionHandler = new ActionHandler();
         mountHandler = new MountHandler();
-        deadHandler = new BringOutYourDeadHandler();
         playerController = new KeyController("player", new ArrayList<>());
         aiController = new AIController();
-        worldController = new WorldController(new ZoneController(), actionHandler, mountHandler, deadHandler, aiController);
+        deadHandler = new BringOutYourDeadHandler(aiController);
+        worldController = new WorldController(new ZoneController(aiController), actionHandler, mountHandler, deadHandler);
         //Initialize builders
         effectBuilder = new EffectBuilder(worldController);
         itemBuilder = new ItemBuilder(actionHandler, effectBuilder);
@@ -192,14 +193,16 @@ public class GameLoader {
                     case "player":
                         entity = entityBuilder.buildPlayer(entityTypeData, playerController, inventory, passable, mountHandler, entityStats);
                         //TODO store global reference to player somewhere?
+                        aiController.setPlayer((Player) entity);
                         worldController.setPlayer((Player) entity);
                         break;
                     case "npc":
                         entity = entityBuilder.buildNPC(entityTypeData, aiController, inventory, passable, entityStats);
-                        //TODO add to aicontroller list of AI
+                        aiController.addAI((AI) entity );
                         break;
                     case "pet":
                         entity = entityBuilder.buildPet(aiController, inventory, passable, entityStats);
+                        aiController.addAI((AI) entity );
                         break;
                     case "mount":
                         entity = entityBuilder.buildMount(inventory, passable, entityStats);

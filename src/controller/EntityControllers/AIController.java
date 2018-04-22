@@ -1,5 +1,6 @@
 package controller.EntityControllers;
 
+import model.Entities.AI;
 import model.Entities.Entity;
 import model.Entities.Player;
 import model.Items.Item;
@@ -19,8 +20,14 @@ public class AIController {
     private ContentMap<Entity> entityMap;
     private ContentMap<Item> itemMap;
 
+    private List<AI> allAIs;
+    private List<AI> currentAIs;
 
-    public AIController(){    }
+
+    public AIController(){
+        allAIs = new ArrayList<>();
+        currentAIs = new ArrayList<>();
+    }
 
     public AIController(Zone zone, Player player){
         entityMap = zone.getEntityMap();
@@ -32,10 +39,41 @@ public class AIController {
         this.player = player;
     }
 
+    public void addAI(AI ai){ allAIs.add(ai); }
+
+    public void removeEntity(Entity entity){
+        for (AI ai : allAIs){
+            if (ai == entity){
+                allAIs.remove(ai);
+            }
+        }
+    }
+
     public void updateMaps(Zone zone){
         entityMap = zone.getEntityMap();
         itemMap = zone.getItemMap();
+        updateCurrentAIs();
     }
+
+    private void updateCurrentAIs(){
+        currentAIs.clear();
+        Set<Tile> tiles =  entityMap.getTilesContentIsOn();
+        for (Tile tile : tiles){
+            for (AI ai : allAIs){
+                if (ai ==   entityMap.getContentAtTile(tile)){
+                    currentAIs.add(ai);
+                }
+            }
+        }
+    }
+
+    public void makeAIDecision(){
+            for(AI ai : currentAIs){
+                ai.move();
+            }
+    }
+
+
 
     public ArrayList<Direction> findPathToEntity(Entity entity, Entity to){
         ArrayList<Direction> map = new ArrayList<>();
@@ -90,7 +128,21 @@ public class AIController {
         return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), targetTile, entityMap.getTileOf(entity), player.getDirection());
     }
 
-    public ArrayList<Direction> findPathToPlayer(Entity entity){
+    private ArrayList<Direction> findPathToPlayer(Entity entity){
         return recursiveBFS(new ArrayList<Direction>(), new HashSet<Tile>(), entityMap.getTileOf(player), entityMap.getTileOf(entity),  player.getDirection());
+    }
+
+    public void movePet(AI ai){
+        ArrayList<Direction> temp = findPathToPlayer(ai);
+        if(temp.size() > 5)
+            ai.move(findPathToPlayer(ai).get(0));
+        else if(temp.size() < 5 && !temp.isEmpty())
+            ai.move(findPathToItem(ai).get(0));
+    }
+
+    public void moveToPlayer(AI ai){
+        ArrayList<Direction> temp = findPathToPlayer(ai);
+        if(!temp.isEmpty())
+            ai.move(findPathToPlayer(ai).get(0));
     }
 }
