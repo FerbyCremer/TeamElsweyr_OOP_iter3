@@ -118,4 +118,12 @@ public class Zone {
         //This might need to change depending on how we implement spawnpoint
         entityMap.setContent(tiles[spawnPoint.x][spawnPoint.y], entity);
     }
+
+    public int getXDim(){
+        return tiles.length;
+    }
+
+    public int getYDim(){
+        return tiles[0].length;
+    }
 }
