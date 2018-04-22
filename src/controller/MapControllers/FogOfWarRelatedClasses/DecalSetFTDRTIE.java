@@ -27,6 +27,9 @@ public class DecalSetFTDRTIE implements DecalSet {
     ITEM
     ENTITY
      */
+
+    public DecalSetFTDRTIE(){ }
+
     public DecalSetFTDRTIE(int xDim, int yDim) {
         this.xDim = xDim;
         this.yDim = yDim;

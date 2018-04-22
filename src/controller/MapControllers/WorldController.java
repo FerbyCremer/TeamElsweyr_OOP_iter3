@@ -28,18 +28,15 @@ public class WorldController {
     private BringOutYourDeadHandler deadHandler;
     private AIController aiController;
 
-    public WorldController(World world, Player player, DecalSetContainer decalSetContainer, ZoneView zoneView, ZoneController zoneController, ActionHandler actionHandler, BringOutYourDeadHandler deadHandler, AIController aiController) {
-        this.world = world;
-        this.player = player;
-        this.decalSetContainer = decalSetContainer;
-        this.zoneView = zoneView;
+    public WorldController(ZoneController zoneController, ActionHandler actionHandler, BringOutYourDeadHandler deadHandler, AIController aiController) {
         this.zoneController = zoneController;
         this.actionHandler = actionHandler;
         this.deadHandler = deadHandler;
         this.aiController = aiController;
+        this.zoneView = new ZoneView();
     }
 
-    public WorldController(){}
+//    public WorldController(){}
 
 	public void changeZoneTo(String zoneID){
         updatePlayerPos(zoneID);
@@ -85,6 +82,15 @@ public class WorldController {
 
     public void setWorld(World world) {
         this.world = world;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+        aiController.setPlayer(player);
+    }
+
+    public void setDecalSetContainer(){
+        decalSetContainer = new DecalSetContainer(world);
     }
 
     /*private void updateZoneView(DecalSet decalSet){

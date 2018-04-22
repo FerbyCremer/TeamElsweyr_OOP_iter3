@@ -7,7 +7,9 @@ import controller.KeyControllers.KeyCommands.KeyCommand;
 import controller.KeyControllers.KeyControlState;
 import controller.KeyControllers.KeyController;
 import controller.KeyControllers.ToInventory;
+import controller.MapControllers.FogOfWarRelatedClasses.DecalSetContainer;
 import controller.MapControllers.WorldController;
+import controller.MapControllers.ZoneController;
 import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.Entity;
 import model.Entities.EntityStats;
@@ -21,6 +23,7 @@ import model.Map.World;
 import model.Map.Zone.ContentMap;
 import model.Map.Zone.TileRelatedClasses.*;
 import model.Map.Zone.Zone;
+import view.ZoneView;
 
 import java.awt.*;
 import java.io.File;
@@ -43,7 +46,6 @@ public class GameLoader {
     private KeyController cameraController;
     private KeyController inventoryController;
 
-
     private AIController aiController;
 
     private EffectBuilder effectBuilder;
@@ -54,14 +56,17 @@ public class GameLoader {
 
 
     public GameLoader(){
-        worldController = new WorldController();
+
+        //Initialize Controllers
         actionHandler = new ActionHandler();
-        effectBuilder = new EffectBuilder(worldController);
-        itemBuilder = new ItemBuilder(actionHandler, effectBuilder);
         deadHandler = new BringOutYourDeadHandler();
-        entityBuilder = new EntityBuilder(deadHandler);
         playerController = new KeyController("player", new ArrayList<>());
         aiController = new AIController();
+        worldController = new WorldController(new ZoneController(), actionHandler, deadHandler, aiController);
+        //Initialize builders
+        effectBuilder = new EffectBuilder(worldController);
+        itemBuilder = new ItemBuilder(actionHandler, effectBuilder);
+        entityBuilder = new EntityBuilder(deadHandler);
     }
 
 
@@ -160,8 +165,7 @@ public class GameLoader {
                         itemData.add(worldData.get(lineIndex));
                     } while (!worldData.get(lineIndex++).equals("endOfTakeable"));
 
-                    //TODO get item from itembuilder
-                    //items.add()
+                    items.add((Takeable) itemBuilder.buildItem(itemData));
                 }
                 Inventory inventory = new Inventory(entityStats, wealth, items);
 
@@ -184,13 +188,12 @@ public class GameLoader {
 
                 } while (!worldData.get(lineIndex++).equals("endOfEntityType"));
 
-                //TODO
                 Entity entity = null;
                 switch (entityType) {
                     case "player":
                         entity = entityBuilder.buildPlayer(entityTypeData, playerController, inventory, passable, entityStats);
-                        //setPlayer((Player) entity);
-                        aiController.setPlayer((Player) entity);
+                        //TODO store global reference to player somewhere?
+                        worldController.setPlayer((Player) entity);
                         break;
                     case "npc":
                         entity = entityBuilder.buildNPC(entityTypeData, aiController, inventory, passable, entityStats);
@@ -205,8 +208,6 @@ public class GameLoader {
                 }
 
                 entityMap.setNewLocation(tiles[x][y], entity);
-                //Inventory inventory = new Inventory()
-
             }
             //ENDENTITYMAP
 
@@ -223,8 +224,7 @@ public class GameLoader {
 
                 } while (!worldData.get(lineIndex++).equals("endOfItem"));
 
-                //TODO Get item from itembuilder
-                Item item = null;
+                Item item = itemBuilder.buildItem(itemData);
 
                 itemMap.setNewLocation(tiles[x][y], item);
             }
@@ -243,9 +243,7 @@ public class GameLoader {
 
                 } while (!worldData.get(lineIndex++).equals("endOfEffect"));
 
-                //TODO Get effect builder
-                EntityEffect effect = null;
-
+                EntityEffect effect = effectBuilder.buildEntityEffect(effectData);
                 AreaEffect areaEffect = new AreaEffect(effect);
                 areaEffectMap.setNewLocation(tiles[x][y], areaEffect);
             }
@@ -301,9 +299,7 @@ public class GameLoader {
 
                 } while (!worldData.get(lineIndex++).equals("endOfEffect"));
 
-                //TODO Get effect builder
-                EntityEffect effect = null;
-
+                EntityEffect effect = effectBuilder.buildEntityEffect(effectData);
                 Trap trap = new Trap(visible, active, effect);
                 trapMap.setNewLocation(tiles[x][y], trap);
 
@@ -328,7 +324,6 @@ public class GameLoader {
         }
         //END ZONES
 
-
         String currentZoneID = worldData.get(lineIndex++);
         Zone currentZone = null;
         //Fine zone with that id
@@ -341,6 +336,7 @@ public class GameLoader {
 
         World theWorld = new World(allZones, currentZone);
         worldController.setWorld(theWorld);
+        worldController.setDecalSetContainer();
         worldController.updateWorldController(currentZoneID);
         //TODO DO SOMETHING
 
