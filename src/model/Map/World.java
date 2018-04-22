@@ -44,4 +44,22 @@ public class World {
         Zone zone = getZone(zoneID);
         zone.addEntityToMap(player);
     }
+
+    public ArrayList<String> getZoneIds(){
+        ArrayList<String> zoneIds = new ArrayList<String>();
+        for(Zone zone : zones){
+            zoneIds.add(zone.getID());
+        }
+        return zoneIds;
+    }
+
+    public int getZoneXDim(String zoneID){
+        Zone zone = getZone(zoneID);
+        return zone.getXDim();
+    }
+
+    public int getZoneYDim(String zoneID){
+        Zone zone = getZone(zoneID);
+        return zone.getYDim();
+    }
 }

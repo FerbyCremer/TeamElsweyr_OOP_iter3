@@ -2,6 +2,7 @@ package controller.MapControllers.FogOfWarRelatedClasses;
 
 import model.Map.World;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,8 +14,11 @@ public class DecalSetContainer {
     }
 
     public DecalSetContainer(World world){
-        //TODO BUILD SHIT
         decalSetContainer = new ConcurrentHashMap<>();
+        ArrayList<String> zoneIDs = world.getZoneIds();
+        for(String zoneID : zoneIDs){
+            decalSetContainer.put(zoneID, new DecalSetFTDRTIE(world.getZoneXDim(zoneID), world.getZoneYDim(zoneID)));
+        }
     }
 
     public void addDecalSet(String zoneID){
