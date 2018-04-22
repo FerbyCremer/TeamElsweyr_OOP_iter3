@@ -46,6 +46,7 @@ public class EntityAction extends Action{
 
     }
 
+    //TODO actually calculate some accuracy shitz
     public void apply(Entity entity, int distance){
         if(distance * accuracy > 1) {
             entityEffect.apply(entity);

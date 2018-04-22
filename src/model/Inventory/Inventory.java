@@ -1,6 +1,7 @@
 package model.Inventory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import controller.LoadGame.SaveVisitor;
 import controller.LoadGame.Saveable;
@@ -13,7 +14,7 @@ import model.Updateable;
 
 public class Inventory implements Saveable{
 	private int wealth;
-	private ArrayList<Takeable> items;
+	private List<Takeable> items;
 	private final int size = 30;
 	private Equipment equipment;
 	private ArrayList<Updateable> observers;
@@ -21,11 +22,19 @@ public class Inventory implements Saveable{
 	public Inventory(EntityStats stats) {
 		wealth = 0;
 		equipment = new Equipment(stats);
-		items = new ArrayList<Takeable>();
+		items = new ArrayList<>();
 	}
 	
-	public Inventory(EntityStats stats, int wealth, ArrayList<Takeable> items) {
-		
+	public Inventory(EntityStats stats, int wealth, List<Takeable> items) {
+		this.equipment = new Equipment(stats);
+		this.wealth = wealth;
+
+		//TODO parse items and equip equipped
+		this.items = items;
+
+
+		//TODO observers
+        observers = new ArrayList<>();
 	}
 
 	
@@ -90,5 +99,21 @@ public class Inventory implements Saveable{
 	@Override
 	public String accept(SaveVisitor saveVisitor) {
 		return saveVisitor.saveInventory(this);
+	}
+
+	public List<String> getItemNames(){
+		//return items;
+		List<String> itemNames = new ArrayList<String>();
+		for(Takeable item :items)
+			itemNames.add(item.getName());
+		return itemNames;
+	}
+
+	public void removeItem(Item item){
+		items.remove(item);
+	}
+
+	public List<Takeable> getItems() {
+		return items;
 	}
 }

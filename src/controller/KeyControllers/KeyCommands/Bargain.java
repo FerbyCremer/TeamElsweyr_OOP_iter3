@@ -2,10 +2,10 @@ package controller.KeyControllers.KeyCommands;
 
 import model.Entities.Player;
 
-public class Attack extends KeyCommand {
+public class Bargain extends KeyCommand {
     private Player player;
-    public Attack(Player player){
-        super("attack");
+    public Bargain(Player player){
+        super("bargain");
         this.player = player;
     }
 

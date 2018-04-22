@@ -83,7 +83,7 @@ public class KeyBindingController implements Initializable {
 
     public KeyCode getKeyCodeFor(String name){
         //TODO get keycode from name from file
-        return NULL;
+        return KeyCode.K;
     }
 
     public void loadKeyCodes(List<KeyCommand> commands){

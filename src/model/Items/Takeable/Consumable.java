@@ -15,6 +15,7 @@ public class Consumable extends Takeable implements Usable{
 
     public Consumable(EntityEffect effect) {
         this.effect = effect;
+        price = 50;
     }
 
     @Override

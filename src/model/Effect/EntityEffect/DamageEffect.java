@@ -9,6 +9,7 @@ public class DamageEffect implements EntityEffect{
 
     public DamageEffect(int amount) {
         this.amount = amount;
+        this.name = "damage";
     }
 
     @Override

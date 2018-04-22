@@ -17,21 +17,28 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
 
     protected EntityStats stats;
     protected Inventory inventory;
-    private ArrayList<Terrain> terrains;
-    private ArrayList<Updateable> observers;
+    private List<Terrain> terrains;
+    private List<Updateable> observers;
     private String name;
     private BringOutYourDeadHandler deadHandler;
 
-    public Entity(EntityStats entityStats, BringOutYourDeadHandler deadHandler) {
-        this.stats = entityStats;
-        this.inventory = new Inventory(stats);
-        this.terrains = new ArrayList<>();
-        this.deadHandler = deadHandler;
-    }
-    
+//    public Entity(EntityStats entityStats, BringOutYourDeadHandler deadHandler) {
+//        this.stats = entityStats;
+//        this.inventory = new Inventory(stats);
+//        this.terrains = new ArrayList<>();
+//        this.deadHandler = deadHandler;
+//    }
+
     //Load Constructor
-    public Entity(EntityStats entityStats, Inventory inventory, ArrayList<Terrain> terrains, String name, BringOutYourDeadHandler deadHandler) {
-    	
+    public Entity(EntityStats entityStats, Inventory inventory, List<Terrain> terrains, String name, BringOutYourDeadHandler deadHandler) {
+        this.stats = entityStats;
+        this.inventory = inventory;
+        this.terrains = terrains;
+    	this.name = name;
+    	this.deadHandler = deadHandler;
+
+    	//TODO observers
+        observers = new ArrayList<>();
     }
 
 
@@ -78,7 +85,10 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
 	}
 		
 
-		
+	public void setCurrentSpeed(int currentSpeed) {
+		this.stats.setCurrentSpeed(currentSpeed);
+	}
+
 	//updateSpeed tells the EntityStats class to modify the entiy's speed
 	public void updateCurrentSpeed(int speed) {
 		stats.modifyCurrentSpeed(speed);
@@ -122,7 +132,7 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
     }
 
 
-    public ArrayList<Terrain> getTerrains() {
+    public List<Terrain> getTerrains() {
         return terrains;
     }
 
@@ -154,9 +164,9 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
 		return stats.getExperience();
 	}
 
-	public Inventory getInventory() {
-		return inventory;
-	}
+    public Inventory getInventory() {
+        return inventory;
+    }
 
 
 	@Override

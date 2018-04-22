@@ -20,9 +20,15 @@ public class AIController {
     private ContentMap<Item> itemMap;
 
 
+    public AIController(){    }
+
     public AIController(Zone zone, Player player){
         entityMap = zone.getEntityMap();
         itemMap = zone.getItemMap();
+        this.player = player;
+    }
+
+    public void setPlayer(Player player) {
         this.player = player;
     }
 

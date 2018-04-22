@@ -13,9 +13,9 @@ import java.util.HashMap;
 public class ActionHandler {
     private ActionPerformer actionPerformer;
 
-    public ActionHandler(Zone zone) {
+/*    public ActionHandler(Zone zone) {
         actionPerformer = new ActionPerformer(zone);
-    }
+    }*/
 
     public void createAction(Player player, Action action){
         action.createInstanceFor(this, player);

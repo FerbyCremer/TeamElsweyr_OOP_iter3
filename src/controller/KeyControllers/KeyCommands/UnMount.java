@@ -2,11 +2,12 @@ package controller.KeyControllers.KeyCommands;
 
 import model.Entities.Player;
 
-public class UnMount implements KeyCommand{
+public class UnMount extends KeyCommand{
 
     private Player player;
     
     public UnMount(Player player){
+        super("");
         this.player = player;
     }
     

@@ -10,17 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class World implements Saveable{
-    private ArrayList<Zone> zones;
+    private List<Zone> zones;
     private Zone currentZone;
 
-    public World(ArrayList<Zone> zones, Zone zone){
+    public World(List<Zone> zones, Zone zone){
         this.zones = zones;
         currentZone = zone;
     }
 
     public Zone changeZone(String zoneID){
+
         currentZone = getZone(zoneID);
 
+        System.out.println(zoneID);
+        System.out.println("Zone to change to " + currentZone.getID());
         return currentZone;
     }
 
@@ -28,11 +31,11 @@ public class World implements Saveable{
 
     private Zone getZone(String zoneID){
         for(Zone z: zones){
-            if(zoneID == z.getID()) {
+            System.out.println("Zone: " + z.getID());
+            if(zoneID.equals(z.getID())) {
                 return z;
             }
         }
-
         return null;
     }
 

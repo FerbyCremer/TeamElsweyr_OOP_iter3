@@ -5,6 +5,7 @@ import controller.LoadGame.SaveVisitor;
 import controller.LoadGame.Saveable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Terrain implements Saveable{
 
@@ -14,7 +15,7 @@ public class Terrain implements Saveable{
         this.name = name;
     }
 
-    public boolean canPass(ArrayList<Terrain> terrains){
+    public boolean canPass(List<Terrain> terrains){
         for (int i = 0; i < terrains.size(); i++) {
             if(this.equals(terrains.get(i))){
                 return true;
@@ -25,7 +26,7 @@ public class Terrain implements Saveable{
 
     public boolean equals(Terrain terrain){
 
-        if(this.name == terrain.name){
+        if(this.name.equals(terrain.name)){
             return true;
         }
         return false;

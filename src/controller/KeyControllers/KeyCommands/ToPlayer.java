@@ -2,12 +2,12 @@ package controller.KeyControllers.KeyCommands;
 
 import controller.KeyControllers.KeyControlState;
 
-public class ToPlayer implements KeyCommand {
+public class ToPlayer extends KeyCommand {
     private String name;
     private KeyControlState keyControlState;
 
     public ToPlayer(String name, KeyControlState keyControlState){
-        this.name = name;
+        super(name);
         keyControlState = keyControlState;
     }
 
