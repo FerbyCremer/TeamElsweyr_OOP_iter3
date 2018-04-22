@@ -1,12 +1,15 @@
 package model.Items.Takeable;
 
 
+import javafx.beans.property.BooleanProperty;
 import model.Inventory.Equipment;
 import model.Inventory.Inventory;
 import model.Items.Item;
 
 public abstract class Takeable extends Item {
     private boolean equipped;
+    private final BooleanProperty isEquipped = null;
+
     protected int price;
     private void addToInventory(Inventory inventory) {
     }
@@ -27,6 +30,11 @@ public abstract class Takeable extends Item {
     
     public boolean isEquipped() {
     	return equipped;
+    }
+
+    public BooleanProperty isEquippedProperty(){
+        isEquipped.setValue(equipped);
+        return isEquipped;
     }
 
     public int getPrice(){

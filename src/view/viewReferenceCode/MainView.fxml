@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox
+        xmlns:fx="http://javafx.com/fxml"
+        fx:controller="view.MainController"
+
+        prefWidth="300"
+        prefHeight="400"
+        fillWidth="false"
+>
+    <children>
+        <Label text="%title" />
+        <ListView fx:id="choicesView" />
+        <Button text="Force Change" onAction="#handleForceChange" />
+    </children>
+</VBox>

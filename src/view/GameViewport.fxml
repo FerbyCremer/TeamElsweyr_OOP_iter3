@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="view.GameViewport" prefHeight="400.0" prefWidth="600.0">
-    <top>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
 
-    </top>
+<?import javafx.scene.canvas.Canvas?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.GameObserver" fx:id="base" prefHeight="1080.0" prefWidth="1920.0" >
     <center>
-
+        <Pane>
+            <children>
+                <Canvas />
+            </children>
+        </Pane>
     </center>
-    <bottom>
-
-    </bottom>
     <left>
-
+        <VBox>
+            <children>
+                    <HBox>
+                        <Label text="%wealth" />
+                    </HBox>
+                    <ListView fx:id="inventoryList" />
+            </children>
+        </VBox>
     </left>
-    <right>
-
-    </right>
 </BorderPane>

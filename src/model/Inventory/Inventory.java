@@ -57,6 +57,16 @@ public class Inventory {
 		items.add(item);
 		exectue();
 	}
+
+	public void removeItem(int item) {
+		if(items.size() >= size) {
+			System.out.println("Inventory is full, cannot pick up new item!");
+			return;
+		}
+
+		items.remove(item);
+		exectue();
+	}
 	
 	public void modifyWealth(int amount) {
 		if(wealth + amount < 0) {

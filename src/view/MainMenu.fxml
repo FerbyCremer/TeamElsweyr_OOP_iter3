@@ -9,7 +9,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controller.ViewControllers.MenuController"
+            fx:controller="controller.ViewControllers.MenuObserver"
             prefHeight="720.0" prefWidth="1080.0" fx:id="base" stylesheets="@css/menus.css">
     <top>
         <HBox alignment="CENTER" spacing="12">

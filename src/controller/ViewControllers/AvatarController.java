@@ -4,8 +4,11 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Group;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -95,6 +98,17 @@ public class AvatarController implements Initializable {
 
     @FXML private void startGame() throws IOException {
         //TODO: initialize new game
+
+        Parent root = new Group();
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("view/GameViewport.fxml"),
+                    ResourceBundle.getBundle("view.GameViewport"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.scene = new Scene(root);
+        //TODO need two versions???
         this.showScene();
     }
 
@@ -107,8 +121,8 @@ public class AvatarController implements Initializable {
         Platform.runLater(() -> {
             Stage stage = (Stage) base.getScene().getWindow();
             stage.setResizable(true);
-            stage.setWidth(1080);
-            stage.setHeight(720);
+            stage.setWidth(1920);
+            stage.setHeight(1080);
 
             stage.setOnCloseRequest((WindowEvent e) -> {
                 Platform.exit();
