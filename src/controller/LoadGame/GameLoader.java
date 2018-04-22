@@ -1,6 +1,5 @@
 package controller.LoadGame;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import controller.MapControllers.WorldController;
 import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.Entity;

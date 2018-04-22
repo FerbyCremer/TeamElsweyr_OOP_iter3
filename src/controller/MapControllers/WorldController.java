@@ -81,7 +81,7 @@ public class WorldController {
         zoneController.setFogOfWarController(new FogOfWarController(player, zone, decalSetContainer.getDecalSet(zone.getID())));
     }
     private void updateZoneView(DecalSet decalSet){
-        zoneView.updateZoneView(decalSet);
+       // zoneView.updateZoneView(decalSet);
     }
 
 }

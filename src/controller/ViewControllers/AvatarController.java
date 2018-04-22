@@ -75,15 +75,6 @@ public class AvatarController implements Initializable {
         });
 
         skills.getToggles().addAll(scout, warrior, healer);
-
-        skillsCard.setImage(sneak);
-        scout.setSelected(true);
-
-        this.scene.setOnKeyPressed(event ->  {
-                if (event.getCode() == KeyCode.W){
-
-                }
-        });
     }
 
     @FXML private void leftCycle(){

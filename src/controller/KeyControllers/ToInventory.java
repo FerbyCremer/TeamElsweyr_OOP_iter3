@@ -9,6 +9,7 @@ public class ToInventory extends KeyCommand {
     public ToInventory(String name, KeyControlState keyControlState){
         super(name);
         this.keyControlState = keyControlState;
+
     }
 
     @Override

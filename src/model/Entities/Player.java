@@ -42,8 +42,6 @@ public class Player extends Entity{
 		keys.add(new Observe(this));
 		keys.add(new Attack(this));
 		keys.add(new UnMount(this));
-		keys.add(new ToCamera("ToCamera", new KeyControlState()));
-		keys.add(new ToInventory("ToInventory", new KeyControlState()));
 
     	//Register all keycommands to the playercontroller
     	for (KeyCommand command : keys){

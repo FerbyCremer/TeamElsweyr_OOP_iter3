@@ -74,8 +74,10 @@ public abstract class Entity implements EntityVisitable, EntityVisitor {
 		this.inventory = inventory;
 		execute();
 	}
-		
 
+	public void setCurrentSpeed(int currentSpeed) {
+		this.stats.setCurrentSpeed(currentSpeed);
+	}
 		
 	//updateSpeed tells the EntityStats class to modify the entiy's speed
 	public void updateCurrentSpeed(int speed) {
