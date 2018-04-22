@@ -69,7 +69,7 @@ public class EntityBuilder {
 				state = new ShopKeeperState();
 				break;
 				
-			case "talkativeState":
+			case "talkative":
 				state = new TalkativeState();
 				break;
 		}

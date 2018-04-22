@@ -33,7 +33,7 @@ public class ActionBuilder {
 		
 		
 		switch(attributes.get(index++)){
-			case "entity":
+			case "entityAction":
 				maxRange = Integer.parseInt(attributes.get(index++));
 				accuracy = Integer.parseInt(attributes.get(index++));
 				type = getType(attributes.get(index++));
@@ -48,7 +48,7 @@ public class ActionBuilder {
 				action = new EntityAction(maxRange, accuracy, type, entityEffect);
 				break;
 				
-			case "trap":
+			case "trapAction":
 				maxRange = Integer.parseInt(attributes.get(index++));
 				accuracy = Integer.parseInt(attributes.get(index++));
 				type = getType(attributes.get(index++));
@@ -76,10 +76,10 @@ public class ActionBuilder {
 				temp = new Linear();
 				break;
 				
-			case "Angular":
+			case "angular":
 				temp = new Angular();
 				break;
-			case "Radial":
+			case "radial":
 				temp = new Radial();
 				break;
 		}

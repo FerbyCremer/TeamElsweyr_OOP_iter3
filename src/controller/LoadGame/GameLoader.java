@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.security.Key;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -359,5 +360,126 @@ public class GameLoader {
         return null;
     }
 
+    public void setNeighborhood(Tile[][] tiles) {
+    	
+    	int collumnCount = tiles[0].length;
+    	int rowCount = tiles.length;
+    	
+    	for (int row = 0; row < rowCount; row++) {
+    		for (int collumn = 0; collumn < collumnCount; collumn++) {
+    			HashMap<Direction, Tile> neighbors = new HashMap<Direction, Tile>();
+    			
+    			if(collumn%2 == 0) {
+    				evenColNeighbors(row, collumn, rowCount, collumnCount, neighbors, tiles);
+    			}
+    			else {
+    				oddColNeighbors(row, collumn, rowCount, collumnCount, neighbors, tiles);
+    			}
+            }
+        }
+    }
+    
+    private void evenColNeighbors(int row, int col, int rowCount, int colCount, HashMap<Direction, Tile> neighbors, Tile tiles[][]) {
+    	//Add NW
+	     if (col - 1 >= 0) {
+	    	 neighbors.put(Direction.NW, tiles[row][col-1]);
+         }
+         else {
+        	 neighbors.put(Direction.NW, null);
+         }
 
+         //Add N
+         if (row - 1 >= 0) {
+             neighbors.put(Direction.N, tiles[row-1][col]);
+         }
+         else {
+        	 neighbors.put(Direction.N, null);
+         }
+
+         //Add NE
+         if (col + 1 < colCount) {
+             neighbors.put(Direction.NE, tiles[row][col+1]);
+         }
+         else {
+        	 neighbors.put(Direction.NE, null);
+         }
+         
+         //Add SW
+         if (row + 1 < rowCount && col - 1 >= 0) {
+             neighbors.put(Direction.SW, tiles[row+1][col-1]);
+         }
+         else {
+        	 neighbors.put(Direction.SW, null);
+         }
+
+         //Add S
+         if (row + 1 < rowCount) {
+         	neighbors.put(Direction.S, tiles[row+1][col]);
+         }
+         else {
+         	neighbors.put(Direction.S, null);
+         }
+
+         //Add SE
+         if (row + 1 < rowCount && col + 1 < colCount) {
+             neighbors.put(Direction.SE, tiles[row+1][col+1]);
+         }
+         else {
+        	 neighbors.put(Direction.SE, null);
+         }
+
+         tiles[row][col].setNeighbors(neighbors);
+    }
+    
+    private void oddColNeighbors(int row, int col, int rowCount, int colCount, HashMap<Direction, Tile> neighbors, Tile tiles[][]) {
+    	//Add NW
+    	if (col - 1 >= 0 && row-1 >= 0) {
+    		neighbors.put(Direction.NW, tiles[row-1][col-1]);
+    	}
+    	else {
+    		neighbors.put(Direction.NW, null);
+    	}
+
+    	//Add N
+    	if (row - 1 >= 0) {
+    		neighbors.put(Direction.N, tiles[row-1][col]);
+    	}
+    	else {
+    		neighbors.put(Direction.N, null);
+    	}
+
+    	//Add NE
+    	if (col + 1 < colCount && row - 1 >= 0) {
+    		neighbors.put(Direction.NE, tiles[row-1][col+1]);
+    	}
+    	else {
+    		neighbors.put(Direction.NE, null);
+    	}
+      
+    	//Add SW
+    	if (col - 1 >= 0) {
+    		neighbors.put(Direction.SW, tiles[row][col-1]);
+    	}
+    	else {
+    		neighbors.put(Direction.SW, null);
+    	}
+
+    	//Add S
+    	if (row + 1 < rowCount) {
+    		neighbors.put(Direction.S, tiles[row+1][col]);
+    	}
+    	else {
+    		neighbors.put(Direction.S, null);
+    	}
+
+    	//Add SE
+    	if (col + 1 < colCount) {
+    		neighbors.put(Direction.SE, tiles[row][col+1]);
+    	}
+    	else {
+    		neighbors.put(Direction.SE, null);
+    	}
+
+    	tiles[row][col].setNeighbors(neighbors);
+    }
 }
