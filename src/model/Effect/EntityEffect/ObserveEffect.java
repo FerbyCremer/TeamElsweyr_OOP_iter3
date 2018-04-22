@@ -18,11 +18,16 @@ public class ObserveEffect implements EntityEffect {
 
     @Override
     public String getName() {
-        return name;
+        return "observeEffect";
+    }
+
+    @Override
+    public String getAmount() {
+        return "" + amount;
     }
 
     @Override
     public String accept(SaveVisitor saveVisitor) {
-        return saveVisitor.saveEntityEffect(this);
+        return getName()+"\n"+getAmount()+"\n";
     }
 }

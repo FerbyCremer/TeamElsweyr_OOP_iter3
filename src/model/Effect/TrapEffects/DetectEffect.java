@@ -20,6 +20,6 @@ public class DetectEffect implements TrapEffect{
 
     @Override
     public String accept(SaveVisitor saveVisitor) {
-        return saveVisitor.saveTrapEffect(this);
+        return getName()+"\n";
     }
 }

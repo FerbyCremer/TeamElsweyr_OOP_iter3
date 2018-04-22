@@ -23,11 +23,16 @@ public class TeleportEffect implements EntityEffect {
 
     @Override
     public String getName() {
-        return name;
+        return "teleportEffect";
+    }
+
+    @Override
+    public String getAmount() {
+        return ""+zoneId;
     }
 
     @Override
     public String accept(SaveVisitor saveVisitor) {
-        return saveVisitor.saveEntityEffect(this);
+        return getName()+"\n"+getAmount()+"\n";
     }
 }
