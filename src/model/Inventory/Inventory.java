@@ -24,7 +24,15 @@ public class Inventory {
 	}
 	
 	public Inventory(EntityStats stats, int wealth, List<Takeable> items) {
-		
+		this.equipment = new Equipment(stats);
+		this.wealth = wealth;
+
+		//TODO parse items and equip equipped
+		this.items = items;
+
+
+		//TODO observers
+        observers = new ArrayList<>();
 	}
 
 	
@@ -79,5 +87,21 @@ public class Inventory {
 
 	public int getWealth(){
 		return wealth;
+	}
+
+	public List<String> getItemNames(){
+		//return items;
+		List<String> itemNames = new ArrayList<String>();
+		for(Takeable item :items)
+			itemNames.add(item.getName());
+		return itemNames;
+	}
+
+	public void removeItem(Item item){
+		items.remove(item);
+	}
+
+	public List<Takeable> getItems() {
+		return items;
 	}
 }

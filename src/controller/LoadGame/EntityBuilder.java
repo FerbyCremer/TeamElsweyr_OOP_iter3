@@ -31,8 +31,8 @@ public class EntityBuilder {
 		index = 0;
 		List<Integer> skillLvl = new ArrayList<Integer>();
 		Player player = null;
-		
-		for(int i = index+1; i < attributes.size(); i++) {
+
+		for(int i = index+1; i < attributes.size()-2; i++) {
 			skillLvl.add(Integer.parseInt(attributes.get(i)));
 		}
 
