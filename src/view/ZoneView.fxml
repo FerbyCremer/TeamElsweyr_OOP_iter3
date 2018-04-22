@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.canvas.Canvas?>
+<fx:root xmlns:fx="http://javafx.com/fxml"
+         type="javafx.scene.layout.Pane" fx:controller="view.ZoneView">
+    <Canvas fx:id="canvas" />
+</fx:root>
