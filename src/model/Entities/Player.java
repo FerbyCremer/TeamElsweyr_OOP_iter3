@@ -33,6 +33,11 @@ public class Player extends Entity {
         this.playerController = playerController;
         this.mountHandler = mountHandler;
 
+
+        skills.add(0,new Skill("bindwounds"));
+        skills.add(0,new Skill(""));
+        skills.add(0,new Skill("brawling"));
+
         //Add all movement/default commands
         keys.add(new MoveNorthWest(this));
         keys.add(new MoveNorth(this));
