@@ -11,4 +11,10 @@ public class RemoveEffect implements TrapEffect {
         trap.setActive();
         //trap.setVisiblity(false);
     }
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
