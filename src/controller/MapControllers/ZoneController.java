@@ -53,7 +53,7 @@ public class ZoneController {
 
     public void startGameLoop(){
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new GameLoop(), 1000, 10);
+        timer.scheduleAtFixedRate(new GameLoop(), 1000, 100);
     }
 
     public void setMovementController(MovementController movementController){
