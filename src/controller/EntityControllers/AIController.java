@@ -91,7 +91,7 @@ public class AIController {
             currentPath.add(direction);
             return currentPath;
         }
-        else if (visited.contains(current)){
+        else if (visited.contains(current) || currentPath.size() > 3){
             return null;
         }
         else if (current != target){
@@ -102,8 +102,9 @@ public class AIController {
             ArrayList<ArrayList<Direction>> possiblePaths = new ArrayList<ArrayList<Direction>>();
             for(int i = 0; i < 6; i++) {
                 ArrayList<Direction> path = recursiveBFS(currentPath, visited, target, current.getNeighbor(direction.getClockwise(i*60)), direction.getClockwise(i*60));
-                if(path != null) {
+                if(path != null && path.size() > 0) {
                     possiblePaths.add(path);
+                    System.out.println("Path = " + path.size());
                 }
             }
             return shortestOf(possiblePaths);
@@ -114,6 +115,7 @@ public class AIController {
     private ArrayList<Direction> shortestOf(List<ArrayList<Direction>> directions){
         ArrayList<Direction> shortestList = new ArrayList<>();
         int shortest = 100000;
+        System.out.println("shortest of " + shortestList.size());
         for(int i = 0; i < directions.size(); i++ ){
             if (directions.get(i).size() < shortest) {
                 shortest = directions.get(i).size();
@@ -143,6 +145,11 @@ public class AIController {
 
     public void moveToPlayer(AI ai){
         ArrayList<Direction> temp = findPathToPlayer(ai);
+        System.out.println("temp directions: ");
+        for (Direction d : temp
+             ) {
+            System.out.println("Direction - " + d);
+        }
         if(!temp.isEmpty())
             ai.move(findPathToPlayer(ai).get(0));
     }

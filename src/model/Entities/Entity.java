@@ -69,7 +69,7 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
 			
 		else {
 			stats.setFacingDirection(direction);
-            System.out.println("Facing: " + getDirection());
+			System.out.println("Facing: " + getDirection());
 		}
 
 		execute();
