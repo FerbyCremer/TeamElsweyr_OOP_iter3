@@ -30,7 +30,6 @@ public class InventoryObserver implements UpdateEntityRelatedView {
 
 
         private void constructButtons(){
-
             playerInventoryList.setCellFactory(new Callback<ListView<Takeable>, ListCell<Takeable>>()
             {
                 public ListCell<Takeable> call(ListView<Takeable> p)
@@ -39,6 +38,7 @@ public class InventoryObserver implements UpdateEntityRelatedView {
                 }
             });
             playerInventoryList.setItems(FXCollections.observableArrayList(playerInventory.getItems()));
+
         }
     @FXML protected void equip(Takeable item) {
         int itemIndex = playerInventory.getItems().indexOf(item);

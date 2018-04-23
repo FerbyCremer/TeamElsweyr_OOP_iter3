@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.ACONTROLLERTHATDOESNTEXIST">
+    <children>
+        <Button fx:id="CHANGETHISVALUE" />
+        <Label fx:id="CHANGETHISVALUETOO" />
+    </children>
+</HBox>
