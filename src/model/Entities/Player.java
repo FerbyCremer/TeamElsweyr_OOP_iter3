@@ -166,6 +166,7 @@ public class Player extends Entity implements Saveable {
 
     public void swapState(MountedState mountedState) {
         this.mountedState = mountedState;
+        terrains = mountedState.getTerrains();
         execute();
     }
 
@@ -195,6 +196,7 @@ public class Player extends Entity implements Saveable {
         npc.doInteraction(this);
     }
 
+    @Override
     public void visit(Mount mount) {
         mountHandler.mount(this, mount);
     }
