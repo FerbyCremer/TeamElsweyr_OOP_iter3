@@ -16,6 +16,8 @@ public abstract class Takeable extends Item {
 
     public abstract void equip(Equipment equipment);
 
+    public abstract void unequip(Equipment equipment);
+
     //TODO: Make this a deep copy
     public Takeable clone() {
         return this;

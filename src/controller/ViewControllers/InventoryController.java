@@ -66,6 +66,7 @@ public class InventoryController {
     private void updateIsSelectedView(boolean newValue)
     {
         isSelectedView.setSelected(newValue);
+        model.update(item, newValue);
     }
 
 /*    private class onClickItem implements EventHandler<ActionEvent> {

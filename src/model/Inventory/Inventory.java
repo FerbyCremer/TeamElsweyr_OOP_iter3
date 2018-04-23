@@ -47,6 +47,11 @@ public class Inventory {
 		items.get(index).equip(equipment);
 		exectue();
 	}
+
+	public void unequipItem(int index) {
+		items.get(index).unequip(equipment);
+		exectue();
+	}
 	
 	public void addItem(Takeable item) {
 		if(items.size() >= size) {

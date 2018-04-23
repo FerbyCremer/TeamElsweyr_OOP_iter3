@@ -27,6 +27,11 @@ public class Tool extends Takeable implements Usable {
     }
 
     @Override
+    public void unequip(Equipment equipment) {
+        equipment.unequipTool();
+    }
+
+    @Override
     public void touchedBy(Entity entity) {
         entity.addToInventory(this);
 

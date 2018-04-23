@@ -13,55 +13,49 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
-public class InventoryCell extends ListCell<Takeable>
-{
+public class InventoryCell extends ListCell<Takeable> {
     private final RadioButton radioButton = new RadioButton();
-    private Takeable selectedItem;
+    private Takeable selectedItem = this.getItem();
 
     protected Inventory bag;
 
     public ToggleGroup group = new ToggleGroup();
+
     public InventoryCell(Inventory bag) {
         this.bag = bag;
         radioButton.setToggleGroup(group);
 
+        radioButton.setText(selectedItem.getName());
+
         radioButton.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
             if (isNowSelected) {
                 //selectedItem = getItem();
-               updateItem(selectedItem, true);
+                updateItem(selectedItem, true);
             }
-            if(wasSelected) {
+            if (wasSelected) {
                 updateItem(selectedItem, false);
             }
         });
 
     }
 
-  //  @Override
-  /*public void updateItem(Takeable obj, boolean empty) {
+    public void update(Takeable obj, boolean empty) {
         super.updateItem(obj, empty);
-        if (empty) {
-            setText(null);
-            setGraphic(null);
+        if (empty == false) {
+            radioButton.setSelected(false);
+            //obj.setEquip(false);
         } else {
-            radioButton.setText(obj.getName());
-
-            radioButton.setSelected(Objects.equals(obj, selectedItem.getName()));
-
-            setGraphic(radioButton);
+            radioButton.setSelected(true);
+            bag.equipItem(this.getIndex());
         }
     }
-}*/
-
 
     @Override
-    protected void updateItem(Takeable model, boolean bln)
-    {
+    protected void updateItem(Takeable model, boolean bln) {
         super.updateItem(model, bln);
 //TODO: Equipment logic somehow here
-        if(model != null)
-        {
-            radioButton.setText(model.getName());
+        if (model != null) {
+//            radioButton.setText(model.getName());
 
             URL location = InventoryCell.class.getResource("InventoryView.fxml");
 
@@ -69,15 +63,12 @@ public class InventoryCell extends ListCell<Takeable>
             fxmlLoader.setLocation(location);
             fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
 
-            try
-            {
-                Node root = (Node)fxmlLoader.load(location.openStream());
+            try {
+                Node root = (Node) fxmlLoader.load(location.openStream());
                 InventoryController controller = (InventoryController) fxmlLoader.getController();
-                controller.equip(model);
+                controller.setModel(this);
                 setGraphic(root);
-            }
-            catch(IOException ioe)
-            {
+            } catch (IOException ioe) {
                 throw new IllegalStateException(ioe);
             }
         }
