@@ -1,16 +1,18 @@
 package controller.KeyControllers.KeyCommands;
 
 import model.Entities.Player;
+import view.ZoneView;
 
 public class CameraUp extends KeyCommand {
-    private Player player;
-    public CameraUp(Player player){
+
+    private ZoneView zoneView;
+    public CameraUp(ZoneView zoneView){
         super("cameraUp");
-        this.player = player;
+        this.zoneView = zoneView;
     }
 
     @Override
     public void perform() {
-        player.attack();
+        zoneView.offSetCamera(0,-35);
     }
 }

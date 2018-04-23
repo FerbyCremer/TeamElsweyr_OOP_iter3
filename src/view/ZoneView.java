@@ -20,6 +20,7 @@ public class ZoneView {
 
     private DecalSet decalSet;
     private SpriteLoader sprites;
+    private boolean cameraLocked;
 
     //TODO remove this stuff
 
@@ -48,6 +49,7 @@ public class ZoneView {
         decalSet = new DecalSetFTDRTIE();
         sprites = new SpriteLoader();
         this.camera = camera;
+        cameraLocked = true;
 
         screenWidth = camera.getParent().getScene().getWindow().getWidth();
         screenHeight = camera.getParent().getScene().getWindow().getHeight();
@@ -62,7 +64,9 @@ public class ZoneView {
     }
 
     public void renderGrid(){
-        focusPlayer();
+        if (cameraLocked) {
+            focusPlayer();
+        }
         double hexX = 0;
         double hexY = hexHeight/2;
 
@@ -125,7 +129,20 @@ public class ZoneView {
     public void centerCamera(double x, double y){
        x -= screenWidth/2;
        y -= screenHeight/2;
+
+       cameraX = x;
+       cameraY = y;
        //System.out.println(screenWidth + " " + screenHeight);
        camera.relocate(x, y);
+    }
+
+    public void offSetCamera(double x, double y){
+        cameraX+=x;
+        cameraY+=y;
+        camera.relocate(cameraX, cameraY);
+    }
+
+    public void setCameraLocked(boolean value){
+        cameraLocked = value;
     }
 }

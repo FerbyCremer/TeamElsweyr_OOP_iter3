@@ -30,13 +30,13 @@ P
 removeTrap
 L
 toPlayer
-1
+N
 unMount
 U
 useTool
 2
 toCamera
-T
+M
 cameraUp
 Up
 cameraDown
