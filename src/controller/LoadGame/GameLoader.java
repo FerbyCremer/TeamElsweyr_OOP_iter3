@@ -50,6 +50,7 @@ import java.util.Scanner;
 public class GameLoader {
 
 
+    private  String workingDir = System.getProperty("user.dir");
     private Canvas canvas;
     private GameObserver gameObserver;
     private InventoryObserver inventoryObserver;
@@ -86,7 +87,7 @@ public class GameLoader {
         ActionInterface actionInterface = new ActionObserver();
         actionHandler = new ActionHandler(actionInterface);
         mountHandler = new MountHandler();
-        keyBindingMapper = new KeyBindingMapper("src/assets/saves/keybinds.txt");
+        keyBindingMapper = new KeyBindingMapper(workingDir +"/assets/saves/keybinds.txt");
         playerController = new KeyController("player", keyBindingMapper);
         aiController = new AIController();
         zoneView = new ZoneView(canvas, camera);
@@ -349,7 +350,7 @@ public class GameLoader {
     }
 
     public WorldController load(String temp){
-        String filepath = "src/assets/saves/" + temp + ".txt";
+        String filepath = workingDir + "\\assets\\saves\\" + temp + ".txt";
         parseFile(filepath);
 
         //TODO do this here or in menu to get KeyControlState reference

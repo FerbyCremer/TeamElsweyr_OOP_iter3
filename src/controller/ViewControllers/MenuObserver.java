@@ -26,14 +26,16 @@ public class MenuObserver implements Initializable {
     private Scene scene;
     private GameLoader gameLoader;
     private GameSaver gameSaver;
+    private String workingDir = System.getProperty("user.dir");
 
     public void initialize(URL u, ResourceBundle b){
-        base.setBackground(new Background(new BackgroundImage(new Image("assets/backdrops/mainMenu.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+        System.out.print(workingDir);
+        base.setBackground(new Background(new BackgroundImage(new Image("file:" + workingDir + "/assets/backdrops/mainMenu.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
     }
 
     @FXML private void startNewGame() throws IOException{
         Parent window;
-        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getResource("/view/AvatarCreator.fxml"));
+        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getResource( "/view/AvatarCreator.fxml"));
         window = (BorderPane) fmxlLoader.load();
 
         this.scene = new Scene(window);
@@ -43,7 +45,7 @@ public class MenuObserver implements Initializable {
 
     @FXML private void loadGame() throws IOException {
         Parent window;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(  "/view/GameViewport.fxml"));
         this.showGame(fxmlLoader);
 
         window = (BorderPane) fxmlLoader.load();

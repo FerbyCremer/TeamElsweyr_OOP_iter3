@@ -40,19 +40,20 @@ public class AvatarController implements Initializable {
     @FXML ImageView skillsCard;
     @FXML private BorderPane base;
 
+    private String workingDir = System.getProperty("user.dir");
     private GameLoader gameLoader;
     private GameSaver gameSaver;
 
-    protected Image[] avatars = {new Image("assets/avatars/lgAvatar/1.png"), new Image("assets/avatars/lgAvatar/2.png"), new Image("assets/avatars/lgAvatar/3.png"),
-            new Image("assets/avatars/lgAvatar/4.png"), new Image("assets/avatars/lgAvatar/5.png"), new Image("assets/avatars/lgAvatar/6.png"),new Image("assets/avatars/lgAvatar/7.png"),
-            new Image("assets/avatars/lgAvatar/8.png"), new Image("assets/avatars/lgAvatar/9.png"), new Image("assets/avatars/lgAvatar/10.png"), new Image("assets/avatars/lgAvatar/11.png"),
-            new Image("assets/avatars/lgAvatar/12.png"), new Image("assets/avatars/lgAvatar/13.png"), new Image("assets/avatars/lgAvatar/14.png"), new Image("assets/avatars/lgAvatar/15.png")};
+    protected Image[] avatars = {new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/1.png"), new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/2.png"), new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/3.png"),
+            new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/4.png"), new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/5.png"), new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/6.png"),new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/7.png"),
+            new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/8.png"), new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/9.png"), new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/10.png"), new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/11.png"),
+            new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/12.png"), new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/13.png"), new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/14.png"), new Image("file:" + workingDir +"/" +"assets/avatars/lgAvatar/15.png")};
 
     protected String[] SMavatars = {"1i", "2i", "3i", "4i", "5i", "6i", "7i", "8i", "9i", "10i", "11i", "12i", "13i", "14i", "15i"};
 
-    private Image sneak = new Image("assets/avatars/skillCards/scoutCard.jpeg");
-    private Image smasher = new Image("assets/avatars/skillCards/smasherCard.jpeg");
-    private Image summoner = new Image("assets/avatars/skillCards/summonerCard.jpeg");
+    private Image sneak = new Image("file:" + workingDir +"/" +"assets/avatars/skillCards/scoutCard.jpeg");
+    private Image smasher = new Image("file:" + workingDir +"/" +"assets/avatars/skillCards/smasherCard.jpeg");
+    private Image summoner = new Image("file:" + workingDir +"/" +"assets/avatars/skillCards/summonerCard.jpeg");
 
     protected int i = 0;
     private String temp;
@@ -68,7 +69,7 @@ public class AvatarController implements Initializable {
 
     public void initialize(URL url, ResourceBundle bundle){
 
-        base.setBackground(new Background(new BackgroundImage(new Image("assets/backdrops/mainMenu.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
+        base.setBackground(new Background(new BackgroundImage(new Image("file:" + workingDir +"/assets/backdrops/mainMenu.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
         base.setPadding(new Insets(32));
         avatar.setImage(avatars[i]);
 
