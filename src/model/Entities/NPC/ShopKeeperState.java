@@ -3,14 +3,19 @@ package model.Entities.NPC;
 import controller.EntityControllers.AIController;
 import controller.LoadGame.SaveVisitor;
 import model.Entities.Player;
+import view.TradeView;
 import view.UpdateEntityRelatedView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShopKeeperState implements NPCState {
-    private ArrayList<UpdateEntityRelatedView> observers;
+    private List<UpdateEntityRelatedView> observers;
 
-    public ShopKeeperState(){}
+    public ShopKeeperState(TradeView tradeView){
+        observers = new ArrayList<>();
+        observers.add(tradeView);
+    }
 
 
     @Override

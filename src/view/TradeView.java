@@ -19,26 +19,22 @@ import java.util.List;
 public class TradeView implements UpdateEntityRelatedView {
 
 
-    protected Entity player;
     protected Entity shop;
 
-    protected Inventory playerInventory = player.getInventory();
-    protected Inventory npcInventory = shop.getInventory();
+    protected Inventory playerInventory;
+    protected Inventory npcInventory;
 
     @FXML protected ListView<Takeable> playerInventoryList;
-
     @FXML protected ListView<Takeable> npcInventoryList;
 
-    public TradeView(Entity player, Entity shop){
-        this.player = player;
-        this.shop = shop;
-        constructButtons();
-    }
+
+    public TradeView(){ }
+
 
     @Override
     public void update(Entity... entities) {
-        playerInventory = player.getInventory();
-        npcInventory = shop.getInventory();
+        playerInventory = entities[0].getInventory();
+        npcInventory = entities[1].getInventory();
         constructButtons();
     }
 
