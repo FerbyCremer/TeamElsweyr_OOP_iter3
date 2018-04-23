@@ -1,5 +1,6 @@
 package view;
 
+import controller.KeyControllers.KeyCommands.Observe;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSet;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSetFTDRTIE;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import model.Actions.Action;
 import model.Actions.ActionType.ActionInterface;
 import model.Actions.ActionType.ActionObserver;
+import model.Effect.EntityEffect.ObserveObserver;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -35,10 +37,10 @@ public class ZoneView {
 
     double cameraX;
     double cameraY;
+    ObserveObserver observeObserver;
     ActionInterface actionInterface;
 
    public ZoneView(Canvas canvas, Camera camera){
-    ActionInterface actionInterface;
         this.canvas = canvas;
         gc = canvas.getGraphicsContext2D();
         hexHeight = 80;
@@ -55,6 +57,10 @@ public class ZoneView {
         this.actionInterface = actionInterface;
     }
 
+    public void addObserver(ObserveObserver observeObserver){
+        this.observeObserver = observeObserver;
+    }
+
     public void renderGrid(){
         focusPlayer();
         double hexX = 0;
@@ -68,8 +74,13 @@ public class ZoneView {
                     System.out.println(s);
                     gc.drawImage(sprites.getImage(s), hexX, hexY, hexWidth, hexHeight);
                 }
-                if(actionInterface.getPoints()) {
-                    Image f = new Image(workingDirectory + "/src/assets/" + actionInterface.getActionName() + ".png");
+                if(actionInterface.getPoints(new Point(x,y))) {
+                    gc.drawImage(sprites.getImage(actionInterface.getActionName()), hexX, hexY, hexWidth, hexHeight);
+                }
+                if(observeObserver.hasText()){
+                    if(observeObserver.getPoint().x == x && observeObserver.getPoint().y == y){
+                        gc.fillText(observeObserver.getText(), hexX, hexY);
+                    }
                 }
                 hexY+= hexHeight;
             }

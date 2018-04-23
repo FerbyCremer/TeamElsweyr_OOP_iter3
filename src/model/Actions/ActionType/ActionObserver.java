@@ -38,9 +38,11 @@ public class ActionObserver implements ActionInterface {
         name = null;
     }
 
-    public boolean getPoints(){
-        if(coolDown > 0)
-            return true;
+    public boolean getPoints(Point point){
+        if(points.contains(point)) {
+            if (coolDown > 0)
+                return true;
+        }
         return false;
     }
 }
