@@ -23,8 +23,10 @@ public class Linear implements ActionType {
             return affectedTiles;
         }
         for(int i = 1; i <= range; i++){
-            affectedTiles.put(tempTile, i);
-            tempTile = tempTile.getNeighbor(direction);
+            if(tempTile != null) {
+                affectedTiles.put(tempTile, i);
+                tempTile = tempTile.getNeighbor(direction);
+            }
         }
 
         return affectedTiles;

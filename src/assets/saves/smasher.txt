@@ -532,7 +532,7 @@ entityAction
 radial
 entityEffect
 damageEffect
-15
+-30
 endOfTakeable
 end
 passable
