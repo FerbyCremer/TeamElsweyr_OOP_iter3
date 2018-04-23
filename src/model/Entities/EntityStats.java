@@ -35,6 +35,7 @@ public class EntityStats {
 		this.detectRange = detectRange;
 		this.currentSpeed = currentSpeed;
 		this.facingDirection = Direction.N;
+		this.maxSpeed = 5;
 	}
 	
 	//Health

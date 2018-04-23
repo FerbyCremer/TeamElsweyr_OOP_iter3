@@ -145,6 +145,8 @@ public class MenuObserver implements Initializable {
 
             gameLoader = new GameLoader(canvas, gameObserver);
             WorldController theworld = gameLoader.load();
+
+            gameLoader.initializeKeyController(mainScene);
             gameSaver = new GameSaver(theworld);
 
             theworld.runGame();

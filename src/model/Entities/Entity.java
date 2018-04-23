@@ -63,13 +63,14 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
 		
 	//Changes the entity's speed based on whether or not they are facing the right direction
 	public void move(Direction direction) {
-		if(direction == stats.getFacingDirection()) {
+		if(direction == getDirection()) {
 			stats.modifyCurrentSpeed(stats.getMaxSpeed());
 		}
 			
 		else {
 			stats.setFacingDirection(direction);
 		}
+        System.out.println(getDirection());
 		execute();
 	}
 
