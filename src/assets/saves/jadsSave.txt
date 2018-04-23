@@ -159,7 +159,7 @@ entityEffect
 damageEffect
 15
 endOfTakeable
-end
+endOfInventory
 passable
 grass
 endOfPassable

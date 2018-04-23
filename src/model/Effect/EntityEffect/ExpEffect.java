@@ -1,5 +1,6 @@
 package model.Effect.EntityEffect;
 
+import controller.LoadGame.SaveVisitor;
 import model.Entities.Entity;
 
 public class ExpEffect implements EntityEffect {
@@ -17,6 +18,16 @@ public class ExpEffect implements EntityEffect {
 
     @Override
     public String getName() {
-        return name;
+        return "expEffect";
+    }
+
+    @Override
+    public String getAmount() {
+        return ""+amount;
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return getName()+"\n"+getAmount()+"\n";
     }
 }

@@ -1,6 +1,7 @@
 package model.Entities.NPC;
 
 import controller.EntityControllers.AIController;
+import controller.LoadGame.SaveVisitor;
 import model.Entities.Player;
 import view.UpdateEntityRelatedView;
 
@@ -23,5 +24,11 @@ public class TalkativeState implements NPCState {
     public void performInteraction(NPC npc, Player player) {
         for(UpdateEntityRelatedView v: observers)
             v.update(npc);
+    }
+
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return "talkativeState\n";
     }
 }

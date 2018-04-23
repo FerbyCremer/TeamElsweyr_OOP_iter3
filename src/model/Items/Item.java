@@ -1,9 +1,10 @@
 package model.Items;
 
 
+import controller.LoadGame.Saveable;
 import model.Entities.Entity;
 
-public abstract class Item {
+public abstract class Item implements Saveable{
     private String name;
 
     public abstract void touchedBy(Entity entity);

@@ -1,10 +1,13 @@
 package model.Map;
 
 
+import controller.LoadGame.SaveVisitor;
+import controller.LoadGame.Saveable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Terrain {
+public class Terrain implements Saveable{
 
     private String name;
 
@@ -31,5 +34,10 @@ public class Terrain {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveTerrain(this);
     }
 }

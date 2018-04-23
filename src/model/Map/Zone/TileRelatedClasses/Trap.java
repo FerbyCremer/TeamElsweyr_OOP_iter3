@@ -1,9 +1,11 @@
 package model.Map.Zone.TileRelatedClasses;
 
+import controller.LoadGame.SaveVisitor;
+import controller.LoadGame.Saveable;
 import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.Entity;
 
-public class Trap {
+public class Trap implements Saveable{
     private boolean visible;
     private boolean active;
     private EntityEffect effect;
@@ -36,4 +38,20 @@ public class Trap {
         return null;
     }
 
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public EntityEffect getEffect() {
+        return effect;
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveTrap(this);
+    }
 }

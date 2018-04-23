@@ -3,6 +3,8 @@ package model.Inventory;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.LoadGame.SaveVisitor;
+import controller.LoadGame.Saveable;
 import model.Entities.EntityStats;
 import model.Entities.Player;
 import model.Items.Takeable.*;

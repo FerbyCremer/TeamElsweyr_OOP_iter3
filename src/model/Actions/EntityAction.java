@@ -2,6 +2,7 @@ package model.Actions;
 
 
 import controller.Handlers.ActionHandler;
+import controller.LoadGame.SaveVisitor;
 import model.Actions.ActionType.ActionType;
 import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.Entity;
@@ -10,6 +11,7 @@ import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
 import java.util.HashMap;
+import java.util.Random;
 
 
 public class EntityAction extends Action{
@@ -35,22 +37,30 @@ public class EntityAction extends Action{
     }
 
     @Override
+    public String saveEffect(SaveVisitor saveVisitor) {
+        return entityEffect.accept(saveVisitor);
+    }
+
+    @Override
     public void createInstanceFor(ActionHandler actionHandler, Player player) {
         actionHandler.createAction(player, this);
 
     }
 
-    //TODO actually calculate some accuracy shitz
     public void apply(Entity entity, int distance){
-        if(distance * accuracy > 1) {
+        if (targetHit(distance)){
             entityEffect.apply(entity);
-        }
-        else {
-            //miss
         }
     }
 
     public String getEffectName() {
-        return entityEffect.getName();
+        System.out.println( " entiy efffect get mname = " + entityEffect.getName());
+        return ("entityEffect\n" + entityEffect.getName() + "\n" +entityEffect.getAmount());
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return "entityAction";
+
     }
 }

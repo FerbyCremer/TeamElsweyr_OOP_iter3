@@ -7,6 +7,8 @@ import controller.KeyControllers.KeyCommands.MoveKeyListeners.*;
 import controller.KeyControllers.KeyControlState;
 import controller.KeyControllers.KeyController;
 import controller.KeyControllers.ToInventory;
+import controller.LoadGame.SaveVisitor;
+import controller.LoadGame.Saveable;
 import model.Entities.MountSate.Mounted;
 import model.Entities.MountSate.MountedState;
 import model.Entities.MountSate.Unmounted;
@@ -19,19 +21,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 //TODO add playerController
-public class Player extends Entity {
+public class Player extends Entity implements Saveable {
     private List<Skill> skills;
     private MountedState mountedState;
     private MountHandler mountHandler;
     private KeyController playerController;
 
-    private Player(List<Skill> skills, EntityStats stats, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, List<KeyCommand> keys, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
+    private Player(List<Skill> skills, List<Integer> lvl, EntityStats stats, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, List<KeyCommand> keys, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         super(stats, inventory, terrains, name, deadHandler);
         this.skills = skills;
         mountedState = new Unmounted();
 
         this.playerController = playerController;
         this.mountHandler = mountHandler;
+
+        int index = lvl.size()-1;
+
+        skills.add(0,new Skill("observation", lvl.remove(index--)));
+        skills.add(0,new Skill("bargain", lvl.remove(index--)));
+        skills.add(0,new Skill("bindWounds", lvl.remove(index--)));
 
         //Add all movement/default commands
         keys.add(new MoveNorthWest(this));
@@ -58,13 +66,15 @@ public class Player extends Entity {
     public static Player playerMakeSmasher(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
-        temp_skills.add(new Skill("one-handed weapon"));
-        temp_skills.add(new Skill("two-handed weapon"));
-        temp_skills.add(new Skill("brawling"));
+        int index = lvl.size()-1;
+
+        temp_skills.add(0, new Skill("oneHanded", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("twoHanded", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("brawling", lvl.remove(index--)));
 
 
         List<KeyCommand> keys = new ArrayList<>();
-        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
+        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
 
         return player;
     }
@@ -72,16 +82,18 @@ public class Player extends Entity {
     public static Player playerMakeSneak(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
-        temp_skills.add(new Skill("pick-pocket", lvl.get(0)));
-        temp_skills.add(new Skill("detect trap", lvl.get(1)));
-        temp_skills.add(new Skill("remove trap", lvl.get(2)));
-        temp_skills.add(new Skill("creep", lvl.get(3)));
-        temp_skills.add(new Skill("rangedWeapon", lvl.get(4)));
+        int index = lvl.size()-1;
+
+        temp_skills.add(0, new Skill("pickPocket", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("detectTrap", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("removeTrap", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("creep", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("rangedWeapon", lvl.remove(index--)));
 
         List<KeyCommand> keys = new ArrayList<>();
         //Add sneak specific commands
 
-        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
+        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
 
         return player;
     }
@@ -89,14 +101,16 @@ public class Player extends Entity {
     public static Player playerMakeSummoner(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
-        temp_skills.add(new Skill("enchantment"));
-        temp_skills.add(new Skill("boon"));
-        temp_skills.add(new Skill("bane"));
-        temp_skills.add(new Skill("staff"));
+        int index = lvl.size()-1;
+
+        temp_skills.add(0, new Skill("enchantment", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("boon", lvl.remove(index--)));
+        temp_skills.add(0, new Skill("bane",lvl.remove(index--)));
+        temp_skills.add(0, new Skill("staff", lvl.remove(index--)));
 
         List<KeyCommand> keys = new ArrayList<>();
         // Add summoner specific commands
-        Player player = new Player(temp_skills, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
+        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
 
         return player;
     }
@@ -151,6 +165,10 @@ public class Player extends Entity {
         return ((Mounted) mountedState).getMount();
     }
 
+		@Override
+    public String accept(SaveVisitor saveVisitor){
+    	return saveVisitor.savePlayer(this);
+		}
 
     public void visit(NPC npc) {
         npc.doInteraction(this);

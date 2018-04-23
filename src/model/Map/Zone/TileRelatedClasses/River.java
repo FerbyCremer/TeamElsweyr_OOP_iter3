@@ -1,9 +1,11 @@
 package model.Map.Zone.TileRelatedClasses;
 
+import controller.LoadGame.SaveVisitor;
+import controller.LoadGame.Saveable;
 import model.Entities.Entity;
 import model.Map.Direction;
 
-public class River {
+public class River implements Saveable {
     private int flowRate;
     private Direction direction;
     private String name;
@@ -39,7 +41,20 @@ public class River {
         return Direction.getDirectionClosest(degrees);
     }
 
+    public int getFlowRate() {
+        return flowRate;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveRiver(this);
     }
 }

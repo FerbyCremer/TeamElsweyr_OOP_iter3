@@ -2,6 +2,7 @@ package model.Actions;
 
 
 import controller.Handlers.ActionHandler;
+import controller.LoadGame.SaveVisitor;
 import model.Actions.ActionType.ActionType;
 import model.Effect.TrapEffects.TrapEffect;
 
@@ -38,23 +39,30 @@ public class TrapAction extends Action{
     }
 
     @Override
+    public String saveEffect(SaveVisitor saveVisitor) {
+        return "";
+    }
+
+    @Override
     public void createInstanceFor(ActionHandler actionHandler, Player player) {
         actionHandler.createAction(player, this);
     }
 
+
     @Override
     public String getEffectName() {
-        return trapEffect.getName();
+        return "trapEffect\n" + trapEffect.getName();
     }
 
     public void apply(Trap trap, int distance){
-        if(distance * accuracy > 1){
+        if (targetHit(distance)){
             trapEffect.apply(trap);
-        }
-        else {
-            //miss
         }
     }
 
 
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return "trapAction";
+    }
 }

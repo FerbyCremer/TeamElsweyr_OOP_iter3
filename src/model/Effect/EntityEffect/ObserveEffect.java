@@ -1,5 +1,6 @@
 package model.Effect.EntityEffect;
 
+import controller.LoadGame.SaveVisitor;
 import model.Entities.Entity;
 import view.UpdateEntityRelatedView;
 
@@ -19,6 +20,16 @@ public class ObserveEffect implements EntityEffect {
 
     @Override
     public String getName() {
-        return name;
+        return "observeEffect";
+    }
+
+    @Override
+    public String getAmount() {
+        return "" + amount;
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return getName()+"\n"+getAmount()+"\n";
     }
 }

@@ -17,7 +17,7 @@
             <children>
                 <VBox>
                     <HBox>
-                        <Label text="%wealth" />
+
                     </HBox>
                     <ListView fx:id="inventoryList" />
                 </VBox>

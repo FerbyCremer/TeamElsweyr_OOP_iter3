@@ -1,5 +1,6 @@
 package model.Effect.EntityEffect;
 
+import controller.LoadGame.SaveVisitor;
 import controller.MapControllers.WorldController;
 import model.Entities.Entity;
 
@@ -22,6 +23,16 @@ public class TeleportEffect implements EntityEffect {
 
     @Override
     public String getName() {
-        return name;
+        return "teleportEffect";
+    }
+
+    @Override
+    public String getAmount() {
+        return ""+zoneId;
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return getName()+"\n"+getAmount()+"\n";
     }
 }

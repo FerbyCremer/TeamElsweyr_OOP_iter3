@@ -1,5 +1,6 @@
 package model.Actions.ActionType;
 
+import controller.LoadGame.SaveVisitor;
 import model.Actions.Action;
 import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
@@ -27,4 +28,8 @@ public class Linear implements ActionType {
     }
 
 
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return "linear";
+    }
 }

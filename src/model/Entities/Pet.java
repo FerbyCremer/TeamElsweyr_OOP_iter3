@@ -2,6 +2,7 @@ package model.Entities;
 
 import controller.EntityControllers.AIController;
 import controller.Handlers.BringOutYourDeadHandler;
+import controller.LoadGame.SaveVisitor;
 import model.Entities.NPC.NPCState;
 import model.Inventory.Inventory;
 import model.Map.Terrain;
@@ -14,9 +15,13 @@ public class Pet extends AI {
     	super(stats, deadHandler, aiController, inventory, terrains, name);
     }
 
+    @Override
+    public String accept(SaveVisitor saveVisitor){
+        return saveVisitor.savePet(this);
+    }
+
 	@Override
 	public void move() {
-		// TODO Auto-generated method stub
-		
+		aiController.movePet(this);
 	}
 }

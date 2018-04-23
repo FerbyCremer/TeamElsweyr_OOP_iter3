@@ -1,6 +1,8 @@
 package model.Entities.NPC;
 
 import controller.EntityControllers.AIController;
+import controller.LoadGame.SaveVisitor;
+import controller.LoadGame.Saveable;
 import controller.Handlers.BringOutYourDeadHandler;
 import model.Entities.AI;
 import model.Entities.EntityStats;
@@ -10,7 +12,7 @@ import model.Map.Terrain;
 
 import java.util.List;
 
-public class NPC extends AI {
+public class NPC extends AI implements Saveable{
     private NPCState npcState;
     public NPC(EntityStats stats, BringOutYourDeadHandler deadHandler, AIController aiController, Inventory inventory, List<Terrain> terrains, String name, NPCState npcState){
     	super(stats, deadHandler, aiController, inventory, terrains, name);
@@ -31,7 +33,26 @@ public class NPC extends AI {
 
     }
 
+    @Override
+    public void updateHealth(int healthChange) {
+        super.updateHealth(healthChange);
+        if (healthChange < 0){
+            npcState = new AggroState();
+            return;
+        }
+        npcState = new CalmState();
+    }
+
+    public NPCState getNpcState() {
+        return npcState;
+    }
+
     public void visit(Player player){
         npcState.performInteraction(this, player);
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveNPC(this);
     }
 }

@@ -1,8 +1,11 @@
 package controller.MapControllers;
 
+import controller.EntityControllers.AIController;
+import controller.EntityControllers.AIController;
 import controller.MapControllers.FogOfWarRelatedClasses.FogOfWarController;
 import controller.MapControllers.MovementRelatedControllers.*;
 import view.ZoneView;
+import model.Map.Zone.Zone;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -14,6 +17,7 @@ public class ZoneController {
     private EntityToTrap trapCollision;
     private FogOfWarController fogOfWarController;
     private ZoneView zoneView;
+    private AIController aiController;
 
     public ZoneController(MovementController movementController, ZoneView zoneView, EntityToItem itemCollison, EntityToAreaEffect areaEffectCollision, EntityToTrap trapCollision, FogOfWarController fogOfWarController) {
 //        this.movementController = movementController;
@@ -24,15 +28,17 @@ public class ZoneController {
           this.zoneView = zoneView;
     }
 
-    public ZoneController(ZoneView zoneview){
+    public ZoneController(ZoneView zoneview, AIController aiController) {
         this.zoneView = zoneview;
-
+        this.aiController = aiController;
     }
+
 
     private class GameLoop extends TimerTask {
 
         @Override
         public void run() {
+            aiController.makeAIDecision();
             movementController.updateEntitys();
             itemCollison.checkCollision();
             areaEffectCollision.checkCollision();
@@ -67,4 +73,6 @@ public class ZoneController {
     public void setFogOfWarController(FogOfWarController fogOfWarController){
         this.fogOfWarController = fogOfWarController;
     }
+
+    public void updateAIController(Zone zone){ aiController.updateMaps(zone); }
 }

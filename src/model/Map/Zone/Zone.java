@@ -1,5 +1,7 @@
 package model.Map.Zone;
 
+import controller.LoadGame.SaveVisitor;
+import controller.LoadGame.Saveable;
 import model.Entities.Entity;
 import model.Items.Item;
 import model.Map.Direction;
@@ -9,7 +11,7 @@ import java.awt.*;
 import java.util.HashMap;
 import java.util.Vector;
 
-public class Zone {
+public class Zone implements Saveable{
 
     private String id;
     private Tile[][] tiles;
@@ -34,6 +36,13 @@ public class Zone {
         this.spawnPoint = spawnPoint;
     }
 
+    public Tile[][] getTiles() {
+        return tiles;
+    }
+
+    public Point getSpawnPoint() {
+        return spawnPoint;
+    }
 
     public Item getItemFromTile(Tile tile){
         return itemMap.getContentAtTile(tile);
@@ -52,6 +61,10 @@ public class Zone {
 
     public String getID() {
         return id;
+    }
+
+    public ContentMap<Decal> getDecalMap() {
+        return decalMap;
     }
 
     public ContentMap<Entity> getEntityMap() {
@@ -125,5 +138,10 @@ public class Zone {
 
     public int getYDim(){
         return tiles[0].length;
+    }
+
+    @Override
+    public String accept(SaveVisitor saveVisitor) {
+        return saveVisitor.saveZone(this);
     }
 }

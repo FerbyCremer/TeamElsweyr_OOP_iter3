@@ -26,7 +26,6 @@ public class EntityMover {
             }
 
             else if (tileToMoveTo.canMove(entity)){
-                entityMap.removeContent(entity);
                 entityMap.setNewLocation(tileToMoveTo, entity);
             }
 

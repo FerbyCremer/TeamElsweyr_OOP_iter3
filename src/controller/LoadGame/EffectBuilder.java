@@ -3,13 +3,7 @@ package controller.LoadGame;
 import java.util.List;
 
 import controller.MapControllers.WorldController;
-import model.Effect.EntityEffect.BargainEffect;
-import model.Effect.EntityEffect.DamageEffect;
-import model.Effect.EntityEffect.EntityEffect;
-import model.Effect.EntityEffect.ExpEffect;
-import model.Effect.EntityEffect.HealEffect;
-import model.Effect.EntityEffect.ObserveEffect;
-import model.Effect.EntityEffect.TeleportEffect;
+import model.Effect.EntityEffect.*;
 import model.Effect.TrapEffects.DetectEffect;
 import model.Effect.TrapEffects.RemoveEffect;
 import model.Effect.TrapEffects.TrapEffect;
@@ -27,7 +21,6 @@ public class EffectBuilder {
 		EntityEffect effect = null;
 		int amount;
 
-		System.out.println(attributes.get(index));
 		switch(attributes.get(index++)) {
 			case "damageEffect":
 				amount = Integer.parseInt(attributes.get(index++));
@@ -57,6 +50,11 @@ public class EffectBuilder {
 			case "teleportEffect":
 				String zoneID = attributes.get(index++);
 				effect = new TeleportEffect(wController, zoneID);
+				break;
+
+			case "directionEffect":
+				amount = Integer.parseInt(attributes.get(index++));
+				effect = new DirectionEffect(amount);
 				break;
 		}
 		

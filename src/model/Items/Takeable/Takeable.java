@@ -26,12 +26,12 @@ public abstract class Takeable extends Item {
     public void delete() {
     }
 
+    public boolean isEquipped() {
+        return equipped;
+    }
+
     public void setEquip(boolean equipped) {
     	this.equipped = equipped;
-    }
-    
-    public boolean isEquipped() {
-    	return equipped;
     }
 
     public BooleanProperty isEquippedProperty(){
