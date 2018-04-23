@@ -76,15 +76,15 @@ public class EntityBuilder {
 				break;
 		}
 		
-		return new NPC(stats, deadHandler, aiController, inventory, terrains, "npc", state);
+		return new NPC(stats, deadHandler, aiController, inventory, terrains, attributes.get(1), state);
 	}
 	
-	public Pet buildPet(AIController aiController, Inventory inventory, List<Terrain> terrains, EntityStats stats) {
-		return new Pet(stats, deadHandler, aiController, inventory, terrains, "pet");
+	public Pet buildPet(List<String> attributes, AIController aiController, Inventory inventory, List<Terrain> terrains, EntityStats stats) {
+		return new Pet(stats, deadHandler, aiController, inventory, terrains, attributes.get(0));
 	}
 	
-	public Mount buildMount(Inventory inventory, List<Terrain> terrains, EntityStats stats) {
-		return new Mount(stats, deadHandler, inventory, terrains, "mount");
+	public Mount buildMount(List<String> attributes, Inventory inventory, List<Terrain> terrains, EntityStats stats) {
+		return new Mount(stats, deadHandler, inventory, terrains, attributes.get(0));
 	}
 
 }

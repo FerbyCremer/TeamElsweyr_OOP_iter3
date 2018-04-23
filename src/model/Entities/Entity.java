@@ -170,6 +170,10 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
         return inventory;
     }
 
+    public void setStolen() { inventory.setStolen();}
+
+    public Takeable giveStolen(){ return inventory.giveStolen();}
+
 
 	@Override
 	public String accept(SaveVisitor saveVisitor){

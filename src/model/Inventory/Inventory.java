@@ -18,11 +18,13 @@ public class Inventory implements Saveable{
 	private final int size = 30;
 	private Equipment equipment;
 	private List<Updateable> observers;
+	private Takeable stolenItem;
 	
 	public Inventory(EntityStats stats) {
 		wealth = 0;
 		equipment = new Equipment(stats, new ArrayList<>());
 		items = new ArrayList<>();
+		stolenItem = null;
 	}
 	
 	public Inventory(EntityStats stats, int wealth, List<Takeable> items) {
@@ -36,6 +38,8 @@ public class Inventory implements Saveable{
 
         this.equipment = new Equipment(stats, equipped);
 		this.wealth = wealth;
+
+		stolenItem = null;
 
 		//TODO parse items and equip equipped
 
@@ -129,5 +133,15 @@ public class Inventory implements Saveable{
 
 	public List<Takeable> getItems() {
 		return items;
+	}
+
+	public void setStolen(){
+		int rand = (int)(Math.random() * (items.size() - 1));
+
+		stolenItem = items.get(rand);
+	}
+
+	public Takeable giveStolen(){
+		return stolenItem;
 	}
 }

@@ -225,11 +225,11 @@ public class GameLoader {
                         aiController.addAI((AI) entity );
                         break;
                     case "pet":
-                        entity = entityBuilder.buildPet(aiController, inventory, passable, entityStats);
+                        entity = entityBuilder.buildPet(entityTypeData, aiController, inventory, passable, entityStats);
                         aiController.addAI((AI) entity );
                         break;
                     case "mount":
-                        entity = entityBuilder.buildMount(inventory, passable, entityStats);
+                        entity = entityBuilder.buildMount(entityTypeData, inventory, passable, entityStats);
                         break;
                 }
                 entityMap.setContent(tiles[x][y], entity);
@@ -371,10 +371,10 @@ public class GameLoader {
     			HashMap<Direction, Tile> neighbors = new HashMap<Direction, Tile>();
 
     			if(collumn%2 == 0) {
-    				evenColNeighbors(row, collumn, rowCount, collumnCount, neighbors, tiles);
+    				evenColNeighbors(collumn, row, rowCount, collumnCount, neighbors, tiles);
     			}
     			else {
-    				oddColNeighbors(row, collumn, rowCount, collumnCount, neighbors, tiles);
+    				oddColNeighbors(collumn, row, rowCount, collumnCount, neighbors, tiles);
     			}
             }
         }
