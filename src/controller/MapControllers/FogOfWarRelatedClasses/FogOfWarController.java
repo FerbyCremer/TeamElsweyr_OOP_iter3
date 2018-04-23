@@ -5,7 +5,7 @@ import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 import model.Map.Zone.Zone;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class FogOfWarController {
     private Player player;
@@ -28,8 +28,8 @@ public class FogOfWarController {
     private ArrayList<Tile> calculateTilesInPlayersVisibleRadius(){
         Tile centerTile = currentZone.getTileForEntity(player);
         ArrayList<Tile> tiles = new ArrayList<Tile>();
-
-       /* //TODO: This violates SRP fix when ActionTypes are reusable for not action related events or there is a further abstraction
+        tiles.add(centerTile);
+        //TODO: This violates SRP fix when ActionTypes are reusable for not action related events or there is a further abstraction
         for(int i = 0; i < visibleRadius; i++){
             int tileNum = tiles.size();
             for(int j = 0; j < tileNum; j++){
@@ -39,31 +39,6 @@ public class FogOfWarController {
                         tiles.add(temp);
                 }
             }
-        }*/
-
-        Tile currentTile = currentZone.getTileForEntity(player);
-        Direction direction = player.getDirection();
-        Set<Tile> affectedTiles = new HashSet<Tile>();
-        Utility utility = new Utility();
-        for(int i = 1; i <= visibleRadius; i++) {
-            utility.copyFromList(affectedTiles, generateCircle(currentTile, direction, i));
-            currentTile = currentTile.getNeighbor(direction);
-        }
-
-        ArrayList<Tile> returnArray = new ArrayList<>(affectedTiles);
-        return returnArray;
-    }
-
-    private ArrayList<Tile> generateCircle(Tile centerTile, Direction tempDirection, int currentRadius){
-        ArrayList<Tile> tiles = new ArrayList<Tile>();
-
-        tempDirection=tempDirection.getClockwise(120);
-        for(int i = 0; i < 6; i++){
-            for(int j = 0; j < currentRadius; j++){
-                tiles.add(centerTile);
-                centerTile = centerTile.getNeighbor(tempDirection);
-            }
-            tempDirection = tempDirection.getClockwise(60);
         }
 
         return tiles;
@@ -81,16 +56,4 @@ public class FogOfWarController {
     private String getPlayerDirection(){
         return player.getDirection().name();
     }
-
-    private static class Utility<T>{
-        private void copyFromList(Set<T> copyTo, List<T> copyFrom){
-
-            for (T element: copyFrom) {
-                copyTo.add(element);
-            }
-
-        }
-    }
 }
-
-
