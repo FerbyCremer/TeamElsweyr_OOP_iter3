@@ -23,18 +23,22 @@ public class Angular implements ActionType{
             affectedTiles.put(tile, 1);
             return affectedTiles;
         }
-        affectedTiles.put(tempTile, 0);
-        tempTile = tempTile.getNeighbor(direction);
+        if(tempTile != null) {
+            affectedTiles.put(tempTile, 0);
+            tempTile = tempTile.getNeighbor(direction);
+        }
 
         for(int i = 1, flag = 0; i <= range; flag++){
-            affectedTiles.put(tempTile, i);
-            List<Tile> right = getAffectedTileLinear(tempTile, direction.getClockwise(120), i);
-            List<Tile> left = getAffectedTileLinear(tempTile, direction.getClockwise(-120), i);
-            utility.copyFromList(affectedTiles, right, i);
-            utility.copyFromList(affectedTiles, left, i);
-            tempTile = tempTile.getNeighbor(direction);
-            if(flag%2 == 0){
-                i++;
+            if(tempTile != null) {
+                affectedTiles.put(tempTile, i);
+                List<Tile> right = getAffectedTileLinear(tempTile, direction.getClockwise(120), i);
+                List<Tile> left = getAffectedTileLinear(tempTile, direction.getClockwise(-120), i);
+                utility.copyFromList(affectedTiles, right, i);
+                utility.copyFromList(affectedTiles, left, i);
+                tempTile = tempTile.getNeighbor(direction);
+                if (flag % 2 == 0) {
+                    i++;
+                }
             }
         }
 
@@ -48,8 +52,10 @@ public class Angular implements ActionType{
         Tile tempTile = tile;
 
         for(int i = 0; i < range; i++){
-            affectedTiles.add(tempTile);
-            tempTile = tempTile.getNeighbor(direction);
+            if(tempTile!= null) {
+                affectedTiles.add(tempTile);
+                tempTile = tempTile.getNeighbor(direction);
+            }
         }
 
         return affectedTiles;
