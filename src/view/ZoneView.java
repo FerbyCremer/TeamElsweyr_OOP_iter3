@@ -3,6 +3,7 @@ package view;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSet;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSetFTDRTIE;
 import javafx.fxml.FXML;
+import javafx.scene.Camera;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -23,20 +24,29 @@ public class ZoneView {
     private double hexHeight;
     private double hexWidth;
 
+    private double screenWidth;
+    private double screenHeight;
+
+    Camera camera;
+
     double cameraX;
     double cameraY;
 
-   public ZoneView(Canvas canvas){
+   public ZoneView(Canvas canvas, Camera camera){
         this.canvas = canvas;
         gc = canvas.getGraphicsContext2D();
         hexHeight = 80;
         hexWidth = 92;
         decalSet = new DecalSetFTDRTIE();
         sprites = new SpriteLoader();
+        this.camera = camera;
+
+        screenWidth = camera.getParent().getScene().getWindow().getWidth();
+        screenHeight = camera.getParent().getScene().getWindow().getHeight();
     }
 
     public void renderGrid(){
-
+        focusPlayer();
         double hexX = 0;
         double hexY = hexHeight/2;
 
@@ -78,4 +88,17 @@ public class ZoneView {
 //        //pointList.clear();
     }
 
+    public void focusPlayer(){
+       double x = (hexWidth/2) * (3/2) * ((DecalSetFTDRTIE)decalSet).getPlayerY();
+       double y = (hexWidth/2) * Math.sqrt(3) * (((DecalSetFTDRTIE)decalSet).getPlayerX() - 0.5 * (((DecalSetFTDRTIE)decalSet).getPlayerY()%2)) + 40;
+
+       centerCamera(x, y);
+    }
+
+    public void centerCamera(double x, double y){
+       x -= screenWidth/2;
+       y -= screenHeight/2;
+       System.out.println(screenWidth + " " + screenHeight);
+       camera.relocate(x, y);
+    }
 }

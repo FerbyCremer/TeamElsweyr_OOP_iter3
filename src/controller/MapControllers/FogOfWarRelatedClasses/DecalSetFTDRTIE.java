@@ -141,4 +141,12 @@ public class DecalSetFTDRTIE implements DecalSet {
         //System.out.println("   asfsaf   " +zoneMap.get(point));
         return zoneMap.get(point);
     }
+
+    public double getPlayerX(){
+        return playerPos.x;
+    }
+
+    public double getPlayerY(){
+        return playerPos.y;
+    }
 }

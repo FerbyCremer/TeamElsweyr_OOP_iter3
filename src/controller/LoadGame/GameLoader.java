@@ -13,6 +13,7 @@ import controller.KeyControllers.ToInventory;
 import controller.MapControllers.WorldController;
 import controller.MapControllers.ZoneController;
 import controller.ViewControllers.GameObserver;
+import javafx.scene.Camera;
 import javafx.scene.Scene;
 import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.AI;
@@ -71,7 +72,7 @@ public class GameLoader {
 
 
 
-    public GameLoader(Canvas canvas, GameObserver gameObserver){
+    public GameLoader(Canvas canvas, GameObserver gameObserver, Camera camera){
 
         this.canvas = canvas;
         this.gameObserver = gameObserver;
@@ -81,7 +82,7 @@ public class GameLoader {
         keyBindingMapper = new KeyBindingMapper("src/assets/saves/keybinds.txt");
         playerController = new KeyController("player", keyBindingMapper);
         aiController = new AIController();
-        zoneView = new ZoneView(canvas);
+        zoneView = new ZoneView(canvas, camera);
        // worldController = new WorldController(new ZoneController(zoneView), actionHandler, mountHandler, deadHandler, aiController);
         deadHandler = new BringOutYourDeadHandler(aiController);
         worldController = new WorldController(new ZoneController(zoneView, aiController), actionHandler, mountHandler, deadHandler);
@@ -371,10 +372,10 @@ public class GameLoader {
     			HashMap<Direction, Tile> neighbors = new HashMap<Direction, Tile>();
 
     			if(collumn%2 == 0) {
-    				evenColNeighbors(collumn, row, rowCount, collumnCount, neighbors, tiles);
+    				evenColNeighbors(row, collumn, rowCount, collumnCount, neighbors, tiles);
     			}
     			else {
-    				oddColNeighbors(collumn, row, rowCount, collumnCount, neighbors, tiles);
+    				oddColNeighbors(row, collumn, rowCount, collumnCount, neighbors, tiles);
     			}
             }
         }
