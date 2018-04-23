@@ -2007,8 +2007,8 @@ true
 19
 endTile
 entityMap
-8
-16
+3
+13
 entityStats
 100
 100
@@ -2028,7 +2028,7 @@ mount
 endOfEntityType
 entityMap
 4
-17
+4
 entityStats
 100
 100
