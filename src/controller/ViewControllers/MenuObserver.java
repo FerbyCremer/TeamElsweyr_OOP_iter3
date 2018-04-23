@@ -49,6 +49,7 @@ public class MenuObserver implements Initializable {
         window = (BorderPane) fxmlLoader.load();
         this.scene = new Scene(window);
         //TODO need two versions???
+       // this.showScene();
     }
 
     @FXML private void keyConfig() throws IOException {
@@ -114,7 +115,8 @@ public class MenuObserver implements Initializable {
             mainStage.setTitle("Team Elsweyr OOP Iteration 3: The Mewrchants of Vemice");
             mainStage.setMaximized(true);
 
-            Group root = new Group();
+            BorderPane root = new BorderPane();
+            //Group root = new Group();
             Scene mainScene = new Scene(root);
             mainStage.setScene( mainScene );
             mainStage.setOnCloseRequest((WindowEvent e) -> {
@@ -126,11 +128,7 @@ public class MenuObserver implements Initializable {
 
             //gameSaver.save();
 
-            mainStage.setOnCloseRequest((WindowEvent e) -> {
-                Platform.exit();
-                System.exit(0);
-            });
-            root.getChildren().add(canvas);
+            root.setCenter(canvas);
             canvas.setFocusTraversable(true);
 
             //camera stuff
@@ -140,8 +138,12 @@ public class MenuObserver implements Initializable {
             cameraGroup.getChildren().add(camera);
             root.getChildren().add(cameraGroup);
 
-
             GameObserver gameObserver = fxmlLoader.getController();
+            //gameObserver.setCanvas(root);
+            gameObserver.setScene(mainScene);
+
+           // borderPane.setCenter(root);
+            root.setLeft(fxmlLoader.getRoot());
 
             gameLoader = new GameLoader(canvas, gameObserver, camera);
             WorldController theworld = gameLoader.load();

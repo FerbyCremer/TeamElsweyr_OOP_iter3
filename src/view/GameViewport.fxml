@@ -11,27 +11,18 @@
 <?import view.ZoneView?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.canvas.Canvas?>
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.GameObserver" fx:id="base" >
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.GameObserver" >
     <left>
         <VBox>
             <children>
                 <VBox>
-                    <HBox>
-
-                    </HBox>
-                    <ListView fx:id="inventoryList" />
+                    <ListView fx:id="choicesView" />
                 </VBox>
-                <VBox>
-
-                </VBox>
+                <VBox fx:id="stats" />
             </children>
         </VBox>
     </left>
     <center>
-        <Pane>
-            <children>
-                <Canvas fx:id="canvas"/>
-            </children>
-        </Pane>
+        <Group fx:id="canvas"/>
     </center>
 </BorderPane>

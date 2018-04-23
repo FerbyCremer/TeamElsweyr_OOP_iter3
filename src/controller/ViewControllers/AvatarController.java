@@ -109,20 +109,20 @@ public class AvatarController implements Initializable {
     @FXML private void startGame() throws IOException {
         //TODO: initialize new game
 
-       /* Parent root = new Group();
+       Parent root = null;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/GameViewport.fxml"),
                     ResourceBundle.getBundle("view.GameViewport"));
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
-        Parent window;
+        }
+        /*Parent window;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
+*/
+       // root = (BorderPane) fxmlLoader.load();
+        this.scene = new Scene(root);
         this.showScene(fxmlLoader);
-
-        window = (BorderPane) fxmlLoader.load();
-        this.scene = new Scene(window);
     }
 
     @FXML protected void setAvatar(String skill){
@@ -140,6 +140,10 @@ public class AvatarController implements Initializable {
             Scene mainScene = new Scene(root);
             mainStage.setScene( mainScene );
 
+            mainStage.setOnCloseRequest((WindowEvent e) -> {
+                Platform.exit();
+                System.exit(0);
+            });
             javafx.scene.canvas.Canvas canvas = new Canvas(2500, 2500);
 
             root.getChildren().add(canvas);
@@ -152,12 +156,15 @@ public class AvatarController implements Initializable {
             cameraGroup.getChildren().add(camera);
             root.getChildren().add(cameraGroup);
 
-
             GameObserver gameObserver = fxmlLoader.getController();
+            gameObserver.setCanvas(root);
+
+//            gameObserver.setScene(mainScene);
 
             gameLoader = new GameLoader(canvas, gameObserver, camera);
             WorldController theworld = gameLoader.load();
             gameSaver = new GameSaver(theworld);
+
 
             theworld.setPlayerName(SMavatars[i]);
 
