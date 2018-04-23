@@ -15,7 +15,10 @@ import controller.MapControllers.ZoneController;
 import controller.ViewControllers.GameObserver;
 import javafx.scene.Camera;
 import javafx.scene.Scene;
+import model.Actions.ActionType.ActionInterface;
+import model.Actions.ActionType.ActionObserver;
 import model.Effect.EntityEffect.EntityEffect;
+import model.Effect.EntityEffect.ObserveObserver;
 import model.Entities.AI;
 import model.Entities.Entity;
 import model.Entities.EntityStats;
@@ -77,17 +80,19 @@ public class GameLoader {
         this.canvas = canvas;
         this.gameObserver = gameObserver;
         //Initialize Controllers
-        actionHandler = new ActionHandler();
+        ActionInterface actionInterface = new ActionObserver();
+        actionHandler = new ActionHandler(actionInterface);
         mountHandler = new MountHandler();
         keyBindingMapper = new KeyBindingMapper("src/assets/saves/keybinds.txt");
         playerController = new KeyController("player", keyBindingMapper);
         aiController = new AIController();
         zoneView = new ZoneView(canvas, camera);
+        zoneView.setActionInterface(actionInterface);
        // worldController = new WorldController(new ZoneController(zoneView), actionHandler, mountHandler, deadHandler, aiController);
         deadHandler = new BringOutYourDeadHandler(aiController);
         worldController = new WorldController(new ZoneController(zoneView, aiController), actionHandler, mountHandler, deadHandler);
         //Initialize builders
-        effectBuilder = new EffectBuilder(worldController);
+        effectBuilder = new EffectBuilder(worldController, zoneView);
         itemBuilder = new ItemBuilder(actionHandler, effectBuilder);
         entityBuilder = new EntityBuilder(deadHandler);
     }
