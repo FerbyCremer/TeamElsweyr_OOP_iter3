@@ -539,9 +539,7 @@ passable
 grass
 endOfPassable
 player
-sneak
-5
-5
+smasher
 5
 5
 5

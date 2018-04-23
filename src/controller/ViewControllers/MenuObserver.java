@@ -144,7 +144,7 @@ public class MenuObserver implements Initializable {
             GameObserver gameObserver = fxmlLoader.getController();
 
             gameLoader = new GameLoader(canvas, gameObserver, camera);
-            WorldController theworld = gameLoader.load();
+            WorldController theworld = gameLoader.load("sneak");
 
             gameLoader.initializeKeyController(mainScene);
             gameSaver = new GameSaver(theworld);

@@ -55,6 +55,7 @@ public class AvatarController implements Initializable {
     private Image summoner = new Image("assets/avatars/skillCards/summonerCard.png");
 
     protected int i = 0;
+    private String temp;
     ToggleGroup skills = new ToggleGroup();
 
     private Scene scene;
@@ -74,16 +75,19 @@ public class AvatarController implements Initializable {
         scout.setOnAction( event -> {
             skillsCard.setImage(sneak);
             skillSelect = "sneak";
+            temp = "sneak";
         });
 
         warrior.setOnAction( event -> {
             skillsCard.setImage(smasher);
             skillSelect = "smasher";
+            temp ="smasher";
         });
 
         healer.setOnAction( event -> {
             skillsCard.setImage(summoner);
             skillSelect = "summoner";
+            temp = "summoner";
 
         });
 
@@ -156,7 +160,7 @@ public class AvatarController implements Initializable {
             GameObserver gameObserver = fxmlLoader.getController();
 
             gameLoader = new GameLoader(canvas, gameObserver, camera);
-            WorldController theworld = gameLoader.load();
+            WorldController theworld = gameLoader.load(temp);
             gameLoader.initializeKeyController(mainScene);
             gameSaver = new GameSaver(theworld);
 

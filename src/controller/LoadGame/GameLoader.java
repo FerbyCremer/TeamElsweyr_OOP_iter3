@@ -348,8 +348,8 @@ public class GameLoader {
 
     }
 
-    public WorldController load(){
-        String filepath = "src/assets/saves/globalGamePlay.txt";
+    public WorldController load(String temp){
+        String filepath = "src/assets/saves/" + temp + ".txt";
         parseFile(filepath);
 
         //TODO do this here or in menu to get KeyControlState reference

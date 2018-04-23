@@ -17,7 +17,7 @@ public class FogOfWarController {
         this.player = player;
         currentZone = zone;
         this.decalSet = decalSet;
-        visibleRadius = 4;
+        visibleRadius = 1;
     }
 
     public void update(){
