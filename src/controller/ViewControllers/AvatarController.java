@@ -1,5 +1,7 @@
 package controller.ViewControllers;
 
+import controller.LoadGame.GameLoader;
+import controller.MapControllers.WorldController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -8,9 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.*;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -111,7 +112,6 @@ public class AvatarController implements Initializable {
         }
 
         this.scene = new Scene(root);
-        //TODO need two versions???
         this.showScene();
     }
 
@@ -119,25 +119,35 @@ public class AvatarController implements Initializable {
         //TODO: parse in avatar object into game loader
         //ToDo: select factory based on string?
     }
-//
-//    private void showScene() throws IOException {
-//        Platform.runLater(() -> {
-//            Stage stage = (Stage) base.getScene().getWindow();
-//            stage.setResizable(true);
-//            stage.setWidth(1080);
-//            stage.setHeight(720);
-//
-//            stage.setOnCloseRequest((WindowEvent e) -> {
-//                Platform.exit();
-//                System.exit(0);
-//            });
-//            stage.setScene(this.scene);
-//            stage.setMinWidth(800);
-//            stage.setMinHeight(300);
-//            //ResizeHelper.addResizeListener(stage);
-//            stage.centerOnScreen();
-//
-//            stage.show();
-//        });
-//    }
+
+    private void showScene() throws IOException {
+        Platform.runLater(() -> {
+            Stage mainStage = (Stage) base.getScene().getWindow();
+            mainStage.setTitle("Team Elsweyr OOP Iteration 3: The Mewrchants of Vemice");
+            mainStage.setMaximized(true);
+
+            Group root = new Group();
+            Scene mainScene = new Scene(root);
+            mainStage.setScene( mainScene );
+
+            javafx.scene.canvas.Canvas canvas = new Canvas(2500, 2500);
+
+            root.getChildren().add(canvas);
+            canvas.setFocusTraversable(true);
+
+            //camera stuff
+            Camera camera = new PerspectiveCamera(false);
+            mainScene.setCamera(camera);
+            Group cameraGroup = new Group();
+            cameraGroup.getChildren().add(camera);
+            root.getChildren().add(cameraGroup);
+
+            GameLoader loader = new GameLoader(canvas);
+            WorldController theworld = loader.load();
+
+
+            theworld.runGame();
+            mainStage.show();
+        });
+    }
 }

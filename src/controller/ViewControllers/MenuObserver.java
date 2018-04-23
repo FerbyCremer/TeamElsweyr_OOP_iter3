@@ -1,11 +1,13 @@
 package controller.ViewControllers;
 
+import controller.LoadGame.GameLoader;
+import controller.MapControllers.WorldController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.*;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -43,7 +45,7 @@ public class MenuObserver implements Initializable {
 
         this.scene = new Scene(window);
         //TODO need two versions???
-        this.showScene();
+        this.showGame();
     }
 
     @FXML private void keyConfig() throws IOException {
@@ -65,14 +67,15 @@ public class MenuObserver implements Initializable {
 
         //TODO: set it to resume back to same spot when menu was opened
 
-        this.showScene();
+        this.showGame();
     }
 
 
 
 
-    @FXML private void saveGame() {
+    @FXML private void saveGame() throws IOException {
         //TODO: save game function goes HERE
+        this.showScene();
     }
 
     @FXML private void exit(){
@@ -95,6 +98,37 @@ public class MenuObserver implements Initializable {
             stage.setMinHeight(300);
             //ResizeHelper.addResizeListener(stage);
             stage.centerOnScreen();
+        });
+    }
+
+    private void showGame() throws IOException {
+        Platform.runLater(() -> {
+            Stage mainStage = (Stage) base.getScene().getWindow();
+            mainStage.setTitle("Team Elsweyr OOP Iteration 3: The Mewrchants of Vemice");
+            mainStage.setMaximized(true);
+
+            Group root = new Group();
+            Scene mainScene = new Scene(root);
+            mainStage.setScene( mainScene );
+
+            javafx.scene.canvas.Canvas canvas = new Canvas(2500, 2500);
+
+            root.getChildren().add(canvas);
+            canvas.setFocusTraversable(true);
+
+            //camera stuff
+            Camera camera = new PerspectiveCamera(false);
+            mainScene.setCamera(camera);
+            Group cameraGroup = new Group();
+            cameraGroup.getChildren().add(camera);
+            root.getChildren().add(cameraGroup);
+
+            GameLoader loader = new GameLoader(canvas);
+            WorldController theworld = loader.load();
+
+
+            theworld.runGame();
+            mainStage.show();
         });
     }
 

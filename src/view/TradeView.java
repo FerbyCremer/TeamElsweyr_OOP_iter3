@@ -1,8 +1,14 @@
 package view;
 
+import controller.ViewControllers.InventoryCell;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.util.Callback;
 import model.Entities.Entity;
 import model.Inventory.Inventory;
 import model.Items.Item;
@@ -12,54 +18,62 @@ import java.util.List;
 
 public class TradeView implements UpdateEntityRelatedView {
 
-    private Inventory playerInventory;
-    private Inventory npcInventory;
-    private List<Button> playerButtons;
-    private List<Button> npcButtons;
-    public TradeView(){}
+
+    protected Entity player;
+    protected Entity shop;
+
+    protected Inventory playerInventory = player.getInventory();
+    protected Inventory npcInventory = shop.getInventory();
+
+    @FXML protected ListView<Takeable> playerInventoryList;
+
+    @FXML protected ListView<Takeable> npcInventoryList;
+
+    public TradeView(Entity player, Entity shop){
+        this.player = player;
+        this.shop = shop;
+        constructButtons();
+    }
 
     @Override
     public void update(Entity... entities) {
-        playerInventory = entities[0].getInventory();
-        npcInventory = entities[1].getInventory();
+        playerInventory = player.getInventory();
+        npcInventory = shop.getInventory();
         constructButtons();
     }
 
 
     private void constructButtons(){
-        playerButtons.clear();
-        npcButtons.clear();
 
-        List<Takeable> playerItems = playerInventory.getItems();
-        for(Takeable item : playerItems){
-            Button button = new Button(item.getName());
-            button.setOnAction(new onClickSell(playerInventory, npcInventory, item));
-            playerButtons.add(button);
-        }
+        playerInventoryList.setCellFactory(new Callback<ListView<Takeable>, ListCell<Takeable>>()
+        {
+            public ListCell<Takeable> call(ListView<Takeable> p)
+            {
+                return new InventoryCell(playerInventory);
+            }
+        });
+        playerInventoryList.setItems(FXCollections.observableArrayList(playerInventory.getItems()));
 
-        List<Takeable> npcItems = npcInventory.getItems();
-        for(Takeable item : npcItems){
-            Button button = new Button(item.getName());
-            button.setOnAction(new onClickSell(npcInventory, playerInventory, item));
-            npcButtons.add(button);
-        }
+        npcInventoryList.setCellFactory(new Callback<ListView<Takeable>, ListCell<Takeable>>()
+        {
+            public ListCell<Takeable> call(ListView<Takeable> p)
+            {
+                return new InventoryCell(npcInventory);
+            }
+        });
+        npcInventoryList.setItems(FXCollections.observableArrayList(npcInventory.getItems()));
+    }
+    @FXML
+    protected void sell(int item, Inventory shop, Inventory actor) {
+        actor.removeItem(item);
+        actor.modifyWealth(5);
+        this.buy(actor.getItems().get(item), actor, shop);
     }
 
-    private class onClickSell implements EventHandler<ActionEvent>
-    {
-        private Inventory prevOwner;
-        private Inventory newOwner;
-        private Takeable item;
-        public onClickSell(Inventory prevOwner, Inventory newOwner, Takeable item){
-            this.prevOwner = prevOwner;
-            this.newOwner = newOwner;
-            this.item = item;
-        }
-        @Override
-        public void handle(ActionEvent event) {
-            prevOwner.removeItem(item);
-            //prevOwner.updateWealth(item.getWealth())
-            newOwner.addItem(item);
-        }
+    @FXML
+    protected void buy(Takeable item, Inventory shop, Inventory actor) {
+        actor.addItem(item);
+        actor.modifyWealth(item.getPrice() * -1);
+        this.sell(actor.getItems().indexOf(item), actor, shop);
     }
 }

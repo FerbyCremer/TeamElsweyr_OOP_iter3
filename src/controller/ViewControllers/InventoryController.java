@@ -1,52 +1,15 @@
 package controller.ViewControllers;
 
-import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.Pane;
-import javafx.util.Callback;
-import model.Entities.Entity;
-import model.Entities.Player;
 import model.Inventory.Inventory;
 import model.Items.Takeable.Takeable;
-import model.Updateable;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.io.IOException;
-import java.util.Objects;
 
 public class InventoryController {
-
-
-   /* private Node view;
-    private testController controller;
-
-
-    public InventoryController() {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/InventoryView.fxml"));
-            fxmlLoader.setControllerFactory(new Callback<Class<?>, Object>() {
-                @Override
-                public Object call(Class<?> param) {
-                    return controller = new testController();
-                }
-            });
-            try {
-                view = (Node) fxmlLoader.load();
-
-
-            } catch (IOException ex) {
-            }
-            getChildren().add(view);
-        }
-*/
 
     private final ChangeListener<Boolean> IS_SELECTED_CHANGE_LISTENER = new ChangeListener<Boolean>()
     {
@@ -56,13 +19,8 @@ public class InventoryController {
         }
     };
 
-    @FXML
-    private Label labelView;
-
-    @FXML
-    private RadioButton isSelectedView;
-
-    private Inventory bag;
+    @FXML private Label labelView;
+    @FXML private RadioButton isSelectedView;
 
     private InventoryCell model;
 
@@ -70,26 +28,11 @@ public class InventoryController {
     {
         return model;
     }
+    private Inventory bag = model.bag;
 
-    @FXML
-    protected void equip(Takeable item) {
-        int itemIndex = bag.getItems().indexOf(item);
-        bag.equipItem(itemIndex);
-    }
+    private Takeable item = model.getItem();
 
-    @FXML
-    protected void sell(int item, Inventory shop) {
-        bag.removeItem(item);
-        bag.modifyWealth(5);
-        this.buy(bag.getItems().get(item), shop);
-    }
 
-    @FXML
-    protected void buy(Takeable item, Inventory shop) {
-        bag.addItem(item);
-        bag.modifyWealth(item.getPrice() * -1);
-        this.sell(bag.getItems().indexOf(item), shop);
-    }
 
     public void setModel(InventoryCell model)
     {
@@ -102,16 +45,16 @@ public class InventoryController {
 
     private void removeModelListeners()
     {
-        labelView.setText(model.getName());
-        model.isEquippedProperty().removeListener(IS_SELECTED_CHANGE_LISTENER);
-        isSelectedView.selectedProperty().unbindBidirectional(model.isEquippedProperty());
+        labelView.setText(null);
+        item.isEquippedProperty().removeListener(IS_SELECTED_CHANGE_LISTENER);
+        isSelectedView.selectedProperty().unbindBidirectional(item.isEquippedProperty());
     }
 
     private void setupModelListeners()
     {
-        labelView.setText( model.getName());
-        model.isEquippedProperty().addListener(IS_SELECTED_CHANGE_LISTENER);
-        isSelectedView.selectedProperty().bindBidirectional(model.isEquippedProperty());
+        labelView.setText( item.getName());
+        item.isEquippedProperty().addListener(IS_SELECTED_CHANGE_LISTENER);
+        isSelectedView.selectedProperty().bindBidirectional(item.isEquippedProperty());
     }
 
     private void updateView()
@@ -119,13 +62,13 @@ public class InventoryController {
         updateIsSelectedView();
     }
 
-    private void updateIsSelectedView(){ updateIsSelectedView(model.isEquipped()); }
+    private void updateIsSelectedView(){ updateIsSelectedView(item.isEquipped()); }
     private void updateIsSelectedView(boolean newValue)
     {
         isSelectedView.setSelected(newValue);
     }
 
-    private class onClickItem implements EventHandler<ActionEvent> {
+/*    private class onClickItem implements EventHandler<ActionEvent> {
         private int index;
         private Inventory inventory;
 
@@ -138,20 +81,5 @@ public class InventoryController {
         public void handle(ActionEvent event) {
             inventory.equipItem(index);
         }
-    }
-
-    /*public String getText() {
-        return textProperty().get();
-    }
-
-    public void setText(String value) {
-        textProperty().set(value);
-    }
-
-    public StringProperty textProperty() {
-        return textField.textProperty();
     }*/
-
-
-
 }

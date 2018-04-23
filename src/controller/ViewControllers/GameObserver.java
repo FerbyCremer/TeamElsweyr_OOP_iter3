@@ -30,6 +30,7 @@ public class GameObserver implements Initializable {
     //TODO: find way to get player and/or other entities
     private Entity player;
     private Inventory bag = player.getInventory();
+
     private Scene scene;
 
     @Override
@@ -45,7 +46,7 @@ public class GameObserver implements Initializable {
     }
 
 
-
+//TODO needed for pulling up ingame menu, also change stage size
     private void showScene() throws IOException {
         Platform.runLater(() -> {
 

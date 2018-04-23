@@ -37,7 +37,7 @@ public class ZoneController {
             itemCollison.checkCollision();
             areaEffectCollision.checkCollision();
             trapCollision.checkCollision();
-            fogOfWarController.update();
+//            fogOfWarController.update();
             zoneView.renderGrid();
 
         }

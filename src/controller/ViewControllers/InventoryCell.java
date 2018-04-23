@@ -21,7 +21,7 @@ public class InventoryCell extends ListCell<Takeable>
     protected Inventory bag;
 
     public ToggleGroup group = new ToggleGroup();
-    InventoryCell(Inventory bag) {
+    public InventoryCell(Inventory bag) {
         this.bag = bag;
         radioButton.setToggleGroup(group);
 
@@ -38,7 +38,7 @@ public class InventoryCell extends ListCell<Takeable>
     }
 
   //  @Override
-  /*  public void updateItem(Takeable obj, boolean empty) {
+  /*public void updateItem(Takeable obj, boolean empty) {
         super.updateItem(obj, empty);
         if (empty) {
             setText(null);
@@ -53,11 +53,12 @@ public class InventoryCell extends ListCell<Takeable>
     }
 }*/
 
+
     @Override
     protected void updateItem(Takeable model, boolean bln)
     {
         super.updateItem(model, bln);
-
+//TODO: Equipment logic somehow here
         if(model != null)
         {
             radioButton.setText(model.getName());

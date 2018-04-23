@@ -1,6 +1,7 @@
 package view;
 
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSetFTDRTIE;
+import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -21,6 +22,7 @@ public class ZoneView {
 
     //TODO remove this stuff
 
+    @FXML
     Canvas canvas;
     GraphicsContext gc;
 
@@ -52,17 +54,17 @@ public class ZoneView {
         System.out.println("xdim " + s.getXDim() + " ydmin " + s.getYDim());
 
         //TODO change x and y to getXDIM and getYDIM via DecalSetOAEUFHEI
-        for(int x = 0; x < s.getXDim(); x++){
-            for(int y = 0; s.getYDim() < 30; y++){
-            ArrayList<String> tempList = s.getTileContents(new Point(x, y));
-                for (String s : tempList) {
+        for(int x = 0; x < 30; x++){
+            for(int y = 0; y < 30; y++){
+            //ArrayList<String> tempList = s.getTileContents(new Point(x, y));
+                //for (String s : tempList) {
                     if(x % 2 == 0){
                         gc.drawImage(img1, hexX, hexY, hexWidth, hexHeight);
                     }
                     else {
                         gc.drawImage(img2, hexX, hexY, hexWidth, hexHeight);
                     }
-                }
+                //}
                 hexY+= hexHeight;
             }
             //move the next column the correct amount
