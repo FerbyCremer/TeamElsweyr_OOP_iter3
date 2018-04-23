@@ -50,9 +50,9 @@ public class AvatarController implements Initializable {
 
     protected String[] SMavatars = {"1i", "2i", "3i", "4i", "5i", "6i", "7i", "8i", "9i", "10i", "11i", "12i", "13i", "14i", "15i"};
 
-    private Image sneak = new Image("assets/avatars/skillCards/scoutCard.png");
-    private Image smasher = new Image("assets/avatars/skillCards/smasherCard.png");
-    private Image summoner = new Image("assets/avatars/skillCards/summonerCard.png");
+    private Image sneak = new Image("assets/avatars/skillCards/scoutCard.jpeg");
+    private Image smasher = new Image("assets/avatars/skillCards/smasherCard.jpeg");
+    private Image summoner = new Image("assets/avatars/skillCards/summonerCard.jpeg");
 
     protected int i = 0;
     private String temp;
