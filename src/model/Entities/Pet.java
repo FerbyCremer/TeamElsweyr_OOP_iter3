@@ -16,6 +16,11 @@ public class Pet extends AI {
     }
 
     @Override
+    public void visit(Mount mount) {
+
+    }
+
+    @Override
     public String accept(SaveVisitor saveVisitor){
         return saveVisitor.savePet(this);
     }
