@@ -11,17 +11,24 @@ import java.util.ArrayList;
 
 public class ZoneView {
 
-    private DecalSet decalSet;
-    private SpriteLoader sprites;
+   DecalSet decalSet;
+
+    String workingDirectory = "file:" + System.getProperty("user.dir");
+
+    Image img1 = new Image(workingDirectory + "/src/assets/volcano.png");
+    Image img2 = new Image(workingDirectory + "/src/assets/grass.png");
+    Image img3 = new Image(workingDirectory + "/image/mountain1.png");
+    Image fog = new Image(workingDirectory + "/image/fog.png");
+    Image nonVisible = new Image(workingDirectory + "/image/nonVisible.png");
 
     //TODO remove this stuff
 
     @FXML
-    private Canvas canvas;
-    private GraphicsContext gc;
+    Canvas canvas;
+    GraphicsContext gc;
 
-    private double hexHeight;
-    private double hexWidth;
+    double hexHeight;
+    double hexWidth;
 
     double cameraX;
     double cameraY;
@@ -32,20 +39,33 @@ public class ZoneView {
         hexHeight = 80;
         hexWidth = 92;
         decalSet = new DecalSetFTDRTIE();
-        sprites = new SpriteLoader();
     }
 
     public void renderGrid(){
-
+        /*
+          hexX and hexY are the starting position of the grid
+         */
         double hexX = 0;
         double hexY = hexHeight/2;
+        /*
+        loop through the tile set and print the provided strings
+         */
+        System.out.println("xdim " + decalSet.getXDim() + " ydmin " + decalSet.getYDim());
 
         //TODO change x and y to getXDIM and getYDIM via DecalSetOAEUFHEI
         for(int x = 0; x < decalSet.getXDim(); x++){
             for(int y = 0; y < decalSet.getYDim(); y++){
             ArrayList<String> tempList = decalSet.getTileContents(new Point(x, y));
                 for (String s : tempList) {
-                    gc.drawImage(sprites.getImage(s), hexX, hexY, hexWidth, hexHeight);
+           //             Image f = new Image(getClass().getClassLoader().getResource(workingDirectory + "/src/assets/" + s));
+                        Image f = new Image(workingDirectory + "/src/assets/" + s+".png");
+/*                    if(x % 2 == 0){
+                        gc.drawImage(img1, hexX, hexY, hexWidth, hexHeight);
+                    }
+                    else {
+                        gc.drawImage(img2, hexX, hexY, hexWidth, hexHeight);
+                    }*/
+                        gc.drawImage(f, hexX, hexY, hexWidth, hexHeight);
                 }
                 hexY+= hexHeight;
             }

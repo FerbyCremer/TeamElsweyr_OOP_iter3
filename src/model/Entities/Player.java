@@ -26,11 +26,14 @@ public class Player extends Entity implements Saveable {
     private MountedState mountedState;
     private MountHandler mountHandler;
     private KeyController playerController;
+    private String avatar;
 
-    private Player(List<Skill> skills, List<Integer> lvl, EntityStats stats, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, List<KeyCommand> keys, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
+    private Player(List<Skill> skills, List<Integer> lvl, EntityStats stats, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, String avatar, List<KeyCommand> keys, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         super(stats, inventory, terrains, name, deadHandler);
         this.skills = skills;
         mountedState = new Unmounted();
+
+        this.avatar = avatar;
 
         this.playerController = playerController;
         this.mountHandler = mountHandler;
@@ -63,7 +66,17 @@ public class Player extends Entity implements Saveable {
 
     }
 
-    public static Player playerMakeSmasher(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
+    public String getEntityName(){
+        return super.getName();
+    }
+
+    public String getName(){
+        return this.avatar;
+    }
+
+    public void setName(String avatar) { this.avatar = avatar;}
+
+    public static Player playerMakeSmasher(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, String avatar, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
         int index = lvl.size()-1;
@@ -74,12 +87,12 @@ public class Player extends Entity implements Saveable {
 
 
         List<KeyCommand> keys = new ArrayList<>();
-        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
+        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, avatar, keys, mountHandler, deadHandler);
 
         return player;
     }
 
-    public static Player playerMakeSneak(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
+    public static Player playerMakeSneak(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, String avatar, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
         int index = lvl.size()-1;
@@ -93,12 +106,12 @@ public class Player extends Entity implements Saveable {
         List<KeyCommand> keys = new ArrayList<>();
         //Add sneak specific commands
 
-        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
+        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, avatar, keys, mountHandler, deadHandler);
 
         return player;
     }
 
-    public static Player playerMakeSummoner(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
+    public static Player playerMakeSummoner(EntityStats stats, List<Integer> lvl, KeyController playerController, Inventory inventory, List<Terrain> terrains, String name, String avatar, MountHandler mountHandler, BringOutYourDeadHandler deadHandler) {
         List<Skill> temp_skills = new ArrayList<Skill>();
 
         int index = lvl.size()-1;
@@ -110,7 +123,7 @@ public class Player extends Entity implements Saveable {
 
         List<KeyCommand> keys = new ArrayList<>();
         // Add summoner specific commands
-        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, keys, mountHandler, deadHandler);
+        Player player = new Player(temp_skills, lvl, stats, playerController, inventory, terrains, name, avatar, keys, mountHandler, deadHandler);
 
         return player;
     }

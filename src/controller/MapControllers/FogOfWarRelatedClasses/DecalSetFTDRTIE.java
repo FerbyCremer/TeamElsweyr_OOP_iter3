@@ -7,11 +7,12 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class DecalSetFTDRTIE implements DecalSet {
     private Point playerPos;
     private String direction;
-    private HashMap<Point, ArrayList<String>> zoneMap;
+    private ConcurrentHashMap<Point, ArrayList<String>> zoneMap;
     private int xDim;
     private int yDim;
     private String ghostName = "notNull";
@@ -34,7 +35,7 @@ public class DecalSetFTDRTIE implements DecalSet {
         this.xDim = xDim;
         this.yDim = yDim;
         this.direction = "N";
-        zoneMap = new HashMap<Point, ArrayList<String>>();
+        zoneMap = new ConcurrentHashMap<Point, ArrayList<String>>();
         for(int i = 0; i < xDim; i++){
             for(int j = 0; j < yDim; j++){
                 Point p = new Point(i, j);
@@ -70,7 +71,7 @@ public class DecalSetFTDRTIE implements DecalSet {
     }
 
     private void createZoneMap(ArrayList<Tile> tiles, Zone currentZone){
-        addGhostImageToSceneTiles();
+       // addGhostImageToSceneTiles();
 
         for(Tile t: tiles){
             Point p = makeNewPoint(t.getCoordinate());

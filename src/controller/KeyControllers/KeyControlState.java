@@ -1,11 +1,14 @@
 package controller.KeyControllers;
 
+import controller.ViewControllers.KeyBindingController;
+
 import java.util.HashMap;
 
 public class KeyControlState {
 
     private HashMap<String, KeyController> controllers;
     private KeyController activeController;
+    private KeyBindingController keyBindings;
 
     //private KeyBindingController keyBindingController;
 	public KeyControlState() {
@@ -13,7 +16,9 @@ public class KeyControlState {
 	}
 
 	public void addKeyController (KeyController controller){
+
 		controllers.put(controller.getName(), controller);
+		keyBindings.loadKeyCodes(controller.keyListeners);
 	}
 
 	private void SwapControllerTo(KeyController controller) {

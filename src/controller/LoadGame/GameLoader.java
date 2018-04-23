@@ -201,7 +201,8 @@ public class GameLoader {
                 Entity entity = null;
                 switch (entityType) {
                     case "player":
-                        entity = entityBuilder.buildPlayer(entityTypeData, playerController, inventory, passable, mountHandler, entityStats);
+                        String avatar = worldData.get(lineIndex++);
+                        entity = entityBuilder.buildPlayer(entityTypeData, playerController, inventory, avatar, passable, mountHandler, entityStats);
                         //TODO store global reference to player somewhere?
                         aiController.setPlayer((Player) entity);
                         worldController.setPlayer((Player) entity);
@@ -345,6 +346,7 @@ public class GameLoader {
 
 
     public WorldController load(String name, int avatar){
+        //String filepath = "src/assets/saves/savefile.txt";
 
         return null;
     }

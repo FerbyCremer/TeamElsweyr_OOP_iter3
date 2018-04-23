@@ -185,13 +185,14 @@ public class GameSaveVisitor implements SaveVisitor{
         String save = "";
         save += saveEntity(player);
         save += "player\n";
-        save += player.getName()+"\n";
+        save += player.getEntityName()+"\n";
         List<Skill> skills = player.getSkills();
         for (int i = 0; i < skills.size(); i++) {
             save += skills.get(i).getLevel() + "\n";
         }
         save += "endSkill\n";
         save += "endOfEntityType\n";
+        save += player.getName() + "\n";
         return save;
     }
 

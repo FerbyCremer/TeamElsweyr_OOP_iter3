@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.MenuObserver" prefHeight="720.0" prefWidth="1080.0" fx:id="base" stylesheets="css/menus.css">
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.MenuObserver" minHeight="1080" minWidth="1920" fx:id="base" stylesheets="css/menus.css">
     <top>
         <Label value="The Mewrchants of Vemice - PAUSE"/>
     </top>
