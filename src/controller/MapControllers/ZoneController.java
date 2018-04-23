@@ -5,6 +5,7 @@ import controller.EntityControllers.AIController;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSet;
 import controller.MapControllers.FogOfWarRelatedClasses.FogOfWarController;
 import controller.MapControllers.MovementRelatedControllers.*;
+import javafx.animation.AnimationTimer;
 import model.Map.Zone.TileRelatedClasses.Decal;
 import view.ZoneView;
 import model.Map.Zone.Zone;
@@ -36,24 +37,32 @@ public class ZoneController {
     }
 
 
-    private class GameLoop extends TimerTask {
+    private class GameLoop extends AnimationTimer {
+
+/*        @Override
+        public void run() {
+        }*/
+        private long lastUpdate = 0;
 
         @Override
-        public void run() {
-            aiController.makeAIDecision();
-            movementController.updateEntitys();
-            itemCollison.checkCollision();
-            areaEffectCollision.checkCollision();
-            trapCollision.checkCollision();
-            fogOfWarController.update();
-            zoneView.renderGrid();
-
+        public void handle(long now) {
+            if ((now - lastUpdate) >= (long) 100000){
+                aiController.makeAIDecision();
+                movementController.updateEntitys();
+                itemCollison.checkCollision();
+                areaEffectCollision.checkCollision();
+                trapCollision.checkCollision();
+                fogOfWarController.update();
+                zoneView.renderGrid();
+                lastUpdate = now;
+            }
         }
     }
 
     public void startGameLoop(){
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new GameLoop(), 1000, 100);
+        new GameLoop().start();
+        //Timer timer = new Timer();
+        //timer.scheduleAtFixedRate(new GameLoop(), 2000, 500);
     }
 
     public void setMovementController(MovementController movementController){
