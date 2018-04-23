@@ -24,6 +24,8 @@ public class River implements Saveable {
         double entityRadians = Math.toRadians(entityDirection.getAngle());
         int vectorX = (int) (entitySpeed*Math.cos(entityRadians));
         int vectorY = (int) (entitySpeed*Math.sin(entityRadians));
+        System.out.println("vectorX = " + vectorX);
+        System.out.println("vectorY = " + vectorY);
 
         double riverRadians = Math.toRadians(direction.getAngle());
         int riverVectorX = (int) (flowRate*Math.cos(riverRadians));

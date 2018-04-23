@@ -16,7 +16,7 @@ public class Radial implements ActionType{
         int range = action.getMaxRange();
         HashMap<Tile, Integer> affectedTiles = new HashMap<>();
         Utility utility = new Utility();
-        for(int i = 0; i < range; i++){
+        for(int i = 0; i <= range; i++){
             utility.copyFromList(affectedTiles, generateCircle(direction,tile,i), i);
         }
         return affectedTiles;

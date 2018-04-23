@@ -22,7 +22,7 @@ public class Angular implements ActionType{
         affectedTiles.put(tempTile, 0);
         tempTile = tempTile.getNeighbor(direction);
 
-        for(int i = 1; i < range; i++){
+        for(int i = 0; i <= range; i++){
             affectedTiles.put(tempTile, i);
             List<Tile> right = getAffectedTileLinear(tempTile, direction.getClockwise(120), i);
             List<Tile> left = getAffectedTileLinear(tempTile, direction.getClockwise(-120), i);
