@@ -155,7 +155,7 @@ public class AvatarController implements Initializable {
 
             GameObserver gameObserver = fxmlLoader.getController();
 
-            gameLoader = new GameLoader(canvas, gameObserver);
+            gameLoader = new GameLoader(canvas, gameObserver, camera);
             WorldController theworld = gameLoader.load();
             gameSaver = new GameSaver(theworld);
 

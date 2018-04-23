@@ -3,69 +3,71 @@ package view;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSet;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSetFTDRTIE;
 import javafx.fxml.FXML;
+import javafx.scene.Camera;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import model.Actions.ActionType.ActionInterface;
+import model.Actions.ActionType.ActionObserver;
+
 import java.awt.*;
 import java.util.ArrayList;
 
 public class ZoneView {
 
-   DecalSet decalSet;
-
-    String workingDirectory = "file:" + System.getProperty("user.dir");
-
-    Image img1 = new Image(workingDirectory + "/src/assets/volcano.png");
-    Image img2 = new Image(workingDirectory + "/src/assets/grass.png");
-    Image img3 = new Image(workingDirectory + "/image/mountain1.png");
-    Image fog = new Image(workingDirectory + "/image/fog.png");
-    Image nonVisible = new Image(workingDirectory + "/image/nonVisible.png");
+    private DecalSet decalSet;
+    private SpriteLoader sprites;
 
     //TODO remove this stuff
 
     @FXML
-    Canvas canvas;
-    GraphicsContext gc;
+    private Canvas canvas;
+    private GraphicsContext gc;
 
-    double hexHeight;
-    double hexWidth;
+    private double hexHeight;
+    private double hexWidth;
+
+    private double screenWidth;
+    private double screenHeight;
+
+    Camera camera;
 
     double cameraX;
     double cameraY;
 
-   public ZoneView(Canvas canvas){
+   public ZoneView(Canvas canvas, Camera camera){
+    ActionInterface actionInterface;
         this.canvas = canvas;
         gc = canvas.getGraphicsContext2D();
         hexHeight = 80;
         hexWidth = 92;
         decalSet = new DecalSetFTDRTIE();
+        sprites = new SpriteLoader();
+        this.camera = camera;
+
+        screenWidth = camera.getParent().getScene().getWindow().getWidth();
+        screenHeight = camera.getParent().getScene().getWindow().getHeight();
+    }
+
+    public void setActionInterface(ActionInterface actionInterface) {
+        this.actionInterface = actionInterface;
     }
 
     public void renderGrid(){
-        /*
-          hexX and hexY are the starting position of the grid
-         */
+        focusPlayer();
         double hexX = 0;
         double hexY = hexHeight/2;
-        /*
-        loop through the tile set and print the provided strings
-         */
-       // System.out.println("xdim " + decalSet.getXDim() + " ydmin " + decalSet.getYDim());
 
         //TODO change x and y to getXDIM and getYDIM via DecalSetOAEUFHEI
         for(int y = 0; y < decalSet.getYDim(); y++){
             for(int x = 0; x < decalSet.getXDim(); x++){
             ArrayList<String> tempList = decalSet.getTileContents(new Point(x, y));
                 for (String s : tempList) {
-           //             Image f = new Image(getClass().getClassLoader().getResource(workingDirectory + "/src/assets/" + s));
-                        Image f = new Image(workingDirectory + "/src/assets/" + s+".png");
-/*                    if(x % 2 == 0){
-                        gc.drawImage(img1, hexX, hexY, hexWidth, hexHeight);
-                    }
-                    else {
-                        gc.drawImage(img2, hexX, hexY, hexWidth, hexHeight);
-                    }*/
-                        gc.drawImage(f, hexX, hexY, hexWidth, hexHeight);
+                    System.out.println(s);
+                    gc.drawImage(sprites.getImage(s), hexX, hexY, hexWidth, hexHeight);
+                }
+                if(actionInterface.getPoints()) {
+                    Image f = new Image(workingDirectory + "/src/assets/" + actionInterface.getActionName() + ".png");
                 }
                 hexY+= hexHeight;
             }
@@ -98,4 +100,17 @@ public class ZoneView {
 //        //pointList.clear();
     }
 
+    public void focusPlayer(){
+       double x = (hexWidth/2) * (3/2) * ((DecalSetFTDRTIE)decalSet).getPlayerY();
+       double y = (hexWidth/2) * Math.sqrt(3) * (((DecalSetFTDRTIE)decalSet).getPlayerX() - 0.5 * (((DecalSetFTDRTIE)decalSet).getPlayerY()%2)) + 40;
+
+       centerCamera(x, y);
+    }
+
+    public void centerCamera(double x, double y){
+       x -= screenWidth/2;
+       y -= screenHeight/2;
+       System.out.println(screenWidth + " " + screenHeight);
+       camera.relocate(x, y);
+    }
 }

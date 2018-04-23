@@ -23,8 +23,8 @@ public class ActionPerformer {
     private ActionInterface actionInterface;
 
 
-
-    public ActionPerformer(Zone zone){
+    public ActionPerformer(Zone zone, ActionInterface actionInterface){
+        this.actionInterface = actionInterface;
         entityContentMap = zone.getEntityMap();
         trapContentMap = zone.getTrapMap();
     }

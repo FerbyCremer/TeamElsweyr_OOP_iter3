@@ -48,7 +48,7 @@ public class SpriteLoader {
         imageArrayList.add(new Image (workingDirectory + "/src/assets/metalCane.png"));
         imageHashMap.put("metalCane", 11);
         imageArrayList.add(new Image (workingDirectory + "/src/assets/mountain.png"));
-        imageHashMap.put("mountain1", 12);
+        imageHashMap.put("mountain", 12);
         imageArrayList.add(new Image (workingDirectory + "/src/assets/nonVisible.png"));
         imageHashMap.put("nonVisible", 13);
         imageArrayList.add(new Image (workingDirectory + "/src/assets/plateau.png"));
@@ -77,6 +77,18 @@ public class SpriteLoader {
         imageHashMap.put("twoHandedSword", 25);
         imageArrayList.add(new Image (workingDirectory + "/src/assets/twoHandedSword.png"));
         imageHashMap.put("twoHandedSword", 26);
+        imageArrayList.add(new Image (workingDirectory + "/src/assets/5i.png"));
+        imageHashMap.put("5i", 27);
+        imageArrayList.add(new Image (workingDirectory + "/src/assets/potion.png"));
+        imageHashMap.put("healEffect", 28);
+        imageArrayList.add(new Image (workingDirectory + "/src/assets/volcano.png"));
+        imageHashMap.put("damageEffect", 29);
+        imageArrayList.add(new Image (workingDirectory + "/src/assets/blueScroll.png"));
+        imageHashMap.put("expEffect", 30);
+        imageArrayList.add(new Image (workingDirectory + "/src/assets/volcano.png"));
+        imageHashMap.put("deathEffect", 31);
+        imageArrayList.add(new Image (workingDirectory + "/src/assets/river.png"));
+        imageHashMap.put("water", 32);
     }
 
     public Image getImage(String s){

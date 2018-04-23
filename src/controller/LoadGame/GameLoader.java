@@ -13,7 +13,10 @@ import controller.KeyControllers.ToInventory;
 import controller.MapControllers.WorldController;
 import controller.MapControllers.ZoneController;
 import controller.ViewControllers.GameObserver;
+import javafx.scene.Camera;
 import javafx.scene.Scene;
+import model.Actions.ActionType.ActionInterface;
+import model.Actions.ActionType.ActionObserver;
 import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.AI;
 import model.Entities.Entity;
@@ -71,17 +74,19 @@ public class GameLoader {
 
 
 
-    public GameLoader(Canvas canvas, GameObserver gameObserver){
+    public GameLoader(Canvas canvas, GameObserver gameObserver, Camera camera){
 
         this.canvas = canvas;
         this.gameObserver = gameObserver;
         //Initialize Controllers
-        actionHandler = new ActionHandler();
+        ActionInterface actionInterface = new ActionObserver();
+        actionHandler = new ActionHandler(actionInterface);
         mountHandler = new MountHandler();
         keyBindingMapper = new KeyBindingMapper("src/assets/saves/keybinds.txt");
         playerController = new KeyController("player", keyBindingMapper);
         aiController = new AIController();
-        zoneView = new ZoneView(canvas);
+        zoneView = new ZoneView(canvas, camera);
+        zoneView.setActionInterface(actionInterface);
        // worldController = new WorldController(new ZoneController(zoneView), actionHandler, mountHandler, deadHandler, aiController);
         deadHandler = new BringOutYourDeadHandler(aiController);
         worldController = new WorldController(new ZoneController(zoneView, aiController), actionHandler, mountHandler, deadHandler);
@@ -225,11 +230,11 @@ public class GameLoader {
                         aiController.addAI((AI) entity );
                         break;
                     case "pet":
-                        entity = entityBuilder.buildPet(aiController, inventory, passable, entityStats);
+                        entity = entityBuilder.buildPet(entityTypeData, aiController, inventory, passable, entityStats);
                         aiController.addAI((AI) entity );
                         break;
                     case "mount":
-                        entity = entityBuilder.buildMount(inventory, passable, entityStats);
+                        entity = entityBuilder.buildMount(entityTypeData, inventory, passable, entityStats);
                         break;
                 }
                 entityMap.setContent(tiles[x][y], entity);
@@ -346,7 +351,7 @@ public class GameLoader {
     }
 
     public WorldController load(){
-        String filepath = "src/assets/saves/savefile.txt";
+        String filepath = "src/assets/saves/savefile3.txt";
         parseFile(filepath);
 
         //TODO do this here or in menu to get KeyControlState reference
