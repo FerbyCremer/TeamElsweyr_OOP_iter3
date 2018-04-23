@@ -6,6 +6,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,11 +14,14 @@ public class KeyController implements EventHandler<KeyEvent> {
 
     private String name;
     public List<KeyCommand> keyListeners;
+    private KeyBindingMapper keyBindingMapper;
 
-    public KeyController(String name, List<KeyCommand> keys){
+    public KeyController(String name, KeyBindingMapper keyBindingMapper){
         this.name = name;
-        keyListeners = keys;
+        this.keyBindingMapper = keyBindingMapper;
+        keyListeners = new ArrayList<>();
     }
+
 
     public String getName() {
         return name;
@@ -30,15 +34,12 @@ public class KeyController implements EventHandler<KeyEvent> {
     public void changeKeyCode(KeyCommand prevCode, KeyCode newCode){
         int temp = keyListeners.indexOf(prevCode);
         KeyCommand keyCommand = keyListeners.get(temp);
-        keyCommand.setKeyCode(newCode);
-    }
+        //keyCommand.setKeyCode(newCode);
 
-    public void setKeyListeners(List<KeyCommand> keyListeners) {
-        this.keyListeners = keyListeners;
-        //TODO: communicate with keyBindingController to load key codes for each keyListener
     }
 
     public void addKeyListener(KeyCommand key){
+        key.setKeyCode(keyBindingMapper);
         keyListeners.add(key);
         //TODO: communicate with keyBindingController to load key codes for specific keyListener
     }

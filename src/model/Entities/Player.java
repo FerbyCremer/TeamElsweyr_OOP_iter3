@@ -45,17 +45,25 @@ public class Player extends Entity implements Saveable {
         skills.add(0,new Skill("bindWounds", lvl.remove(index--)));
 
         //Add all movement/default commands
-        keys.add(new MoveNorthWest(this));
-        keys.add(new MoveNorth(this));
-        keys.add(new MoveNorthEast(this));
-        keys.add(new MoveSouthWest(this));
-        keys.add(new MoveSouth(this));
-        keys.add(new MoveSouthEast(this));
-        keys.add(new BindWounds(this));
-        keys.add(new Bargain(this));
-        keys.add(new Observe(this));
-        keys.add(new Attack(this));
-        keys.add(new UnMount(this));
+        playerController.addKeyListener(new MoveNorth(this));
+        playerController.addKeyListener(new MoveNorthEast(this));
+        playerController.addKeyListener(new MoveNorthWest(this));
+        playerController.addKeyListener(new MoveSouth(this));
+        playerController.addKeyListener(new MoveSouthEast(this));
+        playerController.addKeyListener(new MoveSouthWest(this));
+
+
+//        keys.add(new MoveNorthWest(this));
+//        keys.add(new MoveNorth(this));
+//        keys.add(new MoveNorthEast(this));
+//        keys.add(new MoveSouthWest(this));
+//        keys.add(new MoveSouth(this));
+//        keys.add(new MoveSouthEast(this));
+////        keys.add(new BindWounds(this));
+////        keys.add(new Bargain(this));
+////        keys.add(new Observe(this));
+////        keys.add(new Attack(this));
+////        keys.add(new UnMount(this));
 
 
         //Register all keycommands to the playercontroller

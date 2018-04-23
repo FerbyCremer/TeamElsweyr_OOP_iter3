@@ -8,7 +8,7 @@ public class MoveSouthEast extends KeyCommand {
     private Player player;
     private Direction direction = Direction.SE;
     public MoveSouthEast(Player player){
-        super("MoveSouthEast");
+        super("moveSouthEast");
         this.player = player;
     }
     @Override

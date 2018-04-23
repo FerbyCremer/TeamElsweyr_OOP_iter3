@@ -1,5 +1,6 @@
 package controller.KeyControllers.KeyCommands;
 
+import controller.KeyControllers.KeyBindingMapper;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -14,9 +15,14 @@ public abstract class KeyCommand implements EventHandler<KeyEvent> {
         this.name = name;
     }
 
-    public void setKeyCode(KeyCode keyCode) {
-        this.keyCode = keyCode;
+    public void setKeyCode(KeyBindingMapper keyBindingMapper){
+        keyCode = keyBindingMapper.getKeyCodeFor(name);
+        System.out.println("Binding Keycode: " + keyCode + " to " + name);
     }
+
+/*    public void setKeyCode(KeyCode keyCode) {
+        this.keyCode = keyCode;
+    }*/
 
     public String getName() {
         return name;
