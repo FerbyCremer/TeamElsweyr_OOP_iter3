@@ -7,7 +7,7 @@ import controller.EntityControllers.AIController;
 import controller.Handlers.ActionHandler;
 import controller.Handlers.BringOutYourDeadHandler;
 import controller.Handlers.MountHandler;
-import controller.KeyControllers.KeyCommands.BindWounds;
+import controller.KeyControllers.KeyCommands.*;
 import controller.KeyControllers.KeyController;
 import model.Actions.Action;
 import model.Entities.EntityStats;
@@ -54,13 +54,14 @@ public class EntityBuilder {
 				break;
 			case "sneak":
 				player = Player.playerMakeSneak(stats, skillLvl, controller, inventory, terrains, name, avatar, mountHandler, deadHandler);
+				controller.addKeyListener(new Detect(player, actionHandler));
+				controller.addKeyListener(new RemoveTrap(player, actionHandler));
+				controller.addKeyListener(new Creep(player, controller, actionHandler));
 				break;
 		}
 
 		//Add default KeyCommands
         controller.addKeyListener(new BindWounds(player, actionHandler));
-
-
 		return player;
 	}
 	

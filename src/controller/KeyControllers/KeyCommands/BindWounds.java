@@ -15,7 +15,7 @@ public class BindWounds extends KeyCommand {
     public BindWounds(Player player, ActionHandler actionHandler){
         super("bindWounds");
         this.player = player;
-        tool = new Tool(new Skill("bindWounds"), actionHandler, new EntityAction(0, 80, new Linear(), new HealEffect(27)), 12);
+        tool = new Tool(new Skill("bindWounds"), actionHandler, new EntityAction(0, 80, new Linear(), new HealEffect(12)), 12);
     }
 
     @Override

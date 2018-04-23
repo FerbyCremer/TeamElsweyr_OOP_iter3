@@ -83,7 +83,7 @@ public class SpriteLoader {
         imageHashMap.put("healEffect", 28);
         imageArrayList.add(new Image (workingDirectory + "/src/assets/volcano.png"));
         imageHashMap.put("damageEffect", 29);
-        imageArrayList.add(new Image (workingDirectory + "/src/assets/blueScroll.png"));
+        imageArrayList.add(new Image (workingDirectory + "/src/assets/greenBook.png"));
         imageHashMap.put("expEffect", 30);
         imageArrayList.add(new Image (workingDirectory + "/src/assets/volcano.png"));
         imageHashMap.put("deathEffect", 31);
@@ -97,6 +97,9 @@ public class SpriteLoader {
         imageHashMap.put("explosion", 35);
         imageArrayList.add(new Image (workingDirectory + "/src/assets/Radioactive_Rat.png"));
         imageHashMap.put("npc", 36);
+        imageArrayList.add(new Image (workingDirectory + "/src/assets/blueScroll.png"));
+        imageHashMap.put("teleportEffect", 37);
+
     }
 
     public Image getImage(String s){

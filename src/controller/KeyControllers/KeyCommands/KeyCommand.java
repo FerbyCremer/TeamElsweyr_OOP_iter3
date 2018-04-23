@@ -20,7 +20,15 @@ public abstract class KeyCommand implements EventHandler<KeyEvent> {
         System.out.println("Binding Keycode: " + keyCode + " to " + name);
     }
 
-/*    public void setKeyCode(KeyCode keyCode) {
+    public void setKeyCode(KeyCode keyCode){
+        this.keyCode = keyCode;
+    }
+
+    public KeyCode getKeyCode() {
+        return keyCode;
+    }
+
+    /*    public void setKeyCode(KeyCode keyCode) {
         this.keyCode = keyCode;
     }*/
 
