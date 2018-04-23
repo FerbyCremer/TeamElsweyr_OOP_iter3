@@ -8,7 +8,7 @@ public class DamageEffect implements EntityEffect{
     private String name;
 
     public DamageEffect(int amount) {
-        this.amount = amount;
+        this.amount = -amount;
         this.name = "damage";
     }
 
