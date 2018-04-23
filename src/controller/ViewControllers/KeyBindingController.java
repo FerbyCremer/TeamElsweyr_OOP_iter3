@@ -34,15 +34,16 @@ public class KeyBindingController implements Initializable {
 
     @FXML private TableColumn cameraCommand;
     @FXML private TableColumn cameraKey;
-
+    private KeyController playerController;
    // private KeyController player = new KeyController("player", )
 
-   // private ObservableList<KeyCommand> playerCommandList = FXCollections.observableArrayList(loadKeyCodes())
+    private ObservableList<KeyCommand> playerCommandList = FXCollections.observableList(playerController.keyListeners);
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-                playerCommand.setCellValueFactory(
-                new PropertyValueFactory<KeyCommand, String>("name"));
+                playerCommand.setCellValueFactory(new PropertyValueFactory<KeyCommand, String>("name"));
+
+                playerCommandList.addAll(playerController.keyListeners);
 
                 playerKey.setCellValueFactory( new PropertyValueFactory<KeyCommand, KeyCode>("keyCode"));
 

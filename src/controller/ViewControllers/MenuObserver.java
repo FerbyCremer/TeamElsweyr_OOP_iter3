@@ -54,10 +54,14 @@ public class MenuObserver implements Initializable {
     @FXML private void keyConfig() throws IOException {
         Parent window;
         FXMLLoader fmxlLoader = new FXMLLoader(getClass().getResource("/view/KeyConfiguring.fxml"));
+
+        this.showGame(fmxlLoader);
+
         window = (TabPane) fmxlLoader.load();
 
         this.scene = new Scene(window);
         //TODO is there something missing???
+
         this.showScene();
     }
 
@@ -118,6 +122,10 @@ public class MenuObserver implements Initializable {
 
             //gameSaver.save();
 
+            mainStage.setOnCloseRequest((WindowEvent e) -> {
+                Platform.exit();
+                System.exit(0);
+            });
             root.getChildren().add(canvas);
             canvas.setFocusTraversable(true);
 
