@@ -43,8 +43,7 @@ public class EffectBuilder {
 			
 			case "observeEffect":
 				amount = Integer.parseInt(attributes.get(index++));
-				Zone zone = wController.getWorld().getZones().get(Integer.parseInt(wController.getWorld().getCurrentZoneID()));
-				ObserveObserver observer = new ObserveObserver(zone);
+				ObserveObserver observer = new ObserveObserver();
 				effect = new ObserveEffect(amount, observer);
 				view.addObserver(observer);
 				break; 
