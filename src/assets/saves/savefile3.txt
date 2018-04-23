@@ -2070,7 +2070,7 @@ oneHanded
 entityAction
 5
 100
-angular
+radial
 entityEffect
 damageEffect
 15
