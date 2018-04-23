@@ -101,7 +101,10 @@ public class AIController {
             //shortest of 6 paths, if they exists
             ArrayList<ArrayList<Direction>> possiblePaths = new ArrayList<ArrayList<Direction>>();
             for(int i = 0; i < 6; i++) {
-                 possiblePaths.add(recursiveBFS(currentPath, visited, target, current.getNeighbor(direction.getClockwise(i*60)), direction.getClockwise(i*60)));
+                ArrayList<Direction> path = recursiveBFS(currentPath, visited, target, current.getNeighbor(direction.getClockwise(i*60)), direction.getClockwise(i*60));
+                if(path != null) {
+                    possiblePaths.add(path);
+                }
             }
             return shortestOf(possiblePaths);
         }
@@ -110,13 +113,11 @@ public class AIController {
 
     private ArrayList<Direction> shortestOf(List<ArrayList<Direction>> directions){
         ArrayList<Direction> shortestList = new ArrayList<>();
-        int shortest = 10000;
+        int shortest = 100000;
         for(int i = 0; i < directions.size(); i++ ){
-            if(directions.get(i) != null) {
-                if (directions.get(i).size() < shortest) {
-                    shortest = directions.get(i).size();
-                    shortestList = directions.get(i);
-                }
+            if (directions.get(i).size() < shortest) {
+                shortest = directions.get(i).size();
+                shortestList = directions.get(i);
             }
         }
         return shortestList;
