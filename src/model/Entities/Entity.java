@@ -113,6 +113,14 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
 		execute();
 	}
 
+	public void setDetectRange(int detect){
+	    stats.setDetectRange(detect);
+    }
+
+    public int getDetectRange(){
+	    return stats.getDetectRange();
+    }
+
 
     public String getName() {
         return name;

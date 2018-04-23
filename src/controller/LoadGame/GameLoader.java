@@ -5,6 +5,8 @@ import controller.Handlers.ActionHandler;
 import controller.Handlers.BringOutYourDeadHandler;
 import controller.Handlers.MountHandler;
 import controller.KeyControllers.KeyBindingMapper;
+import controller.KeyControllers.KeyCommands.Attack;
+import controller.KeyControllers.KeyCommands.ConsumeItem;
 import controller.KeyControllers.KeyCommands.KeyCommand;
 import controller.KeyControllers.KeyCommands.MoveKeyListeners.MoveNorth;
 import controller.KeyControllers.KeyCommands.ToCamera;
@@ -102,15 +104,7 @@ public class GameLoader {
     public KeyController initializeKeyController(Scene scene){
         //playerController.addKeyListener(new ToInventory("ToInventory", keyControlState));
         //TODO add all basic keycommands intialization
-        //Make key commands
-/*        List<KeyCommand> cameraCommands = new ArrayList<>();
-        cameraController = new KeyController("camera", cameraCommands);
 
-        //Make key commands
-        List<KeyCommand> inventoryCommands = new ArrayList<>();
-        inventoryController = new KeyController("inventory", inventoryCommands);*/
-
-       // keyControlState = new KeyControlState(scene, playerController, cameraController, inventoryController);
 
         playerController.addKeyListener(new ToCamera(playerController, zoneView));
         scene.setOnKeyPressed(playerController);

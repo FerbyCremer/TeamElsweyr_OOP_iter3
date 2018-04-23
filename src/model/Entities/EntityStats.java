@@ -154,8 +154,11 @@ public class EntityStats {
 		return facingDirection;
 	}
 
+    public void setDetectRange(int detectRange) {
+        this.detectRange = detectRange;
+    }
 
-	public boolean isAlive(){
+    public boolean isAlive(){
 	    return currentHealth > 0;
     }
 
