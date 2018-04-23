@@ -129,9 +129,11 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
 
 	}
 
-	public void visit(Mount mount){
+	@Override
+	public void visit(Mount mount){};
 
-	};
+    @Override
+	public void visit(Player player){};
 
     public Direction getDirection() {
         return stats.getFacingDirection();

@@ -19,16 +19,23 @@ public class Angular implements ActionType{
         HashMap<Tile, Integer> affectedTiles = new HashMap<>();
         Utility utility = new Utility();
         Tile tempTile = tile;
+        if(range ==  0){
+            affectedTiles.put(tile, 1);
+            return affectedTiles;
+        }
         affectedTiles.put(tempTile, 0);
         tempTile = tempTile.getNeighbor(direction);
 
-        for(int i = 1; i < range; i++){
+        for(int i = 1, flag = 0; i <= range; flag++){
             affectedTiles.put(tempTile, i);
             List<Tile> right = getAffectedTileLinear(tempTile, direction.getClockwise(120), i);
             List<Tile> left = getAffectedTileLinear(tempTile, direction.getClockwise(-120), i);
             utility.copyFromList(affectedTiles, right, i);
             utility.copyFromList(affectedTiles, left, i);
             tempTile = tempTile.getNeighbor(direction);
+            if(flag%2 == 0){
+                i++;
+            }
         }
 
         return affectedTiles;

@@ -18,8 +18,11 @@ public class Linear implements ActionType {
         HashMap<Tile, Integer> affectedTiles = new HashMap<>();
 
         Tile tempTile = tile;
-
-        for(int i = 0; i < range; i++){
+        if(range ==  0){
+            affectedTiles.put(tempTile, 1);
+            return affectedTiles;
+        }
+        for(int i = 1; i <= range; i++){
             affectedTiles.put(tempTile, i);
             tempTile = tempTile.getNeighbor(direction);
         }

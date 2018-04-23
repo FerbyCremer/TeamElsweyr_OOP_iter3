@@ -27,4 +27,8 @@ public class AggroState implements NPCState {
     public String accept(SaveVisitor saveVisitor) {
         return "aggroState\n";
     }
+
+    public int getAttackDamage(){
+        return attackDamage;
+    }
 }
