@@ -23,8 +23,10 @@ public class MountPerformer {
 		
 		player.swapState(mounted);
 		mounted.setValues(player.getStats());
-		
+		Tile tile = entityMap.getTileOf(mount);
+
 		entityMap.removeContent(mount);
+		entityMap.setNewLocation(tile, player);
 	}
 	
 	public void performUnmounting(Player player) {
