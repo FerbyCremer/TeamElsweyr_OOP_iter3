@@ -8,6 +8,7 @@ import controller.ViewControllers.test.ChoiceModel;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
@@ -18,22 +19,17 @@ import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.*;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import view.ZoneView;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.URL;
 import java.security.Key;
@@ -182,10 +178,18 @@ public class AvatarController implements Initializable {
                             new ChoiceModel("Wolf", true)
                     ));
 
-            Pane pane = new Pane(choicesView);
+            //Pane pane = new Pane(choicesView);
             //pane.getChildren().add(choicesView);
-            borderPane.setRight(pane);
+           // borderPane.setRight(pane);
+            javafx.scene.control.Button button= new javafx.scene.control.Button("Inventory");
+            Group root2 = new Group();
+            DoOnAction doOnAction = new DoOnAction( mainStage, new Scene(root2));
+            button.setOnMouseClicked(doOnAction);
+
+            borderPane.setLeft(button);
             root.getChildren().add(borderPane);
+            root.getChildren().add(button);
+
             canvas.setFocusTraversable(true);
 
 
@@ -207,10 +211,49 @@ public class AvatarController implements Initializable {
             gameSaver = new GameSaver(theworld);
             gameLoader.initializeKeyController(mainScene);
 
+
+
             theworld.setPlayerName(SMavatars[i]);
 
             theworld.runGame();
             mainStage.show();
         });
+    }
+
+    private class DoOnAction implements EventHandler<MouseEvent> {
+
+        private Scene scene;
+        private Button button;
+        private Stage stage;
+        private Group root;
+
+        public DoOnAction(Stage stage, Scene scene) {
+            this.stage = stage;
+            button = new Button("jfksal");
+            button.setOnAction(new DoOnAction2());
+            root = new Group();
+            scene = new Scene(root);
+
+        }
+
+
+
+        @Override
+        public void handle(MouseEvent event) {
+            stage.setScene(scene);
+            root.getChildren().add(button);
+            System.out.println("fjsalfjas;l");
+        }
+
+        private class DoOnAction2 implements EventHandler<javafx.event.ActionEvent> {
+
+            public DoOnAction2() {
+            }
+
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("defientily oop");
+            }
+        }
     }
 }
