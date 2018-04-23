@@ -35,7 +35,6 @@ public class MovementController {
 
             Entity currentEntity = entityMap.getContentAtTile(entityTile);
 
-
             Direction currentDirection = currentEntity.getDirection();
 
             if (riverMap.hasTile(entityTile)){

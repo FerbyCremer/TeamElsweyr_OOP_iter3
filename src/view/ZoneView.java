@@ -53,8 +53,8 @@ public class ZoneView {
        // System.out.println("xdim " + decalSet.getXDim() + " ydmin " + decalSet.getYDim());
 
         //TODO change x and y to getXDIM and getYDIM via DecalSetOAEUFHEI
-        for(int x = 0; x < decalSet.getXDim(); x++){
-            for(int y = 0; y < decalSet.getYDim(); y++){
+        for(int y = 0; y < decalSet.getYDim(); y++){
+            for(int x = 0; x < decalSet.getXDim(); x++){
             ArrayList<String> tempList = decalSet.getTileContents(new Point(x, y));
                 for (String s : tempList) {
            //             Image f = new Image(getClass().getClassLoader().getResource(workingDirectory + "/src/assets/" + s));
@@ -73,7 +73,7 @@ public class ZoneView {
             hexX += hexWidth*.75;
 
             //set the height of the next column, shift down when odd
-            if(x % 2 == 0)
+            if(y % 2 == 0)
                 hexY = 0;
             else
                 hexY = hexHeight / 2;

@@ -35,6 +35,8 @@ public class EntityMover {
     }
 
     private void resetCooldown(double speed){
-        cooldown = (int) (1/speed * 1000);
+        cooldown = (int) (1/speed * 10);
+        //System.out.print(cooldown);
+        //cooldown = 5;
     }
 }
