@@ -12,7 +12,7 @@ c
 moveSouthWest
 z
 attack
-s
+space
 bargain
 b
 bindWounds
@@ -35,3 +35,13 @@ unMount
 u
 useTool
 2
+toCamera
+t
+cameraUp
+up
+cameraDown
+down
+cameraLeft
+left
+cameraRight
+right
