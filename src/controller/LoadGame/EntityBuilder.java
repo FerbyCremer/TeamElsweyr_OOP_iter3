@@ -56,7 +56,7 @@ public class EntityBuilder {
 				player = Player.playerMakeSneak(stats, skillLvl, controller, inventory, terrains, name, avatar, mountHandler, deadHandler);
 				controller.addKeyListener(new Detect(player, actionHandler));
 				controller.addKeyListener(new RemoveTrap(player, actionHandler));
-				controller.addKeyListener(new Creep(player, controller));
+				controller.addKeyListener(new Creep(player, controller, actionHandler));
 				break;
 		}
 

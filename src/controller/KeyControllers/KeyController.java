@@ -31,11 +31,17 @@ public class KeyController implements EventHandler<KeyEvent> {
         keyListeners = keys;
     }
 
-    public void changeKeyCode(KeyCommand prevCode, KeyCode newCode){
-        int temp = keyListeners.indexOf(prevCode);
-        KeyCommand keyCommand = keyListeners.get(temp);
-        //keyCommand.setKeyCode(newCode);
+    public void changeKeyCode(String prevCode, KeyCode newCode){
 
+        KeyCode keycode = KeyCode.getKeyCode(prevCode);
+
+        for (int i = 0; i < keyListeners.size(); i++){
+            if (keyListeners.get(i).getKeyCode() == keycode ){
+                keyListeners.get(i).setKeyCode(newCode);
+                keyBindingMapper.saveKeyCode(keyListeners.get(i).getName(), newCode);
+                break;
+            }
+        }
     }
 
     public void addKeyListener(KeyCommand key){
