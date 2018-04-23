@@ -9,15 +9,15 @@ public class ActionObserver implements ActionInterface {
     private int coolDown;
     public ActionObserver(){
         points = new ArrayList<Point>();
-        name = "projectile";
+        name = "explosion";
         coolDown = 0;
     }
 
     @Override
     public void update(ArrayList<Point> points, String name) {
         this.points = points;
-        this.name = name;
-        coolDown = 30;
+       // this.name = name;
+        coolDown = 999999;
     }
 
     @Override

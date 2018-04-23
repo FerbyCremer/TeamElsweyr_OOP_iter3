@@ -91,6 +91,10 @@ public class SpriteLoader {
         imageHashMap.put("water", 32);
         imageArrayList.add(new Image (workingDirectory + "/src/assets/mount.png"));
         imageHashMap.put("mount", 33);
+        imageArrayList.add(new Image (workingDirectory + "/src/assets/1i.png"));
+        imageHashMap.put("1i", 34);
+        imageArrayList.add(new Image (workingDirectory + "/src/assets/explosion.png"));
+        imageHashMap.put("explosion", 35);
     }
 
     public Image getImage(String s){

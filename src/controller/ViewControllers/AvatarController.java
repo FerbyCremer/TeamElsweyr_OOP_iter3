@@ -157,6 +157,7 @@ public class AvatarController implements Initializable {
 
             gameLoader = new GameLoader(canvas, gameObserver, camera);
             WorldController theworld = gameLoader.load();
+            gameLoader.initializeKeyController(mainScene);
             gameSaver = new GameSaver(theworld);
 
             theworld.setPlayerName(SMavatars[i]);
