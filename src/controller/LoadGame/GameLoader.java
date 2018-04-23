@@ -45,7 +45,7 @@ public class GameLoader {
 
 
     private Canvas canvas;
-    private GameObserver gameObserver;
+    //private GameObserver gameObserver;
     private InventoryObserver inventoryObserver;
 
     private KeyControlState keyControlState;
@@ -72,10 +72,10 @@ public class GameLoader {
 
 
 
-    public GameLoader(Canvas canvas, GameObserver gameObserver, Camera camera){
+    public GameLoader(Canvas canvas, Camera camera){
 
         this.canvas = canvas;
-        this.gameObserver = gameObserver;
+        //this.gameObserver = gameObserver;
         //Initialize Controllers
         actionHandler = new ActionHandler();
         mountHandler = new MountHandler();
@@ -217,7 +217,7 @@ public class GameLoader {
                         //TODO store global reference to player somewhere?
                         aiController.setPlayer((Player) entity);
                         worldController.setPlayer((Player) entity);
-                        gameObserver.setPlayer((Player) entity);
+                        //gameObserver.setPlayer((Player) entity);
                         inventoryObserver = new InventoryObserver(inventory);
                         inventory.add(inventoryObserver);
                         break;

@@ -89,6 +89,9 @@ public class SpriteLoader {
         imageHashMap.put("deathEffect", 31);
         imageArrayList.add(new Image (workingDirectory + "/src/assets/river.png"));
         imageHashMap.put("water", 32);
+
+        imageArrayList.add(new Image(workingDirectory + "/src/assets/1i.png"));
+        imageHashMap.put("1i",33);
     }
 
     public Image getImage(String s){

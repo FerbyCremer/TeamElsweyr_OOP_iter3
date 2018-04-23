@@ -3,16 +3,23 @@ package controller.ViewControllers;
 import controller.LoadGame.GameLoader;
 import controller.LoadGame.GameSaver;
 import controller.MapControllers.WorldController;
+import controller.ViewControllers.test.ChoiceCell;
+import controller.ViewControllers.test.ChoiceModel;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.*;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
@@ -21,6 +28,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import javafx.util.Callback;
 import view.ZoneView;
 
 import java.awt.*;
@@ -144,10 +152,42 @@ public class AvatarController implements Initializable {
                 Platform.exit();
                 System.exit(0);
             });
-            javafx.scene.canvas.Canvas canvas = new Canvas(2500, 2500);
+            javafx.scene.canvas.Canvas canvas = new Canvas(500, 500);
 
-            root.getChildren().add(canvas);
+            BorderPane borderPane = new BorderPane();
+            Pane p = new Pane();
+           // p.setPrefWidth(400);
+            borderPane.setCenter(p);
+
+
+            p.getChildren().add(canvas);
+
+            //borderPane.positionInArea(p, 300,300,200,200,20, new Insets(0), HPos.CENTER, VPos.CENTER, false);
+
+            ListView<ChoiceModel> choicesView = new ListView<>();
+                    choicesView.setCellFactory(new Callback<ListView<ChoiceModel>, ListCell<ChoiceModel>>()
+            {
+                public ListCell<ChoiceModel> call(ListView<ChoiceModel> p)
+                {
+                    return new ChoiceCell();
+                }
+            });
+            System.out.println("akdjfl;asdjfl;asjdfl;jasdl;fjasd");
+            choicesView.setItems(FXCollections.observableArrayList
+                    (
+
+                            new ChoiceModel("Tiger", true),
+                            new ChoiceModel("Shark", false),
+                            new ChoiceModel("Bear", false),
+                            new ChoiceModel("Wolf", true)
+                    ));
+
+            Pane pane = new Pane(choicesView);
+            //pane.getChildren().add(choicesView);
+            borderPane.setRight(pane);
+            root.getChildren().add(borderPane);
             canvas.setFocusTraversable(true);
+
 
             //camera stuff
             Camera camera = new PerspectiveCamera(false);
@@ -156,15 +196,15 @@ public class AvatarController implements Initializable {
             cameraGroup.getChildren().add(camera);
             root.getChildren().add(cameraGroup);
 
-            GameObserver gameObserver = fxmlLoader.getController();
-            gameObserver.setCanvas(root);
+            //GameObserver gameObserver = fxmlLoader.getController();
+            //gameObserver.setCanvas(root);
 
 //            gameObserver.setScene(mainScene);
 
-            gameLoader = new GameLoader(canvas, gameObserver, camera);
+            gameLoader = new GameLoader(canvas,  camera);
             WorldController theworld = gameLoader.load();
             gameSaver = new GameSaver(theworld);
-
+            gameLoader.initializeKeyController(mainScene);
 
             theworld.setPlayerName(SMavatars[i]);
 

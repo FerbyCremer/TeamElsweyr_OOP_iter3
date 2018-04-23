@@ -138,14 +138,14 @@ public class MenuObserver implements Initializable {
             cameraGroup.getChildren().add(camera);
             root.getChildren().add(cameraGroup);
 
-            GameObserver gameObserver = fxmlLoader.getController();
-            //gameObserver.setCanvas(root);
-            gameObserver.setScene(mainScene);
+//            GameObserver gameObserver = fxmlLoader.getController();
+//            //gameObserver.setCanvas(root);
+//            gameObserver.setScene(mainScene);
 
            // borderPane.setCenter(root);
             root.setLeft(fxmlLoader.getRoot());
 
-            gameLoader = new GameLoader(canvas, gameObserver, camera);
+            gameLoader = new GameLoader(canvas, camera);
             WorldController theworld = gameLoader.load();
 
             gameLoader.initializeKeyController(mainScene);

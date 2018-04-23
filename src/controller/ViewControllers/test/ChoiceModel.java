@@ -3,8 +3,9 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.Parent;
 
-public class ChoiceModel
+public class ChoiceModel extends Parent
 {
     private final StringProperty label;
     private final BooleanProperty isSelected;
