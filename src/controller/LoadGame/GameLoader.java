@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import model.Actions.ActionType.ActionInterface;
 import model.Actions.ActionType.ActionObserver;
 import model.Effect.EntityEffect.EntityEffect;
+import model.Effect.EntityEffect.ObserveObserver;
 import model.Entities.AI;
 import model.Entities.Entity;
 import model.Entities.EntityStats;
@@ -91,7 +92,7 @@ public class GameLoader {
         deadHandler = new BringOutYourDeadHandler(aiController);
         worldController = new WorldController(new ZoneController(zoneView, aiController), actionHandler, mountHandler, deadHandler);
         //Initialize builders
-        effectBuilder = new EffectBuilder(worldController);
+        effectBuilder = new EffectBuilder(worldController, zoneView);
         itemBuilder = new ItemBuilder(actionHandler, effectBuilder);
         entityBuilder = new EntityBuilder(deadHandler);
     }
