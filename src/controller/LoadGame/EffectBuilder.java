@@ -7,12 +7,16 @@ import model.Effect.EntityEffect.*;
 import model.Effect.TrapEffects.DetectEffect;
 import model.Effect.TrapEffects.RemoveEffect;
 import model.Effect.TrapEffects.TrapEffect;
+import model.Map.Zone.Zone;
+import view.ZoneView;
 
 public class EffectBuilder {
 	private WorldController wController;
 	private int index;
+	private ZoneView view;
 	
-	public EffectBuilder(WorldController controller) {
+	public EffectBuilder(WorldController controller, ZoneView view) {
+		this.view = view;
 		this.wController = controller;
 	}
 	
@@ -39,7 +43,10 @@ public class EffectBuilder {
 			
 			case "observeEffect":
 				amount = Integer.parseInt(attributes.get(index++));
-				effect = new ObserveEffect(amount);
+				Zone zone = wController.getWorld().getZones().get(Integer.parseInt(wController.getWorld().getCurrentZoneID()));
+				ObserveObserver observer = new ObserveObserver(zone);
+				effect = new ObserveEffect(amount, observer);
+				view.addObserver(observer);
 				break; 
 			
 			case "bargainEffect":

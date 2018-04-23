@@ -1,5 +1,6 @@
 package view;
 
+import controller.KeyControllers.KeyCommands.Observe;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSet;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSetFTDRTIE;
 import javafx.fxml.FXML;
@@ -7,6 +8,11 @@ import javafx.scene.Camera;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import model.Actions.Action;
+import model.Actions.ActionType.ActionInterface;
+import model.Actions.ActionType.ActionObserver;
+import model.Effect.EntityEffect.ObserveObserver;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -31,6 +37,8 @@ public class ZoneView {
 
     double cameraX;
     double cameraY;
+    ObserveObserver observeObserver;
+    ActionInterface actionInterface;
 
    public ZoneView(Canvas canvas, Camera camera){
         this.canvas = canvas;
@@ -45,6 +53,14 @@ public class ZoneView {
         screenHeight = camera.getParent().getScene().getWindow().getHeight();
     }
 
+    public void setActionInterface(ActionInterface actionInterface) {
+        this.actionInterface = actionInterface;
+    }
+
+    public void addObserver(ObserveObserver observeObserver){
+        this.observeObserver = observeObserver;
+    }
+
     public void renderGrid(){
         focusPlayer();
         double hexX = 0;
@@ -57,6 +73,16 @@ public class ZoneView {
                 for (String s : tempList) {
                     System.out.println(s);
                     gc.drawImage(sprites.getImage(s), hexX, hexY, hexWidth, hexHeight);
+                }
+                if(actionInterface.getPoints(new Point(x,y))) {
+                    gc.drawImage(sprites.getImage(actionInterface.getActionName()), hexX, hexY, hexWidth, hexHeight);
+                }
+                if(observeObserver != null) {
+                    if (observeObserver.hasText()) {
+                        if (observeObserver.getPoint().x == x && observeObserver.getPoint().y == y) {
+                            gc.fillText(observeObserver.getText(), hexX, hexY);
+                        }
+                    }
                 }
                 hexY+= hexHeight;
             }

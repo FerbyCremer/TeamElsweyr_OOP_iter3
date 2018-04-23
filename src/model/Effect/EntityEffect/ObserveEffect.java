@@ -8,14 +8,19 @@ public class ObserveEffect implements EntityEffect {
     private String name;
     private int amount;
     private UpdateEntityRelatedView updateEntityRelatedView;
-
+    private ObserveObserver observeObserver;
     public ObserveEffect(int amount) {
         this.amount = amount;
     }
 
+    public ObserveEffect(int amount, ObserveObserver observeObserver) {
+        this.amount = amount;
+        this.observeObserver = observeObserver;
+    }
+
     @Override
     public void apply(Entity entity) {
-        updateEntityRelatedView.update(entity);
+        observeObserver.update(entity);
     }
 
     @Override

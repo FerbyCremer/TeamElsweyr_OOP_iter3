@@ -1,6 +1,7 @@
 package controller.Handlers;
 
 import model.Actions.Action;
+import model.Actions.ActionType.ActionInterface;
 import model.Actions.EntityAction;
 import model.Actions.TrapAction;
 import model.Entities.Entity;
@@ -12,8 +13,12 @@ import java.util.HashMap;
 
 public class ActionHandler {
     private ActionPerformer actionPerformer;
+    private ActionInterface actionInterface;
 
-    public ActionHandler(){ }
+    public ActionHandler(ActionInterface actionInterface) {
+        this.actionInterface = actionInterface;
+    }
+
 /*    public ActionHandler(Zone zone) {
         actionPerformer = new ActionPerformer(zone);
     }*/
@@ -30,8 +35,7 @@ public class ActionHandler {
         actionPerformer.performAction(player, trapAction);
     }
 
-
     public void setActionPerformer(Zone zone) {
-        this.actionPerformer = new ActionPerformer(zone);
+        this.actionPerformer = new ActionPerformer(zone, actionInterface);
     }
 }
