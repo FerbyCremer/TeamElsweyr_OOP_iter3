@@ -6,8 +6,8 @@ public class ToPlayer extends KeyCommand {
     private String name;
     private KeyControlState keyControlState;
 
-    public ToPlayer(String name, KeyControlState keyControlState){
-        super(name);
+    public ToPlayer( KeyControlState keyControlState){
+        super("toPlayer");
         keyControlState = keyControlState;
     }
 

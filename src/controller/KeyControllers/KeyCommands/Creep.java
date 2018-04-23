@@ -2,17 +2,15 @@ package controller.KeyControllers.KeyCommands;
 
 import model.Entities.Player;
 
-public class UnMount extends KeyCommand{
-
+public class Creep extends KeyCommand {
     private Player player;
-    
-    public UnMount(Player player){
-        super("unMount");
+    public Creep(Player player){
+        super("creep");
         this.player = player;
     }
-    
+
     @Override
     public void perform() {
-       player.Unmount();
+        player.attack();
     }
 }
