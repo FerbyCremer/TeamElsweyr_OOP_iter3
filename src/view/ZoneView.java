@@ -77,9 +77,11 @@ public class ZoneView {
                 if(actionInterface.getPoints(new Point(x,y))) {
                     gc.drawImage(sprites.getImage(actionInterface.getActionName()), hexX, hexY, hexWidth, hexHeight);
                 }
-                if(observeObserver.hasText()){
-                    if(observeObserver.getPoint().x == x && observeObserver.getPoint().y == y){
-                        gc.fillText(observeObserver.getText(), hexX, hexY);
+                if(observeObserver != null) {
+                    if (observeObserver.hasText()) {
+                        if (observeObserver.getPoint().x == x && observeObserver.getPoint().y == y) {
+                            gc.fillText(observeObserver.getText(), hexX, hexY);
+                        }
                     }
                 }
                 hexY+= hexHeight;
