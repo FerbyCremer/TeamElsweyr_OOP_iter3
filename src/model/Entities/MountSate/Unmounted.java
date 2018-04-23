@@ -20,4 +20,9 @@ public class Unmounted implements MountedState {
 	public void setValues(EntityStats stats) {
 		stats.setMaxSpeed(originalSpeed);
 	}
+
+	@Override
+	public List<Terrain> getTerrains(){
+		return originalPassable;
+	}
 }

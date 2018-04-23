@@ -152,7 +152,7 @@ public class AvatarController implements Initializable {
                 Platform.exit();
                 System.exit(0);
             });
-            javafx.scene.canvas.Canvas canvas = new Canvas(500, 500);
+            javafx.scene.canvas.Canvas canvas = new Canvas(1000, 1000);
 
             BorderPane borderPane = new BorderPane();
             Pane p = new Pane();
@@ -203,6 +203,7 @@ public class AvatarController implements Initializable {
 
             gameLoader = new GameLoader(canvas,  camera);
             WorldController theworld = gameLoader.load();
+            gameLoader.initializeKeyController(mainScene);
             gameSaver = new GameSaver(theworld);
             gameLoader.initializeKeyController(mainScene);
 

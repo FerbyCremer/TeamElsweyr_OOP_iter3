@@ -51,6 +51,8 @@ public class Player extends Entity implements Saveable {
         playerController.addKeyListener(new MoveSouth(this));
         playerController.addKeyListener(new MoveSouthEast(this));
         playerController.addKeyListener(new MoveSouthWest(this));
+        playerController.addKeyListener(new Attack(this));
+        playerController.addKeyListener(new ConsumeItem(this));
 
 
 //        keys.add(new MoveNorthWest(this));
@@ -166,6 +168,9 @@ public class Player extends Entity implements Saveable {
 
     public void swapState(MountedState mountedState) {
         this.mountedState = mountedState;
+        this.mountedState.setValues(stats);
+        terrains = mountedState.getTerrains();
+        playerController.removeKeyListener("unMount");
         execute();
     }
 
@@ -176,10 +181,6 @@ public class Player extends Entity implements Saveable {
     public void setMountHandler(MountHandler mountHandler) {
         this.mountHandler = mountHandler;
         execute();
-    }
-
-    public void Unmount() {
-        mountHandler.unmount(this);
     }
 
     public Mount getMount() {
@@ -195,8 +196,10 @@ public class Player extends Entity implements Saveable {
         npc.doInteraction(this);
     }
 
+    @Override
     public void visit(Mount mount) {
         mountHandler.mount(this, mount);
+        playerController.addKeyListener(new UnMount(this, mountHandler));
     }
 
 //	public void visit(Pet pet){

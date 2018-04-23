@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controller.EntityControllers.AIController;
+import controller.Handlers.ActionHandler;
 import controller.Handlers.BringOutYourDeadHandler;
 import controller.Handlers.MountHandler;
+import controller.KeyControllers.KeyCommands.*;
 import controller.KeyControllers.KeyController;
+import model.Actions.Action;
 import model.Entities.EntityStats;
 import model.Entities.Mount;
 import model.Entities.Pet;
@@ -23,10 +26,12 @@ import view.TradeView;
 
 public class EntityBuilder {
 	private BringOutYourDeadHandler deadHandler;
+	private ActionHandler actionHandler;
 	private int index;
 	
-	public EntityBuilder(BringOutYourDeadHandler deadHandler) {
+	public EntityBuilder(BringOutYourDeadHandler deadHandler, ActionHandler actionHandler) {
 		this.deadHandler = deadHandler;
+		this.actionHandler = actionHandler;
 	}
 	
 	public Player buildPlayer(List<String> attributes, KeyController controller, Inventory inventory, String avatar, List<Terrain> terrains, MountHandler mountHandler, EntityStats stats) {
@@ -49,9 +54,14 @@ public class EntityBuilder {
 				break;
 			case "sneak":
 				player = Player.playerMakeSneak(stats, skillLvl, controller, inventory, terrains, name, avatar, mountHandler, deadHandler);
+				controller.addKeyListener(new Detect(player, actionHandler));
+				controller.addKeyListener(new RemoveTrap(player, actionHandler));
+				controller.addKeyListener(new Creep(player, controller));
 				break;
 		}
-		
+
+		//Add default KeyCommands
+        controller.addKeyListener(new BindWounds(player, actionHandler));
 		return player;
 	}
 	

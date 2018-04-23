@@ -22,9 +22,10 @@ public class MountPerformer {
 		MountedState mounted = new Mounted(mount);
 		
 		player.swapState(mounted);
-		mounted.setValues(player.getStats());
-		
+		Tile tile = entityMap.getTileOf(mount);
+
 		entityMap.removeContent(mount);
+		entityMap.setNewLocation(tile, player);
 	}
 	
 	public void performUnmounting(Player player) {
@@ -35,7 +36,7 @@ public class MountPerformer {
 		
 		//TODO find a better way to get the tile to move the player as this is an LoD violation
 		//TODO it can also cause bugs depending where the player unmounts
-		entityMap.setNewLocation(tempTile.getNeighbor(Direction.N), player);
+		entityMap.setNewLocation(tempTile.getNeighbor(player.getDirection()), player);
 		entityMap.setContent(tempTile, mount);
 				
 				

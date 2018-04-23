@@ -41,6 +41,7 @@ public class MovementController {
                 currentDirection = riverMap.getContentAtTile(entityTile).apply(currentEntity);
             }
 
+
             EntityMover entityMover = entityMovers.get(currentEntity);
             //Blame whoever didn't put obstacles on the map corners if null ptr exception
             Tile tileInDirection = entityTile.getNeighbor(currentDirection);

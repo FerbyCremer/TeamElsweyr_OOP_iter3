@@ -6,6 +6,7 @@ import controller.LoadGame.Saveable;
 import controller.Handlers.BringOutYourDeadHandler;
 import model.Entities.AI;
 import model.Entities.EntityStats;
+import model.Entities.Mount;
 import model.Entities.Player;
 import model.Inventory.Inventory;
 import model.Map.Terrain;
@@ -36,7 +37,7 @@ public class NPC extends AI implements Saveable{
     @Override
     public void updateHealth(int healthChange) {
         super.updateHealth(healthChange);
-        if (healthChange < 0){
+        if (healthChange < 0) {
             npcState = new AggroState();
             return;
         }
@@ -47,6 +48,7 @@ public class NPC extends AI implements Saveable{
         return npcState;
     }
 
+    @Override
     public void visit(Player player){
         npcState.performInteraction(this, player);
     }

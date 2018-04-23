@@ -17,7 +17,7 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
 
     protected EntityStats stats;
     protected Inventory inventory;
-    private List<Terrain> terrains;
+    protected List<Terrain> terrains;
     private List<Updateable> observers;
     private String name;
     private BringOutYourDeadHandler deadHandler;
@@ -113,6 +113,14 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
 		execute();
 	}
 
+	public void setDetectRange(int detect){
+	    stats.setDetectRange(detect);
+    }
+
+    public int getDetectRange(){
+	    return stats.getDetectRange();
+    }
+
 
     public String getName() {
         return name;
@@ -124,10 +132,16 @@ public abstract class Entity implements EntityVisitable, EntityVisitor, Saveable
         entityVisitor.visit(this);
     }
 
-    @Override
-    public void visit(Entity entity) {
+	@Override
+	public void visit(Entity entity) {
 
-    }
+	}
+
+	@Override
+	public void visit(Mount mount){};
+
+    @Override
+	public void visit(Player player){};
 
     public Direction getDirection() {
         return stats.getFacingDirection();
