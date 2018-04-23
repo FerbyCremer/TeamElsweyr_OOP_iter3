@@ -7,6 +7,7 @@ import javafx.scene.Camera;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import model.Actions.Action;
 import model.Actions.ActionType.ActionInterface;
 import model.Actions.ActionType.ActionObserver;
 
@@ -34,6 +35,7 @@ public class ZoneView {
 
     double cameraX;
     double cameraY;
+    ActionInterface actionInterface;
 
    public ZoneView(Canvas canvas, Camera camera){
     ActionInterface actionInterface;
