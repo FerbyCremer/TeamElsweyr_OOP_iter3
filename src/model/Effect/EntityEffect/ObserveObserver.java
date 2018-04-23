@@ -8,10 +8,8 @@ import java.awt.*;
 public class ObserveObserver {
 
     Entity entity;
-    Zone zone;
     int cooldown = 0;
-    public ObserveObserver(Zone zone){
-        this.zone = zone;
+    public ObserveObserver(){
     }
 
     public void update(Entity entity){
@@ -29,7 +27,7 @@ public class ObserveObserver {
     }
 
     public Point getPoint(){
-        return zone.getEntityMap().getTileOf(entity).getCoordinate();
+        return new Point(0,0);
     }
 
     public String getText(){
