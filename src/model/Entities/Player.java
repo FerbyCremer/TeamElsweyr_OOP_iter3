@@ -51,6 +51,7 @@ public class Player extends Entity implements Saveable {
         playerController.addKeyListener(new MoveSouth(this));
         playerController.addKeyListener(new MoveSouthEast(this));
         playerController.addKeyListener(new MoveSouthWest(this));
+        playerController.addKeyListener(new Attack(this));
 
 
 //        keys.add(new MoveNorthWest(this));
