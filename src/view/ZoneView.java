@@ -55,6 +55,7 @@ public class ZoneView {
             for(int x = 0; x < decalSet.getXDim(); x++){
             ArrayList<String> tempList = decalSet.getTileContents(new Point(x, y));
                 for (String s : tempList) {
+                    System.out.println(s);
                     gc.drawImage(sprites.getImage(s), hexX, hexY, hexWidth, hexHeight);
                 }
                 hexY+= hexHeight;
