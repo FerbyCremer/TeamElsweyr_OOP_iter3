@@ -11,12 +11,14 @@ import java.io.IOException;
 public class GameSaver {
 
     SaveVisitor saver;
+    WorldController worldController;
 
-    public GameSaver(){
+    public GameSaver(WorldController worldController){
         saver = new GameSaveVisitor();
+        this.worldController = worldController;
     }
 
-    public void save(WorldController worldController) {
+    public void save() {
         String savefile = "";
 
         savefile += worldController.getWorld().accept(saver);

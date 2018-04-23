@@ -142,11 +142,11 @@ public class AvatarController implements Initializable {
             cameraGroup.getChildren().add(camera);
             root.getChildren().add(cameraGroup);
 
-            GameLoader loader = new GameLoader(canvas);
+
+/*            GameLoader loader = new GameLoader(canvas, );
             WorldController theworld = loader.load();
 
-
-            theworld.runGame();
+            theworld.runGame();*/
             mainStage.show();
         });
     }

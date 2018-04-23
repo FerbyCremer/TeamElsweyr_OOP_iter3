@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import model.Entities.Entity;
+import model.Entities.Player;
 import model.Inventory.Inventory;
 
 import javafx.scene.control.ListView;
@@ -28,10 +29,15 @@ public class GameObserver implements Initializable {
     @FXML BorderPane base;
     @FXML ListView<Takeable> inventoryList;
     //TODO: find way to get player and/or other entities
-    private Entity player;
-    private Inventory bag = player.getInventory();
+    private Player player;
+    private Inventory bag;
 
     private Scene scene;
+
+    public void setPlayer(Player player){
+        this.player = player;
+        bag = player.getInventory();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

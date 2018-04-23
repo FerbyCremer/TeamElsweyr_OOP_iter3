@@ -10,6 +10,7 @@ import controller.KeyControllers.KeyController;
 import controller.KeyControllers.ToInventory;
 import controller.MapControllers.WorldController;
 import controller.MapControllers.ZoneController;
+import controller.ViewControllers.GameObserver;
 import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.AI;
 import model.Entities.Entity;
@@ -39,6 +40,7 @@ public class GameLoader {
 
 
     private Canvas canvas;
+    private GameObserver gameObserver;
 
     private KeyControlState keyControlState = new KeyControlState();
 
@@ -60,9 +62,10 @@ public class GameLoader {
 
 
 
-    public GameLoader(Canvas canvas){
+    public GameLoader(Canvas canvas, GameObserver gameObserver){
 
         this.canvas = canvas;
+        this.gameObserver = gameObserver;
         //Initialize Controllers
         actionHandler = new ActionHandler();
         mountHandler = new MountHandler();
@@ -71,7 +74,7 @@ public class GameLoader {
         zoneView = new ZoneView(canvas);
        // worldController = new WorldController(new ZoneController(zoneView), actionHandler, mountHandler, deadHandler, aiController);
         deadHandler = new BringOutYourDeadHandler(aiController);
-       // worldController = new WorldController(new ZoneController(aiController), actionHandler, mountHandler, deadHandler);
+        worldController = new WorldController(new ZoneController(zoneView, aiController), actionHandler, mountHandler, deadHandler);
         //Initialize builders
         effectBuilder = new EffectBuilder(worldController);
         itemBuilder = new ItemBuilder(actionHandler, effectBuilder);
@@ -200,6 +203,7 @@ public class GameLoader {
                         //TODO store global reference to player somewhere?
                         aiController.setPlayer((Player) entity);
                         worldController.setPlayer((Player) entity);
+                        gameObserver.setPlayer((Player) entity);
                         break;
                     case "npc":
                         entity = entityBuilder.buildNPC(entityTypeData, aiController, inventory, passable, entityStats);

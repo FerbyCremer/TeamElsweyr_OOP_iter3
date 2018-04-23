@@ -1,6 +1,7 @@
 package controller.ViewControllers;
 
 import controller.LoadGame.GameLoader;
+import controller.LoadGame.GameSaver;
 import controller.MapControllers.WorldController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -23,6 +24,8 @@ public class MenuObserver implements Initializable {
     @FXML private BorderPane base;
 
     private Scene scene;
+    private GameLoader gameLoader;
+    private GameSaver gameSaver;
 
     public void initialize(URL u, ResourceBundle b){
         base.setBackground(new Background(new BackgroundImage(new Image("assets/backdrops/mainMenu.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT)));
@@ -40,12 +43,12 @@ public class MenuObserver implements Initializable {
 
     @FXML private void loadGame() throws IOException {
         Parent window;
-        FXMLLoader fmxlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
-        window = (BorderPane) fmxlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
 
+        this.showGame(fxmlLoader);
+        window = (BorderPane) fxmlLoader.load();
         this.scene = new Scene(window);
         //TODO need two versions???
-        this.showGame();
     }
 
     @FXML private void keyConfig() throws IOException {
@@ -67,7 +70,7 @@ public class MenuObserver implements Initializable {
 
         //TODO: set it to resume back to same spot when menu was opened
 
-        this.showGame();
+        //this.showGame();
     }
 
 
@@ -101,7 +104,7 @@ public class MenuObserver implements Initializable {
         });
     }
 
-    private void showGame() throws IOException {
+    private void showGame(FXMLLoader fxmlLoader) throws IOException {
         Platform.runLater(() -> {
             Stage mainStage = (Stage) base.getScene().getWindow();
             mainStage.setTitle("Team Elsweyr OOP Iteration 3: The Mewrchants of Vemice");
@@ -113,6 +116,8 @@ public class MenuObserver implements Initializable {
 
             javafx.scene.canvas.Canvas canvas = new Canvas(2500, 2500);
 
+            //gameSaver.save();
+
             root.getChildren().add(canvas);
             canvas.setFocusTraversable(true);
 
@@ -123,9 +128,12 @@ public class MenuObserver implements Initializable {
             cameraGroup.getChildren().add(camera);
             root.getChildren().add(cameraGroup);
 
-            GameLoader loader = new GameLoader(canvas);
-            WorldController theworld = loader.load();
 
+            GameObserver gameObserver = fxmlLoader.getController();
+
+            gameLoader = new GameLoader(canvas, gameObserver);
+            WorldController theworld = gameLoader.load();
+            gameSaver = new GameSaver(theworld);
 
             theworld.runGame();
             mainStage.show();
