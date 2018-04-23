@@ -9,9 +9,8 @@ public class ObserveEffect implements EntityEffect {
     private int amount;
     private UpdateEntityRelatedView updateEntityRelatedView;
     private ObserveObserver observeObserver;
-    public ObserveEffect(int amount) {
-        this.amount = amount;
-    }
+
+    public ObserveEffect() {    }
 
     public ObserveEffect(int amount, ObserveObserver observeObserver) {
         this.amount = amount;

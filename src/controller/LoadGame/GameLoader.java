@@ -7,6 +7,7 @@ import controller.Handlers.MountHandler;
 import controller.KeyControllers.KeyBindingMapper;
 import controller.KeyControllers.KeyCommands.KeyCommand;
 import controller.KeyControllers.KeyCommands.MoveKeyListeners.MoveNorth;
+import controller.KeyControllers.KeyCommands.ToCamera;
 import controller.KeyControllers.KeyControlState;
 import controller.KeyControllers.KeyController;
 import controller.KeyControllers.ToInventory;
@@ -94,7 +95,7 @@ public class GameLoader {
         //Initialize builders
         effectBuilder = new EffectBuilder(worldController, zoneView);
         itemBuilder = new ItemBuilder(actionHandler, effectBuilder);
-        entityBuilder = new EntityBuilder(deadHandler);
+        entityBuilder = new EntityBuilder(deadHandler, actionHandler);
     }
 
 
@@ -110,6 +111,8 @@ public class GameLoader {
         inventoryController = new KeyController("inventory", inventoryCommands);*/
 
        // keyControlState = new KeyControlState(scene, playerController, cameraController, inventoryController);
+
+        playerController.addKeyListener(new ToCamera(playerController, zoneView));
         scene.setOnKeyPressed(playerController);
 
         return playerController;

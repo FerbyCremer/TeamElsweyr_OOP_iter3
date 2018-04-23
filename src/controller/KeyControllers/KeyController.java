@@ -44,14 +44,18 @@ public class KeyController implements EventHandler<KeyEvent> {
         //TODO: communicate with keyBindingController to load key codes for specific keyListener
     }
 
-    public void removeKeyListener(String name){
-        keyListeners.remove(name);
+    public void removeKeyListener(String name) {
+        for (int i = 0; i < keyListeners.size(); i++) {
+            if (keyListeners.get(i).getName().equals(name)) {
+                keyListeners.remove(keyListeners.get(i));
+            }
+        }
     }
 
     @Override
     public void handle(KeyEvent event) {
-        for (KeyCommand keyListener : keyListeners) {
-            keyListener.handle(event);
+        for (int i = 0; i < keyListeners.size(); i++) {
+            keyListeners.get(i).handle(event);
         }
     }
 }
