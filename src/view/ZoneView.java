@@ -50,7 +50,7 @@ public class ZoneView {
         /*
         loop through the tile set and print the provided strings
          */
-        System.out.println("xdim " + decalSet.getXDim() + " ydmin " + decalSet.getYDim());
+       // System.out.println("xdim " + decalSet.getXDim() + " ydmin " + decalSet.getYDim());
 
         //TODO change x and y to getXDIM and getYDIM via DecalSetOAEUFHEI
         for(int x = 0; x < decalSet.getXDim(); x++){

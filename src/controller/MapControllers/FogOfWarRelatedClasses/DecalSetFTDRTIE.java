@@ -138,7 +138,7 @@ public class DecalSetFTDRTIE implements DecalSet {
     }
 
     public ArrayList<String> getTileContents(Point point){
-        System.out.println("   asfsaf   " +zoneMap.get(point));
+        //System.out.println("   asfsaf   " +zoneMap.get(point));
         return zoneMap.get(point);
     }
 }

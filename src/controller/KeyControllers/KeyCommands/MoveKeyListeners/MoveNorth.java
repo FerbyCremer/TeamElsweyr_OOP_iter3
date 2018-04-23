@@ -9,11 +9,12 @@ public class MoveNorth extends KeyCommand {
     private Direction direction = Direction.N;
 
     public MoveNorth(Player player){
-        super("MoveNorth");
+        super("moveNorth");
         this.player = player;
     }
     @Override
     public void perform() {
         player.move(direction);
+        //System.out.println("Moving north");
     }
 }

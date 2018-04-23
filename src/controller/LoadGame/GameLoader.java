@@ -4,13 +4,16 @@ import controller.EntityControllers.AIController;
 import controller.Handlers.ActionHandler;
 import controller.Handlers.BringOutYourDeadHandler;
 import controller.Handlers.MountHandler;
+import controller.KeyControllers.KeyBindingMapper;
 import controller.KeyControllers.KeyCommands.KeyCommand;
+import controller.KeyControllers.KeyCommands.MoveKeyListeners.MoveNorth;
 import controller.KeyControllers.KeyControlState;
 import controller.KeyControllers.KeyController;
 import controller.KeyControllers.ToInventory;
 import controller.MapControllers.WorldController;
 import controller.MapControllers.ZoneController;
 import controller.ViewControllers.GameObserver;
+import javafx.scene.Scene;
 import model.Effect.EntityEffect.EntityEffect;
 import model.Entities.AI;
 import model.Entities.Entity;
@@ -44,14 +47,18 @@ public class GameLoader {
     private GameObserver gameObserver;
     private InventoryObserver inventoryObserver;
 
-    private KeyControlState keyControlState = new KeyControlState();
+    private KeyControlState keyControlState;
 
     private WorldController worldController;
     private ZoneView zoneView;
     private ActionHandler actionHandler;
     private MountHandler mountHandler;
     private BringOutYourDeadHandler deadHandler;
+
+    private KeyBindingMapper keyBindingMapper;
     private KeyController playerController;
+
+
     private KeyController cameraController;
     private KeyController inventoryController;
 
@@ -71,7 +78,8 @@ public class GameLoader {
         //Initialize Controllers
         actionHandler = new ActionHandler();
         mountHandler = new MountHandler();
-        playerController = new KeyController("player", new ArrayList<>());
+        keyBindingMapper = new KeyBindingMapper("src/assets/saves/keybinds.txt");
+        playerController = new KeyController("player", keyBindingMapper);
         aiController = new AIController();
         zoneView = new ZoneView(canvas);
        // worldController = new WorldController(new ZoneController(zoneView), actionHandler, mountHandler, deadHandler, aiController);
@@ -84,19 +92,21 @@ public class GameLoader {
     }
 
 
-    public KeyControlState initializeKeyControlState(){
-        playerController.addKeyListener(new ToInventory("ToInventory", keyControlState));
-
-        //TODO keycontrolstate intialization
+    public KeyController initializeKeyController(Scene scene){
+        //playerController.addKeyListener(new ToInventory("ToInventory", keyControlState));
+        //TODO add all basic keycommands intialization
         //Make key commands
-        List<KeyCommand> cameraCommands = new ArrayList<>();
+/*        List<KeyCommand> cameraCommands = new ArrayList<>();
         cameraController = new KeyController("camera", cameraCommands);
 
         //Make key commands
         List<KeyCommand> inventoryCommands = new ArrayList<>();
-        inventoryController = new KeyController("inventory", inventoryCommands);
+        inventoryController = new KeyController("inventory", inventoryCommands);*/
 
-        return keyControlState;
+       // keyControlState = new KeyControlState(scene, playerController, cameraController, inventoryController);
+        scene.setOnKeyPressed(playerController);
+
+        return playerController;
     }
 
     private Loader loader = new Loader();
@@ -340,7 +350,7 @@ public class GameLoader {
         parseFile(filepath);
 
         //TODO do this here or in menu to get KeyControlState reference
-        initializeKeyControlState();
+        //initializeKeyControlState();
         return worldController;
     }
 
