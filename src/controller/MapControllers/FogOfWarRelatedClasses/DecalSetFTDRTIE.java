@@ -80,7 +80,7 @@ public class DecalSetFTDRTIE implements DecalSet {
             addTerrainName(t, names);
             addDecalName(t, currentZone, names);
 //            addRiverName(t, currentZone, names);
-            addTrapName(t, currentZone, names);
+           // addTrapName(t, currentZone, names);
             addItemName(t, currentZone, names);
             addEntityName(t, currentZone, names);
             zoneMap.put(p, names);

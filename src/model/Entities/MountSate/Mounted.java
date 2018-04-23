@@ -15,7 +15,6 @@ public class Mounted implements MountedState {
 	public Mounted(Mount mount) {
 		this.mount = mount;
 		speed = mount.getSpeed();
-		mountPassable = new ArrayList<Terrain>();
 		mountPassable = mount.getPassable();
 	}
 	
@@ -30,5 +29,10 @@ public class Mounted implements MountedState {
 	
 	public Mount getMount() {
 		return mount;
+	}
+
+	@Override
+	public List<Terrain> getTerrains(){
+		return mountPassable;
 	}
 }

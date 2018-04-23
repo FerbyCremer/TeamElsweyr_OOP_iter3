@@ -71,6 +71,7 @@ public class ZoneView {
             for(int x = 0; x < decalSet.getXDim(); x++){
             ArrayList<String> tempList = decalSet.getTileContents(new Point(x, y));
                 for (String s : tempList) {
+                    //System.out.println(s);
                     gc.drawImage(sprites.getImage(s), hexX, hexY, hexWidth, hexHeight);
                 }
                 if(actionInterface.getPoints(new Point(x,y))) {
@@ -124,6 +125,7 @@ public class ZoneView {
     public void centerCamera(double x, double y){
        x -= screenWidth/2;
        y -= screenHeight/2;
+       //System.out.println(screenWidth + " " + screenHeight);
        camera.relocate(x, y);
     }
 }

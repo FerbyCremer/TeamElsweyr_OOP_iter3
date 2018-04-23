@@ -19,4 +19,14 @@ public class Mount extends Entity {
     public List<Terrain> getPassable(){
         return super.getTerrains();
     }
+
+    public void accept(EntityVisitor entityVisitor) {
+        System.out.println("test00");
+        entityVisitor.visit(this);
+    }
+
+    @Override
+    public void visit(Entity entity) {
+
+    }
 }
