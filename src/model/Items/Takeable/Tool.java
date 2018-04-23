@@ -48,7 +48,7 @@ public class Tool extends Takeable implements Usable {
     }
 
     public void use(Player player){
-        actionHandler.createAction(player, action.clone(skill.getModifier()));
+        actionHandler.createAction(player, action.clone(player.getModifier(skill)));
     }
 
     @Override

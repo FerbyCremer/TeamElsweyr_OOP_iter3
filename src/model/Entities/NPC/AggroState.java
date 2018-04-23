@@ -15,22 +15,12 @@ public class AggroState implements NPCState {
     }
     @Override
     public void move(AIController aiController, NPC npc) {
-        findPlayer(aiController, npc);
+        aiController.moveToPlayer(npc);
     }
 
     @Override
     public void performInteraction(NPC npc, Player player) {
         player.updateHealth(attackDamage);
-    }
-
-    private void findPlayer(AIController aiController, NPC npc){
-        //TODO: Change find PathToPlayer take in an entity and find the distance direction between the player and npc
-        ArrayList<Direction> directions = aiController.findPathToPlayer(npc);
-        npc.move(directions.get(0));
-    }
-
-    private void attackPlayer(){
-
     }
 
     @Override

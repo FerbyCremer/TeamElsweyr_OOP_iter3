@@ -11,6 +11,7 @@ import model.Map.Direction;
 import model.Map.Zone.TileRelatedClasses.Tile;
 
 import java.util.HashMap;
+import java.util.Random;
 
 
 public class EntityAction extends Action{
@@ -46,13 +47,9 @@ public class EntityAction extends Action{
 
     }
 
-    //TODO actually calculate some accuracy shitz
     public void apply(Entity entity, int distance){
-        if(distance * accuracy > 1) {
+        if (targetHit(distance)){
             entityEffect.apply(entity);
-        }
-        else {
-            //miss
         }
     }
 

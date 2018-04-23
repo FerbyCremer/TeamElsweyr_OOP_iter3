@@ -28,7 +28,7 @@ public class Skill
 	}
 	
 	public double getModifier() {
-		return Math.log((double) level);
+		return (double) level*0.04;
 	}
 	
 	public boolean equals(Object otherSkill) {
