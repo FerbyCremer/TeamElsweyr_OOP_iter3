@@ -24,7 +24,7 @@ public class WorldController {
     private World world;
     private Player player;
     private DecalSetContainer decalSetContainer;
-    private ZoneView zoneView;
+    //private ZoneView zoneView;
     private ZoneController zoneController;
     private ActionHandler actionHandler;
     private MountHandler mountHandler;
@@ -85,6 +85,7 @@ public class WorldController {
         zoneController.setEntityToTrap(new EntityToTrap(zone));
         zoneController.setMovementController(new MovementController(zone));
         zoneController.setFogOfWarController(new FogOfWarController(player, zone, decalSetContainer.getDecalSet(zone.getID())));
+        zoneController.updateZoneView(decalSetContainer.getDecalSet(zone.getID()));
         zoneController.updateAIController(zone);
     }
 

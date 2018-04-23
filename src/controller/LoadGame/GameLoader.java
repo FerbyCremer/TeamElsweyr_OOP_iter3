@@ -25,6 +25,7 @@ import model.Map.World;
 import model.Map.Zone.ContentMap;
 import model.Map.Zone.TileRelatedClasses.*;
 import model.Map.Zone.Zone;
+import view.InventoryObserver;
 import view.ZoneView;
 import javafx.scene.canvas.Canvas;
 
@@ -41,6 +42,7 @@ public class GameLoader {
 
     private Canvas canvas;
     private GameObserver gameObserver;
+    private InventoryObserver inventoryObserver;
 
     private KeyControlState keyControlState = new KeyControlState();
 
@@ -204,6 +206,8 @@ public class GameLoader {
                         aiController.setPlayer((Player) entity);
                         worldController.setPlayer((Player) entity);
                         gameObserver.setPlayer((Player) entity);
+                        inventoryObserver = new InventoryObserver(inventory);
+                        inventory.add(inventoryObserver);
                         break;
                     case "npc":
                         entity = entityBuilder.buildNPC(entityTypeData, aiController, inventory, passable, entityStats);

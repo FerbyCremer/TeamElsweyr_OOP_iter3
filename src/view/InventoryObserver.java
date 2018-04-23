@@ -9,26 +9,20 @@ import javafx.util.Callback;
 import model.Entities.Entity;
 import model.Inventory.Inventory;
 import model.Items.Takeable.Takeable;
+import model.Updateable;
 
-public class InventoryObserver implements UpdateEntityRelatedView {
+public class InventoryObserver implements Updateable {
 
-    protected Entity player;
+    protected Inventory playerInventory;
 
-    protected Inventory playerInventory = player.getInventory();
     @FXML
     protected ListView<Takeable> playerInventoryList;
 
-    public InventoryObserver(Entity player) {
-        this.player = player;
+    public InventoryObserver(Inventory inventory) {
+        this.playerInventory = inventory;
+        playerInventoryList = new ListView<>();
         constructButtons();
     }
-
-    @Override
-    public void update(Entity... entities) {
-        playerInventory = player.getInventory();
-        constructButtons();
-    }
-
 
     private void constructButtons() {
 
@@ -46,4 +40,8 @@ public class InventoryObserver implements UpdateEntityRelatedView {
         playerInventory.equipItem(itemIndex);
     }
 
+    @Override
+    public void update() {
+        constructButtons();
+    }
 }

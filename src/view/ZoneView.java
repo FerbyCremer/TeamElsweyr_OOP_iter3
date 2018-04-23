@@ -1,5 +1,6 @@
 package view;
 
+import controller.MapControllers.FogOfWarRelatedClasses.DecalSet;
 import controller.MapControllers.FogOfWarRelatedClasses.DecalSetFTDRTIE;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class ZoneView {
 
-   DecalSetFTDRTIE s;
+   DecalSet decalSet;
 
     String workingDirectory = "file:" + System.getProperty("user.dir");
 
@@ -37,9 +38,7 @@ public class ZoneView {
         gc = canvas.getGraphicsContext2D();
         hexHeight = 80;
         hexWidth = 92;
-        s = new DecalSetFTDRTIE();
-
-
+        decalSet = new DecalSetFTDRTIE();
     }
 
     public void renderGrid(){
@@ -51,20 +50,20 @@ public class ZoneView {
         /*
         loop through the tile set and print the provided strings
          */
-        System.out.println("xdim " + s.getXDim() + " ydmin " + s.getYDim());
+        System.out.println("xdim " + decalSet.getXDim() + " ydmin " + decalSet.getYDim());
 
         //TODO change x and y to getXDIM and getYDIM via DecalSetOAEUFHEI
-        for(int x = 0; x < 30; x++){
-            for(int y = 0; y < 30; y++){
-            //ArrayList<String> tempList = s.getTileContents(new Point(x, y));
-                //for (String s : tempList) {
+        for(int x = 0; x < decalSet.getXDim(); x++){
+            for(int y = 0; y < decalSet.getYDim(); y++){
+            ArrayList<String> tempList = decalSet.getTileContents(new Point(x, y));
+                for (String s : tempList) {
                     if(x % 2 == 0){
                         gc.drawImage(img1, hexX, hexY, hexWidth, hexHeight);
                     }
                     else {
                         gc.drawImage(img2, hexX, hexY, hexWidth, hexHeight);
                     }
-                //}
+                }
                 hexY+= hexHeight;
             }
             //move the next column the correct amount
@@ -77,6 +76,11 @@ public class ZoneView {
                 hexY = hexHeight / 2;
         }
     }
+
+    public void updateZoneView(DecalSet decalSet){
+        this.decalSet = decalSet;
+    }
+
     public void renderEffects(){
 //        pointList = decalSet.getEffectPoints();
 //        for (Point p: pointList) {

@@ -44,8 +44,8 @@ public class MenuObserver implements Initializable {
     @FXML private void loadGame() throws IOException {
         Parent window;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
-
         this.showGame(fxmlLoader);
+
         window = (BorderPane) fxmlLoader.load();
         this.scene = new Scene(window);
         //TODO need two versions???
@@ -113,6 +113,10 @@ public class MenuObserver implements Initializable {
             Group root = new Group();
             Scene mainScene = new Scene(root);
             mainStage.setScene( mainScene );
+            mainStage.setOnCloseRequest((WindowEvent e) -> {
+                Platform.exit();
+                System.exit(0);
+            });
 
             javafx.scene.canvas.Canvas canvas = new Canvas(2500, 2500);
 
