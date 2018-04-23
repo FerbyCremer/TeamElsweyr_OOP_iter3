@@ -11,7 +11,7 @@
 <?import view.ZoneView?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.canvas.Canvas?>
-<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.GameObserver" fx:id="base" prefHeight="1080.0" prefWidth="1920.0" >
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ViewControllers.GameObserver" fx:id="base" >
     <left>
         <VBox>
             <children>

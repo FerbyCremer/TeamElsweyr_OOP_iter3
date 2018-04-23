@@ -57,13 +57,15 @@ public class ZoneView {
             for(int y = 0; y < decalSet.getYDim(); y++){
             ArrayList<String> tempList = decalSet.getTileContents(new Point(x, y));
                 for (String s : tempList) {
+           //             Image f = new Image(getClass().getClassLoader().getResource(workingDirectory + "/src/assets/" + s));
+                        Image f = new Image(workingDirectory + "/src/assets/" + s+".png");
 /*                    if(x % 2 == 0){
                         gc.drawImage(img1, hexX, hexY, hexWidth, hexHeight);
                     }
                     else {
                         gc.drawImage(img2, hexX, hexY, hexWidth, hexHeight);
                     }*/
-                    gc.drawImage(img2, hexX, hexY, hexWidth, hexHeight);
+                        gc.drawImage(f, hexX, hexY, hexWidth, hexHeight);
                 }
                 hexY+= hexHeight;
             }

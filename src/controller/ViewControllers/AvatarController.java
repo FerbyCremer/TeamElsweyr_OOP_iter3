@@ -1,6 +1,7 @@
 package controller.ViewControllers;
 
 import controller.LoadGame.GameLoader;
+import controller.LoadGame.GameSaver;
 import controller.MapControllers.WorldController;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
@@ -39,10 +40,15 @@ public class AvatarController implements Initializable {
     @FXML ImageView skillsCard;
     @FXML private BorderPane base;
 
+    private GameLoader gameLoader;
+    private GameSaver gameSaver;
+
     protected Image[] avatars = {new Image("assets/avatars/lgAvatar/1.png"), new Image("assets/avatars/lgAvatar/2.png"), new Image("assets/avatars/lgAvatar/3.png"),
             new Image("assets/avatars/lgAvatar/4.png"), new Image("assets/avatars/lgAvatar/5.png"), new Image("assets/avatars/lgAvatar/6.png"),new Image("assets/avatars/lgAvatar/7.png"),
             new Image("assets/avatars/lgAvatar/8.png"), new Image("assets/avatars/lgAvatar/9.png"), new Image("assets/avatars/lgAvatar/10.png"), new Image("assets/avatars/lgAvatar/11.png"),
             new Image("assets/avatars/lgAvatar/12.png"), new Image("assets/avatars/lgAvatar/13.png"), new Image("assets/avatars/lgAvatar/14.png"), new Image("assets/avatars/lgAvatar/15.png")};
+
+    protected String[] SMavatars = {"1i", "2i", "3i", "4i", "5i", "6i", "7i", "8i", "9i", "10i", "11i", "12i", "13i", "14i", "15i"};
 
     private Image sneak = new Image("assets/avatars/skillCards/scoutCard.png");
     private Image smasher = new Image("assets/avatars/skillCards/smasherCard.png");
@@ -103,16 +109,20 @@ public class AvatarController implements Initializable {
     @FXML private void startGame() throws IOException {
         //TODO: initialize new game
 
-        Parent root = new Group();
+       /* Parent root = new Group();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("view/GameViewport.fxml"),
                     ResourceBundle.getBundle("view.GameViewport"));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
+        Parent window;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/GameViewport.fxml"));
+        this.showScene(fxmlLoader);
 
-        this.scene = new Scene(root);
-        this.showScene();
+        window = (BorderPane) fxmlLoader.load();
+        this.scene = new Scene(window);
     }
 
     @FXML protected void setAvatar(String skill){
@@ -120,7 +130,7 @@ public class AvatarController implements Initializable {
         //ToDo: select factory based on string?
     }
 
-    private void showScene() throws IOException {
+    private void showScene(FXMLLoader fxmlLoader) throws IOException {
         Platform.runLater(() -> {
             Stage mainStage = (Stage) base.getScene().getWindow();
             mainStage.setTitle("Team Elsweyr OOP Iteration 3: The Mewrchants of Vemice");
@@ -143,10 +153,15 @@ public class AvatarController implements Initializable {
             root.getChildren().add(cameraGroup);
 
 
-/*            GameLoader loader = new GameLoader(canvas, );
-            WorldController theworld = loader.load();
+            GameObserver gameObserver = fxmlLoader.getController();
 
-            theworld.runGame();*/
+            gameLoader = new GameLoader(canvas, gameObserver);
+            WorldController theworld = gameLoader.load();
+            gameSaver = new GameSaver(theworld);
+
+            theworld.setPlayerName(SMavatars[i]);
+
+            theworld.runGame();
             mainStage.show();
         });
     }

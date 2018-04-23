@@ -61,8 +61,7 @@ public class GameObserver implements Initializable {
 
             Stage stage = (Stage) base.getScene().getWindow();
             stage.setResizable(true);
-            stage.setWidth(1080);
-            stage.setHeight(720);
+            stage.setMaximized(true);
 
             stage.setOnCloseRequest((WindowEvent e) -> {
                 Platform.exit();

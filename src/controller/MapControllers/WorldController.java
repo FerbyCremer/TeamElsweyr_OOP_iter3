@@ -95,6 +95,8 @@ public class WorldController {
 
     public void setPlayer(Player player) { this.player = player; }
 
+    public void setPlayerName(String avatar) {player.setName(avatar);}
+
     public void setDecalSetContainer(){
         decalSetContainer = new DecalSetContainer(world);
     }

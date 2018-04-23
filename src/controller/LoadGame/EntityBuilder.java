@@ -29,7 +29,7 @@ public class EntityBuilder {
 		this.deadHandler = deadHandler;
 	}
 	
-	public Player buildPlayer(List<String> attributes, KeyController controller, Inventory inventory, List<Terrain> terrains, MountHandler mountHandler, EntityStats stats) {
+	public Player buildPlayer(List<String> attributes, KeyController controller, Inventory inventory, String avatar, List<Terrain> terrains, MountHandler mountHandler, EntityStats stats) {
 		index = 0;
 		List<Integer> skillLvl = new ArrayList<Integer>();
 		Player player = null;
@@ -42,13 +42,13 @@ public class EntityBuilder {
 
 		switch(name) {
 			case "summoner":
-				player = Player.playerMakeSummoner(stats, skillLvl, controller, inventory, terrains, name, mountHandler, deadHandler);
+				player = Player.playerMakeSummoner(stats, skillLvl, controller, inventory, terrains, name, avatar, mountHandler, deadHandler);
 				break;
 			case "smasher":
-				player = Player.playerMakeSmasher(stats, skillLvl, controller, inventory, terrains, name, mountHandler, deadHandler);
+				player = Player.playerMakeSmasher(stats, skillLvl, controller, inventory, terrains, name, avatar, mountHandler, deadHandler);
 				break;
 			case "sneak":
-				player = Player.playerMakeSneak(stats, skillLvl, controller, inventory, terrains, name, mountHandler, deadHandler);
+				player = Player.playerMakeSneak(stats, skillLvl, controller, inventory, terrains, name, avatar, mountHandler, deadHandler);
 				break;
 		}
 		
