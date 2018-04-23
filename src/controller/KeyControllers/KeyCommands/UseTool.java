@@ -11,7 +11,7 @@ public class UseTool extends KeyCommand {
 
     //Paramterize with the relevant skill tool.
     public UseTool(Player player, Tool tool){
-        super("");
+        super("useTool");
         this.player = player;
         this.tool = tool;
     }

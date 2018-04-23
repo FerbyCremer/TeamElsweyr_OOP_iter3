@@ -7,7 +7,7 @@ public class ToInventory extends KeyCommand {
     private KeyControlState keyControlState;
 
     public ToInventory(String name, KeyControlState keyControlState){
-        super(name);
+        super("toInventory");
         this.keyControlState = keyControlState;
 
     }

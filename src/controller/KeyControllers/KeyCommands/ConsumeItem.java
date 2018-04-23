@@ -6,11 +6,11 @@ public class ConsumeItem extends KeyCommand {
     private Player player;
 
     public ConsumeItem() {
-        super("consume");
+        super("consumeItem");
     }
 
     public ConsumeItem(Player player) {
-        super("consume");
+        super("consumeItem");
     }
 
     @Override
