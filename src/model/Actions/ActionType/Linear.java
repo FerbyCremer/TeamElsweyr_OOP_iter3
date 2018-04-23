@@ -19,7 +19,7 @@ public class Linear implements ActionType {
 
         Tile tempTile = tile;
 
-        for(int i = 0; i < range; i++){
+        for(int i = 0; i <= range; i++){
             affectedTiles.put(tempTile, i);
             tempTile = tempTile.getNeighbor(direction);
         }
