@@ -15,7 +15,7 @@ public class DecalSetFTDRTIE implements DecalSet {
     private ConcurrentHashMap<Point, ArrayList<String>> zoneMap;
     private int xDim;
     private int yDim;
-    private String ghostName = "notNull";
+    private String ghostName = "nonVisible";
 
 
     /*
@@ -71,7 +71,7 @@ public class DecalSetFTDRTIE implements DecalSet {
     }
 
     private void createZoneMap(ArrayList<Tile> tiles, Zone currentZone){
-       // addGhostImageToSceneTiles();
+        addGhostImageToSceneTiles();
 
         for(Tile t: tiles){
             Point p = makeNewPoint(t.getCoordinate());
