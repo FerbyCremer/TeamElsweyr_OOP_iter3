@@ -36,11 +36,12 @@ public class GameObserver implements Initializable {
 
     public void setPlayer(Player player){
         this.player = player;
-        bag = player.getInventory();
+        bag = this.player.getInventory();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        inventoryList = new ListView<>();
         inventoryList.setCellFactory(new Callback<ListView<Takeable>, ListCell<Takeable>>()
         {
             public ListCell<Takeable> call(ListView<Takeable> p)
@@ -48,7 +49,9 @@ public class GameObserver implements Initializable {
                 return new InventoryCell(bag);
             }
         });
-        inventoryList.setItems(FXCollections.observableArrayList(bag.getItems()));
+        if (bag != null){
+            inventoryList.setItems(FXCollections.observableArrayList(bag.getItems()));
+        }
     }
 
 

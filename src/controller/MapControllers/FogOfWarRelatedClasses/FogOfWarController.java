@@ -35,7 +35,7 @@ public class FogOfWarController {
             for(int j = 0; j < tileNum; j++){
                 for(int k = 0; k < 360; k += 60) {
                     Tile temp = tiles.get(j).getNeighbor(Direction.getDirectionClosest(k));
-                    if(!tiles.contains(temp))
+                    if(temp != null && !tiles.contains(temp))
                         tiles.add(temp);
                 }
             }

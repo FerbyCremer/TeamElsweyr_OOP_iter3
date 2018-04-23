@@ -2,8 +2,10 @@ package controller.MapControllers;
 
 import controller.EntityControllers.AIController;
 import controller.EntityControllers.AIController;
+import controller.MapControllers.FogOfWarRelatedClasses.DecalSet;
 import controller.MapControllers.FogOfWarRelatedClasses.FogOfWarController;
 import controller.MapControllers.MovementRelatedControllers.*;
+import model.Map.Zone.TileRelatedClasses.Decal;
 import view.ZoneView;
 import model.Map.Zone.Zone;
 
@@ -43,7 +45,7 @@ public class ZoneController {
             itemCollison.checkCollision();
             areaEffectCollision.checkCollision();
             trapCollision.checkCollision();
-//            fogOfWarController.update();
+            fogOfWarController.update();
             zoneView.renderGrid();
 
         }
@@ -75,4 +77,6 @@ public class ZoneController {
     }
 
     public void updateAIController(Zone zone){ aiController.updateMaps(zone); }
+
+    public void updateZoneView(DecalSet decalSet){ zoneView.updateZoneView(decalSet); }
 }

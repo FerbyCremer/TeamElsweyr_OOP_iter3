@@ -14,7 +14,7 @@ public class DecalSetFTDRTIE implements DecalSet {
     private HashMap<Point, ArrayList<String>> zoneMap;
     private int xDim;
     private int yDim;
-    private String ghostName;
+    private String ghostName = "notNull";
 
 
     /*

@@ -17,7 +17,7 @@ public class Inventory implements Saveable{
 	private List<Takeable> items;
 	private final int size = 30;
 	private Equipment equipment;
-	private ArrayList<Updateable> observers;
+	private List<Updateable> observers;
 	
 	public Inventory(EntityStats stats) {
 		wealth = 0;

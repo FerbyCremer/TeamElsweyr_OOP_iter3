@@ -19,6 +19,7 @@ import model.Entities.NPC.ShopKeeperState;
 import model.Entities.NPC.TalkativeState;
 import model.Inventory.Inventory;
 import model.Map.Terrain;
+import view.TradeView;
 
 public class EntityBuilder {
 	private BringOutYourDeadHandler deadHandler;
@@ -67,7 +68,7 @@ public class EntityBuilder {
 				break;
 			
 			case "shopKeeper":
-				state = new ShopKeeperState();
+				state = new ShopKeeperState(new TradeView());
 				break;
 				
 			case "talkative":
