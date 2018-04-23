@@ -49,7 +49,7 @@ public class EntityStats {
 			currentHealth = maxHealth;
 			return;
 		}
-		
+
 		currentHealth += delta;
 	}
 	

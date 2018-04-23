@@ -17,7 +17,7 @@ public class ActionObserver implements ActionInterface {
     public void update(ArrayList<Point> points, String name) {
         this.points = points;
        // this.name = name;
-        coolDown = 999999;
+        coolDown = 1000;
     }
 
     @Override
